@@ -10,4 +10,9 @@ class indexController extends Controller
     public function index(){
         return view('back.language.index');
     }
+
+    // YENI EKLEME SAYFASI
+    public function create(){
+        echo "Yes";
+    }
 }

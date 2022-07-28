@@ -9,7 +9,7 @@
                                 <h1>Diller</h1>
                             </div>
                             <div class="page-description-actions">
-                                <a href="#" class="btn btn-primary"><i class="material-icons">add</i> Yeni Ekle</a>
+                                <a :href="yeni_ekle" class="btn btn-primary"><i class="material-icons">add</i> Yeni Ekle</a>
                             </div>
                         </div>
                     </div>
@@ -46,6 +46,7 @@
 <script>
 export default {
     name: "AdminLanguageListComponent",
+    props : ["yeni_ekle"],
     data(){
         return {
 
@@ -77,7 +78,6 @@ export default {
                 }
 
             });
-
 
             // SORTABLE JS KISMINI AYARLAYALIM
             $(".sortable").sortable();

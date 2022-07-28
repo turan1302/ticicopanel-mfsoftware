@@ -5381,6 +5381,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageListComponent",
+  props: ["yeni_ekle"],
   data: function data() {
     return {};
   },
@@ -28491,82 +28492,85 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c(
+              "div",
+              { staticClass: "page-description d-flex align-items-center" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "page-description-actions" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { href: _vm.yeni_ekle },
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("add"),
+                      ]),
+                      _vm._v(" Yeni Ekle"),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-content" }, [
-      _c("div", { staticClass: "content-wrapper" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c(
-                "div",
-                { staticClass: "page-description d-flex align-items-center" },
-                [
-                  _c(
-                    "div",
-                    { staticClass: "page-description-content flex-grow-1" },
-                    [_c("h1", [_vm._v("Diller")])]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "page-description-actions" }, [
-                    _c(
-                      "a",
-                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
-                      [
-                        _c("i", { staticClass: "material-icons" }, [
-                          _vm._v("add"),
-                        ]),
-                        _vm._v(" Yeni Ekle"),
-                      ]
-                    ),
-                  ]),
-                ]
-              ),
-            ]),
+    return _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+      _c("h1", [_vm._v("Diller")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Diller")]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-header" }, [
-                  _c("h5", { staticClass: "card-title" }, [_vm._v("Diller")]),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered yajra-datatable",
+                attrs: { id: "datatable1", width: "100%", cellspacing: "0" },
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Sıra")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("ID")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Başlık")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Kod")]),
+                  ]),
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-body" }, [
-                  _c(
-                    "table",
-                    {
-                      staticClass: "table table-bordered yajra-datatable",
-                      attrs: {
-                        id: "datatable1",
-                        width: "100%",
-                        cellspacing: "0",
-                      },
-                    },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v("Sıra")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("ID")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Başlık")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Kod")]),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("tbody", { staticClass: "sortable" }),
-                    ]
-                  ),
-                ]),
-              ]),
-            ]),
+                _c("tbody", { staticClass: "sortable" }),
+              ]
+            ),
           ]),
         ]),
       ]),
