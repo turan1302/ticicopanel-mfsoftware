@@ -5374,6 +5374,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageListComponent",
   data: function data() {
@@ -28498,9 +28503,30 @@ var staticRenderFns = [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "page-description" }, [
-                _c("h1", [_vm._v("Diller")]),
-              ]),
+              _c(
+                "div",
+                { staticClass: "page-description d-flex align-items-center" },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "page-description-content flex-grow-1" },
+                    [_c("h1", [_vm._v("Diller")])]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "page-description-actions" }, [
+                    _c(
+                      "a",
+                      { staticClass: "btn btn-primary", attrs: { href: "#" } },
+                      [
+                        _c("i", { staticClass: "material-icons" }, [
+                          _vm._v("add"),
+                        ]),
+                        _vm._v(" Yeni Ekle"),
+                      ]
+                    ),
+                  ]),
+                ]
+              ),
             ]),
           ]),
           _vm._v(" "),
@@ -28508,7 +28534,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "col" }, [
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-header" }, [
-                  _c("h5", { staticClass: "card-title" }, [_vm._v("Basic")]),
+                  _c("h5", { staticClass: "card-title" }, [_vm._v("Diller")]),
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body" }, [

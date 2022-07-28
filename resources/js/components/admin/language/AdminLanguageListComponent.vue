@@ -4,8 +4,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="page-description">
-                            <h1>Diller</h1>
+                        <div class="page-description d-flex align-items-center">
+                            <div class="page-description-content flex-grow-1">
+                                <h1>Diller</h1>
+                            </div>
+                            <div class="page-description-actions">
+                                <a href="#" class="btn btn-primary"><i class="material-icons">add</i> Yeni Ekle</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -14,7 +19,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Basic</h5>
+                                <h5 class="card-title">Diller</h5>
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered yajra-datatable" id="datatable1" width="100%" cellspacing="0">
