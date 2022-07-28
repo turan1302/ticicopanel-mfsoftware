@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="page-description">
-                            <h1>Anasayfams</h1>
+                            <h1>Anasayfam</h1>
                         </div>
                     </div>
                 </div>
