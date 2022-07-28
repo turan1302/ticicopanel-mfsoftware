@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // YAJRA KISMINI DAHIL EDELIM
+        Yajra\DataTables\DataTablesServiceProvider::class,
+
     ],
 
     /*

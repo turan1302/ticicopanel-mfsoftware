@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+/** ADMIN KISMI **/
+Route::group(['prefix'=>'back','namespace'=>'back'],function (){
+
+    // DILLER KISMI
+    Route::group(['prefix'=>'language','namespace'=>'language'],function (){
+        Route::get('',[\App\Http\Controllers\api\back\language\indexController::class,'index']);
+    });
 });

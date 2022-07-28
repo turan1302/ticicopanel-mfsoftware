@@ -9,6 +9,30 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Basic</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered yajra-datatable" id="datatable1" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>#</th>
+                                        <th>Başlık</th>
+                                        <th>Kod</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="sortable">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -16,7 +40,30 @@
 
 <script>
 export default {
-    name: "AdminLanguageListComponent"
+    name: "AdminLanguageListComponent",
+    data(){
+        return {
+
+        }
+    },
+    mounted(){
+        $(document).ready(function () {
+            var table = $('.yajra-datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    type: "GET",
+                    url: "http://127.0.0.1:8000/api/back/language",
+                },
+                columns: [
+                    {data: 'dil_sira', name: 'dil_sira',orderable : true},
+                    {data: 'dil_id', name: 'dil_id'},
+                    {data: 'dil_ad', name: 'dil_ad'},
+                    {data: 'dil_kod', name: 'dil_kod'},
+                ]
+            });
+        });
+    }
 }
 </script>
 

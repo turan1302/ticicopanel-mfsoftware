@@ -20,6 +20,7 @@ class CreateLanguageModelsTable extends Migration
             $table->string('dil_ikon')->nullable();
             $table->tinyInteger('dil_durum')->default(1)->nullable();
             $table->tinyInteger('dil_varsayilan')->default(0)->nullable();
+            $table->tinyInteger('dil_sira')->default(0)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

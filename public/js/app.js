@@ -5350,8 +5350,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AdminLanguageListComponent"
+  name: "AdminLanguageListComponent",
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    $(document).ready(function () {
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/back/language"
+        },
+        columns: [{
+          data: 'dil_sira',
+          name: 'dil_sira',
+          orderable: true
+        }, {
+          data: 'dil_id',
+          name: 'dil_id'
+        }, {
+          data: 'dil_ad',
+          name: 'dil_ad'
+        }, {
+          data: 'dil_kod',
+          name: 'dil_kod'
+        }]
+      });
+    });
+  }
 });
 
 /***/ }),
@@ -28424,6 +28477,45 @@ var staticRenderFns = [
             _c("div", { staticClass: "col" }, [
               _c("div", { staticClass: "page-description" }, [
                 _c("h1", [_vm._v("Diller")]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h5", { staticClass: "card-title" }, [_vm._v("Basic")]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered yajra-datatable",
+                      attrs: {
+                        id: "datatable1",
+                        width: "100%",
+                        cellspacing: "0",
+                      },
+                    },
+                    [
+                      _c("thead", [
+                        _c("tr", [
+                          _c("th", [_vm._v("#")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("#")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Başlık")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Kod")]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("tbody", { staticClass: "sortable" }),
+                    ]
+                  ),
+                ]),
               ]),
             ]),
           ]),
