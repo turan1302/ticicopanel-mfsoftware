@@ -24,7 +24,12 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
 
 
     /** ADMIN ANASAYFA KISMI AYARLANMASI **/
-    Route::group(['prefix'=>'','as'=>'home.'],function (){
+    Route::group(['prefix'=>'','namespace'=>'home','as'=>'home.'],function (){
         Route::get('',[\App\Http\Controllers\back\home\indexController::class,'index'])->name('index');
+    });
+
+    /** DIL KISMI AYARLAMA **/
+    Route::group(['prefix'=>'language','namespace'=>'language','as'=>'language.'],function (){
+        Route::get('',[\App\Http\Controllers\back\language\indexController::class,'index'])->name('index');
     });
 });

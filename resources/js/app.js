@@ -22,8 +22,11 @@ window.Vue = require('vue').default;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /** ADMIN KSIMI AYARLAMASI **/
+// ANASAYFA
 Vue.component('admin-home-component', require('./components/admin/home/AdminHomeComponent').default);
 
+// DILLER KISMI
+Vue.component('admin-language-list-component', require('./components/admin/language/AdminLanguageListComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
