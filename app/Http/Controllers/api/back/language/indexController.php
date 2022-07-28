@@ -39,4 +39,16 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // DIL SIRALAMA GUNCELLEME KISMINI GERCEKLESTIRELIM
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'),$sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v){
+            LanguageModel::where("dil_id",$v)->update(array(
+                "dil_sira" => $k
+            ));
+        }
+    }
 }

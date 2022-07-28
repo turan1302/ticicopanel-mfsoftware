@@ -76,15 +76,17 @@ export default {
             $(".sortable").sortable();
             $(".sortable").on("sortupdate",function () {
                 var data = $(this).sortable("serialize");
-                alert(data);
-                // $.ajax({
-                //     type : "PATCH",
-                //     url : "{{ route('back.sm.rankSetter') }}",
-                //     data : {
-                //         data : data
-                //     },
-                //     success : function () {}
-                // });
+                var url = "http://127.0.0.1:8000/api/back/language/rank-setter";
+                $.ajax({
+                    type : "POST",
+                    url : url,
+                    data : {
+                        data : data
+                    },
+                    error : function (e){
+                        console.log(e);
+                    }
+                });
             })
         });
     }
