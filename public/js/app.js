@@ -5373,6 +5373,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageListComponent",
   data: function data() {
@@ -5392,6 +5393,10 @@ __webpack_require__.r(__webpack_exports__);
           }
         },
         columns: [{
+          data: 'dil_sira',
+          name: 'dil_sira',
+          orderable: true
+        }, {
           data: 'dil_id',
           name: 'dil_id'
         }, {
@@ -28520,7 +28525,9 @@ var staticRenderFns = [
                     [
                       _c("thead", [
                         _c("tr", [
-                          _c("th", [_vm._v("#")]),
+                          _c("th", [_vm._v("Sıra")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("ID")]),
                           _vm._v(" "),
                           _c("th", [_vm._v("Başlık")]),
                           _vm._v(" "),

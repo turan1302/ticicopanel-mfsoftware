@@ -18,6 +18,9 @@ class indexController extends Controller
             ->orderColumn("dil_sira",function ($query){
                 $query->orderBy("dil_sira", "asc");
             })
+            ->addColumn("dil_sira", function ($query) {
+                return '<span class="material-icons">reorder</span>';
+            })
             ->addColumn("dil_durum", function ($query) {
                 $checkedStatus = ($query->dil_durum == 1) ? 'checked' : '';
                 return "<label class='switch'>

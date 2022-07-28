@@ -20,7 +20,8 @@
                                 <table class="table table-bordered yajra-datatable" id="datatable1" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>Sıra</th>
+                                        <th>ID</th>
                                         <th>Başlık</th>
                                         <th>Kod</th>
                                     </tr>
@@ -61,6 +62,7 @@ export default {
                     }
                 },
                 columns: [
+                    {data: 'dil_sira', name: 'dil_sira',orderable : true},
                     {data: 'dil_id', name: 'dil_id'},
                     {data: 'dil_ad', name: 'dil_ad'},
                     {data: 'dil_kod', name: 'dil_kod'},
