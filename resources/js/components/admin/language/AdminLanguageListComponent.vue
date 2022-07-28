@@ -56,13 +56,36 @@ export default {
                 ajax: {
                     type: "GET",
                     url: "http://127.0.0.1:8000/api/back/language",
+                    error : function (e){
+                        console.log(e);
+                    }
                 },
                 columns: [
                     {data: 'dil_id', name: 'dil_id'},
                     {data: 'dil_ad', name: 'dil_ad'},
                     {data: 'dil_kod', name: 'dil_kod'},
-                ]
+                ],
+                "fnCreatedRow" : function (nRow,aData,iDataIndex) {
+                    $(nRow).attr("id","item-"+aData.dil_id);
+                }
+
             });
+
+
+            // SORTABLE JS KISMINI AYARLAYALIM
+            $(".sortable").sortable();
+            $(".sortable").on("sortupdate",function () {
+                var data = $(this).sortable("serialize");
+                alert(data);
+                // $.ajax({
+                //     type : "PATCH",
+                //     url : "{{ route('back.sm.rankSetter') }}",
+                //     data : {
+                //         data : data
+                //     },
+                //     success : function () {}
+                // });
+            })
         });
     }
 }

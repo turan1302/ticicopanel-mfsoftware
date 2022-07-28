@@ -5386,7 +5386,10 @@ __webpack_require__.r(__webpack_exports__);
         serverSide: true,
         ajax: {
           type: "GET",
-          url: "http://127.0.0.1:8000/api/back/language"
+          url: "http://127.0.0.1:8000/api/back/language",
+          error: function error(e) {
+            console.log(e);
+          }
         },
         columns: [{
           data: 'dil_id',
@@ -5397,7 +5400,23 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           data: 'dil_kod',
           name: 'dil_kod'
-        }]
+        }],
+        "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
+          $(nRow).attr("id", "item-" + aData.dil_id);
+        }
+      }); // SORTABLE JS KISMINI AYARLAYALIM
+
+      $(".sortable").sortable();
+      $(".sortable").on("sortupdate", function () {
+        var data = $(this).sortable("serialize");
+        alert(data); // $.ajax({
+        //     type : "PATCH",
+        //     url : "{{ route('back.sm.rankSetter') }}",
+        //     data : {
+        //         data : data
+        //     },
+        //     success : function () {}
+        // });
       });
     });
   }
