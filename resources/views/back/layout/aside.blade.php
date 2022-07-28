@@ -12,7 +12,7 @@
     <div class="app-menu">
         <ul class="accordion-menu">
             <li class="active-page">
-                <a href="{{ route('back.home.index') }}" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                <a href="{{ route('back.home.index') }}" class="active"><i class="material-icons-two-tone">dashboard</i>Anasayfa</a>
             </li>
             <li>
                 <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>

@@ -28271,7 +28271,7 @@ var staticRenderFns = [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col" }, [
               _c("div", { staticClass: "page-description" }, [
-                _c("h1", [_vm._v("Anasayfams")]),
+                _c("h1", [_vm._v("Anasayfam")]),
               ]),
             ]),
           ]),
