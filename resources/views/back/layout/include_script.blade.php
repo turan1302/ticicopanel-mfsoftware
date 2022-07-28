@@ -8,5 +8,8 @@
 <script src="{{ asset('back') }}/js/custom.js"></script>
 <script src="{{ asset('back') }}/js/pages/dashboard.js"></script>
 
+{{-- UI JS --}}
+<script src="{{ asset('back') }}/js/jquery-ui.min.js"></script>
+
 {{-- VUE JS --}}
 <script src="{{ asset('js/app.js') }}"></script>

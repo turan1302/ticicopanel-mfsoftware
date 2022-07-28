@@ -12,9 +12,12 @@ class indexController extends Controller
     // TUM DILLERI CEKME KISMI AYARLAMASI
     public function index()
     {
-        $query = LanguageModel::all();
+        $query = LanguageModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
+            ->orderColumn("dil_sira",function ($query){
+                $query->orderBy("dil_sira", "asc");
+            })
             ->addColumn("dil_durum", function ($query) {
                 $checkedStatus = ($query->dil_durum == 1) ? 'checked' : '';
                 return "<label class='switch'>

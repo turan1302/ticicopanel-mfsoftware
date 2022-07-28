@@ -5373,7 +5373,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageListComponent",
   data: function data() {
@@ -5381,6 +5380,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     $(document).ready(function () {
+      $(".sortable").sortable();
       var table = $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
@@ -5389,10 +5389,6 @@ __webpack_require__.r(__webpack_exports__);
           url: "http://127.0.0.1:8000/api/back/language"
         },
         columns: [{
-          data: 'dil_sira',
-          name: 'dil_sira',
-          orderable: true
-        }, {
           data: 'dil_id',
           name: 'dil_id'
         }, {
@@ -28502,8 +28498,6 @@ var staticRenderFns = [
                     [
                       _c("thead", [
                         _c("tr", [
-                          _c("th", [_vm._v("#")]),
-                          _vm._v(" "),
                           _c("th", [_vm._v("#")]),
                           _vm._v(" "),
                           _c("th", [_vm._v("Başlık")]),

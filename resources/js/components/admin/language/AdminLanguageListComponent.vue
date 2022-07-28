@@ -21,7 +21,6 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>#</th>
                                         <th>Başlık</th>
                                         <th>Kod</th>
                                     </tr>
@@ -48,6 +47,9 @@ export default {
     },
     mounted(){
         $(document).ready(function () {
+
+            $(".sortable").sortable();
+
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -56,7 +58,6 @@ export default {
                     url: "http://127.0.0.1:8000/api/back/language",
                 },
                 columns: [
-                    {data: 'dil_sira', name: 'dil_sira',orderable : true},
                     {data: 'dil_id', name: 'dil_id'},
                     {data: 'dil_ad', name: 'dil_ad'},
                     {data: 'dil_kod', name: 'dil_kod'},
