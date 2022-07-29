@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\language;
 
 use App\Http\Controllers\Controller;
+use App\Models\LanguageModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -14,5 +15,10 @@ class indexController extends Controller
     // YENI EKLEME SAYFASI
     public function create(){
         return view('back.language.create');
+    }
+
+    // GUNCELLEME SAYFASI
+    public function edit(LanguageModel $item){
+
     }
 }

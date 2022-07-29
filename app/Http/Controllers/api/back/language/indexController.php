@@ -38,7 +38,7 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-                $edit = "<a href='' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $edit = "<a href='".route('back.language.edit',$query->dil_id)."' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
 
                 return $edit . " " . $update;

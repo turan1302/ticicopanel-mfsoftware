@@ -32,5 +32,8 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
     Route::group(['prefix'=>'language','namespace'=>'language','as'=>'language.'],function (){
         Route::get('',[\App\Http\Controllers\back\language\indexController::class,'index'])->name('index');
         Route::get('create',[\App\Http\Controllers\back\language\indexController::class,'create'])->name('create');
+        Route::group(['prefix'=>'{item}'],function (){
+            Route::get('edit',[\App\Http\Controllers\back\language\indexController::class,'edit'])->name('edit');
+        });
     });
 });
