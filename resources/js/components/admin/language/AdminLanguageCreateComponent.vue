@@ -19,7 +19,12 @@
                                 <h5 class="card-title">Dil Bilgileri</h5>
                             </div>
                             <div class="card-body">
-                                <form method="POST">
+
+                                <div class="col-md-12 alert alert-danger text-center">
+                                    Ortada Bişr Kısım Yok
+                                </div>
+
+                                <form method="POST" @submit.prevent="yeniDilEkle()">
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Dil Adı</label>
@@ -28,7 +33,7 @@
                                         </div>
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Dil Kodu</label>
-                                            <input type="text"  v-model="dil_kodu" class="form-control"
+                                            <input type="text" v-model="dil_kodu" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
                                         <div class="example-content">
@@ -37,12 +42,12 @@
                                                    aria-describedby="emailHelp">
                                         </div>
 
-                                      <div class="row">
-                                          <div class="example-component m-2">
-                                              <button type="submit" class="btn btn-success btn-md"> Yeni Ekle</button>
-                                              <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
-                                          </div>
-                                      </div>
+                                        <div class="row">
+                                            <div class="example-component m-2">
+                                                <button type="submit" class="btn btn-success btn-md"> Yeni Ekle</button>
+                                                <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -58,19 +63,32 @@
 <script>
 export default {
     name: "AdminLanguageCreateComponent",
-    props : ["geriye_don"],
+    props: ["geriye_don"],
     data() {
         return {
-            dil_adi : '',
-            dil_kodu : '',
-            dil_ikon : ''
+            dil_adi: '',
+            dil_kodu: '',
+            dil_ikon: '',
+            errors: [],
         }
     },
-    mounted() {
+    methods: {
+        yeniDilEkle() {
+            this.errors = [];
 
-    },
-    methods : {
+            if (this.dil_adi == "") {
+                this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+            }
 
+            if (this.dil_kodu == "") {
+                this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
+            }
+
+            /** EĞER HATA YOK ISE **/
+            if (this.errors.length == 0) {
+                axios.post();
+            }
+        }
     }
 }
 </script>

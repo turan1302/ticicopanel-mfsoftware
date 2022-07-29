@@ -35,6 +35,7 @@ Vue.component('admin-language-create-component', require('./components/admin/lan
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 const app = new Vue({
     el: '#app',
 });
