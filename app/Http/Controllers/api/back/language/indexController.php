@@ -113,6 +113,11 @@ class indexController extends Controller
 
     }
 
+    // DIL GETIRME ISLEMININ GERCEKLESTIRELIM
+    public function edit(LanguageModel $item){
+        return response()->json($item);
+    }
+
     // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function delete(LanguageModel $item){
         if ($item->dil_ikon!="" && File::exists("storage/".$item->dil_ikon)){

@@ -19,6 +19,7 @@ class indexController extends Controller
 
     // GUNCELLEME SAYFASI
     public function edit(LanguageModel $item){
+        return view('back.language.edit',compact('item'));
 
     }
 }

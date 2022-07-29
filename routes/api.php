@@ -29,6 +29,7 @@ Route::group(['prefix'=>'back','namespace'=>'back'],function (){
         Route::post('rank-setter',[\App\Http\Controllers\api\back\language\indexController::class,'rankSetter']);
 
         Route::group(['prefix'=>'{item}'],function (){
+            Route::get('edit',[\App\Http\Controllers\api\back\language\indexController::class,'edit']);
             Route::get('delete',[\App\Http\Controllers\api\back\language\indexController::class,'delete']);
             Route::post('is-active',[\App\Http\Controllers\api\back\language\indexController::class,'isActiveSetter']);
             Route::post('is-default',[\App\Http\Controllers\api\back\language\indexController::class,'isDefaultSetter']);
