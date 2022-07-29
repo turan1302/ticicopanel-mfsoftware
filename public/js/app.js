@@ -5396,6 +5396,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageCreateComponent",
   props: ["geriye_don"],
@@ -5421,9 +5425,7 @@ __webpack_require__.r(__webpack_exports__);
       /** EĞER HATA YOK ISE **/
 
 
-      if (this.errors.length == 0) {
-        axios.post();
-      }
+      if (this.errors.length == 0) {}
     }
   }
 });
@@ -28683,15 +28685,18 @@ var render = function () {
               _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  { staticClass: "col-md-12 alert alert-danger text-center" },
-                  [
-                    _vm._v(
-                      "\n                                Ortada Bişr Kısım Yok\n                            "
-                    ),
-                  ]
-                ),
+                _vm.errors.length > 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "col-md-12 alert alert-danger text-center",
+                      },
+                      _vm._l(_vm.errors, function (item) {
+                        return _c("ul", [_c("li", [_vm._v(_vm._s(item))])])
+                      }),
+                      0
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
                 _c(
                   "form",

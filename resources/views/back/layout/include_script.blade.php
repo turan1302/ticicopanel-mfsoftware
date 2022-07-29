@@ -11,5 +11,8 @@
 {{-- UI JS --}}
 <script src="{{ asset('back') }}/js/jquery-ui.min.js"></script>
 
+{{-- SWEET ALERT JS KISMI --}}
+<script src="{{ asset('back') }}/js/sweetalert.js"></script>
+
 {{-- VUE JS --}}
 <script src="{{ asset('js/app.js') }}"></script>

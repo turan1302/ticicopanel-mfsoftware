@@ -20,9 +20,13 @@
                             </div>
                             <div class="card-body">
 
-                                <div class="col-md-12 alert alert-danger text-center">
-                                    Ortada Bişr Kısım Yok
+                                <!-- HATA KISMI AYARLANMASI -->
+                                <div v-if="errors.length > 0" class="col-md-12 alert alert-danger text-center">
+                                    <ul v-for="item in errors">
+                                        <li>{{ item }}</li>
+                                    </ul>
                                 </div>
+
 
                                 <form method="POST" @submit.prevent="yeniDilEkle()">
                                     <div class="example-container">
@@ -86,7 +90,7 @@ export default {
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                axios.post();
+
             }
         }
     }
