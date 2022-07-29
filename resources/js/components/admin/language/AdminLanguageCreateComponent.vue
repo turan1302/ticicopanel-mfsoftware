@@ -95,7 +95,16 @@ export default {
                     dil_ad : this.dil_ad,
                     dil_kod : this.dil_kod
                 }).then((res)=>{
-                    console.log(res);
+                    var data = res.data;
+                    Swal.fire({
+                        icon: data.type,
+                        title: data.title,
+                        text : data.text,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(()=>{
+                        location.reload();
+                    })
                 });
             }
         }
