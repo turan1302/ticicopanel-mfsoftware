@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\back\language;
 use App\Http\Controllers\Controller;
 use App\Models\LanguageModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
@@ -62,6 +63,14 @@ class indexController extends Controller
             ];
 
             return response()->json($alert);
+        }
+
+        // DOSYA GELDI MI
+        $data['dil_ikon'] = "";
+        if ($request->hasFile('dil_ikon')){
+            $file = $request->file('dil_ikon');
+            $file_name = Str::slug($data['dil_ad'])."-".time().".".$file->getClientOriginalExtension();
+            $data['dil_ikon'] = $file->storeAs("language",$file_name);
         }
 
         $result = LanguageModel::create($data);

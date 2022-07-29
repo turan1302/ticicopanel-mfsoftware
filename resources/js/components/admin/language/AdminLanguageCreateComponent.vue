@@ -28,7 +28,7 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yeniDilEkle()">
+                                <form method="POST" @submit.prevent="yeniDilEkle()" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Dil Adı</label>
@@ -41,8 +41,8 @@
                                                    aria-describedby="emailHelp">
                                         </div>
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil İkon</label>
-                                            <input type="file" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Dil İkon (50x50)</label>
+                                            <input type="file" @change="dilIkonSec" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -91,22 +91,29 @@ export default {
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
                 var url = "http://127.0.0.1:8000/api/back/language/store";
-                axios.post(url,{
-                    dil_ad : this.dil_ad,
-                    dil_kod : this.dil_kod
-                }).then((res)=>{
+
+                let formData = new FormData();
+                formData.append('dil_ad', this.dil_ad);
+                formData.append('dil_kod', this.dil_kod);
+                formData.append('dil_ikon', this.dil_ikon);
+
+
+                axios.post(url, formData).then((res) => {
                     var data = res.data;
                     Swal.fire({
                         icon: data.type,
                         title: data.title,
-                        text : data.text,
+                        text: data.text,
                         showConfirmButton: false,
                         timer: 1500
-                    }).then(()=>{
+                    }).then(() => {
                         location.reload();
                     })
                 });
             }
+        },
+        dilIkonSec(e) {
+            this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
         }
     }
 }

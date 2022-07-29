@@ -5427,10 +5427,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors.length == 0) {
         var url = "http://127.0.0.1:8000/api/back/language/store";
-        axios.post(url, {
-          dil_ad: this.dil_ad,
-          dil_kod: this.dil_kod
-        }).then(function (res) {
+        var formData = new FormData();
+        formData.append('dil_ad', this.dil_ad);
+        formData.append('dil_kod', this.dil_kod);
+        formData.append('dil_ikon', this.dil_ikon);
+        axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
             icon: data.type,
@@ -5443,6 +5444,9 @@ __webpack_require__.r(__webpack_exports__);
           });
         });
       }
+    },
+    dilIkonSec: function dilIkonSec(e) {
+      this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
     }
   }
 });
@@ -28718,7 +28722,7 @@ var render = function () {
                 _c(
                   "form",
                   {
-                    attrs: { method: "POST" },
+                    attrs: { method: "POST", enctype: "multipart/form-data" },
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
@@ -28800,7 +28804,25 @@ var render = function () {
                         }),
                       ]),
                       _vm._v(" "),
-                      _vm._m(2),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Dil İkon (50x50)")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "file",
+                            "aria-describedby": "emailHelp",
+                          },
+                          on: { change: _vm.dilIkonSec },
+                        }),
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "example-component m-2" }, [
@@ -28859,23 +28881,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Dil Bilgileri")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "example-content" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
-        [_vm._v("Dil İkon")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "file", "aria-describedby": "emailHelp" },
-      }),
     ])
   },
 ]
