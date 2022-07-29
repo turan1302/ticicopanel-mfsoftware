@@ -32,12 +32,12 @@
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Dil Adı</label>
-                                            <input type="text" v-model="dil_adi" class="form-control"
+                                            <input type="text" v-model="dil_ad" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Dil Kodu</label>
-                                            <input type="text" v-model="dil_kodu" class="form-control"
+                                            <input type="text" v-model="dil_kod" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
                                         <div class="example-content">
@@ -70,8 +70,8 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
-            dil_adi: '',
-            dil_kodu: '',
+            dil_ad: '',
+            dil_kod: '',
             dil_ikon: '',
             errors: [],
         }
@@ -80,17 +80,23 @@ export default {
         yeniDilEkle() {
             this.errors = [];
 
-            if (this.dil_adi == "") {
+            if (this.dil_ad == "") {
                 this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
             }
 
-            if (this.dil_kodu == "") {
+            if (this.dil_kod == "") {
                 this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
             }
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-
+                var url = "http://127.0.0.1:8000/api/back/language/store";
+                axios.post(url,{
+                    dil_ad : this.dil_ad,
+                    dil_kod : this.dil_kod
+                }).then((res)=>{
+                    console.log(res);
+                });
             }
         }
     }

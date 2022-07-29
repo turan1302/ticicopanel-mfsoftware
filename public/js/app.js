@@ -5405,8 +5405,8 @@ __webpack_require__.r(__webpack_exports__);
   props: ["geriye_don"],
   data: function data() {
     return {
-      dil_adi: '',
-      dil_kodu: '',
+      dil_ad: '',
+      dil_kod: '',
       dil_ikon: '',
       errors: []
     };
@@ -5415,17 +5415,25 @@ __webpack_require__.r(__webpack_exports__);
     yeniDilEkle: function yeniDilEkle() {
       this.errors = [];
 
-      if (this.dil_adi == "") {
+      if (this.dil_ad == "") {
         this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
       }
 
-      if (this.dil_kodu == "") {
+      if (this.dil_kod == "") {
         this.errors.push("Dil Kodu Alanı Boş Bırakılamaz");
       }
       /** EĞER HATA YOK ISE **/
 
 
-      if (this.errors.length == 0) {}
+      if (this.errors.length == 0) {
+        var url = "http://127.0.0.1:8000/api/back/language/store";
+        axios.post(url, {
+          dil_ad: this.dil_ad,
+          dil_kod: this.dil_kod
+        }).then(function (res) {
+          console.log(res);
+        });
+      }
     }
   }
 });
@@ -28726,8 +28734,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.dil_adi,
-                              expression: "dil_adi",
+                              value: _vm.dil_ad,
+                              expression: "dil_ad",
                             },
                           ],
                           staticClass: "form-control",
@@ -28735,13 +28743,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.dil_adi },
+                          domProps: { value: _vm.dil_ad },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.dil_adi = $event.target.value
+                              _vm.dil_ad = $event.target.value
                             },
                           },
                         }),
@@ -28762,8 +28770,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.dil_kodu,
-                              expression: "dil_kodu",
+                              value: _vm.dil_kod,
+                              expression: "dil_kod",
                             },
                           ],
                           staticClass: "form-control",
@@ -28771,13 +28779,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.dil_kodu },
+                          domProps: { value: _vm.dil_kod },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.dil_kodu = $event.target.value
+                              _vm.dil_kod = $event.target.value
                             },
                           },
                         }),
