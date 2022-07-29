@@ -30,6 +30,13 @@ class indexController extends Controller
                          <span class='slider round'></span>
                         </label>";
             })
+            ->addColumn("dil_durum", function ($query) {
+                $checkedStatus = ($query->dil_varsayilan == 1) ? 'checked' : '';
+                return "<label class='switch'>
+                        <input type='checkbox' class='isDefault' data-id='$query->dil_id' $checkedStatus>
+                         <span class='slider round'></span>
+                        </label>";
+            })
             ->addColumn("actions", function ($query) {
                 $edit = "<a href='' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
@@ -39,7 +46,7 @@ class indexController extends Controller
             ->editColumn('dil_kod', function ($query) {
                 return strtoupper($query->dil_kod);
             })
-            ->rawColumns(["dil_sira", "dil_durum", "actions"])
+            ->rawColumns(["dil_sira", "dil_durum","dil_varsayilan", "actions"])
             ->make(true);
 
         return $data;
