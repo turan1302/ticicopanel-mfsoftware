@@ -30,6 +30,7 @@
                                         <th>ID</th>
                                         <th>Başlık</th>
                                         <th>Kod</th>
+                                        <th>Durum</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
@@ -72,6 +73,7 @@ export default {
                     {data: 'dil_id', name: 'dil_id'},
                     {data: 'dil_ad', name: 'dil_ad'},
                     {data: 'dil_kod', name: 'dil_kod'},
+                    {data: 'dil_durum', name: 'dil_durum'},
                     {data: 'actions', name: 'actions'},
                 ],
                 "fnCreatedRow": function (nRow, aData, iDataIndex) {
