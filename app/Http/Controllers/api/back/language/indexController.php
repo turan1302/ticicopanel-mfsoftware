@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\back\language;
 use App\Http\Controllers\Controller;
 use App\Models\LanguageModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
@@ -31,7 +32,7 @@ class indexController extends Controller
             })
             ->addColumn("actions", function ($query) {
                 $edit = "<a href='' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
-                $update = "<button type='button' class='btn btn-danger btn-md isDelete'><i class='fa fa-times'></i> Sil</button>";
+                $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
 
                 return $edit . " " . $update;
             })
@@ -67,10 +68,11 @@ class indexController extends Controller
 
         // DOSYA GELDI MI
         $data['dil_ikon'] = "";
+
         if ($request->hasFile('dil_ikon')){
             $file = $request->file('dil_ikon');
             $desteklenen_uzantilar = ["jpeg","jpg","png"];
-            if (($file->getSize()>0 && $file->getSize()<2048) && in_array($file->getClientOriginalExtension(),$desteklenen_uzantilar)){
+            if (in_array($file->getClientOriginalExtension(),$desteklenen_uzantilar)){
                 $file_name = Str::slug($data['dil_ad'])."-".time().".".$file->getClientOriginalExtension();
                 $data['dil_ikon'] = $file->storeAs("language",$file_name);
             }else{
@@ -102,6 +104,29 @@ class indexController extends Controller
 
         return response()->json($alert);
 
+    }
+
+    // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+    public function delete(LanguageModel $item){
+        if ($item->dil_ikon!="" && File::exists("storage/".$item->dil_ikon)){
+            File::delete("storage/".$item->dil_ikon);
+        }
+
+        $sonuc = $item->delete();
+        if ($sonuc){
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        }else{
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
     }
 
     // DIL SIRALAMA GUNCELLEME KISMINI GERCEKLESTIRELIM

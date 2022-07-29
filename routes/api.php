@@ -27,5 +27,9 @@ Route::group(['prefix'=>'back','namespace'=>'back'],function (){
         Route::get('',[\App\Http\Controllers\api\back\language\indexController::class,'index']);
         Route::post('store',[\App\Http\Controllers\api\back\language\indexController::class,'store']);
         Route::post('rank-setter',[\App\Http\Controllers\api\back\language\indexController::class,'rankSetter']);
+
+        Route::group(['prefix'=>'{item}'],function (){
+            Route::get('delete',[\App\Http\Controllers\api\back\language\indexController::class,'delete']);
+        });
     });
 });

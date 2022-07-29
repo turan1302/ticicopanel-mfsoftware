@@ -22,7 +22,8 @@
                                 <h5 class="card-title">Diller</h5>
                             </div>
                             <div class="card-body">
-                                <table class="table table-bordered yajra-datatable" id="datatable1" width="100%" cellspacing="0">
+                                <table class="table table-bordered yajra-datatable" id="datatable1" width="100%"
+                                       cellspacing="0">
                                     <thead>
                                     <tr>
                                         <th>Sıra</th>
@@ -47,13 +48,11 @@
 <script>
 export default {
     name: "AdminLanguageListComponent",
-    props : ["yeni_ekle"],
-    data(){
-        return {
-
-        }
+    props: ["yeni_ekle"],
+    data() {
+        return {}
     },
-    mounted(){
+    mounted() {
         $(document).ready(function () {
 
             $(".sortable").sortable();
@@ -64,35 +63,67 @@ export default {
                 ajax: {
                     type: "GET",
                     url: "http://127.0.0.1:8000/api/back/language",
-                    error : function (e){
+                    error: function (e) {
                         console.log(e);
                     }
                 },
                 columns: [
-                    {data: 'dil_sira', name: 'dil_sira',orderable : true},
+                    {data: 'dil_sira', name: 'dil_sira', orderable: true},
                     {data: 'dil_id', name: 'dil_id'},
                     {data: 'dil_ad', name: 'dil_ad'},
                     {data: 'dil_kod', name: 'dil_kod'},
                     {data: 'actions', name: 'actions'},
                 ],
-                "fnCreatedRow" : function (nRow,aData,iDataIndex) {
-                    $(nRow).attr("id","item-"+aData.dil_id);
+                "fnCreatedRow": function (nRow, aData, iDataIndex) {
+                    $(nRow).attr("id", "item-" + aData.dil_id);
                 }
 
             });
 
+            // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+            $(".yajra-datatable").on("click", ".isDelete", function () {
+                var id = $(this).data("id");
+                var url = "http://127.0.0.1:8000/api/back/language/" + id + "/delete";
+
+                Swal.fire({
+                    title: 'Dikkat!',
+                    text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet, Kaydı Sil',
+                    cancelButtonText: 'Vazgeç'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.get(url).then((res) => {
+                            var data = res.data;
+                            Swal.fire({
+                                icon: data.type,
+                                title: data.title,
+                                text: data.text,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                location.reload();
+                            })
+                        });
+                    }
+                })
+            });
+
             // SORTABLE JS KISMINI AYARLAYALIM
             $(".sortable").sortable();
-            $(".sortable").on("sortupdate",function () {
+            $(".sortable").on("sortupdate", function () {
                 var data = $(this).sortable("serialize");
                 var url = "http://127.0.0.1:8000/api/back/language/rank-setter";
                 $.ajax({
-                    type : "POST",
-                    url : url,
-                    data : {
-                        data : data
+                    type: "POST",
+                    url: url,
+                    data: {
+                        data: data
                     },
-                    error : function (e){
+                    error: function (e) {
                         console.log(e);
                     }
                 });

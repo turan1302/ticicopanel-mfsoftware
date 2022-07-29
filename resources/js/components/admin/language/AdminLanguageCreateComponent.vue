@@ -97,7 +97,6 @@ export default {
                 formData.append('dil_kod', this.dil_kod);
                 formData.append('dil_ikon', this.dil_ikon);
 
-
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
                     Swal.fire({
