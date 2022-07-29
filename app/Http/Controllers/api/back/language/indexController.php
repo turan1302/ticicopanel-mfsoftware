@@ -69,8 +69,19 @@ class indexController extends Controller
         $data['dil_ikon'] = "";
         if ($request->hasFile('dil_ikon')){
             $file = $request->file('dil_ikon');
-            $file_name = Str::slug($data['dil_ad'])."-".time().".".$file->getClientOriginalExtension();
-            $data['dil_ikon'] = $file->storeAs("language",$file_name);
+            $desteklenen_uzantilar = ["jpeg","jpg","png"];
+            if (($file->getSize()>0 && $file->getSize()<2048) && in_array($file->getClientOriginalExtension(),$desteklenen_uzantilar)){
+                $file_name = Str::slug($data['dil_ad'])."-".time().".".$file->getClientOriginalExtension();
+                $data['dil_ikon'] = $file->storeAs("language",$file_name);
+            }else{
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return  response()->json($alert);
+            }
         }
 
         $result = LanguageModel::create($data);
