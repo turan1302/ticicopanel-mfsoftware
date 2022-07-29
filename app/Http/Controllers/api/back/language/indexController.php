@@ -38,7 +38,7 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-                $edit = "<a href='".route('back.language.edit',$query->dil_id)."' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
 
                 return $edit . " " . $update;
@@ -46,7 +46,7 @@ class indexController extends Controller
             ->editColumn('dil_kod', function ($query) {
                 return strtoupper($query->dil_kod);
             })
-            ->rawColumns(["dil_sira", "dil_durum","dil_varsayilan", "actions"])
+            ->rawColumns(["dil_sira", "dil_durum", "dil_varsayilan", "actions"])
             ->make(true);
 
         return $data;
@@ -63,7 +63,7 @@ class indexController extends Controller
         ))->first();
 
         $alert = [];
-        if ($sorgula){
+        if ($sorgula) {
             $alert = [
                 "type" => "error",
                 "title" => "Hata",
@@ -76,32 +76,32 @@ class indexController extends Controller
         // DOSYA GELDI MI
         $data['dil_ikon'] = "";
 
-        if ($request->hasFile('dil_ikon')){
+        if ($request->hasFile('dil_ikon')) {
             $file = $request->file('dil_ikon');
-            $desteklenen_uzantilar = ["jpeg","jpg","png"];
-            if (in_array($file->getClientOriginalExtension(),$desteklenen_uzantilar)){
-                $file_name = Str::slug($data['dil_ad'])."-".time().".".$file->getClientOriginalExtension();
-                $data['dil_ikon'] = $file->storeAs("language",$file_name);
-            }else{
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['dil_ad']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['dil_ikon'] = $file->storeAs("language", $file_name);
+            } else {
                 $alert = [
                     "type" => "error",
                     "title" => "Hata",
                     "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
                 ];
 
-                return  response()->json($alert);
+                return response()->json($alert);
             }
         }
 
         $result = LanguageModel::create($data);
 
-        if ($result){
+        if ($result) {
             $alert = [
                 "type" => "success",
                 "title" => "Başarılı",
                 "text" => "İşlem Başarılı",
             ];
-        }else{
+        } else {
             $alert = [
                 "type" => "error",
                 "title" => "Hata",
@@ -114,24 +114,95 @@ class indexController extends Controller
     }
 
     // DIL GETIRME ISLEMININ GERCEKLESTIRELIM
-    public function edit(LanguageModel $item){
+    public function edit(LanguageModel $item)
+    {
         return response()->json($item);
     }
 
-    // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
-    public function delete(LanguageModel $item){
-        if ($item->dil_ikon!="" && File::exists("storage/".$item->dil_ikon)){
-            File::delete("storage/".$item->dil_ikon);
+    // DIL GUNCELLEME ISLEMINI GERCEKLESTIRELIM
+    public function update(Request $request, LanguageModel $item)
+    {
+        $data = $request->except("_token");
+
+        if ($request->dil_kod != $item->dil_kod) {
+            // AYNI KODDAN VAR MI ANALIZ EDELIM
+            $sorgula = LanguageModel::where(array(
+                "dil_kod" => $data['dil_kod']
+            ))->first();
+
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Dil Kodu Zaten Mevcut",
+            ];
+
+            return response()->json($alert);
         }
 
-        $sonuc = $item->delete();
-        if ($sonuc){
+
+        // DOSYA GELDI MI
+        $data['dil_ikon'] = $item->dil_ikon;
+
+        if ($request->hasFile('dil_ikon')) {
+            $file = $request->file('dil_ikon');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                // ONCEKI DOSYAYI BI SILDIRELIM
+                if ($item->dil_ikon != "" && File::exists("storage/" . $item->dil_ikon)) {
+                    File::delete("storage/" . $item->dil_ikon);
+                }
+
+                $file_name = Str::slug($data['dil_ad']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['dil_ikon'] = $file->storeAs("language", $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+
+        $result = $item->update($data);
+
+        if ($result) {
             $alert = [
                 "type" => "success",
                 "title" => "Başarılı",
                 "text" => "İşlem Başarılı",
             ];
-        }else{
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
+    }
+
+    // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+    public function delete(LanguageModel $item)
+    {
+        if ($item->dil_ikon != "" && File::exists("storage/" . $item->dil_ikon)) {
+            File::delete("storage/" . $item->dil_ikon);
+        }
+
+        $sonuc = $item->delete();
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
             $alert = [
                 "type" => "error",
                 "title" => "Hata",
@@ -142,16 +213,18 @@ class indexController extends Controller
     }
 
     // AKTRIF PASIF OLAYINI DEGISTIRELIM
-    public function isActiveSetter(Request $request,LanguageModel $item){
-        $data = ($request->data=="true") ? 1 : 0;
+    public function isActiveSetter(Request $request, LanguageModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "dil_durum" => $data
         ));
     }
 
     // DEFAULT OLARAK SECILME ISLEMINI GERCEKLESTIRELIM
-    public function isDefaultSetter(Request $request,LanguageModel $item){
-        $data = ($request->data=="true") ? 1 : 0;
+    public function isDefaultSetter(Request $request, LanguageModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
 
         LanguageModel::where(array())->update(array(
             "dil_varsayilan" => 0

@@ -5552,6 +5552,40 @@ __webpack_require__.r(__webpack_exports__);
     this.dilGetir(dil_id);
   },
   methods: {
+    dilGuncelle: function dilGuncelle() {
+      this.errors = [];
+
+      if (this.dil_ad == "") {
+        this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+      }
+
+      if (this.dil_kod == "") {
+        this.errors.push("Dil Kodu Alanı Boş Bırakılamaz");
+      }
+      /** EĞER HATA YOK ISE **/
+
+
+      if (this.errors.length == 0) {
+        var id = this.$props.dil_id;
+        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/update";
+        var formData = new FormData();
+        formData.append('dil_ad', this.dil_ad);
+        formData.append('dil_kod', this.dil_kod);
+        formData.append('dil_ikon', this.dil_ikon);
+        axios.post(url, formData).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        });
+      }
+    },
     dilGetir: function dilGetir(dil_id) {
       var _this = this;
 
@@ -29325,7 +29359,7 @@ var render = function () {
                               staticClass: "btn btn-success btn-md",
                               attrs: { type: "submit" },
                             },
-                            [_vm._v(" Yeni Ekle")]
+                            [_vm._v(" Dil Güncelle")]
                           ),
                           _vm._v(" "),
                           _c(

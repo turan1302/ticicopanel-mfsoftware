@@ -53,7 +53,7 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Yeni Ekle</button>
+                                                <button type="submit" class="btn btn-success btn-md"> Dil Güncelle</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
@@ -72,10 +72,10 @@
 <script>
 export default {
     name: "AdminLanguageCreateComponent",
-    props: ["geriye_don",'dil_id'],
+    props: ["geriye_don", 'dil_id'],
     data() {
         return {
-            site_url : 'http://127.0.0.1:8000/storage/',
+            site_url: 'http://127.0.0.1:8000/storage/',
             dil_ad: '',
             dil_kod: '',
             dil_ikon: '',
@@ -87,13 +87,47 @@ export default {
         this.dilGetir(dil_id);
     },
     methods: {
-        dilGetir(dil_id){
-            var url = "http://127.0.0.1:8000/api/back/language/"+dil_id+"/edit";
-            axios.get(url).then((res)=>{
+        dilGuncelle() {
+            this.errors = [];
+
+            if (this.dil_ad == "") {
+                this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+            }
+
+            if (this.dil_kod == "") {
+                this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
+            }
+
+            /** EĞER HATA YOK ISE **/
+            if (this.errors.length == 0) {
+                var id = this.$props.dil_id;
+                var url = "http://127.0.0.1:8000/api/back/language/"+id+"/update";
+
+                let formData = new FormData();
+                formData.append('dil_ad', this.dil_ad);
+                formData.append('dil_kod', this.dil_kod);
+                formData.append('dil_ikon', this.dil_ikon);
+
+                axios.post(url, formData).then((res) => {
+                    var data = res.data;
+                    Swal.fire({
+                        icon: data.type,
+                        title: data.title,
+                        text: data.text,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        location.reload();
+                    })
+                });
+            }
+        },
+        dilGetir(dil_id) {
+            var url = "http://127.0.0.1:8000/api/back/language/" + dil_id + "/edit";
+            axios.get(url).then((res) => {
                 var data = res.data;
                 this.dil_ad = data.dil_ad;
                 this.dil_kod = data.dil_kod;
-
                 this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
 
             });
