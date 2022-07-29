@@ -13,6 +13,6 @@ class indexController extends Controller
 
     // YENI EKLEME SAYFASI
     public function create(){
-        echo "Yes";
+        return view('back.language.create');
     }
 }

@@ -27,6 +27,7 @@ Vue.component('admin-home-component', require('./components/admin/home/AdminHome
 
 // DILLER KISMI
 Vue.component('admin-language-list-component', require('./components/admin/language/AdminLanguageListComponent').default);
+Vue.component('admin-language-create-component', require('./components/admin/language/AdminLanguageCreateComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
