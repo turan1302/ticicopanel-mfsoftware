@@ -37,6 +37,15 @@ class indexController extends Controller
                          <span class='slider round'></span>
                         </label>";
             })
+            ->addColumn("dil_ikon", function ($query) {
+                if ($query->dil_ikon != "" && File::exists("storage/".$query->dil_ikon)){
+                    $image =  "<img src='".asset('storage/'.$query->dil_ikon)."' width='50' height='50'>";
+                }else{
+                    $image =  "<img src='".asset('storage/resim-yok.webp')."' width='50' height='50'>";
+                }
+
+                return $image;
+            })
             ->addColumn("actions", function ($query) {
                 $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
@@ -46,7 +55,7 @@ class indexController extends Controller
             ->editColumn('dil_kod', function ($query) {
                 return strtoupper($query->dil_kod);
             })
-            ->rawColumns(["dil_sira", "dil_durum", "dil_varsayilan", "actions"])
+            ->rawColumns(["dil_sira", "dil_durum", "dil_varsayilan",'dil_ikon', "actions"])
             ->make(true);
 
         return $data;
