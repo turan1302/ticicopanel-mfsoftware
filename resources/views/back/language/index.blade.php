@@ -2,6 +2,7 @@
 
 @section('css')
     <link href="{{ asset('back') }}/plugins/datatables/datatables.min.css" rel="stylesheet">
+    <link href="{{ asset('back') }}/css/toggle.css" rel="stylesheet">
 @endsection
 
 @section('content')

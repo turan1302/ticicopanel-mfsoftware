@@ -26,7 +26,7 @@ class indexController extends Controller
             ->addColumn("dil_durum", function ($query) {
                 $checkedStatus = ($query->dil_durum == 1) ? 'checked' : '';
                 return "<label class='switch'>
-                        <input type='checkbox' class='isActive' $checkedStatus>
+                        <input type='checkbox' class='isActive' data-id='$query->dil_id' $checkedStatus>
                          <span class='slider round'></span>
                         </label>";
             })
@@ -127,6 +127,14 @@ class indexController extends Controller
             ];
         }
         return response()->json($alert);
+    }
+
+    // AKTRIF PASIF OLAYINI DEGISTIRELIM
+    public function isActiveSetter(Request $request,LanguageModel $item){
+        $data = ($request->data=="true") ? 1 : 0;
+        $item->update(array(
+            "dil_durum" => $data
+        ));
     }
 
     // DIL SIRALAMA GUNCELLEME KISMINI GERCEKLESTIRELIM
