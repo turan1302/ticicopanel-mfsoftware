@@ -130,13 +130,16 @@ class indexController extends Controller
                 "dil_kod" => $data['dil_kod']
             ))->first();
 
-            $alert = [
-                "type" => "error",
-                "title" => "Hata",
-                "text" => "Aynı Dil Kodu Zaten Mevcut",
-            ];
+           if ($sorgula){
+               $alert = [
+                   "type" => "error",
+                   "title" => "Hata",
+                   "text" => "Aynı Dil Kodu Zaten Mevcut",
+               ];
 
-            return response()->json($alert);
+               return response()->json($alert);
+
+           }
         }
 
 
