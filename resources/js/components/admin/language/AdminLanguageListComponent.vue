@@ -93,7 +93,26 @@ export default {
                 axios.post(url,{
                     data : data
                 });
+            });
 
+            // DIL VARSATILAN KISMI AYARLAMASINI GERCEKLESTIRELIM
+            $(".yajra-datatable").on("change",".isDefault",function () {
+                var id = $(this).data("id");
+                var data = $(this).prop("checked");
+                var url = "http://127.0.0.1:8000/api/back/language/"+id+"/is-default";
+
+
+                axios.post(url,{
+                    data : data
+                }).then((res)=>{
+                    location.reload();
+                }).catch(function (error) {
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    }
+                });
             });
 
             // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM

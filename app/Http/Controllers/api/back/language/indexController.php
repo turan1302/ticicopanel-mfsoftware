@@ -30,7 +30,7 @@ class indexController extends Controller
                          <span class='slider round'></span>
                         </label>";
             })
-            ->addColumn("dil_durum", function ($query) {
+            ->addColumn("dil_varsayilan", function ($query) {
                 $checkedStatus = ($query->dil_varsayilan == 1) ? 'checked' : '';
                 return "<label class='switch'>
                         <input type='checkbox' class='isDefault' data-id='$query->dil_id' $checkedStatus>
@@ -141,6 +141,19 @@ class indexController extends Controller
         $data = ($request->data=="true") ? 1 : 0;
         $item->update(array(
             "dil_durum" => $data
+        ));
+    }
+
+    // DEFAULT OLARAK SECILME ISLEMINI GERCEKLESTIRELIM
+    public function isDefaultSetter(Request $request,LanguageModel $item){
+        $data = ($request->data=="true") ? 1 : 0;
+
+        LanguageModel::where(array())->update(array(
+            "dil_varsayilan" => 0
+        ));
+
+        $item->update(array(
+            "dil_varsayilan" => 1
         ));
     }
 
