@@ -5509,6 +5509,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageListComponent",
   props: ["yeni_ekle"],
@@ -5541,6 +5542,9 @@ __webpack_require__.r(__webpack_exports__);
         }, {
           data: 'dil_kod',
           name: 'dil_kod'
+        }, {
+          data: 'actions',
+          name: 'actions'
         }],
         "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
           $(nRow).attr("id", "item-" + aData.dil_id);
@@ -28979,6 +28983,8 @@ var staticRenderFns = [
                     _c("th", [_vm._v("Başlık")]),
                     _vm._v(" "),
                     _c("th", [_vm._v("Kod")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("İşlemler")]),
                   ]),
                 ]),
                 _vm._v(" "),

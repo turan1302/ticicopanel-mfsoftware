@@ -29,9 +29,9 @@ class indexController extends Controller
                          <span class='slider round'></span>
                         </label>";
             })
-            ->addColumn("dil_durum", function ($query) {
-                $edit = "<a href='' class='btn btn-primary btn-sm'><i class='fa fa-eye'></i></a>";
-                $update = "<button type='button' class='btn btn-danger btn-sm'><i class='fa fa-times'></i></button>";
+            ->addColumn("actions", function ($query) {
+                $edit = "<a href='' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $update = "<button type='button' class='btn btn-danger btn-md isDelete'><i class='fa fa-times'></i> Sil</button>";
 
                 return $edit . " " . $update;
             })

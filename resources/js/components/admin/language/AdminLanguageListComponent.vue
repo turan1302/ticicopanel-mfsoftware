@@ -29,6 +29,7 @@
                                         <th>ID</th>
                                         <th>Başlık</th>
                                         <th>Kod</th>
+                                        <th>İşlemler</th>
                                     </tr>
                                     </thead>
                                     <tbody class="sortable">
@@ -72,6 +73,7 @@ export default {
                     {data: 'dil_id', name: 'dil_id'},
                     {data: 'dil_ad', name: 'dil_ad'},
                     {data: 'dil_kod', name: 'dil_kod'},
+                    {data: 'actions', name: 'actions'},
                 ],
                 "fnCreatedRow" : function (nRow,aData,iDataIndex) {
                     $(nRow).attr("id","item-"+aData.dil_id);
