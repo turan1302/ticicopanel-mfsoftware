@@ -32,12 +32,42 @@
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
-                                            <input type="text" v-model="servis_ikon" class="form-control"
+                                            <input type="text" v-model="service_ikon" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
+
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Başlık</label>
-                                            <input type="text" v-model="servis_baslik" class="form-control"
+                                            <input type="text" v-model="service_baslik" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
+                                            <textarea class="editor" v-model="service_aciklama"></textarea>
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Title</label>
+                                            <input type="text" v-model="service_title" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Description</label>
+                                            <input type="text" v-model="service_description" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Servis Keyword</label>
+                                            <input type="text" v-model="service_keyword" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Servis Etiketler</label>
+                                            <input type="text" v-model="service_etiketler" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -65,14 +95,19 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
-            servis_ikon: '',
-            servis_baslik : '',
+            service_ikon: '',
+            service_baslik : '',
+            service_aciklama : '',
+            service_title : '',
+            service_description : '',
+            service_keyword : '',
+            service_etiketler : '',
             errors: [],
         }
     },
     methods: {
         yeniServisEkle(){
-
+            alert("Yes");
         }
     }
 }
