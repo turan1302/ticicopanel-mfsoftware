@@ -31,12 +31,9 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.language.show', $query->dil_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
-//                $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
-//                $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
+                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->service_id'><i class='fa fa-times'></i> Sil</button>";
 //
-//                return $show." ".$edit . " " . $update;
-                return "";
+                return $delete;
             })
             ->editColumn('service_dil_kod', function ($query) {
                 return strtoupper($query->service_dil_kod);
@@ -85,6 +82,25 @@ class indexController extends Controller
 
         return \response()->json($alert);
 
+    }
+
+    // SERVIS SILME KISMINI AYARLAYALIM
+    public function delete(ServiceModel $item){
+        $sonuc = $item->delete();
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
     }
 
     // SERVIS GUNCELLEME KSIMININ AYARLANMASINI GERCEKLESTIRELIM

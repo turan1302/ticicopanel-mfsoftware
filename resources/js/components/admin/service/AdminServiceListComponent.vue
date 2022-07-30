@@ -95,6 +95,37 @@ export default {
                 });
             });
 
+            // SERVIS SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+            $(".yajra-datatable").on("click", ".isDelete", function () {
+                var id = $(this).data("id");
+                var url = "http://127.0.0.1:8000/api/back/service/" + id + "/delete";
+
+                Swal.fire({
+                    title: 'Dikkat!',
+                    text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet, Kaydı Sil',
+                    cancelButtonText: 'Vazgeç'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.get(url).then((res) => {
+                            var data = res.data;
+                            Swal.fire({
+                                icon: data.type,
+                                title: data.title,
+                                text: data.text,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                location.reload();
+                            })
+                        });
+                    }
+                })
+            });
 
             // SORTABLE JS KISMINI AYARLAYALIM
             $(".sortable").sortable();
