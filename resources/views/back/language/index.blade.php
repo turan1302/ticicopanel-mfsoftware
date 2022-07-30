@@ -6,9 +6,7 @@
 @endsection
 
 @section('content')
-    <div id="app">
-        <admin-language-list-component yeni_ekle="{{ route('back.language.create') }}"></admin-language-list-component>
-    </div>
+    <admin-language-list-component yeni_ekle="{{ route('back.language.create') }}"></admin-language-list-component>
 @endsection
 
 @section('js')

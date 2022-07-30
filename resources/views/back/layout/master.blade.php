@@ -11,9 +11,10 @@
 
     <div class="app-container">
         @include('back.layout.header')
-        @yield('content')
+        <div id="app">
+            @yield('content')
+        </div>
     </div>
-
 </div>
 
 @include('back.layout.include_script')
