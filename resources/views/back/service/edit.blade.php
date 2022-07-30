@@ -1,7 +1,7 @@
 @extends('back.layout.master')
 
 @section('content')
-    <admin-service-edit-component geriye_don="{{ route('back.service.index') }}"></admin-service-edit-component>
+    <admin-service-edit-component geriye_don="{{ route('back.service.index') }}" service_id="{{ $item->service_id }}"></admin-service-edit-component>
 @endsection
 
 @section('js')

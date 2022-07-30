@@ -6017,10 +6017,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.service_baslik == "") {
         this.errors.push("Servis Başlık Kısmı Boş Olamaz");
-      } // if (this.service_aciklama == "") {
-      //     this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
-      // }
-
+      }
       /** EĞER HERHANGI BIR HATA YOKSA **/
 
 
@@ -6161,9 +6158,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminServiceCreateComponent",
-  props: ["geriye_don"],
+  props: ["geriye_don", "service_id"],
   data: function data() {
     return {
       service_ikon: '',
@@ -6176,16 +6174,17 @@ __webpack_require__.r(__webpack_exports__);
       errors: []
     };
   },
+  mounted: function mounted() {
+    var service_id = this.$props.service_id;
+    this.servisGetir(service_id);
+  },
   methods: {
     servisGuncelle: function servisGuncelle() {
       this.errors = [];
 
       if (this.service_baslik == "") {
         this.errors.push("Servis Başlık Kısmı Boş Olamaz");
-      } // if (this.service_aciklama == "") {
-      //     this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
-      // }
-
+      }
       /** EĞER HERHANGI BIR HATA YOKSA **/
 
 
@@ -6215,6 +6214,21 @@ __webpack_require__.r(__webpack_exports__);
           });
         });
       }
+    },
+    servisGetir: function servisGetir(service_id) {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.service_ikon = data.service_ikon;
+        _this.service_baslik = data.service_baslik;
+        _this.service_aciklama = data.service_aciklama;
+        _this.service_title = data.service_title;
+        _this.service_description = data.service_description;
+        _this.service_keyword = data.service_keyword;
+        _this.service_etiketler = data.service_etiketler;
+      });
     }
   }
 });

@@ -44,7 +44,8 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
-                                            <textarea type="text" id="service_aciklama" class="editor" v-model="service_aciklama"></textarea>
+                                            <textarea type="text" id="service_aciklama" class="editor"
+                                                      v-model="service_aciklama"></textarea>
                                         </div>
 
                                         <div class="example-content">
@@ -95,7 +96,7 @@
 <script>
 export default {
     name: "AdminServiceCreateComponent",
-    props: ["geriye_don"],
+    props: ["geriye_don", "service_id"],
     data() {
         return {
             service_ikon: '',
@@ -108,6 +109,10 @@ export default {
             errors: [],
         }
     },
+    mounted() {
+        var service_id = this.$props.service_id;
+      this.servisGetir(service_id);
+    },
     methods: {
         servisGuncelle() {
             this.errors = [];
@@ -115,10 +120,6 @@ export default {
             if (this.service_baslik == "") {
                 this.errors.push("Servis Başlık Kısmı Boş Olamaz");
             }
-
-            // if (this.service_aciklama == "") {
-            //     this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
-            // }
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
@@ -148,6 +149,20 @@ export default {
                     })
                 });
             }
+        },
+        servisGetir(service_id) {
+            var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+            axios.get(url).then((res) => {
+
+                var data = res.data;
+                this.service_ikon = data.service_ikon;
+                this.service_baslik = data.service_baslik;
+                this.service_aciklama = data.service_aciklama;
+                this.service_title = data.service_title;
+                this.service_description = data.service_description;
+                this.service_keyword = data.service_keyword;
+                this.service_etiketler = data.service_etiketler;
+            });
         },
     }
 }

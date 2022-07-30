@@ -116,10 +116,6 @@ export default {
                 this.errors.push("Servis Başlık Kısmı Boş Olamaz");
             }
 
-            // if (this.service_aciklama == "") {
-            //     this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
-            // }
-
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\back\service;
 
 use App\Http\Controllers\Controller;
+use App\Models\LanguageModel;
 use App\Models\ServiceModel;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -83,6 +84,11 @@ class indexController extends Controller
 
         return \response()->json($alert);
 
+    }
+
+    // SERVIS GUNCELLEME SAYFASI KISMI
+    public function edit(ServiceModel $item){
+        return \response()->json($item);
     }
 
     // SERVIS SILME KISMINI AYARLAYALIM
