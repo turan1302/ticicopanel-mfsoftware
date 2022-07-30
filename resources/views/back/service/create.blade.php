@@ -18,15 +18,8 @@
                     "save table directionality emoticons template paste wordcount"],
                 language: "tr_TR",
                 toolbar: "insertfile code | undo redo | styleselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | " +
-                    " link unlink anchor | image | codesample fullpage",
-                setup: function (editor) {  // JQUERY POST ICIN BUNU MUTLAKA YAZDIK
-                    editor.on('change', function () {
-                        tinymce.triggerSave();
-                    });
-                }
+                    " link unlink anchor | image | codesample fullpage"
             })
-
-            tinyMCE.triggerSave();
 
         })
     </script>

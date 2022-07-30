@@ -26,7 +26,7 @@ class indexController extends Controller
             ->addColumn("service_durum", function ($query) {
                 $checkedStatus = ($query->service_durum == 1) ? 'checked' : '';
                 return "<label class='switch'>
-                        <input type='checkbox' class='isActive' data-id='$query->service_durum' $checkedStatus>
+                        <input type='checkbox' class='isActive' data-id='$query->service_id' $checkedStatus>
                          <span class='slider round'></span>
                         </label>";
             })
