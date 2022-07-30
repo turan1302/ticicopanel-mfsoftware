@@ -13,6 +13,6 @@ class indexController extends Controller
 
     // YENI EKLEME KISMI
     public function create(){
-
+        return view('back.service.create');
     }
 }

@@ -31,18 +31,13 @@
                                 <form method="POST" @submit.prevent="yeniServisEkle()" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil Adı</label>
-                                            <input type="text" v-model="dil_ad" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
+                                            <input type="text" v-model="servis_ikon" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil Kodu</label>
-                                            <input type="text" v-model="dil_kod" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil İkon (50x50)</label>
-                                            <input type="file" @change="dilIkonSec" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Servis Başlık</label>
+                                            <input type="text" v-model="servis_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -70,9 +65,8 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
-            dil_ad: '',
-            dil_kod: '',
-            dil_ikon: '',
+            servis_ikon: '',
+            servis_baslik : '',
             errors: [],
         }
     },
