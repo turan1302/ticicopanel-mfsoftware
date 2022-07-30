@@ -37,4 +37,9 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
             Route::get('show',[\App\Http\Controllers\back\language\indexController::class,'show'])->name('show');
         });
     });
+
+    /** SERVISLER KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'service','namespace'=>'service','as'=>'service.'],function (){
+        Route::get('',[\App\Http\Controllers\back\service\indexController::class,'index'])->name('index');
+    });
 });

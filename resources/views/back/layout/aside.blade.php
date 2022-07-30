@@ -11,9 +11,12 @@
     </div>
     <div class="app-menu">
         <ul class="accordion-menu">
+
             <li class="active-page">
                 <a href="{{ route('back.home.index') }}" class="active"><i class="material-icons-two-tone">dashboard</i>Anasayfa</a>
             </li>
+
+            {{-- DILLER KISMI --}}
             <li>
                 <a href=""><i class="material-icons-two-tone">translate</i>Diller<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
@@ -21,10 +24,24 @@
                         <a href="{{ route('back.language.index') }}">Dil Listesi</a>
                     </li>
                     <li>
-                        <a href="invoice.html">Dil Ekle</a>
+                        <a href="{{ route('back.language.create') }}">Dil Ekle</a>
                     </li>
                 </ul>
             </li>
+
+            {{-- SERVISLER KISMI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">design_services</i>Servisler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.service.index') }}">Servis Listesi</a>
+                    </li>
+                    <li>
+                        <a href="">Servis Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
