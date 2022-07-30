@@ -38,24 +38,25 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("dil_ikon", function ($query) {
-                if ($query->dil_ikon != "" && File::exists("storage/".$query->dil_ikon)){
-                    $image =  "<img src='".asset('storage/'.$query->dil_ikon)."' width='50' height='50'>";
-                }else{
-                    $image =  "<img src='".asset('storage/resim-yok.webp')."' width='50' height='50'>";
+                if ($query->dil_ikon != "" && File::exists("storage/" . $query->dil_ikon)) {
+                    $image = "<img src='" . asset('storage/' . $query->dil_ikon) . "' width='50' height='50'>";
+                } else {
+                    $image = "<img src='" . asset('storage/resim-yok.webp') . "' width='50' height='50'>";
                 }
 
                 return $image;
             })
             ->addColumn("actions", function ($query) {
+                $show = "<a href='" . route('back.language.show', $query->dil_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $edit . " " . $update;
+                return $show." ".$edit . " " . $update;
             })
             ->editColumn('dil_kod', function ($query) {
                 return strtoupper($query->dil_kod);
             })
-            ->rawColumns(["dil_sira", "dil_durum", "dil_varsayilan",'dil_ikon', "actions"])
+            ->rawColumns(["dil_sira", "dil_durum", "dil_varsayilan", 'dil_ikon', "actions"])
             ->make(true);
 
         return $data;
@@ -128,6 +129,12 @@ class indexController extends Controller
         return response()->json($item);
     }
 
+    // DIL GORUNTULEME KISMI
+    public function show(LanguageModel $item)
+    {
+        return response()->json($item);
+    }
+
     // DIL GUNCELLEME ISLEMINI GERCEKLESTIRELIM
     public function update(Request $request, LanguageModel $item)
     {
@@ -139,16 +146,16 @@ class indexController extends Controller
                 "dil_kod" => $data['dil_kod']
             ))->first();
 
-           if ($sorgula){
-               $alert = [
-                   "type" => "error",
-                   "title" => "Hata",
-                   "text" => "Aynı Dil Kodu Zaten Mevcut",
-               ];
+            if ($sorgula) {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Dil Kodu Zaten Mevcut",
+                ];
 
-               return response()->json($alert);
+                return response()->json($alert);
 
-           }
+            }
         }
 
 

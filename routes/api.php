@@ -30,6 +30,7 @@ Route::group(['prefix'=>'back','namespace'=>'back'],function (){
 
         Route::group(['prefix'=>'{item}'],function (){
             Route::get('edit',[\App\Http\Controllers\api\back\language\indexController::class,'edit']);  // bu bize first of fail gibi gorev sağlıyor
+            Route::get('show',[\App\Http\Controllers\api\back\language\indexController::class,'edit']);  // bu bize first of fail gibi gorev sağlıyor
             Route::post('update',[\App\Http\Controllers\api\back\language\indexController::class,'update']); // bu verimizi güncelliyor
             Route::get('delete',[\App\Http\Controllers\api\back\language\indexController::class,'delete']);
             Route::post('is-active',[\App\Http\Controllers\api\back\language\indexController::class,'isActiveSetter']);

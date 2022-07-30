@@ -34,6 +34,7 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
         Route::get('create',[\App\Http\Controllers\back\language\indexController::class,'create'])->name('create');
         Route::group(['prefix'=>'{item}'],function (){
             Route::get('edit',[\App\Http\Controllers\back\language\indexController::class,'edit'])->name('edit');
+            Route::get('show',[\App\Http\Controllers\back\language\indexController::class,'show'])->name('show');
         });
     });
 });

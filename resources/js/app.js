@@ -29,6 +29,8 @@ Vue.component('admin-home-component', require('./components/admin/home/AdminHome
 Vue.component('admin-language-list-component', require('./components/admin/language/AdminLanguageListComponent').default);
 Vue.component('admin-language-create-component', require('./components/admin/language/AdminLanguageCreateComponent').default);
 Vue.component('admin-language-edit-component', require('./components/admin/language/AdminLanguageEditComponent').default);
+Vue.component('admin-language-show-component', require('./components/admin/language/AdminLanguageShowComponent').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
