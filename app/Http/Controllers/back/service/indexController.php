@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // YENI EKLEME KISMI
     public function create(){
-        echo "Yes";
-        die;
+
     }
 }
