@@ -90,7 +90,7 @@ export default {
             $(".yajra-datatable").on("change",".isActive",function () {
                 var id = $(this).data("id");
                 var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/language/"+id+"/is-active";
+                var url = "http://127.0.0.1:8000/api/back/service/"+id+"/is-active";
 
                 axios.post(url,{
                     data : data

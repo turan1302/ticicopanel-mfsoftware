@@ -5719,7 +5719,7 @@ __webpack_require__.r(__webpack_exports__);
       $(".yajra-datatable").on("change", ".isActive", function () {
         var id = $(this).data("id");
         var data = $(this).prop("checked");
-        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/is-active";
+        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
         axios.post(url, {
           data: data
         });
@@ -5997,6 +5997,15 @@ __webpack_require__.r(__webpack_exports__);
         "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
           $(nRow).attr("id", "item-" + aData.service_id);
         }
+      }); // DIL AKTIF PASIF KISMI AYARLANMASI
+
+      $(".yajra-datatable").on("change", ".isActive", function () {
+        var id = $(this).data("id");
+        var data = $(this).prop("checked");
+        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
+        axios.post(url, {
+          data: data
+        });
       });
     });
   },

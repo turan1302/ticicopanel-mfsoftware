@@ -43,4 +43,12 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // SERVIS GUNCELLEME KSIMININ AYARLANMASINI GERCEKLESTIRELIM
+    public function isActiveSetter(Request $request,ServiceModel $item){
+        $data = ($request->data=="true") ? 1 : 0;
+        $item->update(array(
+            "service_durum" => $data
+        ));
+    }
 }
