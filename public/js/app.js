@@ -6026,10 +6026,13 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors.length == 0) {
         var url = "http://127.0.0.1:8000/api/back/service/store";
+        var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
+
         axios.post(url, {
           service_ikon: this.service_ikon,
           service_baslik: this.service_baslik,
-          service_aciklama: this.service_aciklama,
+          service_aciklama: aciklama,
+          // SERVIS KISMI ACIKLAMASI
           service_title: this.service_title,
           service_description: this.service_description,
           service_keyword: this.service_keyword,
@@ -6048,8 +6051,9 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    aciklamaAl: function aciklamaAl(e) {
-      console.log(e);
+    servisAciklamaGuncelle: function servisAciklamaGuncelle(value) {
+      alert(value);
+      this.service_aciklama = value;
     }
   }
 });
@@ -30482,6 +30486,7 @@ var render = function () {
                             },
                           ],
                           staticClass: "editor",
+                          attrs: { type: "text", id: "service_aciklama" },
                           domProps: { value: _vm.service_aciklama },
                           on: {
                             input: function ($event) {
@@ -30514,10 +30519,7 @@ var render = function () {
                             },
                           ],
                           staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
+                          attrs: { "aria-describedby": "emailHelp" },
                           domProps: { value: _vm.service_title },
                           on: {
                             input: function ($event) {

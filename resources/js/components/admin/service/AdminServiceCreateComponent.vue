@@ -44,12 +44,12 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
-                                            <textarea class="editor" v-model="service_aciklama"></textarea>
+                                            <textarea type="text" id="service_aciklama" class="editor" v-model="service_aciklama"></textarea>
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Seo Title</label>
-                                            <input type="text" v-model="service_title" class="form-control"
+                                            <input v-model="service_title" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -124,10 +124,13 @@ export default {
             if (this.errors.length == 0) {
 
                 var url = "http://127.0.0.1:8000/api/back/service/store";
+
+                var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
+
                 axios.post(url, {
                     service_ikon: this.service_ikon,
                     service_baslik: this.service_baslik,
-                    service_aciklama: this.service_aciklama,
+                    service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
                     service_title: this.service_title,
                     service_description: this.service_description,
                     service_keyword: this.service_keyword,
@@ -147,8 +150,9 @@ export default {
 
             }
         },
-        aciklamaAl(e) {
-            console.log(e);
+        servisAciklamaGuncelle(value){
+            alert(value);
+            this.service_aciklama = value;
         }
     }
 }

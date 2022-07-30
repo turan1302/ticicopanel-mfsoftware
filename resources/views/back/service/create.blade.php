@@ -1,7 +1,7 @@
 @extends('back.layout.master')
 
 @section('content')
-    <admin-service-create-component geriye_don="{{ route('back.service.create') }}"></admin-service-create-component>
+    <admin-service-create-component geriye_don="{{ route('back.service.index') }}"></admin-service-create-component>
 @endsection
 
 @section('js')
@@ -18,7 +18,12 @@
                     "save table directionality emoticons template paste wordcount"],
                 language: "tr_TR",
                 toolbar: "insertfile code | undo redo | styleselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | " +
-                    " link unlink anchor | image | codesample fullpage"
+                    " link unlink anchor | image | codesample fullpage",
+                setup: function (editor) {  // JQUERY POST ICIN BUNU MUTLAKA YAZDIK
+                    editor.on('change', function () {
+                        tinymce.triggerSave();
+                    });
+                }
             })
 
             tinyMCE.triggerSave();
