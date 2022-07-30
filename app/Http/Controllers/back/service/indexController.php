@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\service;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServiceModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -14,5 +15,10 @@ class indexController extends Controller
     // YENI EKLEME KISMI
     public function create(){
         return view('back.service.create');
+    }
+
+    // GUNCELLEME SAYFASI
+    public function edit(ServiceModel $item){
+        return view('back.service.edit',compact('item'));
     }
 }

@@ -42,5 +42,8 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
     Route::group(['prefix' => 'service','namespace'=>'service','as'=>'service.'],function (){
         Route::get('',[\App\Http\Controllers\back\service\indexController::class,'index'])->name('index');
         Route::get('create',[\App\Http\Controllers\back\service\indexController::class,'create'])->name('create');
+        Route::group(['prefix'=>'{item}'],function (){
+            Route::get('edit',[\App\Http\Controllers\back\service\indexController::class,'edit'])->name('edit');
+        });
     });
 });

@@ -49,9 +49,9 @@ class indexController extends Controller
             ->addColumn("actions", function ($query) {
                 $show = "<a href='" . route('back.language.show', $query->dil_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
-                $update = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
+                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $show." ".$edit . " " . $update;
+                return $show." ".$edit . " " . $delete;
             })
             ->editColumn('dil_kod', function ($query) {
                 return strtoupper($query->dil_kod);

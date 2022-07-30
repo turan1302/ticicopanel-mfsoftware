@@ -34,6 +34,7 @@ Vue.component('admin-language-show-component', require('./components/admin/langu
 // SERVISLER KISMI
 Vue.component('admin-service-list-component', require('./components/admin/service/AdminServiceListComponent').default);
 Vue.component('admin-service-create-component', require('./components/admin/service/AdminServiceCreateComponent').default);
+Vue.component('admin-service-edit-component', require('./components/admin/service/AdminServiceEditComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

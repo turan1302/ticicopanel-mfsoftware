@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Yeni Servis Ekle</h1>
+                                <h1>Servis Güncelle</h1>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yeniServisEkle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="servisGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
@@ -109,7 +109,7 @@ export default {
         }
     },
     methods: {
-        yeniServisEkle() {
+        servisGuncelle() {
             this.errors = [];
 
             if (this.service_baslik == "") {
@@ -147,9 +147,8 @@ export default {
                         location.reload();
                     })
                 });
-
             }
-        }
+        },
     }
 }
 </script>
