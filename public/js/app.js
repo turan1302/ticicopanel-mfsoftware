@@ -5951,12 +5951,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminServiceListComponent",
+  props: ["yeni_ekle"],
   data: function data() {
     return {};
   },
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    $(document).ready(function () {
+      $(".sortable").sortable();
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/back/service",
+          error: function error(e) {
+            console.log(e);
+          }
+        },
+        columns: [{
+          data: 'service_sira',
+          name: 'service_sira',
+          orderable: true
+        }, {
+          data: 'service_id',
+          name: 'service_id'
+        }, {
+          data: 'service_baslik',
+          name: 'service_baslik'
+        }, {
+          data: 'service_ikon',
+          name: 'service_ikon'
+        }, {
+          data: 'service_durum',
+          name: 'service_durum'
+        }, {
+          data: 'service_dil_kod',
+          name: 'service_dil_kod'
+        }, {
+          data: 'actions',
+          name: 'actions'
+        }],
+        "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
+          $(nRow).attr("id", "item-" + aData.service_id);
+        }
+      });
+    });
+  },
   methods: {}
 });
 
@@ -30122,6 +30165,8 @@ var staticRenderFns = [
                     _c("th", [_vm._v("İkon")]),
                     _vm._v(" "),
                     _c("th", [_vm._v("Durum")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Dil Kodu")]),
                     _vm._v(" "),
                     _c("th", [_vm._v("İşlemler")]),
                   ]),

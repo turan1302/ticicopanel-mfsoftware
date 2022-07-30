@@ -20,21 +20,27 @@ use Illuminate\Support\Facades\Route;
 
 
 /** ADMIN KISMI **/
-Route::group(['prefix'=>'back','namespace'=>'back'],function (){
+Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
 
     // DILLER KISMI
-    Route::group(['prefix'=>'language','namespace'=>'language'],function (){
-        Route::get('',[\App\Http\Controllers\api\back\language\indexController::class,'index']);
-        Route::post('store',[\App\Http\Controllers\api\back\language\indexController::class,'store']);
-        Route::post('rank-setter',[\App\Http\Controllers\api\back\language\indexController::class,'rankSetter']);
+    Route::group(['prefix' => 'language', 'namespace' => 'language'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\language\indexController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\api\back\language\indexController::class, 'store']);
+        Route::post('rank-setter', [\App\Http\Controllers\api\back\language\indexController::class, 'rankSetter']);
 
-        Route::group(['prefix'=>'{item}'],function (){
-            Route::get('edit',[\App\Http\Controllers\api\back\language\indexController::class,'edit']);  // bu bize first of fail gibi gorev sağlıyor
-            Route::get('show',[\App\Http\Controllers\api\back\language\indexController::class,'edit']);  // bu bize first of fail gibi gorev sağlıyor
-            Route::post('update',[\App\Http\Controllers\api\back\language\indexController::class,'update']); // bu verimizi güncelliyor
-            Route::get('delete',[\App\Http\Controllers\api\back\language\indexController::class,'delete']);
-            Route::post('is-active',[\App\Http\Controllers\api\back\language\indexController::class,'isActiveSetter']);
-            Route::post('is-default',[\App\Http\Controllers\api\back\language\indexController::class,'isDefaultSetter']);
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\api\back\language\indexController::class, 'edit']);  // bu bize first of fail gibi gorev sağlıyor
+            Route::get('show', [\App\Http\Controllers\api\back\language\indexController::class, 'edit']);  // bu bize first of fail gibi gorev sağlıyor
+            Route::post('update', [\App\Http\Controllers\api\back\language\indexController::class, 'update']); // bu verimizi güncelliyor
+            Route::get('delete', [\App\Http\Controllers\api\back\language\indexController::class, 'delete']);
+            Route::post('is-active', [\App\Http\Controllers\api\back\language\indexController::class, 'isActiveSetter']);
+            Route::post('is-default', [\App\Http\Controllers\api\back\language\indexController::class, 'isDefaultSetter']);
         });
     });
+
+    // SERVISLER KISMI
+    Route::group(['prefix' => 'service', 'namespace' => 'service'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\service\indexController::class, 'index']);
+    });
+
 });

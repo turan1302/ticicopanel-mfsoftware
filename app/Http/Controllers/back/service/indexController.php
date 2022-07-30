@@ -10,4 +10,10 @@ class indexController extends Controller
     public function index(){
         return view('back.service.index');
     }
+
+    // YENI EKLEME KISMI
+    public function create(){
+        echo "Yes";
+        die;
+    }
 }

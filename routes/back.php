@@ -41,5 +41,6 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
     /** SERVISLER KISMI AYARLANMASI **/
     Route::group(['prefix' => 'service','namespace'=>'service','as'=>'service.'],function (){
         Route::get('',[\App\Http\Controllers\back\service\indexController::class,'index'])->name('index');
+        Route::get('create',[\App\Http\Controllers\back\service\indexController::class,'create'])->name('create');
     });
 });

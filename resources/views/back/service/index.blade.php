@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-
+<admin-service-list-component yeni_ekle="{{ route('back.service.create') }}"></admin-service-list-component>
 @endsection
 
 @section('js')
