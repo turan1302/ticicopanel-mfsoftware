@@ -54,20 +54,23 @@
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Description</label>
+                                            <label for="exampleInputEmail1" class="form-label">Servis Seo
+                                                Description</label>
                                             <input type="text" v-model="service_description" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Keyword</label>
-                                            <input type="text" v-model="service_keyword" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                            <input type="text" v-model="service_keyword"
+                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Etiketler</label>
-                                            <input type="text" v-model="service_etiketler" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                            <input type="text" v-model="service_etiketler"
+                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -96,18 +99,56 @@ export default {
     data() {
         return {
             service_ikon: '',
-            service_baslik : '',
-            service_aciklama : '',
-            service_title : '',
-            service_description : '',
-            service_keyword : '',
-            service_etiketler : '',
+            service_baslik: '',
+            service_aciklama: '',
+            service_title: '',
+            service_description: '',
+            service_keyword: '',
+            service_etiketler: '',
             errors: [],
         }
     },
     methods: {
-        yeniServisEkle(){
-            alert("Yes");
+        yeniServisEkle() {
+            this.errors = [];
+
+            if (this.service_baslik == "") {
+                this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+            }
+
+            // if (this.service_aciklama == "") {
+            //     this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
+            // }
+
+            /** EĞER HERHANGI BIR HATA YOKSA **/
+            if (this.errors.length == 0) {
+
+                var url = "http://127.0.0.1:8000/api/back/service/store";
+                axios.post(url, {
+                    service_ikon: this.service_ikon,
+                    service_baslik: this.service_baslik,
+                    service_aciklama: this.service_aciklama,
+                    service_title: this.service_title,
+                    service_description: this.service_description,
+                    service_keyword: this.service_keyword,
+                    service_etiketler: this.service_etiketler,
+                }).then((res) => {
+                    var data = res.data;
+                    Swal.fire({
+                        icon: data.type,
+                        title: data.title,
+                        text: data.text,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        location.reload();
+                    })
+                });
+
+            }
+        },
+        aciklamaAl(e) {
+            console.log(e);
         }
     }
 }

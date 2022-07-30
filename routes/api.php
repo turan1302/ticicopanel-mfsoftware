@@ -41,7 +41,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // SERVISLER KISMI
     Route::group(['prefix' => 'service', 'namespace' => 'service'], function () {
         Route::get('', [\App\Http\Controllers\api\back\service\indexController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\api\back\service\indexController::class, 'store']);
         Route::post('rank-setter', [\App\Http\Controllers\api\back\service\indexController::class, 'rankSetter']);
+
         Route::group(['prefix' => '{item}'], function () {
             Route::post('is-active', [\App\Http\Controllers\api\back\service\indexController::class, 'isActiveSetter']);
         });

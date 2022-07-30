@@ -4,13 +4,16 @@ namespace App\Http\Controllers\api\back\service;
 
 use App\Http\Controllers\Controller;
 use App\Models\ServiceModel;
+use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
     // SERVISLERI CAGIRALIM
-    public function index(){
+    public function index()
+    {
         $query = ServiceModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -44,9 +47,50 @@ class indexController extends Controller
         return $data;
     }
 
+    // SERVIS EKLEME ISLEMI
+    public function store(Request $request)
+    {
+        $data = $request->except("_token");
+
+        // SLUG KONTROLU YAPALIM
+        $kontrol = ServiceModel::where(array(
+            "service_slug" => Str::slug($data['service_baslik'])
+        ))->first();
+
+        // EĞER VARSA
+        if ($kontrol) {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Servis Zaten Mevcut",
+            ];
+
+            return \response()->json($alert);
+        }
+
+        $sonuc = ServiceModel::create($data);
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return \response()->json($alert);
+
+    }
+
     // SERVIS GUNCELLEME KSIMININ AYARLANMASINI GERCEKLESTIRELIM
-    public function isActiveSetter(Request $request,ServiceModel $item){
-        $data = ($request->data=="true") ? 1 : 0;
+    public function isActiveSetter(Request $request, ServiceModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "service_durum" => $data
         ));
