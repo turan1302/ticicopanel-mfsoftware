@@ -77,7 +77,7 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Yeni Ekle</button>
+                                                <button type="submit" class="btn btn-success btn-md"> Güncelle</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
@@ -123,8 +123,8 @@ export default {
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
-
-                var url = "http://127.0.0.1:8000/api/back/service/store";
+                var id = this.$props.service_id;
+                var url = "http://127.0.0.1:8000/api/back/service/"+id+"/update";
 
                 var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
 
@@ -147,6 +147,8 @@ export default {
                     }).then(() => {
                         location.reload();
                     })
+                }).catch(function (error) {
+                    console.log(error.response);
                 });
             }
         },

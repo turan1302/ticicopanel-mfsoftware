@@ -6189,7 +6189,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/service/store";
+        var id = this.$props.service_id;
+        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/update";
         var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
 
         axios.post(url, {
@@ -6212,6 +6213,8 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function () {
             location.reload();
           });
+        })["catch"](function (error) {
+          console.log(error.response);
         });
       }
     },
@@ -31303,7 +31306,7 @@ var render = function () {
                               staticClass: "btn btn-success btn-md",
                               attrs: { type: "submit" },
                             },
-                            [_vm._v(" Yeni Ekle")]
+                            [_vm._v(" Güncelle")]
                           ),
                           _vm._v(" "),
                           _c(

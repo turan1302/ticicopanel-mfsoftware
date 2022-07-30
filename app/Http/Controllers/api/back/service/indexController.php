@@ -91,6 +91,45 @@ class indexController extends Controller
         return \response()->json($item);
     }
 
+    // SERVIS GUNCELLEME KISMI
+    public function update(Request $request,ServiceModel $item){
+        $data = $request->except("_token");
+
+        if ($data['service_baslik'] != $item->service_baslik){
+            $kontrol = ServiceModel::where(array(
+                "service_slug" => Str::slug($data['service_baslik'])
+            ))->first();
+
+            if ($kontrol){
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Servis Zaten Mevcut",
+                ];
+
+                return \response()->json($alert);
+            }
+        }
+
+        $sonuc = $item->update($data);
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return \response()->json($alert);
+
+    }
+
     // SERVIS SILME KISMINI AYARLAYALIM
     public function delete(ServiceModel $item){
         $sonuc = $item->delete();
