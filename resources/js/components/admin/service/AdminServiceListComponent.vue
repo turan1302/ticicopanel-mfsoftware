@@ -84,7 +84,7 @@ export default {
                 }
             });
 
-            // DIL AKTIF PASIF KISMI AYARLANMASI
+            // SERVIS AKTIF PASIF KISMI AYARLANMASI
             $(".yajra-datatable").on("change",".isActive",function () {
                 var id = $(this).data("id");
                 var data = $(this).prop("checked");
@@ -95,6 +95,23 @@ export default {
                 });
             });
 
+
+            // SORTABLE JS KISMINI AYARLAYALIM
+            $(".sortable").sortable();
+            $(".sortable").on("sortupdate", function () {
+                var data = $(this).sortable("serialize");
+                var url = "http://127.0.0.1:8000/api/back/service/rank-setter";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        data: data
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            })
         });
     },
     methods: {

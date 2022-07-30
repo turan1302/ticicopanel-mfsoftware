@@ -51,4 +51,17 @@ class indexController extends Controller
             "service_durum" => $data
         ));
     }
+
+    // SERVIS SIRALAMA GUNCELLEME
+    public function rankSetter(Request $request)
+    {
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            ServiceModel::where("service_id", $v)->update(array(
+                "service_sira" => $k
+            ));
+        }
+    }
 }

@@ -5997,7 +5997,7 @@ __webpack_require__.r(__webpack_exports__);
         "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
           $(nRow).attr("id", "item-" + aData.service_id);
         }
-      }); // DIL AKTIF PASIF KISMI AYARLANMASI
+      }); // SERVIS AKTIF PASIF KISMI AYARLANMASI
 
       $(".yajra-datatable").on("change", ".isActive", function () {
         var id = $(this).data("id");
@@ -6005,6 +6005,22 @@ __webpack_require__.r(__webpack_exports__);
         var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
         axios.post(url, {
           data: data
+        });
+      }); // SORTABLE JS KISMINI AYARLAYALIM
+
+      $(".sortable").sortable();
+      $(".sortable").on("sortupdate", function () {
+        var data = $(this).sortable("serialize");
+        var url = "http://127.0.0.1:8000/api/back/service/rank-setter";
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            data: data
+          },
+          error: function error(e) {
+            console.log(e);
+          }
         });
       });
     });
