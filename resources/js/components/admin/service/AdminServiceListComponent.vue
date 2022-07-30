@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Diller</h1>
+                                <h1>Servisler</h1>
                             </div>
                             <div class="page-description-actions">
                                 <a :href="yeni_ekle" class="btn btn-primary"><i class="material-icons">add</i> Yeni Ekle</a>
@@ -19,7 +19,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Diller</h5>
+                                <h5 class="card-title">Servisler</h5>
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered yajra-datatable" id="datatable1" width="100%"

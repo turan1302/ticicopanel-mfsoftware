@@ -30132,7 +30132,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "page-description-content flex-grow-1" }, [
-      _c("h1", [_vm._v("Diller")]),
+      _c("h1", [_vm._v("Servisler")]),
     ])
   },
   function () {
@@ -30143,7 +30143,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _c("h5", { staticClass: "card-title" }, [_vm._v("Diller")]),
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Servisler")]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
