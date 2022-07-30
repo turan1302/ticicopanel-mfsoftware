@@ -32,10 +32,11 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
+                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.service.edit', $query->service_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->service_id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $edit." ".$delete;
+                return $show . " " . $edit . " " . $delete;
             })
             ->editColumn('service_dil_kod', function ($query) {
                 return strtoupper($query->service_dil_kod);
@@ -87,20 +88,28 @@ class indexController extends Controller
     }
 
     // SERVIS GUNCELLEME SAYFASI KISMI
-    public function edit(ServiceModel $item){
+    public function edit(ServiceModel $item)
+    {
+        return \response()->json($item);
+    }
+
+    // SERVIS GORUNTULEME SAYFASI
+    public function show(ServiceModel $item)
+    {
         return \response()->json($item);
     }
 
     // SERVIS GUNCELLEME KISMI
-    public function update(Request $request,ServiceModel $item){
+    public function update(Request $request, ServiceModel $item)
+    {
         $data = $request->except("_token");
 
-        if ($data['service_baslik'] != $item->service_baslik){
+        if ($data['service_baslik'] != $item->service_baslik) {
             $kontrol = ServiceModel::where(array(
                 "service_slug" => Str::slug($data['service_baslik'])
             ))->first();
 
-            if ($kontrol){
+            if ($kontrol) {
                 $alert = [
                     "type" => "error",
                     "title" => "Hata",
@@ -131,7 +140,8 @@ class indexController extends Controller
     }
 
     // SERVIS SILME KISMINI AYARLAYALIM
-    public function delete(ServiceModel $item){
+    public function delete(ServiceModel $item)
+    {
         $sonuc = $item->delete();
         if ($sonuc) {
             $alert = [

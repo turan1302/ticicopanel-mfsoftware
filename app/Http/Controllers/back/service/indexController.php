@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(ServiceModel $item){
         return view('back.service.edit',compact('item'));
     }
+
+    // GORUNTULEME SAYFASI
+    public function show(ServiceModel $item){
+        return view('back.service.show',compact('item'));
+    }
 }
