@@ -72,6 +72,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // DUYURULAR KISMI
     Route::group(['prefix' => 'duyurular', 'namespace' => 'duyurular'], function () {
         Route::get('', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'store']);
         Route::post('rank-setter', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
             Route::get('delete', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'delete']);

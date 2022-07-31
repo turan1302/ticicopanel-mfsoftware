@@ -79,7 +79,6 @@ class indexController extends Controller
             "dil_kod" => $data['dil_kod']
         ))->first();
 
-        $alert = [];
         if ($sorgula) {
             $alert = [
                 "type" => "error",

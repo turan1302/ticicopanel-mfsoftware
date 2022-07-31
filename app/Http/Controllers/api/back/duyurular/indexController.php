@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\DuyuruModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public $uploadFolder = "";
+    public function __construct()
+    {
+        $this->uploadFolder = "duyuru";
+    }
+
     public function index(){
         $query = DuyuruModel::query();
         $data = DataTables::of($query)
@@ -42,7 +49,6 @@ class indexController extends Controller
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->d_id'><i class='fa fa-times'></i> Sil</button>";
 //
                 return $delete;
-                return " ";
             })
             ->editColumn('d_dil_kod', function ($query) {
                 return strtoupper($query->d_dil_kod);
@@ -51,6 +57,63 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // DUYURU KAYDETME KISMI AYARLANMASI
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        // AYNI SLUGDAN VAR MI KONTROL EDELIM
+        $sorgu = DuyuruModel::where(array(
+            "d_slug" => Str::slug($data['d_baslik'])
+        ))->first();
+
+
+        if ($sorgu) {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Duyuru Zaten Mevcut",
+            ];
+
+            return response()->json($alert);
+        }
+
+        // DOSYA GELDI MI
+        $data['dil_resim'] = "";
+        if ($request->hasFile('d_resim')) {
+            $file = $request->file('d_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['d_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['dil_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = DuyuruModel::create($data);
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
     }
 
     // SILME KISMI AYARLANMASI
