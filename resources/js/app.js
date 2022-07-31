@@ -39,6 +39,7 @@ Vue.component('admin-service-show-component', require('./components/admin/servic
 
 // DUYURU KATEGORILERI KISMI AYARLANMASI
 Vue.component('admin-duyuru-kategori-list-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent').default);
+Vue.component('admin-duyuru-kategori-create-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent').default);
 
 
 /**
