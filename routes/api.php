@@ -74,6 +74,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::get('', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'index']);
         Route::post('rank-setter', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'isActiveSetter']);
         });
     });
