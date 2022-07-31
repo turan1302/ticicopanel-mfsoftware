@@ -28,7 +28,7 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yeniDuyuruKategoriEkle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Kategori
@@ -88,7 +88,7 @@
 <script>
 export default {
     name: "AdminDuyuruKategoriCreateComponent",
-    props: ["geriye_don"],
+    props: ["geriye_don", "dkat_id"],
     data() {
         return {
             dkat_ad: '',
@@ -99,38 +99,13 @@ export default {
             errors: [],
         }
     },
+    mounted() {
+        var dkat_id = this.$props.dkat_id;
+        this.duyuruKategoriGetir(dkat_id);
+    },
     methods: {
-        yeniDuyuruKategoriEkle() {
-            this.errors = [];
+        duyuruKategoriGetir(dkat_id){
 
-            if (this.dkat_ad == "") {
-                this.errors.push("Duyuru Kategori Adı Alanı Boş Bırakılamaz");
-            }
-
-            /** EĞER HATA YOK ISE **/
-            if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/store";
-
-                axios.post(url, {
-                    dkat_ad: this.dkat_ad,
-                    dkat_title: this.dkat_title,
-                    dkat_description: this.dkat_description,
-                    dkat_keyword: this.dkat_keyword,
-                    dkat_silinebilir_kategori: this.dkat_silinebilir_kategori,
-
-                }).then((res) => {
-                    var data = res.data;
-                    Swal.fire({
-                        icon: data.type,
-                        title: data.title,
-                        text: data.text,
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        location.reload();
-                    })
-                });
-            }
         }
     }
 }
