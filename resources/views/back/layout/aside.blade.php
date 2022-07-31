@@ -55,6 +55,20 @@
                 </ul>
             </li>
 
+            {{-- DUYURU EKLEME ISLEMI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">feed</i>Duyurular<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.duyurular.index') }}">Duyuru Listesi</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('back.duyurular.create') }}">Duyuru Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
+
         </ul>
     </div>
 </div>

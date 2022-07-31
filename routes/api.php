@@ -69,4 +69,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     });
 
 
+    // DUYURULAR KISMI
+    Route::group(['prefix' => 'duyurular', 'namespace' => 'duyurular'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\duyurular\indexController::class, 'index']);
+    });
+
 });

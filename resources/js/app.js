@@ -43,6 +43,9 @@ Vue.component('admin-duyuru-kategori-create-component', require('./components/ad
 Vue.component('admin-duyuru-kategori-edit-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriEditComponent').default);
 Vue.component('admin-duyuru-kategori-show-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent').default);
 
+// DUYURULAR KISMIA AYARLANMASINA BAKALIM
+Vue.component('admin-duyuru-list-component', require('./components/admin/duyurular/AdminDuyuruListComponent').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

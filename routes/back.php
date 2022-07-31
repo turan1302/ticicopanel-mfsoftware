@@ -57,4 +57,12 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('show', [\App\Http\Controllers\back\duyuru_kategoriler\indexController::class, 'show'])->name('show');
         });
     });
+
+    /** DUYURULAR KISMI **/
+    Route::group(['prefix' => 'duyurular', 'namespace' => 'duyurular', 'as' => 'duyurular.'], function () {
+        Route::get('', [\App\Http\Controllers\back\duyurular\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\duyurular\indexController::class, 'create'])->name('create');
+        Route::group(['prefix' => '{item}'], function () {
+        });
+    });
 });
