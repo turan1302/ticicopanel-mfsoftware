@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Yeni Duyuru Kategorisi Ekle</h1>
+                                <h1>Duyuru Kategorisi Güncelle</h1>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
 
 <script>
 export default {
-    name: "AdminDuyuruKategoriCreateComponent",
+    name: "AdminDuyuruKategoriEditComponent",
     props: ["geriye_don", "dkat_id"],
     data() {
         return {

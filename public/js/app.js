@@ -5537,7 +5537,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AdminDuyuruKategoriCreateComponent",
+  name: "AdminDuyuruKategoriEditComponent",
   props: ["geriye_don", "dkat_id"],
   data: function data() {
     return {
@@ -5779,6 +5779,129 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminDuyuruKategoriShowComponent",
+  props: ["geriye_don", "dkat_id"],
+  data: function data() {
+    return {
+      dkat_ad: '',
+      dkat_title: '',
+      dkat_description: '',
+      dkat_keyword: '',
+      dkat_silinebilir_kategori: 1,
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    var dkat_id = this.$props.dkat_id;
+    this.duyuruKategoriGetir(dkat_id);
+  },
+  methods: {
+    duyuruKategoriGetir: function duyuruKategoriGetir(dkat_id) {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + dkat_id + "/show";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.dkat_ad = data.dkat_ad;
+        _this.dkat_title = data.dkat_title;
+        _this.dkat_description = data.dkat_description;
+        _this.dkat_keyword = data.dkat_keyword;
+        _this.dkat_silinebilir_kategori = data.dkat_silinebilir_kategori;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -7011,7 +7134,7 @@ __webpack_require__.r(__webpack_exports__);
     servisGetir: function servisGetir(service_id) {
       var _this = this;
 
-      var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+      var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/show";
       axios.get(url).then(function (res) {
         var data = res.data;
         _this.service_ikon = data.service_ikon;
@@ -7071,6 +7194,7 @@ Vue.component('admin-service-show-component', (__webpack_require__(/*! ./compone
 Vue.component('admin-duyuru-kategori-list-component', (__webpack_require__(/*! ./components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue")["default"]));
 Vue.component('admin-duyuru-kategori-create-component', (__webpack_require__(/*! ./components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent.vue")["default"]));
 Vue.component('admin-duyuru-kategori-edit-component', (__webpack_require__(/*! ./components/admin/duyuru_kategoriler/AdminDuyuruKategoriEditComponent */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriEditComponent.vue")["default"]));
+Vue.component('admin-duyuru-kategori-show-component', (__webpack_require__(/*! ./components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29926,6 +30050,45 @@ component.options.__file = "resources/js/components/admin/duyuru_kategoriler/Adm
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminDuyuruKategoriShowComponent_vue_vue_type_template_id_aae61dea_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true& */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true&");
+/* harmony import */ var _AdminDuyuruKategoriShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminDuyuruKategoriShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminDuyuruKategoriShowComponent_vue_vue_type_template_id_aae61dea_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminDuyuruKategoriShowComponent_vue_vue_type_template_id_aae61dea_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "aae61dea",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/home/AdminHomeComponent.vue":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/admin/home/AdminHomeComponent.vue ***!
@@ -30341,6 +30504,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=script&lang=js& ***!
@@ -30549,6 +30728,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true&":
+/*!******************************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true& ***!
+  \******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriShowComponent_vue_vue_type_template_id_aae61dea_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriShowComponent_vue_vue_type_template_id_aae61dea_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriShowComponent_vue_vue_type_template_id_aae61dea_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true&");
 
 
 /***/ }),
@@ -31394,7 +31590,7 @@ var staticRenderFns = [
           { staticClass: "page-description d-flex align-items-center" },
           [
             _c("div", { staticClass: "page-description-content flex-grow-1" }, [
-              _c("h1", [_vm._v("Yeni Duyuru Kategorisi Ekle")]),
+              _c("h1", [_vm._v("Duyuru Kategorisi Güncelle")]),
             ]),
           ]
         ),
@@ -31523,6 +31719,290 @@ var staticRenderFns = [
             ),
           ]),
         ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent.vue?vue&type=template&id=aae61dea&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "example-container" }, [
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [
+                        _vm._v(
+                          "Duyuru Kategori\n                                        Adı"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.dkat_ad,
+                          expression: "dkat_ad",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", "aria-describedby": "emailHelp" },
+                      domProps: { value: _vm.dkat_ad },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.dkat_ad = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [
+                        _vm._v(
+                          "Duyuru Kategori SEO\n                                        Title"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.dkat_title,
+                          expression: "dkat_title",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", "aria-describedby": "emailHelp" },
+                      domProps: { value: _vm.dkat_title },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.dkat_title = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [
+                        _vm._v(
+                          "Duyuru Kategori SEO\n                                        Description"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.dkat_description,
+                          expression: "dkat_description",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", "aria-describedby": "emailHelp" },
+                      domProps: { value: _vm.dkat_description },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.dkat_description = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [
+                        _vm._v(
+                          "Duyuru Kategori SEO\n                                        Keywords"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.dkat_keyword,
+                          expression: "dkat_keyword",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", "aria-describedby": "emailHelp" },
+                      domProps: { value: _vm.dkat_keyword },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.dkat_keyword = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Kategori Özelliği")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.dkat_silinebilir_kategori,
+                            expression: "dkat_silinebilir_kategori",
+                          },
+                        ],
+                        staticClass: "form-control",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.dkat_silinebilir_kategori = $event.target
+                              .multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "1" } }, [
+                          _vm._v("Silinebilir Kategori"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "0" } }, [
+                          _vm._v("Silinemez Kategori"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "example-component m-2" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger btn-md",
+                          attrs: { href: _vm.geriye_don },
+                        },
+                        [_vm._v(" Geriye Dön")]
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          { staticClass: "page-description d-flex align-items-center" },
+          [
+            _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+              _c("h1", [_vm._v("Duyuru Kategorisi Güncelle")]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("Duyuru Kategori Bilgileri"),
       ]),
     ])
   },

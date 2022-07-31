@@ -36,11 +36,11 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $show = "<a href='" . route('back.duyuru_kategoriler.show', $query->dkat_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.duyuru_kategoriler.edit', $query->dkat_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dkat_id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $edit." ".$delete;
+                return $show." ".$edit." ".$delete;
             })
             ->editColumn('dkat_dil_kod', function ($query) {
                 return strtoupper($query->dkat_dil_kod);
@@ -115,6 +115,11 @@ class indexController extends Controller
 
     // GUNCELLEME SAYFASI ICIN VERILERIN CEKILESI
     public function edit(DuyuruKategoriModel $item){
+        return response()->json($item);
+    }
+
+    // GORUNTULEME SAYFASI ICIN VERILERIN CEKILMESI
+    public function show(DuyuruKategoriModel $item){
         return response()->json($item);
     }
 

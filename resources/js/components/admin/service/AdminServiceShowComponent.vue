@@ -105,7 +105,7 @@ export default {
     },
     methods: {
         servisGetir(service_id) {
-            var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+            var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/show";
             axios.get(url).then((res) => {
 
                 var data = res.data;

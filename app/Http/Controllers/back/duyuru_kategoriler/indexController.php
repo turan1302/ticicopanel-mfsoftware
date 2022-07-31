@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(DuyuruKategoriModel $item){
         return view('back.duyuru_kategoriler.edit',compact('item'));
     }
+
+    // GORUNTULEME SAYGFASI
+    public function show(DuyuruKategoriModel $item){
+        return view('back.duyuru_kategoriler.show',compact('item'));
+    }
 }
