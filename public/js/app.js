@@ -5554,7 +5554,51 @@ __webpack_require__.r(__webpack_exports__);
     this.duyuruKategoriGetir(dkat_id);
   },
   methods: {
-    duyuruKategoriGetir: function duyuruKategoriGetir(dkat_id) {}
+    duyuruKategoriGuncelle: function duyuruKategoriGuncelle() {
+      this.errors = [];
+
+      if (this.dkat_ad == "") {
+        this.errors.push("Duyuru Kategori Adı Alanı Boş Bırakılamaz");
+      }
+      /** EĞER HATA YOK ISE **/
+
+
+      if (this.errors.length == 0) {
+        var id = this.$props.dkat_id;
+        var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + id + "/update";
+        axios.post(url, {
+          dkat_ad: this.dkat_ad,
+          dkat_title: this.dkat_title,
+          dkat_description: this.dkat_description,
+          dkat_keyword: this.dkat_keyword,
+          dkat_silinebilir_kategori: this.dkat_silinebilir_kategori
+        }).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        });
+      }
+    },
+    duyuruKategoriGetir: function duyuruKategoriGetir(dkat_id) {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + dkat_id + "/edit";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.dkat_ad = data.dkat_ad;
+        _this.dkat_title = data.dkat_title;
+        _this.dkat_description = data.dkat_description;
+        _this.dkat_keyword = data.dkat_keyword;
+        _this.dkat_silinebilir_kategori = data.dkat_silinebilir_kategori;
+      });
+    }
   }
 });
 
@@ -31089,6 +31133,7 @@ var render = function () {
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
+                        return _vm.duyuruKategoriGuncelle()
                       },
                     },
                   },
@@ -31313,7 +31358,7 @@ var render = function () {
                               staticClass: "btn btn-success btn-md",
                               attrs: { type: "submit" },
                             },
-                            [_vm._v(" Yeni Ekle")]
+                            [_vm._v(" Güncelle")]
                           ),
                           _vm._v(" "),
                           _c(

@@ -40,7 +40,7 @@ class indexController extends Controller
                 $edit = "<a href='" . route('back.duyuru_kategoriler.edit', $query->dkat_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dkat_id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $delete;
+                return $edit." ".$delete;
             })
             ->editColumn('dkat_dil_kod', function ($query) {
                 return strtoupper($query->dkat_dil_kod);
@@ -111,6 +111,52 @@ class indexController extends Controller
         $item->update(array(
             "dkat_varsayilan_kategori" => 1
         ));
+    }
+
+    // GUNCELLEME SAYFASI ICIN VERILERIN CEKILESI
+    public function edit(DuyuruKategoriModel $item){
+        return response()->json($item);
+    }
+
+    // GUNCELLEME ISLEMI GERCEKLESTIRILMESI
+    public function update(Request $request,DuyuruKategoriModel $item){
+        $data = $request->except("_token");
+
+        // KONTROL YAPALIM
+        if ($request->dkat_ad != $item->dkat_ad){
+            $kontrol = DuyuruKategoriModel::where(array(
+                "dkat_slug" => Str::slug($data['dkat_ad'])
+            ))->first();
+
+            if ($kontrol){
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Duyuru Kategorisi Zaten Mevcut",
+                ];
+
+                return \response()->json($alert);
+            }
+        }
+
+        $sonuc = $item->update($data);
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return \response()->json($alert);
+
     }
 
     // SILME KISMI AYARLANAMSI

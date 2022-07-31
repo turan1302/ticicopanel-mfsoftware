@@ -58,6 +58,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::post('store', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'store']);
         Route::post('rank-setter', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'edit']);  // bu bize first of fail gibi gorev sağlıyor
+            Route::post('update', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'update']);  // bu bize first of fail gibi gorev sağlıyor
             Route::get('delete', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'isActiveSetter']);
             Route::post('is-default', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'isDefaultSetter']);
