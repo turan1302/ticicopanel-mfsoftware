@@ -39,14 +39,14 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Başlık</label>
-                                            <input type="text" v-model="dil_ad" class="form-control"
+                                            <input type="text" v-model="d_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Varsayılan URL
                                                 Kategori</label>
-                                            <select class="form-control varsayilan">
+                                            <select v-model="d_varsayilan_kategori" class="form-control varsayilan">
                                                 <option v-for="(item,index) in duyuru_kategoriler">{{
                                                         item.dkat_ad
                                                     }}
@@ -67,29 +67,29 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Açıklama</label>
-                                            <textarea type="text" class="editor"></textarea>
+                                            <textarea type="text" id="d_aciklama"  v-model="d_aciklama" class="editor"></textarea>
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Seo Title</label>
-                                            <input class="form-control" aria-describedby="emailHelp">
+                                            <input class="form-control" v-model="d_title" aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Seo Description</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" v-model="d_description"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Keyword</label>
-                                            <input type="text" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                            <input v-model="d_keyword" type="text" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Etiketler</label>
-                                            <input type="text"
+                                            <input type="text" v-model="d_etiketler"
                                                    placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
@@ -118,9 +118,13 @@ export default {
     props: ["geriye_don", "duyuru_kategoriler"],
     data() {
         return {
-            dil_ad: '',
-            dil_kod: '',
-            dil_ikon: '',
+            d_baslik: '',
+            d_aciklama : '',
+            d_varsayilan_kategori : '',
+            d_title : '',
+            d_description : '',
+            d_keyword : '',
+            d_etiketler : '',
             errors: [],
         }
     },

@@ -6028,9 +6028,13 @@ __webpack_require__.r(__webpack_exports__);
   props: ["geriye_don", "duyuru_kategoriler"],
   data: function data() {
     return {
-      dil_ad: '',
-      dil_kod: '',
-      dil_ikon: '',
+      d_baslik: '',
+      d_aciklama: '',
+      d_varsayilan_kategori: '',
+      d_title: '',
+      d_description: '',
+      d_keyword: '',
+      d_etiketler: '',
       errors: []
     };
   },
@@ -32570,8 +32574,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.dil_ad,
-                              expression: "dil_ad",
+                              value: _vm.d_baslik,
+                              expression: "d_baslik",
                             },
                           ],
                           staticClass: "form-control",
@@ -32579,13 +32583,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.dil_ad },
+                          domProps: { value: _vm.d_baslik },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.dil_ad = $event.target.value
+                              _vm.d_baslik = $event.target.value
                             },
                           },
                         }),
@@ -32607,7 +32611,33 @@ var render = function () {
                         _vm._v(" "),
                         _c(
                           "select",
-                          { staticClass: "form-control varsayilan" },
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.d_varsayilan_kategori,
+                                expression: "d_varsayilan_kategori",
+                              },
+                            ],
+                            staticClass: "form-control varsayilan",
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.d_varsayilan_kategori = $event.target
+                                  .multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                            },
+                          },
                           _vm._l(
                             _vm.duyuru_kategoriler,
                             function (item, index) {
@@ -32654,15 +32684,181 @@ var render = function () {
                         ),
                       ]),
                       _vm._v(" "),
-                      _vm._m(2),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Açıklama")]
+                        ),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_aciklama,
+                              expression: "d_aciklama",
+                            },
+                          ],
+                          staticClass: "editor",
+                          attrs: { type: "text", id: "d_aciklama" },
+                          domProps: { value: _vm.d_aciklama },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_aciklama = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
                       _vm._v(" "),
-                      _vm._m(3),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Seo Title")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_title,
+                              expression: "d_title",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "aria-describedby": "emailHelp" },
+                          domProps: { value: _vm.d_title },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_title = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
                       _vm._v(" "),
-                      _vm._m(4),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Seo Description")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_description,
+                              expression: "d_description",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_description },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_description = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
                       _vm._v(" "),
-                      _vm._m(5),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Keyword")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_keyword,
+                              expression: "d_keyword",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Aralarına Virgül Koyarak Yazınız",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_keyword },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_keyword = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
                       _vm._v(" "),
-                      _vm._m(6),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Etiketler")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_etiketler,
+                              expression: "d_etiketler",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Aralarına Virgül Koyarak Yazınız",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_etiketler },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_etiketler = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "example-component m-2" }, [
@@ -32721,96 +32917,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Duyuru Bilgileri")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "example-content" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
-        [_vm._v("Duyuru Açıklama")]
-      ),
-      _vm._v(" "),
-      _c("textarea", { staticClass: "editor", attrs: { type: "text" } }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "example-content" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
-        [_vm._v("Duyuru Seo Title")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { "aria-describedby": "emailHelp" },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "example-content" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
-        [_vm._v("Duyuru Seo Description")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", "aria-describedby": "emailHelp" },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "example-content" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
-        [_vm._v("Duyuru Keyword")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          placeholder: "Aralarına Virgül Koyarak Yazınız",
-          "aria-describedby": "emailHelp",
-        },
-      }),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "example-content" }, [
-      _c(
-        "label",
-        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
-        [_vm._v("Duyuru Etiketler")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          placeholder: "Aralarına Virgül Koyarak Yazınız",
-          "aria-describedby": "emailHelp",
-        },
-      }),
     ])
   },
 ]
