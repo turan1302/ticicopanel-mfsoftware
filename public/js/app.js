@@ -5991,6 +5991,9 @@ __webpack_require__.r(__webpack_exports__);
           data: 'd_id',
           name: 'd_id'
         }, {
+          data: 'd_resim',
+          name: 'd_resim'
+        }, {
           data: 'd_baslik',
           name: 'd_baslik'
         }, {

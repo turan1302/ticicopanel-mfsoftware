@@ -69,6 +69,7 @@ export default {
                 columns: [
                     {data: 'd_sira', name: 'd_sira', orderable: true},
                     {data: 'd_id', name: 'd_id'},
+                    {data: 'd_resim', name: 'd_resim'},
                     {data: 'd_baslik', name: 'd_baslik'},
                     {data: 'd_durum', name: 'd_durum'},
                     {data: 'd_dil_kod', name: 'd_dil_kod'},

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\back\duyurular;
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
@@ -15,6 +16,15 @@ class indexController extends Controller
             ->addIndexColumn()
             ->orderColumn("d_sira", function ($query) {
                 $query->orderBy("d_sira", "asc");
+            })
+            ->addColumn("d_resim", function ($query) {
+                if ($query->d_resim != "" && File::exists("storage/" . $query->d_resim)) {
+                    $image = "<img src='" . asset('storage/' . $query->d_resim) . "' width='50' height='50'>";
+                } else {
+                    $image = "<img src='" . asset('storage/resim-yok.webp') . "' width='50' height='50'>";
+                }
+
+                return $image;
             })
             ->addColumn("d_sira", function ($query) {
                 return '<span class="material-icons">reorder</span>';
@@ -37,7 +47,7 @@ class indexController extends Controller
             ->editColumn('d_dil_kod', function ($query) {
                 return strtoupper($query->d_dil_kod);
             })
-            ->rawColumns(["d_sira", "d_durum", "actions"])
+            ->rawColumns(["d_sira","d_resim", "d_durum", "actions"])
             ->make(true);
 
         return $data;
