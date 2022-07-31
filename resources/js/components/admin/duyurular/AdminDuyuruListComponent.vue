@@ -85,7 +85,7 @@ export default {
             $(".yajra-datatable").on("change",".isActive",function () {
                 var id = $(this).data("id");
                 var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/"+id+"/is-active";
+                var url = "http://127.0.0.1:8000/api/back/duyurular/"+id+"/is-active";
 
                 axios.post(url,{
                     data : data

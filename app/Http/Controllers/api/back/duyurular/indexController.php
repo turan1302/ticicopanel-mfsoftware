@@ -52,4 +52,13 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // AKTIF PASIF KISMI AYARLANAMSI
+    public function isActiveSetter(Request $request, DuyuruModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "d_durum" => $data
+        ));
+    }
 }
