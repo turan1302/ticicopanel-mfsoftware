@@ -67,4 +67,16 @@ class indexController extends Controller
         }
         return response()->json($alert);
     }
+
+    // SIRALAMA AYARLAMASINI GERCEKLESTIRELIM
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            DuyuruKategoriModel::where("dkat_id", $v)->update(array(
+                "dkat_sira" => $k
+            ));
+        }
+    }
 }

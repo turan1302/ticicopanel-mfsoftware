@@ -86,7 +86,7 @@ export default {
 
             });
 
-            // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+            // DUYURU SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
             $(".yajra-datatable").on("click", ".isDelete", function () {
                 var id = $(this).data("id");
                 var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + id + "/delete";
@@ -117,6 +117,23 @@ export default {
                     }
                 })
             });
+
+            // SORTABLE JS KISMINI AYARLAYALIM
+            $(".sortable").sortable();
+            $(".sortable").on("sortupdate", function () {
+                var data = $(this).sortable("serialize");
+                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/rank-setter";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        data: data
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            })
 
         });
     },

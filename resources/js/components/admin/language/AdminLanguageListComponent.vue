@@ -57,9 +57,6 @@ export default {
     },
     mounted() {
         $(document).ready(function () {
-
-            $(".sortable").sortable();
-
             var table = $('.yajra-datatable').DataTable({
                 processing: true,
                 serverSide: true,
