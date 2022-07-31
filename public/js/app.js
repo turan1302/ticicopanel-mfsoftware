@@ -5404,6 +5404,17 @@ __webpack_require__.r(__webpack_exports__);
         axios.post(url, {
           data: data
         });
+      }); // VARSAYILAN KISMI AYARLANMASINI GERCEKLESTIREELIM
+
+      $(".yajra-datatable").on("change", ".isDefault", function () {
+        var id = $(this).data("id");
+        var data = $(this).prop("checked");
+        var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + id + "/is-default";
+        axios.post(url, {
+          data: data
+        }).then(function (res) {
+          location.reload();
+        });
       }); // DUYURU SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
 
       $(".yajra-datatable").on("click", ".isDelete", function () {
@@ -5900,12 +5911,6 @@ __webpack_require__.r(__webpack_exports__);
           data: data
         }).then(function (res) {
           location.reload();
-        })["catch"](function (error) {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
         });
       }); // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
 

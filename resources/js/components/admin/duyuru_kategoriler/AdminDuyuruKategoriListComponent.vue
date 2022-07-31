@@ -98,6 +98,21 @@ export default {
             });
 
 
+            // VARSAYILAN KISMI AYARLANMASINI GERCEKLESTIREELIM
+            $(".yajra-datatable").on("change",".isDefault",function () {
+                var id = $(this).data("id");
+                var data = $(this).prop("checked");
+                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/"+id+"/is-default";
+
+
+                axios.post(url,{
+                    data : data
+                }).then((res)=>{
+                    location.reload();
+                });
+            });
+
+
             // DUYURU SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
             $(".yajra-datatable").on("click", ".isDelete", function () {
                 var id = $(this).data("id");

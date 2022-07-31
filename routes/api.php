@@ -59,6 +59,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::group(['prefix' => '{item}'], function () {
             Route::get('delete', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'isActiveSetter']);
+            Route::post('is-default', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'isDefaultSetter']);
         });
     });
 

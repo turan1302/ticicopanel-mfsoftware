@@ -29,7 +29,7 @@ class indexController extends Controller
             ->addColumn("dkat_varsayilan_kategori", function ($query) {
                 $checkedStatus = ($query->dkat_varsayilan_kategori == 1) ? 'checked' : '';
                 return "<label class='switch'>
-                        <input type='checkbox' data-id='$query->dkat_id' $checkedStatus>
+                        <input type='checkbox' class='isDefault' data-id='$query->dkat_id' $checkedStatus>
                          <span class='slider round'></span>
                         </label>";
             })
@@ -55,6 +55,20 @@ class indexController extends Controller
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "dkat_durum" => $data
+        ));
+    }
+
+    // VARSAYILAN KISMI AYARLANMASI
+    public function isDefaultSetter(Request $request, DuyuruKategoriModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+
+        DuyuruKategoriModel::where(array())->update(array(
+            "dkat_varsayilan_kategori" => 0
+        ));
+
+        $item->update(array(
+            "dkat_varsayilan_kategori" => 1
         ));
     }
 
