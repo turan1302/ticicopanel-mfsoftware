@@ -145,15 +145,9 @@ export default {
             $(".sortable").on("sortupdate", function () {
                 var data = $(this).sortable("serialize");
                 var url = "http://127.0.0.1:8000/api/back/language/rank-setter";
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: {
-                        data: data
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
+
+                axios.post(url,{
+                    data : data
                 });
             })
         });

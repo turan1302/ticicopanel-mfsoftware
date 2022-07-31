@@ -61,4 +61,17 @@ class indexController extends Controller
             "d_durum" => $data
         ));
     }
+
+    // SIRALAMA KISMI AYARLANMASI
+    public function rankSetter(Request $request)
+    {
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            DuyuruModel::where("d_id", $v)->update(array(
+                "d_sira" => $k
+            ));
+        }
+    }
 }
