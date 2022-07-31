@@ -37,6 +37,10 @@ Vue.component('admin-service-create-component', require('./components/admin/serv
 Vue.component('admin-service-edit-component', require('./components/admin/service/AdminServiceEditComponent').default);
 Vue.component('admin-service-show-component', require('./components/admin/service/AdminServiceShowComponent').default);
 
+// DUYURU KATEGORILERI KISMI AYARLANMASI
+Vue.component('admin-duyuru-kategori-list-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

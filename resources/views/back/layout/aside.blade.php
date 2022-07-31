@@ -37,7 +37,20 @@
                         <a href="{{ route('back.service.index') }}">Servis Listesi</a>
                     </li>
                     <li>
-                        <a href="">Servis Ekle</a>
+                        <a href="{{ route('back.service.create') }}">Servis Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
+            {{-- DUYURU KATEGORİLERİ --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">view_list</i>Duyuru Kategorileri<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.duyuru_kategoriler.index') }}">Duyuru Kategori Listesi</a>
+                    </li>
+                    <li>
+                        <a href="">Duyuru Kategori Ekle</a>
                     </li>
                 </ul>
             </li>

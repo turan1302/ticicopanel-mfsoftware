@@ -52,4 +52,10 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         });
     });
 
+    // DUYURU KATEGOIRİLERİ KISMI
+    Route::group(['prefix' => 'duyuru-kategoriler', 'namespace' => 'duyuru_kategoriler'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\duyuru_kategoriler\indexController::class, 'index']);
+    });
+
+
 });

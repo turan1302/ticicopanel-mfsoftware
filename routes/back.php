@@ -47,4 +47,10 @@ Route::group(['namespace'=>'back','as'=>'back.'],function (){
             Route::get('show',[\App\Http\Controllers\back\service\indexController::class,'show'])->name('show');
         });
     });
+
+    /** DUYURU KATEGIORİLERİ KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'duyuru-kategoriler','namespace'=>'duyuru_kategoriler','as'=>'duyuru_kategoriler.'],function (){
+        Route::get('',[\App\Http\Controllers\back\duyuru_kategoriler\indexController::class,'index'])->name('index');
+        Route::get('create',[\App\Http\Controllers\back\duyuru_kategoriler\indexController::class,'create'])->name('create');
+    });
 });

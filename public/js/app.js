@@ -5290,6 +5290,119 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminDuyuruKategoriListComponent",
+  props: ["yeni_ekle"],
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    $(document).ready(function () {
+      $(".sortable").sortable();
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/back/duyuru-kategoriler",
+          error: function error(e) {
+            console.log(e);
+          }
+        },
+        columns: [{
+          data: 'dkat_sira',
+          name: 'dkat_sira',
+          orderable: true
+        }, {
+          data: 'dkat_id',
+          name: 'dkat_id'
+        }, {
+          data: 'dkat_ad',
+          name: 'dkat_ad'
+        }, {
+          data: 'dkat_durum',
+          name: 'dkat_durum'
+        }, {
+          data: 'dkat_varsayilan_kategori',
+          name: 'dkat_varsayilan_kategori'
+        }, {
+          data: 'dkat_dil_kod',
+          name: 'dkat_dil_kod'
+        }, {
+          data: 'actions',
+          name: 'actions'
+        }],
+        "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
+          $(nRow).attr("id", "item-" + aData.dkat_id);
+        }
+      });
+    });
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=script&lang=js& ***!
@@ -6581,7 +6694,9 @@ Vue.component('admin-language-show-component', (__webpack_require__(/*! ./compon
 Vue.component('admin-service-list-component', (__webpack_require__(/*! ./components/admin/service/AdminServiceListComponent */ "./resources/js/components/admin/service/AdminServiceListComponent.vue")["default"]));
 Vue.component('admin-service-create-component', (__webpack_require__(/*! ./components/admin/service/AdminServiceCreateComponent */ "./resources/js/components/admin/service/AdminServiceCreateComponent.vue")["default"]));
 Vue.component('admin-service-edit-component', (__webpack_require__(/*! ./components/admin/service/AdminServiceEditComponent */ "./resources/js/components/admin/service/AdminServiceEditComponent.vue")["default"]));
-Vue.component('admin-service-show-component', (__webpack_require__(/*! ./components/admin/service/AdminServiceShowComponent */ "./resources/js/components/admin/service/AdminServiceShowComponent.vue")["default"]));
+Vue.component('admin-service-show-component', (__webpack_require__(/*! ./components/admin/service/AdminServiceShowComponent */ "./resources/js/components/admin/service/AdminServiceShowComponent.vue")["default"])); // DUYURU KATEGORILERI KISMI AYARLANMASI
+
+Vue.component('admin-duyuru-kategori-list-component', (__webpack_require__(/*! ./components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29320,6 +29435,45 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true& */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true&");
+/* harmony import */ var _AdminDuyuruKategoriListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminDuyuruKategoriListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "194e090a",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/home/AdminHomeComponent.vue":
 /*!*******************************************************************!*\
   !*** ./resources/js/components/admin/home/AdminHomeComponent.vue ***!
@@ -29687,6 +29841,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=script&lang=js& ***!
@@ -29844,6 +30014,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true&":
+/*!******************************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true& ***!
+  \******************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruKategoriListComponent_vue_vue_type_template_id_194e090a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true&");
 
 
 /***/ }),
@@ -30037,6 +30224,121 @@ var staticRenderFns = [
                 "\n                    I'm an example component.\n                "
               ),
             ]),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriListComponent.vue?vue&type=template&id=194e090a&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c(
+              "div",
+              { staticClass: "page-description d-flex align-items-center" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "page-description-actions" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { href: _vm.yeni_ekle },
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("add"),
+                      ]),
+                      _vm._v(" Yeni Ekle"),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+      _c("h1", [_vm._v("Duyuru Kategorileri")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { staticClass: "card-title" }, [
+              _vm._v("Duyuru Kategorileri"),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered yajra-datatable",
+                attrs: { id: "datatable1", width: "100%", cellspacing: "0" },
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Sıra")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("ID")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Kategori Adı")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Kategori Durum")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Kategori Varsayılan")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Dil")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("İşlemler")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tbody", { staticClass: "sortable" }),
+              ]
+            ),
           ]),
         ]),
       ]),
