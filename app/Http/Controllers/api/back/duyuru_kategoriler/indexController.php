@@ -5,11 +5,13 @@ namespace App\Http\Controllers\api\back\duyuru_kategoriler;
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruKategoriModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $query = DuyuruKategoriModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -43,10 +45,49 @@ class indexController extends Controller
             ->editColumn('dkat_dil_kod', function ($query) {
                 return strtoupper($query->dkat_dil_kod);
             })
-            ->rawColumns(["dkat_sira", "dkat_durum","dkat_varsayilan_kategori", "actions"])
+            ->rawColumns(["dkat_sira", "dkat_durum", "dkat_varsayilan_kategori", "actions"])
             ->make(true);
 
         return $data;
+    }
+
+    // KAYIT ETME KISMI
+    public function store(Request $request)
+    {
+        $data = $request->except("_token");
+
+        // SLUG KONTROL YAPALIM
+        $kontrol = DuyuruKategoriModel::where(array(
+            "dkat_slug" => Str::slug($data['dkat_ad'])
+        ))->first();
+
+        if ($kontrol) {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Duyuru Kategorisi Zaten Mevcut",
+            ];
+
+            return \response()->json($alert);
+        }
+
+        $sonuc = DuyuruKategoriModel::create($data);
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return \response()->json($alert);
+
     }
 
     // AKTIF PASIF KISMI AYARLANMASI
@@ -73,7 +114,8 @@ class indexController extends Controller
     }
 
     // SILME KISMI AYARLANAMSI
-    public function delete(DuyuruKategoriModel $item){
+    public function delete(DuyuruKategoriModel $item)
+    {
         $sonuc = $item->delete();
         if ($sonuc) {
             $alert = [
@@ -92,7 +134,8 @@ class indexController extends Controller
     }
 
     // SIRALAMA AYARLAMASINI GERCEKLESTIRELIM
-    public function rankSetter(Request $request){
+    public function rankSetter(Request $request)
+    {
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 

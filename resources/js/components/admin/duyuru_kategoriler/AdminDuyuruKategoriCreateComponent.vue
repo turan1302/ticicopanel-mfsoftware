@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Yeni DUyuru Kategorisi Ekle</h1>
+                                <h1>Yeni Duyuru Kategorisi Ekle</h1>
                             </div>
                         </div>
                     </div>
@@ -31,25 +31,29 @@
                                 <form method="POST" @submit.prevent="yeniDilEkle()" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori Adı</label>
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori
+                                                Adı</label>
                                             <input type="text" v-model="dkat_ad" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori SEO Title</label>
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori SEO
+                                                Title</label>
                                             <input type="text" v-model="dkat_title" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori SEO Description</label>
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori SEO
+                                                Description</label>
                                             <input type="text" v-model="dkat_description" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori SEO Keywords</label>
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori SEO
+                                                Keywords</label>
                                             <input type="text" v-model="dkat_keyword" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
@@ -91,7 +95,7 @@ export default {
             dkat_title: '',
             dkat_description: '',
             dkat_keyword: '',
-            dkat_silinebilir_kategori : 1,
+            dkat_silinebilir_kategori: 1,
             errors: [],
         }
     },
@@ -99,24 +103,22 @@ export default {
         yeniDilEkle() {
             this.errors = [];
 
-            if (this.dil_ad == "") {
-                this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
-            }
-
-            if (this.dil_kod == "") {
-                this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
+            if (this.dkat_ad == "") {
+                this.errors.push("Duyuru Kategori Adı Alanı Boş Bırakılamaz");
             }
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/language/store";
+                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/store";
 
-                let formData = new FormData();
-                formData.append('dil_ad', this.dil_ad);
-                formData.append('dil_kod', this.dil_kod);
-                formData.append('dil_ikon', this.dil_ikon);
+                axios.post(url, {
+                    dkat_ad: this.dkat_ad,
+                    dkat_title: this.dkat_title,
+                    dkat_description: this.dkat_description,
+                    dkat_keyword: this.dkat_keyword,
+                    dkat_silinebilir_kategori: this.dkat_silinebilir_kategori,
 
-                axios.post(url, formData).then((res) => {
+                }).then((res) => {
                     var data = res.data;
                     Swal.fire({
                         icon: data.type,

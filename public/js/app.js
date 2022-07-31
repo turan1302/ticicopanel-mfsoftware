@@ -5384,6 +5384,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminDuyuruKategoriCreateComponent",
   props: ["geriye_don"],
@@ -5401,23 +5405,21 @@ __webpack_require__.r(__webpack_exports__);
     yeniDilEkle: function yeniDilEkle() {
       this.errors = [];
 
-      if (this.dil_ad == "") {
-        this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
-      }
-
-      if (this.dil_kod == "") {
-        this.errors.push("Dil Kodu Alanı Boş Bırakılamaz");
+      if (this.dkat_ad == "") {
+        this.errors.push("Duyuru Kategori Adı Alanı Boş Bırakılamaz");
       }
       /** EĞER HATA YOK ISE **/
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/language/store";
-        var formData = new FormData();
-        formData.append('dil_ad', this.dil_ad);
-        formData.append('dil_kod', this.dil_kod);
-        formData.append('dil_ikon', this.dil_ikon);
-        axios.post(url, formData).then(function (res) {
+        var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/store";
+        axios.post(url, {
+          dkat_ad: this.dkat_ad,
+          dkat_title: this.dkat_title,
+          dkat_description: this.dkat_description,
+          dkat_keyword: this.dkat_keyword,
+          dkat_silinebilir_kategori: this.dkat_silinebilir_kategori
+        }).then(function (res) {
           var data = res.data;
           Swal.fire({
             icon: data.type,
@@ -30576,7 +30578,11 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Duyuru Kategori Adı")]
+                          [
+                            _vm._v(
+                              "Duyuru Kategori\n                                            Adı"
+                            ),
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -30612,7 +30618,11 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Duyuru Kategori SEO Title")]
+                          [
+                            _vm._v(
+                              "Duyuru Kategori SEO\n                                            Title"
+                            ),
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -30648,7 +30658,11 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Duyuru Kategori SEO Description")]
+                          [
+                            _vm._v(
+                              "Duyuru Kategori SEO\n                                            Description"
+                            ),
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -30684,7 +30698,11 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Duyuru Kategori SEO Keywords")]
+                          [
+                            _vm._v(
+                              "Duyuru Kategori SEO\n                                            Keywords"
+                            ),
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -30808,7 +30826,7 @@ var staticRenderFns = [
           { staticClass: "page-description d-flex align-items-center" },
           [
             _c("div", { staticClass: "page-description-content flex-grow-1" }, [
-              _c("h1", [_vm._v("Yeni DUyuru Kategorisi Ekle")]),
+              _c("h1", [_vm._v("Yeni Duyuru Kategorisi Ekle")]),
             ]),
           ]
         ),
