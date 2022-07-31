@@ -50,7 +50,7 @@
                         <a href="{{ route('back.duyuru_kategoriler.index') }}">Duyuru Kategori Listesi</a>
                     </li>
                     <li>
-                        <a href="">Duyuru Kategori Ekle</a>
+                        <a href="{{ route('back.duyuru_kategoriler.create') }}">Duyuru Kategori Ekle</a>
                     </li>
                 </ul>
             </li>
