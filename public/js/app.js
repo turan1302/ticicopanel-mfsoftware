@@ -5395,6 +5395,36 @@ __webpack_require__.r(__webpack_exports__);
         "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
           $(nRow).attr("id", "item-" + aData.dkat_id);
         }
+      }); // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+
+      $(".yajra-datatable").on("click", ".isDelete", function () {
+        var id = $(this).data("id");
+        var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + id + "/delete";
+        Swal.fire({
+          title: 'Dikkat!',
+          text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Evet, Kaydı Sil',
+          cancelButtonText: 'Vazgeç'
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            axios.get(url).then(function (res) {
+              var data = res.data;
+              Swal.fire({
+                icon: data.type,
+                title: data.title,
+                text: data.text,
+                showConfirmButton: false,
+                timer: 1500
+              }).then(function () {
+                location.reload();
+              });
+            });
+          }
+        });
       });
     });
   },
