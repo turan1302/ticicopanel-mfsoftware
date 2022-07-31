@@ -49,6 +49,15 @@ class indexController extends Controller
         return $data;
     }
 
+    // AKTIF PASIF KISMI AYARLANMASI
+    public function isActiveSetter(Request $request, DuyuruKategoriModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "dkat_durum" => $data
+        ));
+    }
+
     // SILME KISMI AYARLANAMSI
     public function delete(DuyuruKategoriModel $item){
         $sonuc = $item->delete();
