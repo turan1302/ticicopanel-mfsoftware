@@ -11,6 +11,13 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public $uploadFolder = "";
+
+    public function __construct()
+    {
+        $this->uploadFolder = "language";
+    }
+
     // TUM DILLERI CEKME KISMI AYARLAMASI
     public function index()
     {
@@ -91,7 +98,7 @@ class indexController extends Controller
             $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
             if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
                 $file_name = Str::slug($data['dil_ad']) . "-" . time() . "." . $file->getClientOriginalExtension();
-                $data['dil_ikon'] = $file->storeAs("language", $file_name);
+                $data['dil_ikon'] = $file->storeAs($this->uploadFolder, $file_name);
             } else {
                 $alert = [
                     "type" => "error",
@@ -174,7 +181,7 @@ class indexController extends Controller
                 }
 
                 $file_name = Str::slug($data['dil_ad']) . "-" . time() . "." . $file->getClientOriginalExtension();
-                $data['dil_ikon'] = $file->storeAs("language", $file_name);
+                $data['dil_ikon'] = $file->storeAs($this->uploadFolder, $file_name);
             } else {
                 $alert = [
                     "type" => "error",

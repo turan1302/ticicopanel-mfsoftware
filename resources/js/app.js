@@ -45,6 +45,7 @@ Vue.component('admin-duyuru-kategori-show-component', require('./components/admi
 
 // DUYURULAR KISMIA AYARLANMASINA BAKALIM
 Vue.component('admin-duyuru-list-component', require('./components/admin/duyurular/AdminDuyuruListComponent').default);
+Vue.component('admin-duyuru-create-component', require('./components/admin/duyurular/AdminDuyuruCreateComponent').default);
 
 
 /**
