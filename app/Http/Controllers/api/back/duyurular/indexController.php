@@ -80,13 +80,13 @@ class indexController extends Controller
         }
 
         // DOSYA GELDI MI
-        $data['dil_resim'] = "";
+        $data['d_resim'] = "";
         if ($request->hasFile('d_resim')) {
             $file = $request->file('d_resim');
             $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
             if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
                 $file_name = Str::slug($data['d_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
-                $data['dil_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+                $data['d_resim'] = $file->storeAs($this->uploadFolder, $file_name);
             } else {
                 $alert = [
                     "type" => "error",

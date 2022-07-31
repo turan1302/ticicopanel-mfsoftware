@@ -116,12 +116,17 @@ export default {
                 this.errors.push("Servis Başlık Kısmı Boş Olamaz");
             }
 
+            var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
+
+            if (aciklama == "") {
+                this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
+            }
+
+
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
                 var url = "http://127.0.0.1:8000/api/back/service/store";
-
-                var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
 
                 axios.post(url, {
                     service_ikon: this.service_ikon,

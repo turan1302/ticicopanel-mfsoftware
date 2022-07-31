@@ -114,7 +114,7 @@
 
 <script>
 export default {
-    name: "AdminLanguageCreateComponent",
+    name: "AdminDuyuruCreateComponent",
     props: ["geriye_don", "duyuru_kategoriler"],
     data() {
         return {
@@ -133,24 +133,33 @@ export default {
     },
     methods: {
         yeniDuyuruEkle() {
+
+
             this.errors = [];
 
-            if (this.dil_ad == "") {
-                this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+            if (this.d_baslik == "") {
+                this.errors.push("Duyuru Başlık Alanı Boş Bırakılamaz");
             }
 
-            if (this.dil_kod == "") {
-                this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
+            var aciklama = tinyMCE.get('d_aciklama').getContent();  // DUYURU KISMI ACIKLAMASI
+
+            if (aciklama == "") {
+                this.errors.push("Duyuru Açıklama Kısmı Boş Olamaz");
             }
+
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/language/store";
+                var url = "http://127.0.0.1:8000/api/back/duyurular/store";
 
                 let formData = new FormData();
-                formData.append('dil_ad', this.dil_ad);
-                formData.append('dil_kod', this.dil_kod);
-                formData.append('dil_ikon', this.dil_ikon);
+                formData.append('d_baslik', this.d_baslik);
+                formData.append('d_aciklama', aciklama);
+                formData.append('d_varsayilan_kategori', this.d_varsayilan_kategori);
+                formData.append('d_title', this.d_title);
+                formData.append('d_description', this.d_description);
+                formData.append('d_keyword', this.d_keyword);
+                formData.append('d_etiketler', this.d_etiketler);
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
@@ -162,7 +171,9 @@ export default {
                         timer: 1500
                     }).then(() => {
                         location.reload();
-                    })
+                    }).catch(function (error) {
+                        console.log(error.response);
+                    });
                 });
             }
         },
