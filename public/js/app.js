@@ -5984,6 +5984,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageCreateComponent",
   props: ["geriye_don", "duyuru_kategoriler"],
@@ -32568,7 +32607,7 @@ var render = function () {
                         _vm._v(" "),
                         _c(
                           "select",
-                          { staticClass: "form-control" },
+                          { staticClass: "form-control varsayilan" },
                           _vm._l(
                             _vm.duyuru_kategoriler,
                             function (item, index) {
@@ -32583,6 +32622,47 @@ var render = function () {
                           0
                         ),
                       ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Kategori")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-control kategori",
+                            attrs: { multiple: "multiple" },
+                          },
+                          _vm._l(
+                            _vm.duyuru_kategoriler,
+                            function (item, index) {
+                              return _c("option", [
+                                _vm._v(
+                                  _vm._s(item.dkat_ad) +
+                                    "\n                                            "
+                                ),
+                              ])
+                            }
+                          ),
+                          0
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _vm._m(6),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "example-component m-2" }, [
@@ -32641,6 +32721,96 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Duyuru Bilgileri")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "example-content" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
+        [_vm._v("Duyuru Açıklama")]
+      ),
+      _vm._v(" "),
+      _c("textarea", { staticClass: "editor", attrs: { type: "text" } }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "example-content" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
+        [_vm._v("Duyuru Seo Title")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { "aria-describedby": "emailHelp" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "example-content" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
+        [_vm._v("Duyuru Seo Description")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", "aria-describedby": "emailHelp" },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "example-content" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
+        [_vm._v("Duyuru Keyword")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          placeholder: "Aralarına Virgül Koyarak Yazınız",
+          "aria-describedby": "emailHelp",
+        },
+      }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "example-content" }, [
+      _c(
+        "label",
+        { staticClass: "form-label", attrs: { for: "exampleInputEmail1" } },
+        [_vm._v("Duyuru Etiketler")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "text",
+          placeholder: "Aralarına Virgül Koyarak Yazınız",
+          "aria-describedby": "emailHelp",
+        },
+      }),
     ])
   },
 ]

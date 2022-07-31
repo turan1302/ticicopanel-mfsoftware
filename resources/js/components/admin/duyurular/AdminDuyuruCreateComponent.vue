@@ -46,7 +46,7 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Varsayılan URL
                                                 Kategori</label>
-                                            <select class="form-control">
+                                            <select class="form-control varsayilan">
                                                 <option v-for="(item,index) in duyuru_kategoriler">{{
                                                         item.dkat_ad
                                                     }}
@@ -54,6 +54,45 @@
                                             </select>
                                         </div>
 
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori</label>
+                                            <select class="form-control kategori" multiple="multiple">
+                                                <option v-for="(item,index) in duyuru_kategoriler">{{
+                                                        item.dkat_ad
+                                                    }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Açıklama</label>
+                                            <textarea type="text" class="editor"></textarea>
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Seo Title</label>
+                                            <input class="form-control" aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Seo Description</label>
+                                            <input type="text" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Keyword</label>
+                                            <input type="text" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Etiketler</label>
+                                            <input type="text"
+                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
 
                                         <div class="row">
                                             <div class="example-component m-2">
