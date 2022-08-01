@@ -119,7 +119,7 @@ class indexController extends Controller
     // SILME KISMI AYARLANMASI
     public function delete(DuyuruModel $item){
         if ($item->d_resim != "" && File::exists("storage/".$item->d_resim)){
-            File::exists("storage/".$item->d_resim);
+            File::delete("storage/".$item->d_resim);
         }
 
         $sonuc = $item->delete();

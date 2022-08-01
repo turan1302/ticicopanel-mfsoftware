@@ -46,8 +46,8 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Varsayılan URL
                                                 Kategori</label>
-                                            <select v-model="d_varsayilan_kategori" class="form-control varsayilan">
-                                                <option v-for="(item,index) in duyuru_kategoriler">{{
+                                            <select id="d_varsayilan_kategori" v-model="d_varsayilan_kategori" class="form-control varsayilan">
+                                                <option :value="item.dkat_id" v-for="item in duyuru_kategoriler">{{
                                                         item.dkat_ad
                                                     }}
                                                 </option>
@@ -118,6 +118,7 @@ export default {
     props: ["geriye_don", "duyuru_kategoriler"],
     data() {
         return {
+            d_resim : '',
             d_baslik: '',
             d_aciklama : '',
             d_varsayilan_kategori : '',
@@ -134,32 +135,39 @@ export default {
     methods: {
         yeniDuyuruEkle() {
 
-
             this.errors = [];
 
             if (this.d_baslik == "") {
                 this.errors.push("Duyuru Başlık Alanı Boş Bırakılamaz");
             }
 
-            var aciklama = tinyMCE.get('d_aciklama').getContent();  // DUYURU KISMI ACIKLAMASI
-
-            if (aciklama == "") {
-                this.errors.push("Duyuru Açıklama Kısmı Boş Olamaz");
+            var d_varsayilan_kategori = $("#d_varsayilan_kategori").val();  // DUYURU VARSAYILAN KATEGIORI
+            if (d_varsayilan_kategori == null || d_varsayilan_kategori=="") {
+                this.errors.push("Duyuru Varsayılan Kategori Kısmı Boş Olamaz");
             }
 
+            /** ACIKLAMA KISMI AYARLANAMSINI GERCEKLESTIELIM **/
+            var d_aciklama = tinyMCE.get('d_aciklama').getContent();  // DUYURU KISMI ACIKLAMASI
+            if (d_aciklama == "") {
+                this.errors.push("Duyuru Açıklama Kısmı Boş Olamaz");
+            }
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
                 var url = "http://127.0.0.1:8000/api/back/duyurular/store";
 
                 let formData = new FormData();
+
+                formData.append('d_resim', this.d_resim);
                 formData.append('d_baslik', this.d_baslik);
-                formData.append('d_aciklama', aciklama);
-                formData.append('d_varsayilan_kategori', this.d_varsayilan_kategori);
+                formData.append('d_aciklama', d_aciklama);
+                formData.append('d_varsayilan_kategori', d_varsayilan_kategori);
                 formData.append('d_title', this.d_title);
                 formData.append('d_description', this.d_description);
                 formData.append('d_keyword', this.d_keyword);
                 formData.append('d_etiketler', this.d_etiketler);
+
+                console.log(formData);
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
@@ -171,14 +179,12 @@ export default {
                         timer: 1500
                     }).then(() => {
                         location.reload();
-                    }).catch(function (error) {
-                        console.log(error.response);
                     });
                 });
             }
         },
         duyuruResimSec(e) {
-            this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+            this.d_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
         }
     }
 }

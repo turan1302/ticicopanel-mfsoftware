@@ -6028,6 +6028,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["geriye_don", "duyuru_kategoriler"],
   data: function data() {
     return {
+      d_resim: '',
       d_baslik: '',
       d_aciklama: '',
       d_varsayilan_kategori: '',
@@ -6049,9 +6050,17 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Duyuru Başlık Alanı Boş Bırakılamaz");
       }
 
-      var aciklama = tinyMCE.get('d_aciklama').getContent(); // DUYURU KISMI ACIKLAMASI
+      var d_varsayilan_kategori = $("#d_varsayilan_kategori").val(); // DUYURU VARSAYILAN KATEGIORI
 
-      if (aciklama == "") {
+      if (d_varsayilan_kategori == null || d_varsayilan_kategori == "") {
+        this.errors.push("Duyuru Varsayılan Kategori Kısmı Boş Olamaz");
+      }
+      /** ACIKLAMA KISMI AYARLANAMSINI GERCEKLESTIELIM **/
+
+
+      var d_aciklama = tinyMCE.get('d_aciklama').getContent(); // DUYURU KISMI ACIKLAMASI
+
+      if (d_aciklama == "") {
         this.errors.push("Duyuru Açıklama Kısmı Boş Olamaz");
       }
       /** EĞER HATA YOK ISE **/
@@ -6060,13 +6069,15 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errors.length == 0) {
         var url = "http://127.0.0.1:8000/api/back/duyurular/store";
         var formData = new FormData();
+        formData.append('d_resim', this.d_resim);
         formData.append('d_baslik', this.d_baslik);
-        formData.append('d_aciklama', aciklama);
-        formData.append('d_varsayilan_kategori', this.d_varsayilan_kategori);
+        formData.append('d_aciklama', d_aciklama);
+        formData.append('d_varsayilan_kategori', d_varsayilan_kategori);
         formData.append('d_title', this.d_title);
         formData.append('d_description', this.d_description);
         formData.append('d_keyword', this.d_keyword);
         formData.append('d_etiketler', this.d_etiketler);
+        console.log(formData);
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -6077,14 +6088,12 @@ __webpack_require__.r(__webpack_exports__);
             timer: 1500
           }).then(function () {
             location.reload();
-          })["catch"](function (error) {
-            console.log(error.response);
           });
         });
       }
     },
     duyuruResimSec: function duyuruResimSec(e) {
-      this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+      this.d_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
     }
   }
 });
@@ -32633,6 +32642,7 @@ var render = function () {
                               },
                             ],
                             staticClass: "form-control varsayilan",
+                            attrs: { id: "d_varsayilan_kategori" },
                             on: {
                               change: function ($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -32650,17 +32660,18 @@ var render = function () {
                               },
                             },
                           },
-                          _vm._l(
-                            _vm.duyuru_kategoriler,
-                            function (item, index) {
-                              return _c("option", [
+                          _vm._l(_vm.duyuru_kategoriler, function (item) {
+                            return _c(
+                              "option",
+                              { domProps: { value: item.dkat_id } },
+                              [
                                 _vm._v(
                                   _vm._s(item.dkat_ad) +
                                     "\n                                            "
                                 ),
-                              ])
-                            }
-                          ),
+                              ]
+                            )
+                          }),
                           0
                         ),
                       ]),
