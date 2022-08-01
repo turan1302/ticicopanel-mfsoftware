@@ -6345,12 +6345,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(url).then(function (res) {
         var data = res.data;
         _this.d_baslik = data.d_baslik;
-        _this.d_aciklama = data.d_aciklama;
-        _this.d_varsayilan_kategori = data.d_varsayilan_kategori;
+        _this.d_aciklama = data.d_aciklama; // this.d_varsayilan_kategori = data.d_varsayilan_kategori;  // bunu kapatalım kısa süreliğine
+
         _this.d_title = data.d_title;
         _this.d_description = data.d_description;
         _this.d_keyword = data.d_keyword;
-        _this.d_etiketler = data.d_etiketler; // this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
+        _this.d_etiketler = data.d_etiketler;
+        $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change'); // this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
       });
     },
     duyuruResimSec: function duyuruResimSec(e) {

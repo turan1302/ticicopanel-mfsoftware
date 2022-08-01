@@ -208,11 +208,13 @@ export default {
                 var data = res.data;
                 this.d_baslik = data.d_baslik;
                 this.d_aciklama = data.d_aciklama;
-                this.d_varsayilan_kategori = data.d_varsayilan_kategori;
+                // this.d_varsayilan_kategori = data.d_varsayilan_kategori;  // bunu kapatalım kısa süreliğine
                 this.d_title = data.d_title;
                 this.d_description = data.d_description;
                 this.d_keyword = data.d_keyword;
                 this.d_etiketler = data.d_etiketler;
+
+                $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change');
 
                 // this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
             });
