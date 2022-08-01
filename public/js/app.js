@@ -6251,6 +6251,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminDuyuruEditComponent",
   props: ["geriye_don", "duyuru_kategoriler", "duyuru_id"],
@@ -6343,7 +6345,8 @@ __webpack_require__.r(__webpack_exports__);
 
       var url = "http://127.0.0.1:8000/api/back/duyurular/" + duyuru_id + "/edit";
       axios.get(url).then(function (res) {
-        var data = res.data;
+        // DUYURU KISMI AYARLANMASI
+        var data = res.data[0];
         _this.d_baslik = data.d_baslik;
         _this.d_aciklama = data.d_aciklama; // this.d_varsayilan_kategori = data.d_varsayilan_kategori;      // bunu kapatalım kısa süreliğine
 
@@ -6352,7 +6355,22 @@ __webpack_require__.r(__webpack_exports__);
         _this.d_keyword = data.d_keyword;
         _this.d_etiketler = data.d_etiketler;
         $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change'); // varsayılan kısmı ayarlanması
-        // this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
+        // this.dil_ikon = (data.dil_ikon != null) ? data[0].dil_ikon : "resim-yok.webp";
+        // DUYURU KATEGORI KISMI AYARLANMASI (COKLU KATEGORI)
+
+        var kategori = res.data[1];
+        var kategori_uzunluk = kategori.length;
+        var kategori_data = "";
+
+        for (var i = 0; i < kategori_uzunluk; i++) {
+          if (kategori[i].pdk_dkat_id != null) {
+            kategori_data += kategori[i].pdk_dkat_id + ",";
+          }
+        }
+
+        kategori_data = kategori_data.split(","); // DİZİ OLARKA PARÇALANMASINI ISTEDIK
+
+        $("#duyuru_kategoriler").val(kategori_data).trigger('change');
       });
     },
     duyuruResimSec: function duyuruResimSec(e) {

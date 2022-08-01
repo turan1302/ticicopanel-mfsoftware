@@ -13,12 +13,14 @@ use Yajra\DataTables\DataTables;
 class indexController extends Controller
 {
     public $uploadFolder = "";
+
     public function __construct()
     {
         $this->uploadFolder = "duyuru";
     }
 
-    public function index(){
+    public function index()
+    {
         $query = DuyuruModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -49,21 +51,22 @@ class indexController extends Controller
                 $edit = "<a href='" . route('back.duyurular.edit', $query->d_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->d_id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $edit." ".$delete;
+                return $edit . " " . $delete;
             })
             ->editColumn('d_dil_kod', function ($query) {
                 return strtoupper($query->d_dil_kod);
             })
-            ->rawColumns(["d_sira","d_resim", "d_durum", "actions"])
+            ->rawColumns(["d_sira", "d_resim", "d_durum", "actions"])
             ->make(true);
 
         return $data;
     }
 
     // DUYURU KAYDETME KISMI AYARLANMASI
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $duyuru_kategoriler = $request->d_kategoriler;  // DUYURU KATEGORILERINI ALDIK
-        $data = $request->except("_token","d_kategoriler");
+        $data = $request->except("_token", "d_kategoriler");
 
         // AYNI SLUGDAN VAR MI KONTROL EDELIM
         $sorgu = DuyuruModel::where(array(
@@ -103,7 +106,7 @@ class indexController extends Controller
         $result = DuyuruModel::create($data);
 
         /** DUYURU KATEGORILERI KISMI AYARLANMASI **/
-        DuyuruModel::duyuruCokluKategoriEkle($result->d_id,$duyuru_kategoriler);
+        DuyuruModel::duyuruCokluKategoriEkle($result->d_id, $duyuru_kategoriler);
 
         if ($result) {
             $alert = [
@@ -123,14 +126,17 @@ class indexController extends Controller
     }
 
     // GUNCELLEME SAYFASIN ALINMASINI GERCKELESTIRELIM
-    public function edit(DuyuruModel $item){
-        return response()->json($item);
+    public function edit(DuyuruModel $item)
+    {
+        $duyuru = DuyuruModel::select("pivot_duyuru_kategori.pdk_dkat_id")->leftJoin("pivot_duyuru_kategori", "pivot_duyuru_kategori.pdk_duyuru_id", "=", "duyuru.d_id")->get();
+        return response()->json([$item, $duyuru]);
     }
 
     // SILME KISMI AYARLANMASI
-    public function delete(DuyuruModel $item){
-        if ($item->d_resim != "" && File::exists("storage/".$item->d_resim)){
-            File::delete("storage/".$item->d_resim);
+    public function delete(DuyuruModel $item)
+    {
+        if ($item->d_resim != "" && File::exists("storage/" . $item->d_resim)) {
+            File::delete("storage/" . $item->d_resim);
         }
 
         $sonuc = $item->delete();

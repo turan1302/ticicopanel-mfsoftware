@@ -48,7 +48,8 @@
                                                 Kategori</label>
                                             <select id="d_varsayilan_kategori"
                                                     class="form-control varsayilan">
-                                                <option :selected="(d_varsayilan_kategori==item.dkat_id) ? true : null" :value="item.dkat_id" v-for="item in duyuru_kategoriler">{{
+                                                <option :selected="(d_varsayilan_kategori==item.dkat_id) ? true : null"
+                                                        :value="item.dkat_id" v-for="item in duyuru_kategoriler">{{
                                                         item.dkat_ad
                                                     }}
                                                 </option>
@@ -59,7 +60,8 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru
                                                 Kategoriler</label>
-                                            <select id="duyuru_kategoriler" v-model="d_varsayilan_kategori" class="form-control kategori"
+                                            <select id="duyuru_kategoriler" v-model="d_varsayilan_kategori"
+                                                    class="form-control kategori"
                                                     multiple="multiple">
                                                 <option :value="item.dkat_id"
                                                         v-for="(item,index) in duyuru_kategoriler">{{
@@ -205,7 +207,9 @@ export default {
         duyuruGetir(duyuru_id) {
             var url = "http://127.0.0.1:8000/api/back/duyurular/" + duyuru_id + "/edit";
             axios.get(url).then((res) => {
-                var data = res.data;
+
+                // DUYURU KISMI AYARLANMASI
+                var data = res.data[0];
                 this.d_baslik = data.d_baslik;
                 this.d_aciklama = data.d_aciklama;
                 // this.d_varsayilan_kategori = data.d_varsayilan_kategori;      // bunu kapatalım kısa süreliğine
@@ -216,7 +220,21 @@ export default {
 
                 $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change');  // varsayılan kısmı ayarlanması
 
-                // this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
+                // this.dil_ikon = (data.dil_ikon != null) ? data[0].dil_ikon : "resim-yok.webp";
+
+
+                // DUYURU KATEGORI KISMI AYARLANMASI (COKLU KATEGORI)
+                var kategori = res.data[1];
+                var kategori_uzunluk = kategori.length;
+                var kategori_data = "";
+                for (var i = 0; i < kategori_uzunluk; i++) {
+                    if (kategori[i].pdk_dkat_id != null) {
+                        kategori_data += kategori[i].pdk_dkat_id+",";
+                    }
+                }
+                kategori_data = kategori_data.split(",");  // DİZİ OLARKA PARÇALANMASINI ISTEDIK
+                $("#duyuru_kategoriler").val(kategori_data).trigger('change');
+
             });
         },
         duyuruResimSec(e) {
