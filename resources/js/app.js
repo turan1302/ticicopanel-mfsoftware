@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -46,6 +47,7 @@ Vue.component('admin-duyuru-kategori-show-component', require('./components/admi
 // DUYURULAR KISMIA AYARLANMASINA BAKALIM
 Vue.component('admin-duyuru-list-component', require('./components/admin/duyurular/AdminDuyuruListComponent').default);
 Vue.component('admin-duyuru-create-component', require('./components/admin/duyurular/AdminDuyuruCreateComponent').default);
+Vue.component('admin-duyuru-edit-component', require('./components/admin/duyurular/AdminDuyuruEditComponent').default);
 
 
 /**

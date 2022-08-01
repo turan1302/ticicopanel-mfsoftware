@@ -129,7 +129,6 @@ export default {
                 this.dil_ad = data.dil_ad;
                 this.dil_kod = data.dil_kod;
                 this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
-
             });
         },
         dilIkonSec(e) {

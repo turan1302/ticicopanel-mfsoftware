@@ -4,6 +4,7 @@ namespace App\Http\Controllers\back\duyurular;
 
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruKategoriModel;
+use App\Models\DuyuruModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -18,5 +19,13 @@ class indexController extends Controller
             "dkat_durum" => 1
         ))->orderBy("dkat_sira","asc")->get();
         return view('back.duyurular.create',compact('duyuru_kategoriler'));
+    }
+
+    // GUNCELLEME SAYFASI
+    public function edit(DuyuruModel $item){
+        $duyuru_kategoriler = DuyuruKategoriModel::where(array(
+            "dkat_durum" => 1
+        ))->orderBy("dkat_sira","asc")->get();
+        return view('back.duyurular.edit',compact('item','duyuru_kategoriler'));
     }
 }

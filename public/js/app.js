@@ -6119,6 +6119,248 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminDuyuruEditComponent",
+  props: ["geriye_don", "duyuru_kategoriler", "duyuru_id"],
+  data: function data() {
+    return {
+      d_resim: '',
+      d_baslik: '',
+      d_aciklama: '',
+      d_varsayilan_kategori: '',
+      d_title: '',
+      d_description: '',
+      d_keyword: '',
+      d_etiketler: '',
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    this.$props.duyuru_kategoriler = JSON.parse(this.$props.duyuru_kategoriler); // JSON VERISINI DUZENLEDIK
+
+    var duyuru_id = this.$props.duyuru_id;
+    this.duyuruGetir(duyuru_id); // DUYURU CEKILME ISLEMINI GETIRLEIM
+  },
+  methods: {
+    duyuruGuncelle: function duyuruGuncelle() {
+      this.errors = [];
+
+      if (this.d_baslik == "") {
+        this.errors.push("Duyuru Başlık Alanı Boş Bırakılamaz");
+      }
+      /** VARSAYILAN KATREGORI KISMININ ALINMASINI GERCEKLESTIERLIM  **/
+
+
+      var d_varsayilan_kategori = $("#d_varsayilan_kategori").val(); // DUYURU VARSAYILAN KATEGIORI
+
+      if (d_varsayilan_kategori == null || d_varsayilan_kategori == "") {
+        this.errors.push("Duyuru Varsayılan Kategori Kısmı Boş Olamaz");
+      }
+      /** KATEGORI KSIMI AYARLANMASINI GERCEKLESTIERLEIM **/
+
+
+      var duyuru_kategoriler = $("#duyuru_kategoriler").val();
+
+      if (duyuru_kategoriler == null || duyuru_kategoriler == "") {
+        this.errors.push("Duyuru Kategori Kısmı Boş Olamaz");
+      }
+      /** ACIKLAMA KISMI AYARLANAMSINI GERCEKLESTIELIM **/
+
+
+      var d_aciklama = tinyMCE.get('d_aciklama').getContent(); // DUYURU KISMI ACIKLAMASI
+
+      if (d_aciklama == "") {
+        this.errors.push("Duyuru Açıklama Kısmı Boş Olamaz");
+      }
+      /** EĞER HATA YOK ISE **/
+
+
+      if (this.errors.length == 0) {
+        var url = "http://127.0.0.1:8000/api/back/duyurular/store";
+        var formData = new FormData();
+        formData.append('d_resim', this.d_resim);
+        formData.append('d_baslik', this.d_baslik);
+        formData.append('d_aciklama', d_aciklama);
+        formData.append('d_varsayilan_kategori', d_varsayilan_kategori);
+        formData.append('d_title', this.d_title);
+        formData.append('d_description', this.d_description);
+        formData.append('d_keyword', this.d_keyword);
+        formData.append('d_etiketler', this.d_etiketler);
+        formData.append('d_kategoriler', duyuru_kategoriler); // DUYURU KATEGORILERINI ALALIM
+
+        axios.post(url, formData).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        })["catch"](function (error) {
+          if (error.response) {
+            console.log(error.response.data);
+          }
+        });
+      }
+    },
+    duyuruGetir: function duyuruGetir(duyuru_id) {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/duyurular/" + duyuru_id + "/edit";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.d_baslik = data.d_baslik;
+        _this.d_aciklama = data.d_aciklama;
+        _this.d_varsayilan_kategori = data.d_varsayilan_kategori;
+        _this.d_title = data.d_title;
+        _this.d_description = data.d_description;
+        _this.d_keyword = data.d_keyword;
+        _this.d_etiketler = data.d_etiketler; // this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
+      });
+    },
+    duyuruResimSec: function duyuruResimSec(e) {
+      this.d_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue?vue&type=script&lang=js& ***!
@@ -7560,6 +7802,7 @@ Vue.component('admin-duyuru-kategori-show-component', (__webpack_require__(/*! .
 
 Vue.component('admin-duyuru-list-component', (__webpack_require__(/*! ./components/admin/duyurular/AdminDuyuruListComponent */ "./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue")["default"]));
 Vue.component('admin-duyuru-create-component', (__webpack_require__(/*! ./components/admin/duyurular/AdminDuyuruCreateComponent */ "./resources/js/components/admin/duyurular/AdminDuyuruCreateComponent.vue")["default"]));
+Vue.component('admin-duyuru-edit-component', (__webpack_require__(/*! ./components/admin/duyurular/AdminDuyuruEditComponent */ "./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30493,6 +30736,45 @@ component.options.__file = "resources/js/components/admin/duyurular/AdminDuyuruC
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminDuyuruEditComponent_vue_vue_type_template_id_2fb3c581_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true& */ "./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true&");
+/* harmony import */ var _AdminDuyuruEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminDuyuruEditComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminDuyuruEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminDuyuruEditComponent_vue_vue_type_template_id_2fb3c581_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminDuyuruEditComponent_vue_vue_type_template_id_2fb3c581_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "2fb3c581",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue ***!
@@ -30979,6 +31261,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruEditComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruEditComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************!*\
   !*** ./resources/js/components/admin/duyurular/AdminDuyuruListComponent.vue?vue&type=script&lang=js& ***!
@@ -31237,6 +31535,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruCreateComponent_vue_vue_type_template_id_4a1a2e4f_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruCreateComponent_vue_vue_type_template_id_4a1a2e4f_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruCreateComponent.vue?vue&type=template&id=4a1a2e4f&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruCreateComponent.vue?vue&type=template&id=4a1a2e4f&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true& ***!
+  \*************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruEditComponent_vue_vue_type_template_id_2fb3c581_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruEditComponent_vue_vue_type_template_id_2fb3c581_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminDuyuruEditComponent_vue_vue_type_template_id_2fb3c581_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true&");
 
 
 /***/ }),
@@ -32958,6 +33273,475 @@ var staticRenderFns = [
           [
             _c("div", { staticClass: "page-description-content flex-grow-1" }, [
               _c("h1", [_vm._v("Yeni Duyuru Ekle")]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Duyuru Bilgileri")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/duyurular/AdminDuyuruEditComponent.vue?vue&type=template&id=2fb3c581&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _vm.errors.length > 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "col-md-12 alert alert-danger text-center",
+                      },
+                      _vm._l(_vm.errors, function (item) {
+                        return _c("ul", [_c("li", [_vm._v(_vm._s(item))])])
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    attrs: { method: "POST", enctype: "multipart/form-data" },
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.duyuruGuncelle()
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "example-container" }, [
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Duyuru Resim\n                                            (1170x1012)"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "file",
+                            "aria-describedby": "emailHelp",
+                          },
+                          on: { change: _vm.duyuruResimSec },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Başlık")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_baslik,
+                              expression: "d_baslik",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_baslik },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_baslik = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Varsayılan URL\n                                            Kategori"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-control varsayilan",
+                            attrs: { id: "d_varsayilan_kategori" },
+                          },
+                          _vm._l(_vm.duyuru_kategoriler, function (item) {
+                            return _c(
+                              "option",
+                              {
+                                domProps: {
+                                  selected:
+                                    _vm.d_varsayilan_kategori == item.dkat_id
+                                      ? true
+                                      : null,
+                                  value: item.dkat_id,
+                                },
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(item.dkat_ad) +
+                                    "\n                                            "
+                                ),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Duyuru\n                                            Kategoriler"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.d_varsayilan_kategori,
+                                expression: "d_varsayilan_kategori",
+                              },
+                            ],
+                            staticClass: "form-control kategori",
+                            attrs: {
+                              id: "duyuru_kategoriler",
+                              multiple: "multiple",
+                            },
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.d_varsayilan_kategori = $event.target
+                                  .multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                            },
+                          },
+                          _vm._l(
+                            _vm.duyuru_kategoriler,
+                            function (item, index) {
+                              return _c(
+                                "option",
+                                { domProps: { value: item.dkat_id } },
+                                [
+                                  _vm._v(
+                                    _vm._s(item.dkat_ad) +
+                                      "\n                                            "
+                                  ),
+                                ]
+                              )
+                            }
+                          ),
+                          0
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Açıklama")]
+                        ),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_aciklama,
+                              expression: "d_aciklama",
+                            },
+                          ],
+                          staticClass: "editor",
+                          attrs: { type: "text", id: "d_aciklama" },
+                          domProps: { value: _vm.d_aciklama },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_aciklama = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Seo Title")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_title,
+                              expression: "d_title",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "aria-describedby": "emailHelp" },
+                          domProps: { value: _vm.d_title },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_title = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Duyuru Seo\n                                            Description"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_description,
+                              expression: "d_description",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_description },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_description = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Keyword")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_keyword,
+                              expression: "d_keyword",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Aralarına Virgül Koyarak Yazınız",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_keyword },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_keyword = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Duyuru Etiketler")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.d_etiketler,
+                              expression: "d_etiketler",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Aralarına Virgül Koyarak Yazınız",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.d_etiketler },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.d_etiketler = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "example-component m-2" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success btn-md",
+                              attrs: { type: "submit" },
+                            },
+                            [_vm._v(" Güncelle")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-md",
+                              attrs: { href: _vm.geriye_don },
+                            },
+                            [_vm._v(" Geriye Dön")]
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          { staticClass: "page-description d-flex align-items-center" },
+          [
+            _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+              _c("h1", [_vm._v("Duyuru Güncelle")]),
             ]),
           ]
         ),
