@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\back\duyurular;
 
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruModel;
+use App\Models\PivotDuyuruKategoriModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -128,6 +129,12 @@ class indexController extends Controller
         }
 
         $sonuc = $item->delete();
+
+        /** DUYURUYU PIVOT TABLODAN SILDIRELIM **/
+        PivotDuyuruKategoriModel::where(array(
+            "pdk_duyuru_id" => $item->d_id
+        ))->delete();
+
         if ($sonuc) {
             $alert = [
                 "type" => "success",
