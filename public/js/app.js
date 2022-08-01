@@ -6317,7 +6317,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/duyurular/store";
+        var id = this.$props.duyuru_id;
+        var url = "http://127.0.0.1:8000/api/back/duyurular/" + id + "/update";
         var formData = new FormData();
         formData.append('d_resim', this.d_resim);
         formData.append('d_baslik', this.d_baslik);

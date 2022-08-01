@@ -179,7 +179,8 @@ export default {
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/duyurular/store";
+                var id = this.$props.duyuru_id;
+                var url = "http://127.0.0.1:8000/api/back/duyurular/"+id+"/update";
 
                 let formData = new FormData();
 
