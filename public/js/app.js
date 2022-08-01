@@ -6077,7 +6077,6 @@ __webpack_require__.r(__webpack_exports__);
         formData.append('d_description', this.d_description);
         formData.append('d_keyword', this.d_keyword);
         formData.append('d_etiketler', this.d_etiketler);
-        console.log(formData);
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({

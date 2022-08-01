@@ -167,8 +167,6 @@ export default {
                 formData.append('d_keyword', this.d_keyword);
                 formData.append('d_etiketler', this.d_etiketler);
 
-                console.log(formData);
-
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
                     Swal.fire({
