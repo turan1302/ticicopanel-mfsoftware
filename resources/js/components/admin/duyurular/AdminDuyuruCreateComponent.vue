@@ -46,7 +46,8 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Varsayılan URL
                                                 Kategori</label>
-                                            <select id="d_varsayilan_kategori" v-model="d_varsayilan_kategori" class="form-control varsayilan">
+                                            <select id="d_varsayilan_kategori" v-model="d_varsayilan_kategori"
+                                                    class="form-control varsayilan">
                                                 <option :value="item.dkat_id" v-for="item in duyuru_kategoriler">{{
                                                         item.dkat_ad
                                                     }}
@@ -56,9 +57,9 @@
 
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategori</label>
-                                            <select class="form-control kategori" multiple="multiple">
-                                                <option v-for="(item,index) in duyuru_kategoriler">{{
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Kategoriler</label>
+                                            <select id="duyuru_kategoriler" class="form-control kategori" multiple="multiple">
+                                                <option :value="item.dkat_id" v-for="(item,index) in duyuru_kategoriler">{{
                                                         item.dkat_ad
                                                     }}
                                                 </option>
@@ -67,7 +68,8 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Açıklama</label>
-                                            <textarea type="text" id="d_aciklama"  v-model="d_aciklama" class="editor"></textarea>
+                                            <textarea type="text" id="d_aciklama" v-model="d_aciklama"
+                                                      class="editor"></textarea>
                                         </div>
 
                                         <div class="example-content">
@@ -76,14 +78,16 @@
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Duyuru Seo Description</label>
+                                            <label for="exampleInputEmail1" class="form-label">Duyuru Seo
+                                                Description</label>
                                             <input type="text" class="form-control" v-model="d_description"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Keyword</label>
-                                            <input v-model="d_keyword" type="text" placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                            <input v-model="d_keyword" type="text"
+                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -118,14 +122,14 @@ export default {
     props: ["geriye_don", "duyuru_kategoriler"],
     data() {
         return {
-            d_resim : '',
+            d_resim: '',
             d_baslik: '',
-            d_aciklama : '',
-            d_varsayilan_kategori : '',
-            d_title : '',
-            d_description : '',
-            d_keyword : '',
-            d_etiketler : '',
+            d_aciklama: '',
+            d_varsayilan_kategori: '',
+            d_title: '',
+            d_description: '',
+            d_keyword: '',
+            d_etiketler: '',
             errors: [],
         }
     },
@@ -134,16 +138,22 @@ export default {
     },
     methods: {
         yeniDuyuruEkle() {
-
             this.errors = [];
 
             if (this.d_baslik == "") {
                 this.errors.push("Duyuru Başlık Alanı Boş Bırakılamaz");
             }
 
+            /** VARSAYILAN KATREGORI KISMININ ALINMASINI GERCEKLESTIERLIM  **/
             var d_varsayilan_kategori = $("#d_varsayilan_kategori").val();  // DUYURU VARSAYILAN KATEGIORI
-            if (d_varsayilan_kategori == null || d_varsayilan_kategori=="") {
+            if (d_varsayilan_kategori == null || d_varsayilan_kategori == "") {
                 this.errors.push("Duyuru Varsayılan Kategori Kısmı Boş Olamaz");
+            }
+
+            /** KATEGORI KSIMI AYARLANMASINI GERCEKLESTIERLEIM **/
+            var duyuru_kategoriler = $("#duyuru_kategoriler").val();
+            if (duyuru_kategoriler == null || duyuru_kategoriler == "") {
+                this.errors.push("Duyuru Kategori Kısmı Boş Olamaz");
             }
 
             /** ACIKLAMA KISMI AYARLANAMSINI GERCEKLESTIELIM **/
@@ -166,6 +176,8 @@ export default {
                 formData.append('d_description', this.d_description);
                 formData.append('d_keyword', this.d_keyword);
                 formData.append('d_etiketler', this.d_etiketler);
+
+                formData.append('d_kategoriler', duyuru_kategoriler);  // DUYURU KATEGORILERINI ALALIM
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;

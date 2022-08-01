@@ -35,4 +35,6 @@ class DuyuruModel extends Model
 
         $this->attributes['d_sef_etiketler'] = $sef_etiket_data; // SEF ETİKETLERİNİ ALDIK
     }
+
+    // DUYURU KATGORI EKLEME KISMININ AYARLANMASI
 }

@@ -6023,6 +6023,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminDuyuruCreateComponent",
   props: ["geriye_don", "duyuru_kategoriler"],
@@ -6049,11 +6053,21 @@ __webpack_require__.r(__webpack_exports__);
       if (this.d_baslik == "") {
         this.errors.push("Duyuru Başlık Alanı Boş Bırakılamaz");
       }
+      /** VARSAYILAN KATREGORI KISMININ ALINMASINI GERCEKLESTIERLIM  **/
+
 
       var d_varsayilan_kategori = $("#d_varsayilan_kategori").val(); // DUYURU VARSAYILAN KATEGIORI
 
       if (d_varsayilan_kategori == null || d_varsayilan_kategori == "") {
         this.errors.push("Duyuru Varsayılan Kategori Kısmı Boş Olamaz");
+      }
+      /** KATEGORI KSIMI AYARLANMASINI GERCEKLESTIERLEIM **/
+
+
+      var duyuru_kategoriler = $("#duyuru_kategoriler").val();
+
+      if (duyuru_kategoriler == null || duyuru_kategoriler == "") {
+        this.errors.push("Duyuru Kategori Kısmı Boş Olamaz");
       }
       /** ACIKLAMA KISMI AYARLANAMSINI GERCEKLESTIELIM **/
 
@@ -6077,6 +6091,8 @@ __webpack_require__.r(__webpack_exports__);
         formData.append('d_description', this.d_description);
         formData.append('d_keyword', this.d_keyword);
         formData.append('d_etiketler', this.d_etiketler);
+        formData.append('d_kategoriler', duyuru_kategoriler); // DUYURU KATEGORILERINI ALALIM
+
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -32682,24 +32698,31 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Duyuru Kategori")]
+                          [_vm._v("Duyuru Kategoriler")]
                         ),
                         _vm._v(" "),
                         _c(
                           "select",
                           {
                             staticClass: "form-control kategori",
-                            attrs: { multiple: "multiple" },
+                            attrs: {
+                              id: "duyuru_kategoriler",
+                              multiple: "multiple",
+                            },
                           },
                           _vm._l(
                             _vm.duyuru_kategoriler,
                             function (item, index) {
-                              return _c("option", [
-                                _vm._v(
-                                  _vm._s(item.dkat_ad) +
-                                    "\n                                            "
-                                ),
-                              ])
+                              return _c(
+                                "option",
+                                { domProps: { value: item.dkat_id } },
+                                [
+                                  _vm._v(
+                                    _vm._s(item.dkat_ad) +
+                                      "\n                                            "
+                                  ),
+                                ]
+                              )
                             }
                           ),
                           0
@@ -32779,7 +32802,11 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Duyuru Seo Description")]
+                          [
+                            _vm._v(
+                              "Duyuru Seo\n                                            Description"
+                            ),
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {

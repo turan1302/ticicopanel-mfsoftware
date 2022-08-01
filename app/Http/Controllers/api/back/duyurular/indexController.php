@@ -61,7 +61,8 @@ class indexController extends Controller
 
     // DUYURU KAYDETME KISMI AYARLANMASI
     public function store(Request $request){
-        $data = $request->except("_token");
+        $duyuru_kategoriler = $request->d_kategoriler;
+        $data = $request->except("_token","d_kategoriler");
 
         // AYNI SLUGDAN VAR MI KONTROL EDELIM
         $sorgu = DuyuruModel::where(array(
@@ -99,6 +100,10 @@ class indexController extends Controller
         }
 
         $result = DuyuruModel::create($data);
+
+        /** DUYURU KATEGORILERI KISMI AYARLANMASI **/
+
+
         if ($result) {
             $alert = [
                 "type" => "success",
