@@ -132,6 +132,83 @@ class indexController extends Controller
         return response()->json([$item, $duyuru]);
     }
 
+    // GUNCELLEME KISMINI AYARLAUYALIM
+    public function update(Request $request, DuyuruModel $item)
+    {
+        $duyuru_kategoriler = $request->d_kategoriler;  // DUYURU KATEGORILERINI ALDIK
+        $data = $request->except("_token", "d_kategoriler");
+
+        // AYNI SLUGDAN VAR MI KONTROL EDELIM BI
+        if ($data['d_baslik'] != $item->d_baslik) {
+            $sorgu = DuyuruModel::where(array(
+                "d_slug" => Str::slug($data['d_baslik'])
+            ))->first();
+
+
+            if ($sorgu) {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Duyuru Zaten Mevcut",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        // RESIM GELMIS ISE
+        $data['d_resim'] = $item->d_resim;
+        if ($request->hasFile('d_resim')) {
+            $file = $request->file('d_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                // MEVCUT RESMI SILDIRME ISLEMI GERCEKLESTRIELIM
+                if ($item->d_resim != "" && File::exists("storage/" . $item->d_resim)) {
+                    File::delete("storage/" . $item->d_resim);
+                }
+
+                $file_name = Str::slug($data['d_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['d_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = $item->update($data);
+
+        /** DUYURU KATEGORILERININ SILINMESINI AYARLAYALIM ONCE **/
+        PivotDuyuruKategoriModel::where(array(
+            "pdk_duyuru_id" => $item->d_id
+        ))->delete();
+
+        /** DUYURU KATEGORILERI KISMI AYARLANMASI **/
+        DuyuruModel::duyuruCokluKategoriEkle($item->d_id, $duyuru_kategoriler);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
+    }
+
     // SILME KISMI AYARLANMASI
     public function delete(DuyuruModel $item)
     {

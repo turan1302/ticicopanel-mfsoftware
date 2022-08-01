@@ -191,7 +191,7 @@ export default {
                 formData.append('d_description', this.d_description);
                 formData.append('d_keyword', this.d_keyword);
                 formData.append('d_etiketler', this.d_etiketler);
-                formData.append('d_kategoriler', duyuru_kategoriler);  // DUYURU KATEGORILERINI ALALIM
+                formData.append('d_kategoriler', duyuru_kategoriler);  // DUYURU KATEGORILERINI ALALIM (COKLU KIISM)
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;

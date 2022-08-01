@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PivotDuyuruKategoriModel extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     protected $guarded = [];
     protected $table = "pivot_duyuru_kategori";
     protected $primaryKey = "pdk_id";
