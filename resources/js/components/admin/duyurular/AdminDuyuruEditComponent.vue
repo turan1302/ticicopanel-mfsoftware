@@ -31,6 +31,12 @@
                                 <form method="POST" @submit.prevent="duyuruGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Aktif Resim</label>
+                                            <br>
+                                            <img width="100" height="100" :src="site_url+''+d_resim" :alt="d_baslik">
+                                        </div>
+
+                                        <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Duyuru Resim
                                                 (1170x1012)</label>
                                             <input type="file" @change="duyuruResimSec" class="form-control"
@@ -127,6 +133,7 @@ export default {
     props: ["geriye_don", "duyuru_kategoriler", "duyuru_id"],
     data() {
         return {
+            site_url: 'http://127.0.0.1:8000/storage/',
             d_resim: '',
             d_baslik: '',
             d_aciklama: '',
@@ -220,7 +227,7 @@ export default {
 
                 $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change');  // varsayılan kısmı ayarlanması
 
-                // this.dil_ikon = (data.dil_ikon != null) ? data[0].dil_ikon : "resim-yok.webp";
+                this.d_resim = (data.d_resim != null) ? data.d_resim : "resim-yok.webp";
 
 
                 // DUYURU KATEGORI KISMI AYARLANMASI (COKLU KATEGORI)

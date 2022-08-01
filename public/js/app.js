@@ -6253,11 +6253,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminDuyuruEditComponent",
   props: ["geriye_don", "duyuru_kategoriler", "duyuru_id"],
   data: function data() {
     return {
+      site_url: 'http://127.0.0.1:8000/storage/',
       d_resim: '',
       d_baslik: '',
       d_aciklama: '',
@@ -6355,8 +6362,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.d_keyword = data.d_keyword;
         _this.d_etiketler = data.d_etiketler;
         $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change'); // varsayılan kısmı ayarlanması
-        // this.dil_ikon = (data.dil_ikon != null) ? data[0].dil_ikon : "resim-yok.webp";
-        // DUYURU KATEGORI KISMI AYARLANMASI (COKLU KATEGORI)
+
+        _this.d_resim = data.d_resim != null ? data.d_resim : "resim-yok.webp"; // DUYURU KATEGORI KISMI AYARLANMASI (COKLU KATEGORI)
 
         var kategori = res.data[1];
         var kategori_uzunluk = kategori.length;
@@ -33367,6 +33374,28 @@ var render = function () {
                   },
                   [
                     _c("div", { staticClass: "example-container" }, [
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Aktif Resim")]
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("img", {
+                          attrs: {
+                            width: "100",
+                            height: "100",
+                            src: _vm.site_url + "" + _vm.d_resim,
+                            alt: _vm.d_baslik,
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
                       _c("div", { staticClass: "example-content" }, [
                         _c(
                           "label",
