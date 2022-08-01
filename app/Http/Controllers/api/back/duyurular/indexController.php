@@ -61,7 +61,7 @@ class indexController extends Controller
 
     // DUYURU KAYDETME KISMI AYARLANMASI
     public function store(Request $request){
-        $duyuru_kategoriler = $request->d_kategoriler;
+        $duyuru_kategoriler = $request->d_kategoriler;  // DUYURU KATEGORILERINI ALDIK
         $data = $request->except("_token","d_kategoriler");
 
         // AYNI SLUGDAN VAR MI KONTROL EDELIM
@@ -102,7 +102,7 @@ class indexController extends Controller
         $result = DuyuruModel::create($data);
 
         /** DUYURU KATEGORILERI KISMI AYARLANMASI **/
-
+        DuyuruModel::duyuruCokluKategoriEkle($result->d_id,$duyuru_kategoriler);
 
         if ($result) {
             $alert = [

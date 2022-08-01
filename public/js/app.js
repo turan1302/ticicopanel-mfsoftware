@@ -6104,6 +6104,10 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function () {
             location.reload();
           });
+        })["catch"](function (error) {
+          if (error.response) {
+            console.log(error.response.data);
+          }
         });
       }
     },

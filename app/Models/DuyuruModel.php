@@ -37,4 +37,13 @@ class DuyuruModel extends Model
     }
 
     // DUYURU KATGORI EKLEME KISMININ AYARLANMASI
+    public static function duyuruCokluKategoriEkle($duyuru_id,$duyuru_kategoriler){
+        $duyuru_kategoriler = explode(",",$duyuru_kategoriler);
+        foreach ($duyuru_kategoriler as $k => $v){
+            PivotDuyuruKategoriModel::create(array(
+                "pdk_duyuru_id" => $duyuru_id,
+                "pdk_dkat_id" => $v
+            ));
+        }
+    }
 }

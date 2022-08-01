@@ -176,7 +176,6 @@ export default {
                 formData.append('d_description', this.d_description);
                 formData.append('d_keyword', this.d_keyword);
                 formData.append('d_etiketler', this.d_etiketler);
-
                 formData.append('d_kategoriler', duyuru_kategoriler);  // DUYURU KATEGORILERINI ALALIM
 
                 axios.post(url, formData).then((res) => {
@@ -190,6 +189,10 @@ export default {
                     }).then(() => {
                         location.reload();
                     });
+                }).catch(function (error) {
+                    if (error.response){
+                        console.log(error.response.data);
+                    }
                 });
             }
         },
