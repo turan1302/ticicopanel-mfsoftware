@@ -47,11 +47,11 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.duyuru_kategoriler.show', $query->dkat_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $show = "<a href='" . route('back.duyurular.show', $query->d_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.duyurular.edit', $query->d_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->d_id'><i class='fa fa-times'></i> Sil</button>";
-//
-                return $edit . " " . $delete;
+
+                return $show." ".$edit . " " . $delete;
             })
             ->editColumn('d_dil_kod', function ($query) {
                 return strtoupper($query->d_dil_kod);

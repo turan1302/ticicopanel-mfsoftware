@@ -64,6 +64,7 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         Route::get('create', [\App\Http\Controllers\back\duyurular\indexController::class, 'create'])->name('create');
         Route::group(['prefix' => '{item}'], function () {
             Route::get('edit', [\App\Http\Controllers\back\duyurular\indexController::class, 'edit'])->name('edit');
+            Route::get('show', [\App\Http\Controllers\back\duyurular\indexController::class, 'show'])->name('show');
         });
     });
 });

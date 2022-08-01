@@ -48,6 +48,7 @@ Vue.component('admin-duyuru-kategori-show-component', require('./components/admi
 Vue.component('admin-duyuru-list-component', require('./components/admin/duyurular/AdminDuyuruListComponent').default);
 Vue.component('admin-duyuru-create-component', require('./components/admin/duyurular/AdminDuyuruCreateComponent').default);
 Vue.component('admin-duyuru-edit-component', require('./components/admin/duyurular/AdminDuyuruEditComponent').default);
+Vue.component('admin-duyuru-show-component', require('./components/admin/duyurular/AdminDuyuruShowComponent').default);
 
 
 /**
