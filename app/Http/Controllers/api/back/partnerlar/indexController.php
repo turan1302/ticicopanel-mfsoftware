@@ -83,7 +83,7 @@ class indexController extends Controller
             $file = $request->file('part_resim');
             $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
             if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
-                $file_name = Str::slug($data['part_resim']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $file_name = Str::slug($data['part_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
                 $data['part_resim'] = $file->storeAs($this->uploadFolder, $file_name);
             } else {
                 $alert = [
