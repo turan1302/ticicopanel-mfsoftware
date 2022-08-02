@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(SosyalMedyaModel $item){
         return view('back.sosyal_medya.edit',compact('item'));
     }
+
+    // SOSYAL MEDAYA GORUNTULEME KISMI
+    public function show(SosyalMedyaModel $item){
+        return view('back.sosyal_medya.show',compact('item'));
+    }
 }

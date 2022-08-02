@@ -58,6 +58,7 @@ Vue.component('admin-duyuru-yorum-edit-component', require('./components/admin/d
 Vue.component('admin-sosyal-medya-list-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaListComponent').default);
 Vue.component('admin-sosyal-medya-create-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaCreateComponent').default);
 Vue.component('admin-sosyal-medya-edit-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaEditComponent').default);
+Vue.component('admin-sosyal-medya-show-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaShowComponent').default);
 
 
 /**

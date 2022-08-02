@@ -27,11 +27,11 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $show = "<a href='" . route('back.sosyal_medya.show', $query->sm_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.sosyal_medya.edit', $query->sm_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->sm_id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $edit." ".$delete;
+                return  $show." ".$edit." ".$delete;
             })
             ->rawColumns(["sm_sira", "sm_durum", "actions"])
             ->make(true);
@@ -62,6 +62,11 @@ class indexController extends Controller
 
     // SOSYAL MEDYA GUNCELLEME KISMI AYARLANMASINI GERCEKLESTIRELEIM
     public function edit(SosyalMedyaModel $item){
+        return response()->json($item);
+    }
+
+    // SOSYAL MEDYA GORUNTULEME KISMI AYARLANMASINI GERCEKLESTIRELIM
+    public function show(SosyalMedyaModel $item){
         return response()->json($item);
     }
 
