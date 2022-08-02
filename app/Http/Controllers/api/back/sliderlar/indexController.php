@@ -51,4 +51,25 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // SIRALAMA KISMI AYARLANMASINI GERCEKLESTIRELIM
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            SliderModel::where("sld_id", $v)->update(array(
+                "sld_sira" => $k
+            ));
+        }
+    }
+
+    // SLIDER AKRTIF PASIF KISMI AYARLAMA
+    public function isActiveSetter(Request $request,SliderModel $item){
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "sld_durum" => $data
+        ));
+    }
+
 }
