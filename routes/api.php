@@ -88,6 +88,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     Route::group(['prefix' => 'duyuru-yorumlari', 'namespace' => 'duyuru_yorumlari'], function () {
         Route::get('', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'index']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'isActiveSetter']);
         });
     });

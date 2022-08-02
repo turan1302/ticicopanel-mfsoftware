@@ -40,6 +40,27 @@ class indexController extends Controller
         return $data;
     }
 
+    // SILME KISMI AYARLANAMSI
+    public function delete(DuyuruYorumlariModel $item){
+
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // IS ACTIVE KISMI AYARLANMASI GERCEKLESTIRELIM
     public function isActiveSetter(Request $request,DuyuruYorumlariModel $item){
         $data = ($request->data == "true") ? 1 : 0;
