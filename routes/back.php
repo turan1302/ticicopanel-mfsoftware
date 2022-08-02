@@ -67,4 +67,11 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('show', [\App\Http\Controllers\back\duyurular\indexController::class, 'show'])->name('show');
         });
     });
+
+    /** DUYURU YORUMLARI **/
+    Route::group(['prefix' => 'duyuru-yorumlar', 'namespace' => 'duyuru_yorumlar', 'as' => 'duyuru_yorumlar.'], function () {
+        Route::get('',[\App\Http\Controllers\back\duyuru_yorumlar\indexController::class,'index'])->name('index');
+    });
+
+
 });

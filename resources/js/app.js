@@ -44,11 +44,14 @@ Vue.component('admin-duyuru-kategori-create-component', require('./components/ad
 Vue.component('admin-duyuru-kategori-edit-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriEditComponent').default);
 Vue.component('admin-duyuru-kategori-show-component', require('./components/admin/duyuru_kategoriler/AdminDuyuruKategoriShowComponent').default);
 
-// DUYURULAR KISMIA AYARLANMASINA BAKALIM
+// DUYURULAR KISMI AYARLANMASINA BAKALIM
 Vue.component('admin-duyuru-list-component', require('./components/admin/duyurular/AdminDuyuruListComponent').default);
 Vue.component('admin-duyuru-create-component', require('./components/admin/duyurular/AdminDuyuruCreateComponent').default);
 Vue.component('admin-duyuru-edit-component', require('./components/admin/duyurular/AdminDuyuruEditComponent').default);
 Vue.component('admin-duyuru-show-component', require('./components/admin/duyurular/AdminDuyuruShowComponent').default);
+
+// DUYURU YORUMLARI KISMI AYARLANAMSI
+Vue.component('admin-duyuru-yorum-list-component', require('./components/admin/duyuru_yorumlari/AdminDuyuruYorumListComponent').default);
 
 
 /**

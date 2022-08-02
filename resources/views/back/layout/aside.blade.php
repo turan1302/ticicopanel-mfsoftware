@@ -68,6 +68,15 @@
                 </ul>
             </li>
 
+            {{-- DUYURU YORUMLARI ISLEMI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">comment</i>Duyuru Yorumları<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.duyuru_yorumlar.index') }}">Duyuru Yorumları Listele</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </div>

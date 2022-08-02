@@ -6,10 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Duyuru Kategorileri</h1>
-                            </div>
-                            <div class="page-description-actions">
-                                <a :href="yeni_ekle" class="btn btn-primary"><i class="material-icons">add</i> Yeni Ekle</a>
+                                <h1>DUyuru Yorumları</h1>
                             </div>
                         </div>
                     </div>
@@ -19,7 +16,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Duyuru Kategorileri</h5>
+                                <h5 class="card-title">Duyuru Yorumları</h5>
                             </div>
                             <div class="card-body">
                                 <table class="table table-bordered yajra-datatable" id="datatable1" width="100%"
@@ -28,9 +25,9 @@
                                     <tr>
                                         <th>Sıra</th>
                                         <th>ID</th>
-                                        <th>Kategori Adı</th>
-                                        <th>Kategori Durum</th>
-                                        <th>Kategori Varsayılan</th>
+                                        <th>Resim</th>
+                                        <th>Başlık</th>
+                                        <th>Durum</th>
                                         <th>Dil</th>
                                         <th>İşlemler</th>
                                     </tr>
@@ -49,12 +46,9 @@
 
 <script>
 export default {
-    name: "AdminDuyuruKategoriListComponent",
-    props: ["yeni_ekle"],
+    name: "AdminDuyuruYorumListComponent",
     data() {
-        return {
-
-        }
+        return {}
     },
     mounted() {
         $(document).ready(function () {
@@ -63,19 +57,19 @@ export default {
                 serverSide: true,
                 ajax: {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/back/duyuru-kategoriler",
+                    url: "http://127.0.0.1:8000/api/back/duyuru-yorumlari",
                 },
                 columns: [
-                    {data: 'dkat_sira', name: 'dkat_sira', orderable: true},
-                    {data: 'dkat_id', name: 'dkat_id'},
-                    {data: 'dkat_ad', name: 'dkat_ad'},
-                    {data: 'dkat_durum', name: 'dkat_durum'},
-                    {data: 'dkat_varsayilan_kategori', name: 'dkat_varsayilan_kategori'},
-                    {data: 'dkat_dil_kod', name: 'dkat_dil_kod'},
+                    {data: 'dy_id', name: 'dy_id'},
+                    {data: 'dy_adsoyad', name: 'dy_adsoyad'},
+                    {data: 'dy_email', name: 'dy_email'},
+                    {data: 'dy_website', name: 'dy_website'},
+                    {data: 'd_dil_kod', name: 'd_dil_kod'},
+                    {data: 'dy_durum', name: 'dy_website'},
                     {data: 'actions', name: 'actions'},
                 ],
                 "fnCreatedRow": function (nRow, aData, iDataIndex) {
-                    $(nRow).attr("id", "item-" + aData.dkat_id);
+                    $(nRow).attr("id", "item-" + aData.d_id);
                 }
 
             });
@@ -84,25 +78,10 @@ export default {
             $(".yajra-datatable").on("change",".isActive",function () {
                 var id = $(this).data("id");
                 var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/"+id+"/is-active";
+                var url = "http://127.0.0.1:8000/api/back/duyurular/"+id+"/is-active";
 
                 axios.post(url,{
                     data : data
-                });
-            });
-
-
-            // VARSAYILAN KISMI AYARLANMASINI GERCEKLESTIREELIM
-            $(".yajra-datatable").on("change",".isDefault",function () {
-                var id = $(this).data("id");
-                var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/"+id+"/is-default";
-
-
-                axios.post(url,{
-                    data : data
-                }).then((res)=>{
-                    location.reload();
                 });
             });
 
@@ -110,7 +89,7 @@ export default {
             // DUYURU SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
             $(".yajra-datatable").on("click", ".isDelete", function () {
                 var id = $(this).data("id");
-                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/" + id + "/delete";
+                var url = "http://127.0.0.1:8000/api/back/duyurular/" + id + "/delete";
 
                 Swal.fire({
                     title: 'Dikkat!',
@@ -138,22 +117,7 @@ export default {
                     }
                 })
             });
-
-            // SORTABLE JS KISMINI AYARLAYALIM
-            $(".sortable").sortable();
-            $(".sortable").on("sortupdate", function () {
-                var data = $(this).sortable("serialize");
-                var url = "http://127.0.0.1:8000/api/back/duyuru-kategoriler/rank-setter";
-
-                axios.post(url,{
-                    data : data
-                });
-            })
-
         });
-    },
-    methods : {
-
     }
 }
 </script>

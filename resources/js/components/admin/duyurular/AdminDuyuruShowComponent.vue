@@ -150,7 +150,7 @@ export default {
     },
     methods: {
         duyuruGetir(duyuru_id) {
-            var url = "http://127.0.0.1:8000/api/back/duyurular/" + duyuru_id + "/edit";
+            var url = "http://127.0.0.1:8000/api/back/duyurular/" + duyuru_id + "/show";
             axios.get(url).then((res) => {
 
                 // DUYURU KISMI AYARLANMASI

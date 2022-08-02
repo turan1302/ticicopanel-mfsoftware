@@ -128,7 +128,14 @@ class indexController extends Controller
     // GUNCELLEME SAYFASIN ALINMASINI GERCKELESTIRELIM
     public function edit(DuyuruModel $item)
     {
-        $duyuru = DuyuruModel::select("pivot_duyuru_kategori.pdk_dkat_id")->leftJoin("pivot_duyuru_kategori", "pivot_duyuru_kategori.pdk_duyuru_id", "=", "duyuru.d_id")->get();
+        $duyuru = DuyuruModel::select("pivot_duyuru_kategori.pdk_dkat_id")->leftJoin("pivot_duyuru_kategori", "pivot_duyuru_kategori.pdk_duyuru_id", "=", "duyurular.d_id")->get();
+        return response()->json([$item, $duyuru]);
+    }
+
+    // GORUNTULEME SAYFASI
+    public function show(DuyuruModel $item)
+    {
+        $duyuru = DuyuruModel::select("pivot_duyuru_kategori.pdk_dkat_id")->leftJoin("pivot_duyuru_kategori", "pivot_duyuru_kategori.pdk_duyuru_id", "=", "duyurular.d_id")->get();
         return response()->json([$item, $duyuru]);
     }
 

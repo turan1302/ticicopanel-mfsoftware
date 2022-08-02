@@ -13,7 +13,7 @@ class DuyuruModel extends Model
     use SoftDeletes;
 
     protected $guarded = [];
-    protected $table = "duyuru";
+    protected $table = "duyurular";
     protected $primaryKey = "d_id";
 
     // SEO URL MUTATOR

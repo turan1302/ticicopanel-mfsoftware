@@ -13,7 +13,7 @@ class CreateDuyuruModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('duyuru', function (Blueprint $table) {
+        Schema::create('duyurular', function (Blueprint $table) {
             $table->id('d_id');
             $table->string('d_resim')->nullable();
             $table->string('d_baslik')->nullable();
@@ -41,6 +41,6 @@ class CreateDuyuruModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('duyuru');
+        Schema::dropIfExists('duyurular');
     }
 }

@@ -62,9 +62,6 @@ export default {
                 ajax: {
                     type: "GET",
                     url: "http://127.0.0.1:8000/api/back/duyurular",
-                    error: function (e) {
-                        console.log(e);
-                    }
                 },
                 columns: [
                     {data: 'd_sira', name: 'd_sira', orderable: true},

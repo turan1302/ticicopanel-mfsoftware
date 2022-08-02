@@ -63,9 +63,6 @@ export default {
                 ajax: {
                     type: "GET",
                     url: "http://127.0.0.1:8000/api/back/language",
-                    error: function (e) {
-                        console.log(e);
-                    }
                 },
                 columns: [
                     {data: 'dil_sira', name: 'dil_sira', orderable: true},

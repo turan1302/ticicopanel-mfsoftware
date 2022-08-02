@@ -228,7 +228,7 @@ export default {
 
                 $("#d_varsayilan_kategori").val(data.d_varsayilan_kategori).trigger('change');  // varsayılan kısmı ayarlanması
 
-                this.d_resim = (data.d_resim != null) ? data.d_resim : "resim-yok.webp";
+                this.d_resim = (data.d_resim != null && data.d_resim != "") ? data.d_resim : "resim-yok.webp";
 
 
                 // DUYURU KATEGORI KISMI AYARLANMASI (COKLU KATEGORI)
