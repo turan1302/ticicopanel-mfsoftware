@@ -89,6 +89,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::get('', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'index']);
         Route::group(['prefix' => '{item}'], function () {
             Route::get('edit', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'edit']);  // bu bize first of fail gibi gorev sağlıyor
+            Route::post('cevapla', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'cevapla']);  // bu bize first of fail gibi gorev sağlıyor
             Route::get('delete', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\duyuru_yorumlari\indexController::class, 'isActiveSetter']);
         });

@@ -28,8 +28,7 @@ class indexController extends Controller
                 return $query->d_baslik;
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.duyurular.show', $query->d_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
-                $edit = "<a href='" . route('back.duyuru_yorumlar.edit', $query->dy_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $edit = "<a href='" . route('back.duyuru_yorumlar.edit', $query->dy_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dy_id'><i class='fa fa-times'></i> Sil</button>";
 
                 return $edit." ".$delete;
@@ -49,6 +48,34 @@ class indexController extends Controller
         $item = DuyuruYorumlariModel::leftJoin("duyurular","duyurular.d_id","=","duyuru_yorumlar.dy_duyuru_id")->first();
 
         return response()->json($item);
+    }
+
+    // CEVAPLAMA KISMI AYARLANAMSI
+    public function cevapla(Request $request,DuyuruYorumlariModel $item){
+        $sonuc = DuyuruYorumlariModel::create(array(
+            "dy_adsoyad" => env("APP_NAME"),
+            "dy_yorum" => $request->yorumunuz,
+            "dy_duyuru_id" => $item->dy_duyuru_id,
+            "dy_okunma" => 1,
+            "dy_durum" => 1,
+            "dy_yorum_ust" => $item->dy_id,
+            "dy_ip" => $request->getClientIp()
+        ));
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
     }
 
     // SILME KISMI AYARLANAMSI

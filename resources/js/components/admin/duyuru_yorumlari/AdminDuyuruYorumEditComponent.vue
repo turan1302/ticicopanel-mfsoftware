@@ -73,8 +73,8 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Yorumunuz</label>
-                                            <textarea type="text" id="service_aciklama" class="editor"
-                                                      v-model="service_aciklama"></textarea>
+                                            <textarea type="text" id="yorumumuz" class="editor"
+                                                      v-model="yorumumuz"></textarea>
                                         </div>
 
                                         <div class="row">
@@ -121,25 +121,19 @@ export default {
         duyuruYorumCevapla() {
             this.errors = [];
 
-            if (this.service_baslik == "") {
-                this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+            var yorumumuz = tinyMCE.get('yorumumuz').getContent();  // DUYURU YORUMUNA BIZIM VERECGIMIZ CEVAP
+            if (yorumumuz == "") {
+                this.errors.push("Yorumumuz Kısmı Boş Olamaz");
             }
+
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
-                var id = this.$props.service_id;
-                var url = "http://127.0.0.1:8000/api/back/service/" + id + "/update";
-
-                var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
+                var id = this.$props.duyuru_yorum_id;
+                var url = "http://127.0.0.1:8000/api/back/duyuru-yorumlari/" + id + "/cevapla";
 
                 axios.post(url, {
-                    service_ikon: this.service_ikon,
-                    service_baslik: this.service_baslik,
-                    service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
-                    service_title: this.service_title,
-                    service_description: this.service_description,
-                    service_keyword: this.service_keyword,
-                    service_etiketler: this.service_etiketler,
+                   yorumunuz : yorumumuz // YORUM KISMI ALINMASI GERCEKLESTIRILDI
                 }).then((res) => {
                     var data = res.data;
                     Swal.fire({

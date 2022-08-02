@@ -6030,27 +6030,20 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     duyuruYorumCevapla: function duyuruYorumCevapla() {
       this.errors = [];
+      var yorumumuz = tinyMCE.get('yorumumuz').getContent(); // DUYURU YORUMUNA BIZIM VERECGIMIZ CEVAP
 
-      if (this.service_baslik == "") {
-        this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+      if (yorumumuz == "") {
+        this.errors.push("Yorumumuz Kısmı Boş Olamaz");
       }
       /** EĞER HERHANGI BIR HATA YOKSA **/
 
 
       if (this.errors.length == 0) {
-        var id = this.$props.service_id;
-        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/update";
-        var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
-
+        var id = this.$props.duyuru_yorum_id;
+        var url = "http://127.0.0.1:8000/api/back/duyuru-yorumlari/" + id + "/cevapla";
         axios.post(url, {
-          service_ikon: this.service_ikon,
-          service_baslik: this.service_baslik,
-          service_aciklama: aciklama,
-          // SERVIS KISMI ACIKLAMASI
-          service_title: this.service_title,
-          service_description: this.service_description,
-          service_keyword: this.service_keyword,
-          service_etiketler: this.service_etiketler
+          yorumunuz: yorumumuz // YORUM KISMI ALINMASI GERCEKLESTIRILDI
+
         }).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -35176,19 +35169,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_aciklama,
-                              expression: "service_aciklama",
+                              value: _vm.yorumumuz,
+                              expression: "yorumumuz",
                             },
                           ],
                           staticClass: "editor",
-                          attrs: { type: "text", id: "service_aciklama" },
-                          domProps: { value: _vm.service_aciklama },
+                          attrs: { type: "text", id: "yorumumuz" },
+                          domProps: { value: _vm.yorumumuz },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_aciklama = $event.target.value
+                              _vm.yorumumuz = $event.target.value
                             },
                           },
                         }),
