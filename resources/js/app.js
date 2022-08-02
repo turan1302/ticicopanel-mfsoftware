@@ -69,6 +69,7 @@ Vue.component('admin-slider-show-component', require('./components/admin/sliderl
 // PARTNER KISMI AYARLANMASI
 Vue.component('admin-partner-list-component', require('./components/admin/partnerlar/AdminPartnerListComponent').default);
 Vue.component('admin-partner-create-component', require('./components/admin/partnerlar/AdminPartnerCreateComponent').default);
+Vue.component('admin-partner-edit-component', require('./components/admin/partnerlar/AdminPartnerEditComponent').default);
 
 
 /**

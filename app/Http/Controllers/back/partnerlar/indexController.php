@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\partnerlar;
 
 use App\Http\Controllers\Controller;
+use App\Models\PartnerModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -14,5 +15,10 @@ class indexController extends Controller
     // EKLEME SAYAFSI
     public function create(){
         return view('back.partnerlar.create');
+    }
+
+    // GUNCELLEME SAYFASI
+    public function edit(PartnerModel $item){
+        return view('back.partnerlar.edit',compact('item'));
     }
 }
