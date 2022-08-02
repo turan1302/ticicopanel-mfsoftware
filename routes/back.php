@@ -81,5 +81,8 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     Route::group(['prefix' => 'sosyal-medya', 'namespace' => 'sosyal_medya', 'as' => 'sosyal_medya.'], function () {
         Route::get('', [\App\Http\Controllers\back\sosyal_medya\indexController::class, 'index'])->name('index');
         Route::get('create', [\App\Http\Controllers\back\sosyal_medya\indexController::class, 'create'])->name('create');
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\back\sosyal_medya\indexController::class, 'edit'])->name('edit');
+        });
     });
 });

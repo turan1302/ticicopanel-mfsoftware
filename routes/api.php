@@ -102,6 +102,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::post('store', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'store']);
         Route::post('rank-setter', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'edit']);  // bu bize first of fail gibi gorev sağlıyor
             Route::get('delete', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'isActiveSetter']);
         });
