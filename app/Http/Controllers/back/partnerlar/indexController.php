@@ -21,4 +21,10 @@ class indexController extends Controller
     public function edit(PartnerModel $item){
         return view('back.partnerlar.edit',compact('item'));
     }
+
+    // GORUNTULEME SAYFASI KISMI
+    public function show(PartnerModel $item){
+        return view('back.partnerlar.show',compact('item'));
+    }
+
 }

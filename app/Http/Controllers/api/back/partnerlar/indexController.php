@@ -46,11 +46,11 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.sliderlar.show', $query->sld_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $show = "<a href='" . route('back.partnerlar.show', $query->part_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.partnerlar.edit', $query->part_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->part_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $edit . " " . $delete;
+                return $show." ".$edit . " " . $delete;
             })
             ->editColumn('part_dil_kod', function ($query) {
                 return strtoupper($query->part_dil_kod);
@@ -122,6 +122,11 @@ class indexController extends Controller
     // GUNCELLEME SAYFASI AYARLANAMSI
     public function edit(PartnerModel $item)
     {
+        return response()->json($item);
+    }
+
+    // GORUNTULEME KISMI AYARLANAMSINI GERCEKLESRTIRELIM
+    public function show(PartnerModel $item){
         return response()->json($item);
     }
 
