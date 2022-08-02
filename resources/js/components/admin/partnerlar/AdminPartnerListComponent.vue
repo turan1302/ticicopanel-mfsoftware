@@ -126,8 +126,7 @@ export default {
             $(".sortable").sortable();
             $(".sortable").on("sortupdate", function () {
                 var data = $(this).sortable("serialize");
-                var url = "http://127.0.0.1:8000/api/back/duyurular/rank-setter";
-
+                var url = "http://127.0.0.1:8000/api/back/partnerlar/rank-setter";
                 axios.post(url,{
                     data : data
                 });

@@ -127,6 +127,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // PARTNERLAR KISMI AYARLANMASI
     Route::group(['prefix' => 'partnerlar', 'namespace' => 'partnerlar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\partnerlar\indexController::class, 'index']);
+        Route::post('rank-setter', [\App\Http\Controllers\api\back\partnerlar\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
             Route::post('is-active', [\App\Http\Controllers\api\back\partnerlar\indexController::class, 'isActiveSetter']);
         });

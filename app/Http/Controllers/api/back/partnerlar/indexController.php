@@ -65,4 +65,16 @@ class indexController extends Controller
             "part_durum" => $data
         ));
     }
+
+    // SIRALAMA KISMI AYARLANMASINI GERCEKLESTIRELIM
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            PartnerModel::where("part_id", $v)->update(array(
+                "part_sira" => $k
+            ));
+        }
+    }
 }
