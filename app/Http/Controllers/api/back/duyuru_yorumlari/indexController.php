@@ -40,6 +40,15 @@ class indexController extends Controller
         return $data;
     }
 
+    // GORUNTULEME SAYFASI (EDIT KISMI)
+    public function edit(DuyuruYorumlariModel $item){
+        $item->update(array(
+            "dy_okunma" => 1
+        ));
+
+        return response()->json($item);
+    }
+
     // SILME KISMI AYARLANAMSI
     public function delete(DuyuruYorumlariModel $item){
 

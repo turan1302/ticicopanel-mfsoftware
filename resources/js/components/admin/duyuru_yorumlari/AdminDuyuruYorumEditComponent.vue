@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Servis Güncelle</h1>
+                                <h1>Duyuru Yorumu</h1>
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Servis Bilgileri</h5>
+                                <h5 class="card-title">Duyuru Yorum Bilgileri</h5>
                             </div>
                             <div class="card-body">
 
@@ -28,13 +28,9 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="servisGuncelle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="duyuruYorumCevapla()" enctype="multipart/form-data">
                                     <div class="example-container">
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
-                                            <input type="text" v-model="service_ikon" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
+
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Başlık</label>
@@ -48,36 +44,9 @@
                                                       v-model="service_aciklama"></textarea>
                                         </div>
 
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Title</label>
-                                            <input v-model="service_title" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo
-                                                Description</label>
-                                            <input type="text" v-model="service_description" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Keyword</label>
-                                            <input type="text" v-model="service_keyword"
-                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Etiketler</label>
-                                            <input type="text" v-model="service_etiketler"
-                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Güncelle</button>
+                                                <button type="submit" class="btn btn-success btn-md"> Cevapla</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
@@ -110,11 +79,11 @@ export default {
         }
     },
     mounted() {
-        var service_id = this.$props.service_id;
-      this.servisGetir(service_id);
+        var duyuru_yorum_id = this.$props.duyuru_yorum_id;
+      this.duyuruYorumGetir(duyuru_yorum_id);
     },
     methods: {
-        servisGuncelle() {
+        duyuruYorumCevapla() {
             this.errors = [];
 
             if (this.service_baslik == "") {
@@ -152,8 +121,8 @@ export default {
                 });
             }
         },
-        servisGetir(service_id) {
-            var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+        duyuruYorumGetir(duyuru_yorum_id) {
+            var url = "http://127.0.0.1:8000/api/back/duyuru-yorumlari/" + service_id + "/edit";
             axios.get(url).then((res) => {
 
                 var data = res.data;
