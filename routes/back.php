@@ -70,7 +70,10 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
 
     /** DUYURU YORUMLARI **/
     Route::group(['prefix' => 'duyuru-yorumlar', 'namespace' => 'duyuru_yorumlar', 'as' => 'duyuru_yorumlar.'], function () {
-        Route::get('',[\App\Http\Controllers\back\duyuru_yorumlar\indexController::class,'index'])->name('index');
+        Route::get('', [\App\Http\Controllers\back\duyuru_yorumlar\indexController::class, 'index'])->name('index');
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\back\duyuru_yorumlar\indexController::class, 'edit'])->name('edit');
+        });
     });
 
 

@@ -52,6 +52,7 @@ Vue.component('admin-duyuru-show-component', require('./components/admin/duyurul
 
 // DUYURU YORUMLARI KISMI AYARLANAMSI
 Vue.component('admin-duyuru-yorum-list-component', require('./components/admin/duyuru_yorumlari/AdminDuyuruYorumListComponent').default);
+Vue.component('admin-duyuru-yorum-edit-component', require('./components/admin/duyuru_yorumlari/AdminDuyuruYorumEditComponent').default);
 
 
 /**
