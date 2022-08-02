@@ -31,47 +31,20 @@
                                 <form method="POST" @submit.prevent="servisGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
-                                            <input type="text" v-model="service_ikon" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sosyal Medya İkon</label>
+                                            <input type="text" v-model="sm_ikon" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Başlık</label>
-                                            <input type="text" v-model="service_baslik" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sosyal Medya Başlık</label>
+                                            <input type="text" v-model="sm_name" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
-                                            <textarea type="text" id="service_aciklama" class="editor"
-                                                      v-model="service_aciklama"></textarea>
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Title</label>
-                                            <input v-model="service_title" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo
-                                                Description</label>
-                                            <input type="text" v-model="service_description" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Keyword</label>
-                                            <input type="text" v-model="service_keyword"
-                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Etiketler</label>
-                                            <input type="text" v-model="service_etiketler"
-                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sosyal Medya Link</label>
+                                            <input v-model="sm_link" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -99,19 +72,14 @@ export default {
     props: ["geriye_don", "sosyal_medya_id"],
     data() {
         return {
-            service_ikon: '',
-            service_baslik: '',
-            service_aciklama: '',
-            service_title: '',
-            service_description: '',
-            service_keyword: '',
-            service_etiketler: '',
+            sm_ikon: '',
+            sm_name: '',
+            sm_link: '',
             errors: [],
         }
     },
     mounted() {
         var sosyal_medya_id = this.$props.sosyal_medya_id;
-        alert(sosyal_medya_id);
       this.sosyalMedyaGetir(sosyal_medya_id);
     },
     methods: {
@@ -148,8 +116,6 @@ export default {
                     }).then(() => {
                         location.reload();
                     })
-                }).catch(function (error) {
-                    console.log(error.response);
                 });
             }
         },
@@ -158,7 +124,9 @@ export default {
             axios.get(url).then((res) => {
                 var data = res.data;
 
-                console.log(data);
+                this.sm_ikon = data.sm_ikon;
+                this.sm_name = data.sm_name;
+                this.sm_link = data.sm_link;
             });
         },
     }

@@ -65,6 +65,27 @@ class indexController extends Controller
         return response()->json($item);
     }
 
+    // SOSYAL MEDYA GUNCELLEME KISMI
+    public function update(Request $request,SosyalMedyaModel $item){
+        $data = $request->except("_token");
+        $sonuc = $item->update($data);
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // DELETE KISMI AYARLANMASI GERCEKLESTIRELIM
     public function delete(SosyalMedyaModel $item){
         $sonuc = $item->delete();
