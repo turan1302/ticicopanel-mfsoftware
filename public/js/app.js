@@ -8360,7 +8360,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminSliderListComponent",
   props: ["yeni_ekle"],
@@ -8377,33 +8376,30 @@ __webpack_require__.r(__webpack_exports__);
           url: "http://127.0.0.1:8000/api/back/sliderlar"
         },
         columns: [{
-          data: 'dil_sira',
-          name: 'dil_sira',
+          data: 'sld_sira',
+          name: 'sld_sira',
           orderable: true
         }, {
-          data: 'dil_id',
-          name: 'dil_id'
+          data: 'sld_id',
+          name: 'sld_id'
         }, {
-          data: 'dil_ad',
-          name: 'dil_ad'
+          data: 'sld_ustbaslik',
+          name: 'sld_ustbaslik'
         }, {
-          data: 'dil_kod',
-          name: 'dil_kod'
+          data: 'sld_resim',
+          name: 'sld_resim'
         }, {
-          data: 'dil_durum',
-          name: 'dil_durum'
+          data: 'sld_durum',
+          name: 'sld_durum'
         }, {
-          data: 'dil_varsayilan',
-          name: 'dil_varsayilan'
-        }, {
-          data: 'dil_ikon',
-          name: 'dil_ikon'
+          data: 'sld_dil_kod',
+          name: 'sld_dil_kod'
         }, {
           data: 'actions',
           name: 'actions'
         }],
         "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
-          $(nRow).attr("id", "item-" + aData.dil_id);
+          $(nRow).attr("id", "item-" + aData.sld_id);
         }
       }); // DIL AKTIF PASIF KISMI AYARLANMASI
 
@@ -8413,17 +8409,6 @@ __webpack_require__.r(__webpack_exports__);
         var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
         axios.post(url, {
           data: data
-        });
-      }); // DIL VARSATILAN KISMI AYARLAMASINI GERCEKLESTIRELIM
-
-      $(".yajra-datatable").on("change", ".isDefault", function () {
-        var id = $(this).data("id");
-        var data = $(this).prop("checked");
-        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/is-default";
-        axios.post(url, {
-          data: data
-        }).then(function (res) {
-          location.reload();
         });
       }); // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
 
@@ -40020,13 +40005,11 @@ var staticRenderFns = [
                     _vm._v(" "),
                     _c("th", [_vm._v("Başlık")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Kod")]),
+                    _c("th", [_vm._v("Resim")]),
                     _vm._v(" "),
                     _c("th", [_vm._v("Durum")]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("Varsayılan")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("İkon")]),
+                    _c("th", [_vm._v("Dil")]),
                     _vm._v(" "),
                     _c("th", [_vm._v("İşlemler")]),
                   ]),

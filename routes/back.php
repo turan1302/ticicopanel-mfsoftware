@@ -90,5 +90,6 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     /** SLIDER KISMI AYARLANAMSI **/
     Route::group(['prefix' => 'sliderlar', 'namespace' => 'sliderlar', 'as' => 'sliderlar.'], function () {
         Route::get('', [\App\Http\Controllers\back\sliderlar\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\sliderlar\indexController::class, 'create'])->name('create');
     });
 });

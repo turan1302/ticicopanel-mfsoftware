@@ -10,4 +10,10 @@ class indexController extends Controller
     public function index(){
         return view('back.sliderlar.index');
     }
+
+    // SLIDER EKLEME SAYFASI
+    public function create(){
+        echo "Yes";
+        die;
+    }
 }

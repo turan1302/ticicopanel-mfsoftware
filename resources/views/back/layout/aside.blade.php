@@ -96,7 +96,7 @@
 
             {{-- SLIDERLAR KISMI AYARLANMASI --}}
             <li>
-                <a href=""><i class="material-icons-two-tone">hub</i>Sliderlar<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <a href=""><i class="material-icons-two-tone">slideshow</i>Sliderlar<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('back.sliderlar.index') }}">Slider Listesi</a>

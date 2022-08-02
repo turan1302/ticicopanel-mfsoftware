@@ -29,10 +29,9 @@
                                         <th>Sıra</th>
                                         <th>ID</th>
                                         <th>Başlık</th>
-                                        <th>Kod</th>
+                                        <th>Resim</th>
                                         <th>Durum</th>
-                                        <th>Varsayılan</th>
-                                        <th>İkon</th>
+                                        <th>Dil</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
@@ -65,17 +64,16 @@ export default {
                     url: "http://127.0.0.1:8000/api/back/sliderlar",
                 },
                 columns: [
-                    {data: 'dil_sira', name: 'dil_sira', orderable: true},
-                    {data: 'dil_id', name: 'dil_id'},
-                    {data: 'dil_ad', name: 'dil_ad'},
-                    {data: 'dil_kod', name: 'dil_kod'},
-                    {data: 'dil_durum', name: 'dil_durum'},
-                    {data: 'dil_varsayilan', name: 'dil_varsayilan'},
-                    {data: 'dil_ikon', name: 'dil_ikon'},
+                    {data: 'sld_sira', name: 'sld_sira', orderable: true},
+                    {data: 'sld_id', name: 'sld_id'},
+                    {data: 'sld_ustbaslik', name: 'sld_ustbaslik'},
+                    {data: 'sld_resim', name: 'sld_resim'},
+                    {data: 'sld_durum', name: 'sld_durum'},
+                    {data: 'sld_dil_kod', name: 'sld_dil_kod'},
                     {data: 'actions', name: 'actions'},
                 ],
                 "fnCreatedRow": function (nRow, aData, iDataIndex) {
-                    $(nRow).attr("id", "item-" + aData.dil_id);
+                    $(nRow).attr("id", "item-" + aData.sld_id);
                 }
 
             });
@@ -88,20 +86,6 @@ export default {
 
                 axios.post(url,{
                     data : data
-                });
-            });
-
-            // DIL VARSATILAN KISMI AYARLAMASINI GERCEKLESTIRELIM
-            $(".yajra-datatable").on("change",".isDefault",function () {
-                var id = $(this).data("id");
-                var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/language/"+id+"/is-default";
-
-
-                axios.post(url,{
-                    data : data
-                }).then((res)=>{
-                    location.reload();
                 });
             });
 
