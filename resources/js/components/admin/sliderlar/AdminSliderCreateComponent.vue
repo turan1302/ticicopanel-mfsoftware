@@ -28,21 +28,42 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yeniDilEkle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="yeniSliderEkle()" enctype="multipart/form-data">
                                     <div class="example-container">
+
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil Adı</label>
-                                            <input type="text" v-model="dil_ad" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Slider Resim Sec (690x690)</label>
+                                            <input type="file" @change="sliderResimSec" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
+
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil Kodu</label>
-                                            <input type="text" v-model="dil_kod" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Slider Üst Başlık</label>
+                                            <input type="text" v-model="sld_ustbaslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
+
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil İkon (50x50)</label>
-                                            <input type="file" @change="dilIkonSec" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Slider Orta Başlık</label>
+                                            <input type="text" v-model="sld_ortabaslik" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Slider Alt Başlık</label>
+                                            <input type="text" v-model="sld_altbaslik" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Slider Buton Başlık</label>
+                                            <input type="text" v-model="sld_butonbaslik" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Slider Buton Link</label>
+                                            <input type="text" v-model="sld_butonlink" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -70,32 +91,44 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
-            dil_ad: '',
+            sld_resim : '',
+            sld_ustbaslik : '',
+            sld_ortabaslik : '',
+            sld_altbaslik : '',
+            sld_butonbaslik : '',
+            sld_butonlink : '',
             dil_kod: '',
             dil_ikon: '',
             errors: [],
         }
     },
     methods: {
-        yeniDilEkle() {
+        yeniSliderEkle() {
             this.errors = [];
 
-            if (this.dil_ad == "") {
-                this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+            if (this.sld_ustbaslik == "") {
+                this.errors.push("Üst Başlık Alanı Boş Bırakılamaz");
             }
 
-            if (this.dil_kod == "") {
+            if (this.sld_ortabaslik == "") {
+                this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
+            }
+
+            if (this.sld_altbaslik == "") {
                 this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
             }
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/language/store";
+                var url = "http://127.0.0.1:8000/api/back/sliderlar/store";
 
                 let formData = new FormData();
-                formData.append('dil_ad', this.dil_ad);
-                formData.append('dil_kod', this.dil_kod);
-                formData.append('dil_ikon', this.dil_ikon);
+                formData.append('sld_resim', this.sld_resim);
+                formData.append('sld_ustbaslik', this.sld_ustbaslik);
+                formData.append('sld_ortabaslik', this.sld_ortabaslik);
+                formData.append('sld_altbaslik', this.sld_altbaslik);
+                formData.append('sld_butonbaslik', this.sld_altbaslik);
+                formData.append('sld_butonlink', this.sld_altbaslik);
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
@@ -111,8 +144,8 @@ export default {
                 });
             }
         },
-        dilIkonSec(e) {
-            this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+        sliderResimSec(e) {
+            this.sld_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
         }
     }
 }

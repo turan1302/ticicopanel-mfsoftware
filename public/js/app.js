@@ -8377,37 +8377,70 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageCreateComponent",
   props: ["geriye_don"],
   data: function data() {
     return {
-      dil_ad: '',
+      sld_resim: '',
+      sld_ustbaslik: '',
+      sld_ortabaslik: '',
+      sld_altbaslik: '',
+      sld_butonbaslik: '',
+      sld_butonlink: '',
       dil_kod: '',
       dil_ikon: '',
       errors: []
     };
   },
   methods: {
-    yeniDilEkle: function yeniDilEkle() {
+    yeniSliderEkle: function yeniSliderEkle() {
       this.errors = [];
 
-      if (this.dil_ad == "") {
-        this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+      if (this.sld_ustbaslik == "") {
+        this.errors.push("Üst Başlık Alanı Boş Bırakılamaz");
       }
 
-      if (this.dil_kod == "") {
+      if (this.sld_ortabaslik == "") {
+        this.errors.push("Dil Kodu Alanı Boş Bırakılamaz");
+      }
+
+      if (this.sld_altbaslik == "") {
         this.errors.push("Dil Kodu Alanı Boş Bırakılamaz");
       }
       /** EĞER HATA YOK ISE **/
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/language/store";
+        var url = "http://127.0.0.1:8000/api/back/sliderlar/store";
         var formData = new FormData();
-        formData.append('dil_ad', this.dil_ad);
-        formData.append('dil_kod', this.dil_kod);
-        formData.append('dil_ikon', this.dil_ikon);
+        formData.append('sld_resim', this.sld_resim);
+        formData.append('sld_ustbaslik', this.sld_ustbaslik);
+        formData.append('sld_ortabaslik', this.sld_ortabaslik);
+        formData.append('sld_altbaslik', this.sld_altbaslik);
+        formData.append('sld_butonbaslik', this.sld_altbaslik);
+        formData.append('sld_butonlink', this.sld_altbaslik);
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -8422,8 +8455,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    dilIkonSec: function dilIkonSec(e) {
-      this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+    sliderResimSec: function sliderResimSec(e) {
+      this.sld_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
     }
   }
 });
@@ -40167,7 +40200,7 @@ var render = function () {
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
-                        return _vm.yeniDilEkle()
+                        return _vm.yeniSliderEkle()
                       },
                     },
                   },
@@ -40180,79 +40213,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Dil Adı")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.dil_ad,
-                              expression: "dil_ad",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.dil_ad },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.dil_ad = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Dil Kodu")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.dil_kod,
-                              expression: "dil_kod",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.dil_kod },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.dil_kod = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Dil İkon (50x50)")]
+                          [_vm._v("Slider Resim Sec (690x690)")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -40261,7 +40222,187 @@ var render = function () {
                             type: "file",
                             "aria-describedby": "emailHelp",
                           },
-                          on: { change: _vm.dilIkonSec },
+                          on: { change: _vm.sliderResimSec },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Slider Üst Başlık")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sld_ustbaslik,
+                              expression: "sld_ustbaslik",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.sld_ustbaslik },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.sld_ustbaslik = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Slider Orta Başlık")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sld_ortabaslik,
+                              expression: "sld_ortabaslik",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.sld_ortabaslik },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.sld_ortabaslik = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Slider Alt Başlık")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sld_altbaslik,
+                              expression: "sld_altbaslik",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.sld_altbaslik },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.sld_altbaslik = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Slider Buton Başlık")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sld_butonbaslik,
+                              expression: "sld_butonbaslik",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.sld_butonbaslik },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.sld_butonbaslik = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Slider Buton Link")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.sld_butonlink,
+                              expression: "sld_butonlink",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.sld_butonlink },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.sld_butonlink = $event.target.value
+                            },
+                          },
                         }),
                       ]),
                       _vm._v(" "),
