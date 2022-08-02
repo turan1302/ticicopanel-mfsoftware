@@ -57,4 +57,12 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // AKTIF PASIFLIK AYARLAMASI YAPALIM
+    public function isActiveSetter(Request $request,PartnerModel $item){
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "part_durum" => $data
+        ));
+    }
 }
