@@ -88,7 +88,7 @@
                     </li>
 
                     <li>
-                        <a href="">Yeni Sosyal Medya Ekle</a>
+                        <a href="{{ route('back.sosyal_medya.create') }}">Yeni Sosyal Medya Ekle</a>
                     </li>
                 </ul>
             </li>
