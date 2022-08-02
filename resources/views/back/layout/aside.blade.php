@@ -122,6 +122,22 @@
                 </ul>
             </li>
 
+
+            {{-- EKIP KISMI AYARLANSMI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">group</i>Ekip<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.ekip.index') }}">Ekip Listesi</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('back.ekip.create') }}">Yeni Üye Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
+
         </ul>
     </div>
 </div>

@@ -138,4 +138,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         });
     });
 
+    // EKIP KISMI AYARLANAMSI
+    Route::group(['prefix' => 'ekip', 'namespace' => 'ekip'], function () {
+        Route::get('',[\App\Http\Controllers\api\back\ekip\indexController::class,'index']);
+    });
 });

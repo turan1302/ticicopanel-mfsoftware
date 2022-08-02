@@ -107,4 +107,10 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         });
     });
 
+    /** EKIP KISMI AYARLAMASI **/
+    Route::group(['prefix' => 'ekip', 'namespace' => 'ekip', 'as' => 'ekip.'], function () {
+        Route::get('', [\App\Http\Controllers\back\ekip\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\ekip\indexController::class, 'create'])->name('create');
+    });
+
 });

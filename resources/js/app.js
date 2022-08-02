@@ -72,6 +72,8 @@ Vue.component('admin-partner-create-component', require('./components/admin/part
 Vue.component('admin-partner-edit-component', require('./components/admin/partnerlar/AdminPartnerEditComponent').default);
 Vue.component('admin-partner-show-component', require('./components/admin/partnerlar/AdminPartnerShowComponent').default);
 
+// EKIP KISMI AYARLAMASI
+Vue.component('admin-ekip-list-component', require('./components/admin/ekip/AdminEkipListComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
