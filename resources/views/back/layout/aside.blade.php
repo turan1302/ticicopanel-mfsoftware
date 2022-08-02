@@ -103,7 +103,7 @@
                     </li>
 
                     <li>
-                        <a href="">Yeni Sosyal Medya Ekle</a>
+                        <a href="{{ route('back.sliderlar.create') }}">Yeni Slider Ekle</a>
                     </li>
                 </ul>
             </li>

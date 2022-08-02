@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // SLIDER EKLEME SAYFASI
     public function create(){
-        echo "Yes";
-        die;
+        return view('back.sliderlar.create');
     }
 }
