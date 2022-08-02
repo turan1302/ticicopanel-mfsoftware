@@ -64,6 +64,7 @@ Vue.component('admin-sosyal-medya-show-component', require('./components/admin/s
 Vue.component('admin-slider-list-component', require('./components/admin/sliderlar/AdminSliderListComponent').default);
 Vue.component('admin-slider-create-component', require('./components/admin/sliderlar/AdminSliderCreateComponent').default);
 Vue.component('admin-slider-edit-component', require('./components/admin/sliderlar/AdminSliderEditComponent').default);
+Vue.component('admin-slider-show-component', require('./components/admin/sliderlar/AdminSliderShowComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

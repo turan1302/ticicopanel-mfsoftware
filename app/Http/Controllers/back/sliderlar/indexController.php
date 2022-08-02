@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(SliderModel $item){
         return view('back.sliderlar.edit',compact('item'));
     }
+
+    // SLIDER GORUNTULEME SAYFASI
+    public function show(SliderModel $item){
+        return view('back.sliderlar.show',compact('item'));
+    }
 }
