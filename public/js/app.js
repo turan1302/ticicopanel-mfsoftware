@@ -8380,7 +8380,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AdminServiceCreateComponent",
+  name: "AdminSosyalMedyaCreateComponent",
   props: ["geriye_don"],
   data: function data() {
     return {
@@ -8405,7 +8405,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/sosya-medya/store";
+        var url = "http://127.0.0.1:8000/api/back/sosyal-medya/store";
         axios.post(url, {
           sm_ikon: this.sm_ikon,
           sm_name: this.sm_name,

@@ -68,7 +68,7 @@
 
 <script>
 export default {
-    name: "AdminServiceCreateComponent",
+    name: "AdminSosyalMedyaCreateComponent",
     props: ["geriye_don"],
     data() {
         return {
@@ -95,7 +95,7 @@ export default {
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
-                var url = "http://127.0.0.1:8000/api/back/sosya-medya/store";
+                var url = "http://127.0.0.1:8000/api/back/sosyal-medya/store";
 
                 axios.post(url, {
                     sm_ikon: this.sm_ikon,
