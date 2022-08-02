@@ -141,10 +141,18 @@ export default {
                 var id = this.$props.partner_id;
                 var url = "http://127.0.0.1:8000/api/back/partnerlar/" + id + "/update";
 
+                var part_aciklama = tinyMCE.get('part_aciklama').getContent();  // AÇIKLAMA KISMININ ALINMASI
+
                 let formData = new FormData();
-                formData.append('dil_ad', this.dil_ad);
-                formData.append('dil_kod', this.dil_kod);
-                formData.append('dil_ikon', this.dil_ikon);
+                formData.append('part_resim', this.part_resim);
+                formData.append('part_baslik', this.part_baslik);
+                formData.append('part_aciklama', part_aciklama);
+                formData.append('part_link', this.part_link);
+                formData.append('part_title', this.part_title);
+                formData.append('part_description', this.part_description);
+                formData.append('part_keyword', this.part_keyword);
+                formData.append('part_etiketler', this.part_etiketler);
+
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;

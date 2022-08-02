@@ -71,7 +71,7 @@ class indexController extends Controller
             $alert = [
                 "type" => "error",
                 "title" => "Hata",
-                "text" => "Aynı Duyuru Zaten Mevcut",
+                "text" => "Aynı Partner Zaten Mevcut",
             ];
 
             return response()->json($alert);
