@@ -58,6 +58,30 @@ class indexController extends Controller
         return $data;
     }
 
+    // SILME KISMI AYARLANAMSI
+    public function delete(PartnerModel $item){
+        if ($item->part_resim != "" && File::exists("storage/".$item->part_resim)){
+            File::delete("storage/".$item->part_resim);
+        }
+
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // AKTIF PASIFLIK AYARLAMASI YAPALIM
     public function isActiveSetter(Request $request,PartnerModel $item){
         $data = ($request->data == "true") ? 1 : 0;
