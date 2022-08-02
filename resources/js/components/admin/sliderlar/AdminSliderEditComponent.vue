@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Yeni Slider Ekle</h1>
+                                <h1>Slider Güncelle</h1>
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Slider Bilgileri</h5>
+                                <h5 class="card-title">Dil Bilgileri</h5>
                             </div>
                             <div class="card-body">
 
@@ -28,11 +28,19 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yeniSliderEkle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="sliderGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Slider Resim Sec (690x690)</label>
+                                            <label for="exampleInputEmail1" class="form-label">Aktif Resim</label>
+                                            <br>
+                                            <img width="100" height="100" :src="site_url+''+sld_resim"
+                                                 :alt="sld_ustbaslik">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Slider Resim Sec
+                                                (690x690)</label>
                                             <input type="file" @change="sliderResimSec" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
@@ -44,7 +52,8 @@
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Slider Orta Başlık</label>
+                                            <label for="exampleInputEmail1" class="form-label">Slider Orta
+                                                Başlık</label>
                                             <input type="text" v-model="sld_ortabaslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
@@ -56,7 +65,8 @@
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Slider Buton Başlık</label>
+                                            <label for="exampleInputEmail1" class="form-label">Slider Buton
+                                                Başlık</label>
                                             <input type="text" v-model="sld_butonbaslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
@@ -69,7 +79,7 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Yeni Ekle</button>
+                                                <button type="submit" class="btn btn-success btn-md"> Güncelle</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
@@ -88,20 +98,25 @@
 <script>
 export default {
     name: "AdminLanguageCreateComponent",
-    props: ["geriye_don"],
+    props: ["geriye_don", 'slider_id'],
     data() {
         return {
-            sld_resim : '',
-            sld_ustbaslik : '',
-            sld_ortabaslik : '',
-            sld_altbaslik : '',
-            sld_butonbaslik : '',
-            sld_butonlink : '',
+            site_url: 'http://127.0.0.1:8000/storage/',
+            sld_resim: '',
+            sld_ustbaslik: '',
+            sld_ortabaslik: '',
+            sld_altbaslik: '',
+            sld_butonbaslik: '',
+            sld_butonlink: '',
             errors: [],
         }
     },
+    mounted() {
+        var slider_id = this.$props.slider_id;
+        this.sliderGetir(slider_id);
+    },
     methods: {
-        yeniSliderEkle() {
+        sliderGuncelle() {
             this.errors = [];
 
             if (this.sld_ustbaslik == "") {
@@ -118,7 +133,8 @@ export default {
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/sliderlar/store";
+                var id = this.$props.slider_id;
+                var url = "http://127.0.0.1:8000/api/back/sliderlar/" + id + "/update";
 
                 let formData = new FormData();
                 formData.append('sld_resim', this.sld_resim);
@@ -138,9 +154,27 @@ export default {
                         timer: 1500
                     }).then(() => {
                         location.reload();
-                    })
+                    }).catch(function (error) {
+                        if (error.response){
+                            console.log(error.response.data);
+                        }
+                    });
                 });
             }
+        },
+        sliderGetir(slider_id) {
+            var url = "http://127.0.0.1:8000/api/back/sliderlar/" + slider_id + "/edit";
+            axios.get(url).then((res) => {
+                var data = res.data;
+                this.sld_ustbaslik = data.sld_ustbaslik;
+                this.sld_ortabaslik = data.sld_ortabaslik;
+                this.sld_altbaslik = data.sld_altbaslik;
+                this.sld_butonbaslik = data.sld_butonbaslik;
+                this.sld_butonlink = data.sld_butonlink;
+
+
+                this.sld_resim = (data.sld_resim != "") ? data.sld_resim : "resim-yok.webp";
+            });
         },
         sliderResimSec(e) {
             this.sld_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI

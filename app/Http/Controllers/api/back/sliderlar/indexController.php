@@ -45,10 +45,10 @@ class indexController extends Controller
             })
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.duyurular.show', $query->d_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
-//                $edit = "<a href='" . route('back.duyurular.edit', $query->d_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $edit = "<a href='" . route('back.sliderlar.edit', $query->sld_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->sld_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $delete;
+                return $edit." ".$delete;
             })
             ->editColumn('sld_dil_kod', function ($query) {
                 return strtoupper($query->sld_dil_kod);
@@ -102,6 +102,62 @@ class indexController extends Controller
         return response()->json($alert);
     }
 
+    // SLIDER GUNCELLEME SAYFASI
+    public function edit(SliderModel $item){
+        return response()->json($item);
+    }
+
+    // SLIDER GUNCELLEME ISLEMI
+    public function update(Request $request,SliderModel $item){
+        $data = $request->except("_token");
+
+        // DOSYA GELDI MI
+        $data['sld_resim'] = $item->sld_resim;
+
+        if ($request->hasFile('sld_resim')) {
+            $file = $request->file('sld_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                // DOSYA GERCEKTEN VAR MI ANALIZ EDELIM
+                if ($item->sld_resim != "" && File::exists("storage/".$item->sld_resim)){
+                    File::delete("storage/".$item->sld_resim);
+                }
+
+                $file_name = Str::slug($data['sld_ustbaslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['sld_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+
+        $result = $item->update($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
+    }
+
     // SIRALAMA KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function rankSetter(Request $request){
         parse_str($request->post('data'), $sirala);
@@ -121,7 +177,6 @@ class indexController extends Controller
             "sld_durum" => $data
         ));
     }
-
 
     // SLIDER SILME ISLEMI
     public function delete(SliderModel $item){
