@@ -12,12 +12,14 @@ use Yajra\DataTables\DataTables;
 class indexController extends Controller
 {
     public $uploadFolder = "";
+
     public function __construct()
     {
         $this->uploadFolder = "partner";
     }
 
-    public function index(){
+    public function index()
+    {
         $query = PartnerModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -48,7 +50,7 @@ class indexController extends Controller
                 $edit = "<a href='" . route('back.partnerlar.edit', $query->part_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->part_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $edit." ".$delete;
+                return $edit . " " . $delete;
             })
             ->editColumn('part_dil_kod', function ($query) {
                 return strtoupper($query->part_dil_kod);
@@ -60,14 +62,15 @@ class indexController extends Controller
     }
 
     // EKLEME ISLEMI
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->except("_token");
 
         $sorgu = PartnerModel::where(array(
             "part_slug" => Str::slug($data['part_baslik'])
         ))->first();
 
-        if ($sorgu){
+        if ($sorgu) {
             $alert = [
                 "type" => "error",
                 "title" => "Hata",
@@ -117,20 +120,83 @@ class indexController extends Controller
     }
 
     // GUNCELLEME SAYFASI AYARLANAMSI
-    public function edit(PartnerModel $item){
+    public function edit(PartnerModel $item)
+    {
         return response()->json($item);
     }
 
 
     // GUNCELLEME ISLEMI
-    public function update(Request $request,PartnerModel $item){
+    public function update(Request $request, PartnerModel $item)
+    {
+        $data = $request->except("_token");
+
+        if ($data['part_baslik'] != $item->part_baslik) {
+            $sorgu = PartnerModel::where(array(
+                "part_slug" => Str::slug($data['part_baslik'])
+            ))->first();
+
+            if ($sorgu) {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Partner Zaten Mevcut",
+                ];
+                return response()->json($alert);
+            }
+        }
+
+        // DOSYA GELDI MI
+        $data['part_resim'] = $item->part_resim;
+        if ($request->hasFile('part_resim')) {
+            $file = $request->file('part_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                /** RESIM GERCEKTEN VAR MI **/
+                if ($item->part_resim != "" && File::exists("storage/".$item->part_resim)){
+                    File::delete("storage/".$item->part_resim);
+                }
+
+                $file_name = Str::slug($data['part_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['part_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+
+        $result = $item->update($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
 
     }
 
     // SILME KISMI AYARLANAMSI
-    public function delete(PartnerModel $item){
-        if ($item->part_resim != "" && File::exists("storage/".$item->part_resim)){
-            File::delete("storage/".$item->part_resim);
+    public function delete(PartnerModel $item)
+    {
+        if ($item->part_resim != "" && File::exists("storage/" . $item->part_resim)) {
+            File::delete("storage/" . $item->part_resim);
         }
 
         $sonuc = $item->delete();
@@ -152,7 +218,8 @@ class indexController extends Controller
     }
 
     // AKTIF PASIFLIK AYARLAMASI YAPALIM
-    public function isActiveSetter(Request $request,PartnerModel $item){
+    public function isActiveSetter(Request $request, PartnerModel $item)
+    {
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "part_durum" => $data
@@ -160,7 +227,8 @@ class indexController extends Controller
     }
 
     // SIRALAMA KISMI AYARLANMASINI GERCEKLESTIRELIM
-    public function rankSetter(Request $request){
+    public function rankSetter(Request $request)
+    {
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 

@@ -40906,7 +40906,7 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                " Dil Güncelle\n                                            "
+                                " Partner Güncelle\n                                            "
                               ),
                             ]
                           ),

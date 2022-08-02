@@ -88,7 +88,7 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Dil Güncelle
+                                                <button type="submit" class="btn btn-success btn-md"> Partner Güncelle
                                                 </button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
