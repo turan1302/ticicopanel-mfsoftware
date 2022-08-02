@@ -46,6 +46,8 @@ class indexController extends Controller
             "dy_okunma" => 1
         ));
 
+        $item = DuyuruYorumlariModel::leftJoin("duyurular","duyurular.d_id","=","duyuru_yorumlar.dy_duyuru_id")->first();
+
         return response()->json($item);
     }
 
