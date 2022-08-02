@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PartnerModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
@@ -56,6 +57,63 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // EKLEME ISLEMI
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        $sorgu = PartnerModel::where(array(
+            "part_slug" => Str::slug($data['part_baslik'])
+        ))->first();
+
+        if ($sorgu){
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Duyuru Zaten Mevcut",
+            ];
+
+            return response()->json($alert);
+        }
+
+        // DOSYA GELDI MI
+        $data['part_resim'] = "";
+        if ($request->hasFile('part_resim')) {
+            $file = $request->file('part_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['part_resim']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['part_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = PartnerModel::create($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
     }
 
     // SILME KISMI AYARLANAMSI

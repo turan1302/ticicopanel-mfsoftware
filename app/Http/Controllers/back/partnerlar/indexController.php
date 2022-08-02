@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // EKLEME SAYAFSI
     public function create(){
-        echo "yes";
-        die;
+        return view('back.partnerlar.create');
     }
 }
