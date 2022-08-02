@@ -56,6 +56,7 @@ Vue.component('admin-duyuru-yorum-edit-component', require('./components/admin/d
 
 // SOSYAL MEDYA KISMI AYARLANAMSI
 Vue.component('admin-sosyal-medya-list-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaListComponent').default);
+Vue.component('admin-sosyal-medya-create-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaCreateComponent').default);
 
 
 /**

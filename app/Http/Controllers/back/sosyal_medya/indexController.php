@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // SOSYAL MEDYA EKLEME KISMI
     public function create(){
-        echo "Yes";
-        die;
+        return view('back.sosyal_medya.create');
     }
 }
