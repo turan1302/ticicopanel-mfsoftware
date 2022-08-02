@@ -121,6 +121,12 @@ class indexController extends Controller
         return response()->json($item);
     }
 
+
+    // GUNCELLEME ISLEMI
+    public function update(Request $request,PartnerModel $item){
+
+    }
+
     // SILME KISMI AYARLANAMSI
     public function delete(PartnerModel $item){
         if ($item->part_resim != "" && File::exists("storage/".$item->part_resim)){
