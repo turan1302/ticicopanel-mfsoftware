@@ -54,6 +54,9 @@ Vue.component('admin-duyuru-show-component', require('./components/admin/duyurul
 Vue.component('admin-duyuru-yorum-list-component', require('./components/admin/duyuru_yorumlari/AdminDuyuruYorumListComponent').default);
 Vue.component('admin-duyuru-yorum-edit-component', require('./components/admin/duyuru_yorumlari/AdminDuyuruYorumEditComponent').default);
 
+// SOSYAL MEDYA KISMI AYARLANAMSI
+Vue.component('admin-sosyal-medya-list-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaListComponent').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

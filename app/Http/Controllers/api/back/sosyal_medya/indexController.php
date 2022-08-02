@@ -38,4 +38,13 @@ class indexController extends Controller
 
         return $data;
     }
+
+
+    // AKTIOF PASIF KISMI AYARLANAMSI
+    public function isActiveSetter(Request $request,SosyalMedyaModel $item){
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "sm_durum" => $data
+        ));
+    }
 }

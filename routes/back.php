@@ -80,5 +80,6 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     /** SOSYAL MEDYA KISMI AYARLANAMSI **/
     Route::group(['prefix' => 'sosyal-medya', 'namespace' => 'sosyal_medya', 'as' => 'sosyal_medya.'], function () {
         Route::get('', [\App\Http\Controllers\back\sosyal_medya\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\duyurular\indexController::class, 'create'])->name('create');
     });
 });
