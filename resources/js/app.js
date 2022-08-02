@@ -60,6 +60,8 @@ Vue.component('admin-sosyal-medya-create-component', require('./components/admin
 Vue.component('admin-sosyal-medya-edit-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaEditComponent').default);
 Vue.component('admin-sosyal-medya-show-component', require('./components/admin/sosyal_medya/AdminSosyalMedyaShowComponent').default);
 
+// SLIDER KISMI AYARLANMASI
+Vue.component('admin-slider-list-component', require('./components/admin/sliderlar/AdminSliderListComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

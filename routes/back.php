@@ -86,4 +86,9 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('show', [\App\Http\Controllers\back\sosyal_medya\indexController::class, 'show'])->name('show');
         });
     });
+
+    /** SLIDER KISMI AYARLANAMSI **/
+    Route::group(['prefix' => 'sliderlar', 'namespace' => 'sliderlar', 'as' => 'sliderlar.'], function () {
+        Route::get('', [\App\Http\Controllers\back\sliderlar\indexController::class, 'index'])->name('index');
+    });
 });
