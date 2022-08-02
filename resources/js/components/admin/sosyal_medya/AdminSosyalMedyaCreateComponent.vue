@@ -32,19 +32,19 @@
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sosyal Medya İkon</label>
-                                            <input type="text" v-model="service_ikon" class="form-control"
+                                            <input type="text" v-model="sm_ikon" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sosyal Medya Başlık</label>
-                                            <input type="text" v-model="service_baslik" class="form-control"
+                                            <input type="text" v-model="sm_name" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sosyal Medya Link</label>
-                                            <input v-model="service_title" class="form-control"
+                                            <input v-model="sm_link" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -73,7 +73,7 @@ export default {
     data() {
         return {
             sm_ikon: '',
-            sm_baslik: '',
+            sm_name: '',
             sm_link: '',
             errors: [],
         }
@@ -82,46 +82,39 @@ export default {
         yeniSosyalMedyaEkle() {
             this.errors = [];
 
-            if (this.sm_ikon == "") {
-                this.errors.push("Sosyal Medya İkon Kısmı Boş Olamaz");
-            }
 
-            if (this.sm_baslik == "") {
+            if (this.sm_name == "") {
                 this.errors.push("Sosyal Medya  Başlık Kısmı Boş Olamaz");
             }
 
             if (this.sm_link == "") {
-                this.errors.push("SOsyal Medya Link Kısmı Boş Olamaz");
+                this.errors.push("Sosyal Medya Link Kısmı Boş Olamaz");
             }
 
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
-            // if (this.errors.length == 0) {
-            //
-            //     var url = "http://127.0.0.1:8000/api/back/service/store";
-            //
-            //     axios.post(url, {
-            //         service_ikon: this.service_ikon,
-            //         service_baslik: this.service_baslik,
-            //         service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
-            //         service_title: this.service_title,
-            //         service_description: this.service_description,
-            //         service_keyword: this.service_keyword,
-            //         service_etiketler: this.service_etiketler,
-            //     }).then((res) => {
-            //         var data = res.data;
-            //         Swal.fire({
-            //             icon: data.type,
-            //             title: data.title,
-            //             text: data.text,
-            //             showConfirmButton: false,
-            //             timer: 1500
-            //         }).then(() => {
-            //             location.reload();
-            //         })
-            //     });
-            //
-            // }
+            if (this.errors.length == 0) {
+
+                var url = "http://127.0.0.1:8000/api/back/sosya-medya/store";
+
+                axios.post(url, {
+                    sm_ikon: this.sm_ikon,
+                    sm_name: this.sm_name,
+                    sm_link: this.sm_link,
+                }).then((res) => {
+                    var data = res.data;
+                    Swal.fire({
+                        icon: data.type,
+                        title: data.title,
+                        text: data.text,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(() => {
+                        location.reload();
+                    })
+                });
+
+            }
         }
     }
 }

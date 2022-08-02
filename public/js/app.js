@@ -8385,7 +8385,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       sm_ikon: '',
-      sm_baslik: '',
+      sm_name: '',
       sm_link: '',
       errors: []
     };
@@ -8394,45 +8394,35 @@ __webpack_require__.r(__webpack_exports__);
     yeniSosyalMedyaEkle: function yeniSosyalMedyaEkle() {
       this.errors = [];
 
-      if (this.sm_ikon == "") {
-        this.errors.push("Sosyal Medya İkon Kısmı Boş Olamaz");
-      }
-
-      if (this.sm_baslik == "") {
+      if (this.sm_name == "") {
         this.errors.push("Sosyal Medya  Başlık Kısmı Boş Olamaz");
       }
 
       if (this.sm_link == "") {
-        this.errors.push("SOsyal Medya Link Kısmı Boş Olamaz");
+        this.errors.push("Sosyal Medya Link Kısmı Boş Olamaz");
       }
       /** EĞER HERHANGI BIR HATA YOKSA **/
-      // if (this.errors.length == 0) {
-      //
-      //     var url = "http://127.0.0.1:8000/api/back/service/store";
-      //
-      //     axios.post(url, {
-      //         service_ikon: this.service_ikon,
-      //         service_baslik: this.service_baslik,
-      //         service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
-      //         service_title: this.service_title,
-      //         service_description: this.service_description,
-      //         service_keyword: this.service_keyword,
-      //         service_etiketler: this.service_etiketler,
-      //     }).then((res) => {
-      //         var data = res.data;
-      //         Swal.fire({
-      //             icon: data.type,
-      //             title: data.title,
-      //             text: data.text,
-      //             showConfirmButton: false,
-      //             timer: 1500
-      //         }).then(() => {
-      //             location.reload();
-      //         })
-      //     });
-      //
-      // }
 
+
+      if (this.errors.length == 0) {
+        var url = "http://127.0.0.1:8000/api/back/sosya-medya/store";
+        axios.post(url, {
+          sm_ikon: this.sm_ikon,
+          sm_name: this.sm_name,
+          sm_link: this.sm_link
+        }).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        });
+      }
     }
   }
 });
@@ -39370,8 +39360,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_ikon,
-                              expression: "service_ikon",
+                              value: _vm.sm_ikon,
+                              expression: "sm_ikon",
                             },
                           ],
                           staticClass: "form-control",
@@ -39379,13 +39369,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_ikon },
+                          domProps: { value: _vm.sm_ikon },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_ikon = $event.target.value
+                              _vm.sm_ikon = $event.target.value
                             },
                           },
                         }),
@@ -39406,8 +39396,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_baslik,
-                              expression: "service_baslik",
+                              value: _vm.sm_name,
+                              expression: "sm_name",
                             },
                           ],
                           staticClass: "form-control",
@@ -39415,13 +39405,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_baslik },
+                          domProps: { value: _vm.sm_name },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_baslik = $event.target.value
+                              _vm.sm_name = $event.target.value
                             },
                           },
                         }),
@@ -39442,19 +39432,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
+                              value: _vm.sm_link,
+                              expression: "sm_link",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
+                          domProps: { value: _vm.sm_link },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_title = $event.target.value
+                              _vm.sm_link = $event.target.value
                             },
                           },
                         }),
