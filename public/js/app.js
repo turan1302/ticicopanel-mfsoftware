@@ -8384,13 +8384,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ["geriye_don"],
   data: function data() {
     return {
-      service_ikon: '',
-      service_baslik: '',
-      service_aciklama: '',
-      service_title: '',
-      service_description: '',
-      service_keyword: '',
-      service_etiketler: '',
+      sm_ikon: '',
+      sm_baslik: '',
+      sm_link: '',
       errors: []
     };
   },
@@ -8398,8 +8394,16 @@ __webpack_require__.r(__webpack_exports__);
     yeniSosyalMedyaEkle: function yeniSosyalMedyaEkle() {
       this.errors = [];
 
-      if (this.service_baslik == "") {
-        this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+      if (this.sm_ikon == "") {
+        this.errors.push("Sosyal Medya İkon Kısmı Boş Olamaz");
+      }
+
+      if (this.sm_baslik == "") {
+        this.errors.push("Sosyal Medya  Başlık Kısmı Boş Olamaz");
+      }
+
+      if (this.sm_link == "") {
+        this.errors.push("SOsyal Medya Link Kısmı Boş Olamaz");
       }
       /** EĞER HERHANGI BIR HATA YOKSA **/
       // if (this.errors.length == 0) {
