@@ -73,7 +73,22 @@
                 <a href=""><i class="material-icons-two-tone">comment</i>Duyuru Yorumları<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="{{ route('back.duyuru_yorumlar.index') }}">Duyuru Yorumları Listele</a>
+                        <a href="{{ route('back.duyuru_yorumlar.index') }}">Duyuru Yorumları Listesi</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            {{-- SOSYAL MEDYA KISMI AYARLANMASI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">hub</i>Sosyal Medya<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.sosyal_medya.index') }}">Sosyal Medya Listesi</a>
+                    </li>
+
+                    <li>
+                        <a href="">Yeni Sosyal Medya Ekle</a>
                     </li>
                 </ul>
             </li>
