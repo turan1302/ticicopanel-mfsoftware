@@ -39,4 +39,12 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // IS ACTIVE KISMI AYARLANMASI GERCEKLESTIRELIM
+    public function isActiveSetter(Request $request,DuyuruYorumlariModel $item){
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "dy_durum" => $data
+        ));
+    }
 }
