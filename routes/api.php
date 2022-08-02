@@ -99,7 +99,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // SOSYAL MEDYA EKLEME KISMI AYARLANAMSI
     Route::group(['prefix' => 'sosyal-medya', 'namespace' => 'sosyal_medya'], function () {
         Route::get('', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'index']);
+        Route::post('rank-setter', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'isActiveSetter']);
         });
     });

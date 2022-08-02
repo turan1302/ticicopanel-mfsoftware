@@ -39,6 +39,25 @@ class indexController extends Controller
         return $data;
     }
 
+    // DELETE KISMI AYARLANMASI GERCEKLESTIRELIM
+    public function delete(SosyalMedyaModel $item){
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
 
     // AKTIOF PASIF KISMI AYARLANAMSI
     public function isActiveSetter(Request $request,SosyalMedyaModel $item){
@@ -46,5 +65,17 @@ class indexController extends Controller
         $item->update(array(
             "sm_durum" => $data
         ));
+    }
+
+    // SIRALAMA ISLEMI GERCEKLESTIRELIM
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            SosyalMedyaModel::where("sm_id", $v)->update(array(
+                "sm_sira" => $k
+            ));
+        }
     }
 }
