@@ -25,7 +25,7 @@ class indexController extends Controller
                 $query->orderBy("sld_sira", "asc");
             })
             ->addColumn("sld_resim", function ($query) {
-                if ($query->d_resim != "" && File::exists("storage/" . $query->sld_resim)) {
+                if ($query->sld_resim != "" && File::exists("storage/" . $query->sld_resim)) {
                     $image = "<img src='" . asset('storage/' . $query->sld_resim) . "' width='50' height='50'>";
                 } else {
                     $image = "<img src='" . asset('storage/resim-yok.webp') . "' width='50' height='50'>";
