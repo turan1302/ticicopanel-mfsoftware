@@ -8535,18 +8535,11 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors.length == 0) {
         var id = this.$props.sosyal_medya_id;
-        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/update";
-        var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
-
+        var url = "http://127.0.0.1:8000/api/back/sosyal-medya/" + id + "/update";
         axios.post(url, {
-          service_ikon: this.service_ikon,
-          service_baslik: this.service_baslik,
-          service_aciklama: aciklama,
-          // SERVIS KISMI ACIKLAMASI
-          service_title: this.service_title,
-          service_description: this.service_description,
-          service_keyword: this.service_keyword,
-          service_etiketler: this.service_etiketler
+          sm_ikon: this.sm_ikon,
+          sm_name: this.sm_name,
+          sm_link: this.sm_link
         }).then(function (res) {
           var data = res.data;
           Swal.fire({
