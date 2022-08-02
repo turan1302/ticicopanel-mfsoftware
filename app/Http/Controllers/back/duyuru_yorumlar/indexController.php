@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 class indexController extends Controller
 {
     public function index(){
-        echo "Yes";
-        die;
+        return view('back.duyuru_yorumlari.index');
     }
 }

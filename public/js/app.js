@@ -5979,8 +5979,8 @@ __webpack_require__.r(__webpack_exports__);
           data: 'dy_website',
           name: 'dy_website'
         }, {
-          data: 'd_dil_kod',
-          name: 'd_dil_kod'
+          data: 'd_baslik',
+          name: 'd_baslik'
         }, {
           data: 'dy_durum',
           name: 'dy_website'
@@ -33409,17 +33409,17 @@ var staticRenderFns = [
                     [
                       _c("thead", [
                         _c("tr", [
-                          _c("th", [_vm._v("Sıra")]),
-                          _vm._v(" "),
                           _c("th", [_vm._v("ID")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("Resim")]),
+                          _c("th", [_vm._v("Ad Soyad")]),
                           _vm._v(" "),
-                          _c("th", [_vm._v("Başlık")]),
+                          _c("th", [_vm._v("E-Mail")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Website")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Duyuru Adı")]),
                           _vm._v(" "),
                           _c("th", [_vm._v("Durum")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Dil")]),
                           _vm._v(" "),
                           _c("th", [_vm._v("İşlemler")]),
                         ]),

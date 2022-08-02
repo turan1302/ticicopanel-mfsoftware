@@ -23,12 +23,12 @@
                                        cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Sıra</th>
                                         <th>ID</th>
-                                        <th>Resim</th>
-                                        <th>Başlık</th>
+                                        <th>Ad Soyad</th>
+                                        <th>E-Mail</th>
+                                        <th>Website</th>
+                                        <th>Duyuru Adı</th>
                                         <th>Durum</th>
-                                        <th>Dil</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
@@ -64,7 +64,7 @@ export default {
                     {data: 'dy_adsoyad', name: 'dy_adsoyad'},
                     {data: 'dy_email', name: 'dy_email'},
                     {data: 'dy_website', name: 'dy_website'},
-                    {data: 'd_dil_kod', name: 'd_dil_kod'},
+                    {data: 'd_baslik', name: 'd_baslik'},
                     {data: 'dy_durum', name: 'dy_website'},
                     {data: 'actions', name: 'actions'},
                 ],

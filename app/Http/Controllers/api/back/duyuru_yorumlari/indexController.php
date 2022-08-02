@@ -9,8 +9,9 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
-    public function index(){
-        $query = DuyuruYorumlariModel::leftJoin("duyuru","duyuru.d_id","=","duyuru_yorumlar.dy_duyuru_id")->get();
+    public function index()
+    {
+        $query = DuyuruYorumlariModel::select(["duyurular.*", "duyuru_yorumlar.*"])->leftJoin("duyurular", "duyurular.d_id", "=", "duyuru_yorumlar.dy_duyuru_id");
         $data = DataTables::of($query)
             ->addIndexColumn()
             ->orderColumn("dy_id", function ($query) {
@@ -22,6 +23,9 @@ class indexController extends Controller
                         <input type='checkbox' class='isActive' data-id='$query->dy_id' $checkedStatus>
                          <span class='slider round'></span>
                         </label>";
+            })
+            ->addColumn("duyuru", function ($query) {
+                return $query->d_baslik;
             })
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.duyurular.show', $query->d_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
