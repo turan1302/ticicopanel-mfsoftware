@@ -96,4 +96,11 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('show', [\App\Http\Controllers\back\sliderlar\indexController::class, 'show'])->name('show');
         });
     });
+
+    /** PARTNER KISMI AYARLANAMSI **/
+    Route::group(['prefix' => 'partnerlar', 'namespace' => 'partnerlar', 'as' => 'partnerlar.'], function () {
+        Route::get('', [\App\Http\Controllers\back\partnerlar\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\partnerlar\indexController::class, 'create'])->name('create');
+    });
+
 });

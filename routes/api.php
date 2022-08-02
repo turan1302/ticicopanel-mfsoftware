@@ -124,4 +124,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         });
     });
 
+    // PARTNERLAR KISMI AYARLANMASI
+    Route::group(['prefix' => 'partnerlar', 'namespace' => 'partnerlar'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\partnerlar\indexController::class, 'index']);
+    });
+
 });

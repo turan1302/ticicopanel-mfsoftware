@@ -66,6 +66,10 @@ Vue.component('admin-slider-create-component', require('./components/admin/slide
 Vue.component('admin-slider-edit-component', require('./components/admin/sliderlar/AdminSliderEditComponent').default);
 Vue.component('admin-slider-show-component', require('./components/admin/sliderlar/AdminSliderShowComponent').default);
 
+// PARTNER KISMI AYARLANMASI
+Vue.component('admin-partner-list-component', require('./components/admin/partnerlar/AdminPartnerListComponent').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
