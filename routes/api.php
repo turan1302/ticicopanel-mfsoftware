@@ -95,4 +95,10 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         });
     });
 
+
+    // SOSYAL MEDYA EKLEME KISMI AYARLANAMSI
+    Route::group(['prefix' => 'sosyal-medya', 'namespace' => 'sosyal_medya'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\sosyal_medya\indexController::class, 'index']);
+    });
+
 });
