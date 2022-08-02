@@ -27,7 +27,7 @@ class CreatePartnerModelsTable extends Migration
             $table->string('part_sef_etiketler')->nullable();
             $table->tinyInteger('part_durum')->default(1)->nullable();
             $table->tinyInteger('part_sira')->default(0)->nullable();
-            $table->string('part_dil_kod')->nullable();
+            $table->string('part_dil_kod')->default('tr')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
