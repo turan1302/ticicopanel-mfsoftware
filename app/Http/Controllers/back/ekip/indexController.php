@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(EkipModel $item){
         return view('back.ekip.edit',compact('item'));
     }
+
+    //  GORUNTULEME SAYFASI
+    public function show(EkipModel $item){
+        return view('back.ekip.show',compact('item'));
+    }
 }
