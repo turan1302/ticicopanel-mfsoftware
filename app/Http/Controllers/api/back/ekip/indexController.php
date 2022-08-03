@@ -51,4 +51,17 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // SIRALAMA KISMI AYARLANAMSI
+    public function rankSetter(Request $request)
+    {
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            EkipModel::where("ekp_id", $v)->update(array(
+                "ekp_sira" => $k
+            ));
+        }
+    }
 }

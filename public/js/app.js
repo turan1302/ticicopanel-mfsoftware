@@ -7177,7 +7177,7 @@ __webpack_require__.r(__webpack_exports__);
       $(".yajra-datatable").on("change", ".isActive", function () {
         var id = $(this).data("id");
         var data = $(this).prop("checked");
-        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
+        var url = "http://127.0.0.1:8000/api/back/ekip/" + id + "/is-active";
         axios.post(url, {
           data: data
         });
@@ -7227,7 +7227,7 @@ __webpack_require__.r(__webpack_exports__);
       $(".sortable").sortable();
       $(".sortable").on("sortupdate", function () {
         var data = $(this).sortable("serialize");
-        var url = "http://127.0.0.1:8000/api/back/language/rank-setter";
+        var url = "http://127.0.0.1:8000/api/back/ekip/rank-setter";
         axios.post(url, {
           data: data
         });

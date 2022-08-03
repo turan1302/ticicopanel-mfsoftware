@@ -141,5 +141,6 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // EKIP KISMI AYARLANAMSI
     Route::group(['prefix' => 'ekip', 'namespace' => 'ekip'], function () {
         Route::get('',[\App\Http\Controllers\api\back\ekip\indexController::class,'index']);
+        Route::post('rank-setter', [\App\Http\Controllers\api\back\ekip\indexController::class, 'rankSetter']);
     });
 });
