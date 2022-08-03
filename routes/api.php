@@ -144,6 +144,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::post('store', [\App\Http\Controllers\api\back\ekip\indexController::class, 'store']);
         Route::post('rank-setter', [\App\Http\Controllers\api\back\ekip\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\api\back\ekip\indexController::class, 'edit']);
+            Route::post('update', [\App\Http\Controllers\api\back\ekip\indexController::class, 'update']);
             Route::get('delete', [\App\Http\Controllers\api\back\ekip\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\ekip\indexController::class, 'isActiveSetter']);
         });
