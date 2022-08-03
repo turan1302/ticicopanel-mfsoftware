@@ -119,7 +119,7 @@ class indexController extends Controller
             if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
 
                // RESIM SILDIRELIM
-                if ($item->ekp_resim != "" && File::exists("stroage/".$item->ekp_resim)){
+                if ($item->ekp_resim != "" && File::exists("storage/".$item->ekp_resim)){
                     File::delete("storage/".$item->ekp_resim);
                 }
 
