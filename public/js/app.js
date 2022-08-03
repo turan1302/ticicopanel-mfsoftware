@@ -7181,17 +7181,6 @@ __webpack_require__.r(__webpack_exports__);
         axios.post(url, {
           data: data
         });
-      }); // DIL VARSATILAN KISMI AYARLAMASINI GERCEKLESTIRELIM
-
-      $(".yajra-datatable").on("change", ".isDefault", function () {
-        var id = $(this).data("id");
-        var data = $(this).prop("checked");
-        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/is-default";
-        axios.post(url, {
-          data: data
-        }).then(function (res) {
-          location.reload();
-        });
       }); // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
 
       $(".yajra-datatable").on("click", ".isDelete", function () {

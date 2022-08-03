@@ -64,4 +64,13 @@ class indexController extends Controller
             ));
         }
     }
+
+    // AKTIF ĞPASFO KISMI AYARLANSIM
+    public function isActiveSetter(Request $request, EkipModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "ekp_durum" => $data
+        ));
+    }
 }
