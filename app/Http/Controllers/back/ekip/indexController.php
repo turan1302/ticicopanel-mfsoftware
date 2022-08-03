@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // EKLEME SAYFASI
     public function create(){
-        echo "Yes";
-        die;
+        return view('back.ekip.create');
     }
 }

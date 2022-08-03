@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\EkipModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public $uploadFolder = "";
+    public function __construct()
+    {
+        $this->uploadFolder = "ekip";
+    }
+
     public function index()
     {
         $query = EkipModel::query();
@@ -51,6 +58,49 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // EKLEME ISLEMI
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        // DOSYTA GELDI MI
+        $data['ekp_resim'] = "";
+        if ($request->hasFile('ekp_resim')) {
+            $file = $request->file('ekp_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['ekp_adsoyad']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['ekp_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = EkipModel::create($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
     }
 
     // SIRALAMA KISMI AYARLANAMSI

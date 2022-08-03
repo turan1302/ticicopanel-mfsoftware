@@ -74,6 +74,7 @@ Vue.component('admin-partner-show-component', require('./components/admin/partne
 
 // EKIP KISMI AYARLAMASI
 Vue.component('admin-ekip-list-component', require('./components/admin/ekip/AdminEkipListComponent').default);
+Vue.component('admin-ekip-create-component', require('./components/admin/ekip/AdminEkipCreateComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
