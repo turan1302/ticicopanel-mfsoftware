@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\back\menuler;
 
 use App\Http\Controllers\Controller;
+use App\Models\EkipModel;
 use App\Models\MenuModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -41,6 +42,26 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // SILME KISMI
+    public function delete(MenuModel $item){
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
     }
 
     // SIRALAMA KISMI AYARLANAMSI
