@@ -92,7 +92,7 @@ export default {
             // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
             $(".yajra-datatable").on("click", ".isDelete", function () {
                 var id = $(this).data("id");
-                var url = "http://127.0.0.1:8000/api/back/language/" + id + "/delete";
+                var url = "http://127.0.0.1:8000/api/back/ekip/" + id + "/delete";
 
                 Swal.fire({
                     title: 'Dikkat!',

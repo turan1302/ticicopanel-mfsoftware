@@ -10,7 +10,8 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $query = EkipModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -72,5 +73,30 @@ class indexController extends Controller
         $item->update(array(
             "ekp_durum" => $data
         ));
+    }
+
+    // DELETE KISMI AYARLANMASI
+    public function delete(EkipModel $item)
+    {
+        if ($item->ekp_resim != "" && File::exists("storage/".$item->ekp_resim)){
+            File::delete("storage/".$item->ekp_resim);
+        }
+
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
     }
 }
