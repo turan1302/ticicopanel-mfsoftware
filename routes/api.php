@@ -155,6 +155,10 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // MENULER KISMI AYARLANMASI
     Route::group(['prefix' => 'menuler', 'namespace' => 'menuler'], function () {
         Route::get('', [\App\Http\Controllers\api\back\menuler\indexController::class, 'index']);
+        Route::post('rank-setter', [\App\Http\Controllers\api\back\menuler\indexController::class, 'rankSetter']);
+        Route::group(['prefix' => '{item}'], function () {
+            Route::post('is-active', [\App\Http\Controllers\api\back\menuler\indexController::class, 'isActiveSetter']);
+        });
     });
 
 });

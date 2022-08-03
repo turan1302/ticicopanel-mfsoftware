@@ -42,4 +42,26 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // SIRALAMA KISMI AYARLANAMSI
+    public function rankSetter(Request $request)
+    {
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            MenuModel::where("menu_id", $v)->update(array(
+                "menu_sira" => $k
+            ));
+        }
+    }
+
+    // AKTIF ĞPASFO KISMI AYARLANSIM
+    public function isActiveSetter(Request $request, MenuModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "menu_durum" => $data
+        ));
+    }
 }
