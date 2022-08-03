@@ -117,4 +117,9 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         });
     });
 
+    /** MENULER KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'menuler', 'namespace' => 'menuler', 'as' => 'menuler.'], function () {
+        Route::get('', [\App\Http\Controllers\back\menuler\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\menuler\indexController::class, 'create'])->name('create');
+    });
 });

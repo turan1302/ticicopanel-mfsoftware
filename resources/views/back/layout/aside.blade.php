@@ -137,6 +137,19 @@
                 </ul>
             </li>
 
+                {{-- MENU KISMI AYARLANSMI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">menu</i>Menüler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.menuler.index') }}">Menü Listesi</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('back.menuler.create') }}">Yeni Menü Ekle</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </div>

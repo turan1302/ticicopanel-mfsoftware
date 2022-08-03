@@ -78,6 +78,9 @@ Vue.component('admin-ekip-create-component', require('./components/admin/ekip/Ad
 Vue.component('admin-ekip-edit-component', require('./components/admin/ekip/AdminEkipEditComponent').default);
 Vue.component('admin-ekip-show-component', require('./components/admin/ekip/AdminEkipShowComponent').default);
 
+// MENULER KISMI AYARLANMASI
+Vue.component('admin-menuler-list-component', require('./components/admin/menuler/AdminMenulerListComponent').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
