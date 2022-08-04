@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Sayfa Güncelle</h1>
+                                <h1>Sayfa Görüntüle</h1>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,6 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="sayfaGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
 
                                         <div class="example-content">
@@ -38,15 +37,8 @@
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Sayfa Resim
-                                                (570x669)</label>
-                                            <input type="file" @change="sayfaResimSec" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sayfa Başlık</label>
-                                            <input type="text" v-model="sayfa_baslik" class="form-control"
+                                            <input readonly type="text" v-model="sayfa_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -65,39 +57,37 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sayfa Seo Title</label>
-                                            <input v-model="sayfa_title" class="form-control"
+                                            <input readonly v-model="sayfa_title" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sayfa Seo
                                                 Description</label>
-                                            <input type="text" v-model="sayfa_description" class="form-control"
+                                            <input readonly type="text" v-model="sayfa_description" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sayfa Keyword</label>
-                                            <input type="text" v-model="sayfa_keyword"
+                                            <input readonly type="text" v-model="sayfa_keyword"
                                                    placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Sayfa Etiketler</label>
-                                            <input type="text" v-model="sayfa_etiketler"
+                                            <input readonly type="text" v-model="sayfa_etiketler"
                                                    placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Güncelle</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -131,61 +121,6 @@ export default {
         this.sayfaGetir(sayfa_id);  // DUYURU CEKILME ISLEMINI GETIRLEIM
     },
     methods: {
-        sayfaGuncelle() {
-            this.errors = [];
-
-            if (this.sayfa_baslik == "") {
-                this.errors.push("Sayfa Başlık Kısmı Boş Olamaz");
-            }
-
-            var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
-            if (kisa_aciklama == "") {
-                this.errors.push("Sayfa Kısa Açıklama Kısmı Boş Olamaz");
-            }
-
-            var aciklama = tinyMCE.get('sayfa_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
-            if (aciklama == "") {
-                this.errors.push("Sayfa Açıklama Kısmı Boş Olamaz");
-            }
-
-
-            /** EĞER HERHANGI BIR HATA YOKSA **/
-            if (this.errors.length == 0) {
-
-                var id = this.$props.sayfa_id;
-                var url = "http://127.0.0.1:8000/api/back/sayfalar/"+id+"/update";
-
-
-                let formData = new FormData();
-
-                var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent();  // KISA ACIKLAMA
-                var aciklama = tinyMCE.get('sayfa_aciklama').getContent();  // ACIKLAMA
-
-
-                formData.append('sayfa_resim', this.sayfa_resim);
-                formData.append('sayfa_baslik', this.sayfa_baslik);
-                formData.append('sayfa_kisa_aciklama', kisa_aciklama);
-                formData.append('sayfa_aciklama', aciklama);
-                formData.append('sayfa_title', this.sayfa_title);
-                formData.append('sayfa_description', this.sayfa_description);
-                formData.append('sayfa_keyword', this.sayfa_keyword);
-                formData.append('sayfa_etiketler', this.sayfa_etiketler);
-
-                axios.post(url, formData).then((res) => {
-                    var data = res.data;
-                    Swal.fire({
-                        icon: data.type,
-                        title: data.title,
-                        text: data.text,
-                        showConfirmButton: false,
-                        timer: 1500
-                    }).then(() => {
-                        location.reload();
-                    })
-                });
-
-            }
-        },
         sayfaGetir(sayfa_id) {
             var url = "http://127.0.0.1:8000/api/back/sayfalar/" + sayfa_id + "/edit";
             axios.get(url).then((res) => {
@@ -203,9 +138,6 @@ export default {
                 this.sayfa_resim = (data.sayfa_resim != null && data.sayfa_resim != "") ? data.sayfa_resim : "resim-yok.webp";
 
             });
-        },
-        sayfaResimSec(e) {
-            this.sayfa_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
         }
     }
 }

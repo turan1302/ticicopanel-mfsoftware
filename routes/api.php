@@ -172,6 +172,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::post('store', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'store']);
         Route::group(['prefix' => '{item}'], function () {
             Route::get('edit', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'edit']);
+            Route::get('show', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'show']);
             Route::post('update', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'update']);
             Route::get('delete', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'isActiveSetter']);

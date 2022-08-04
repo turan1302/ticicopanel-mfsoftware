@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(SayfaModel $item){
         return view('back.sayfalar.edit',compact('item'));
     }
+
+    // GORUNTULEME KISMI
+    public function show(SayfaModel $item){
+        return view('back.sayfalar.show',compact('item'));
+    }
 }

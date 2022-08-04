@@ -10132,6 +10132,161 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminSayfalarEditComponent",
+  props: ["geriye_don", "sayfa_id"],
+  data: function data() {
+    return {
+      site_url: 'http://127.0.0.1:8000/storage/',
+      sayfa_resim: '',
+      sayfa_baslik: '',
+      sayfa_kisa_aciklama: '',
+      sayfa_aciklama: '',
+      sayfa_title: '',
+      sayfa_description: '',
+      sayfa_keyword: '',
+      sayfa_etiketler: '',
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    var sayfa_id = this.$props.sayfa_id;
+    this.sayfaGetir(sayfa_id); // DUYURU CEKILME ISLEMINI GETIRLEIM
+  },
+  methods: {
+    sayfaGetir: function sayfaGetir(sayfa_id) {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/sayfalar/" + sayfa_id + "/edit";
+      axios.get(url).then(function (res) {
+        // DUYURU KISMI AYARLANMASI
+        var data = res.data;
+        _this.sayfa_baslik = data.sayfa_baslik;
+        _this.sayfa_kisa_aciklama = data.sayfa_kisa_aciklama;
+        _this.sayfa_aciklama = data.sayfa_aciklama;
+        _this.sayfa_title = data.sayfa_title;
+        _this.sayfa_description = data.sayfa_description;
+        _this.sayfa_keyword = data.sayfa_keyword;
+        _this.sayfa_etiketler = data.sayfa_etiketler;
+        _this.sayfa_resim = data.sayfa_resim != null && data.sayfa_resim != "" ? data.sayfa_resim : "resim-yok.webp";
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -13309,6 +13464,7 @@ Vue.component('admin-menuler-show-component', (__webpack_require__(/*! ./compone
 Vue.component('admin-sayfalar-list-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarListComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarListComponent.vue")["default"]));
 Vue.component('admin-sayfalar-create-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarCreateComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarCreateComponent.vue")["default"]));
 Vue.component('admin-sayfalar-edit-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarEditComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarEditComponent.vue")["default"]));
+Vue.component('admin-sayfalar-show-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarShowComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -37217,6 +37373,45 @@ component.options.__file = "resources/js/components/admin/sayfalar/AdminSayfalar
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true& */ "./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true&");
+/* harmony import */ var _AdminSayfalarShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminSayfalarShowComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminSayfalarShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "05e86912",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/service/AdminServiceCreateComponent.vue":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/admin/service/AdminServiceCreateComponent.vue ***!
@@ -38181,6 +38376,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminSayfalarShowComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************!*\
   !*** ./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -38896,6 +39107,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarListComponent_vue_vue_type_template_id_6bcce376_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarListComponent_vue_vue_type_template_id_6bcce376_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminSayfalarListComponent.vue?vue&type=template&id=6bcce376&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarListComponent.vue?vue&type=template&id=6bcce376&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true&":
+/*!**************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true& ***!
+  \**************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true&");
 
 
 /***/ }),
@@ -47031,7 +47259,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Sayfa Güncelle")]),
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Sayfa Bilgileri")]),
     ])
   },
 ]
@@ -47145,6 +47373,381 @@ var staticRenderFns = [
           ]),
         ]),
       ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _vm.errors.length > 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "col-md-12 alert alert-danger text-center",
+                      },
+                      _vm._l(_vm.errors, function (item) {
+                        return _c("ul", [_c("li", [_vm._v(_vm._s(item))])])
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "example-container" }, [
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Aktif Resim")]
+                    ),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("img", {
+                      attrs: {
+                        width: "100",
+                        height: "100",
+                        src: _vm.site_url + "" + _vm.sayfa_resim,
+                        alt: _vm.sayfa_baslik,
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Sayfa Başlık")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_baslik,
+                          expression: "sayfa_baslik",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.sayfa_baslik },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_baslik = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [
+                        _vm._v(
+                          "Sayfa Kısa\n                                            Açıklama"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_kisa_aciklama,
+                          expression: "sayfa_kisa_aciklama",
+                        },
+                      ],
+                      staticClass: "editor",
+                      attrs: { id: "sayfa_kisa_aciklama" },
+                      domProps: { value: _vm.sayfa_kisa_aciklama },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_kisa_aciklama = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Servis Açıklama")]
+                    ),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_aciklama,
+                          expression: "sayfa_aciklama",
+                        },
+                      ],
+                      staticClass: "editor",
+                      attrs: { type: "text", id: "sayfa_aciklama" },
+                      domProps: { value: _vm.sayfa_aciklama },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_aciklama = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Sayfa Seo Title")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_title,
+                          expression: "sayfa_title",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { readonly: "", "aria-describedby": "emailHelp" },
+                      domProps: { value: _vm.sayfa_title },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_title = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [
+                        _vm._v(
+                          "Sayfa Seo\n                                            Description"
+                        ),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_description,
+                          expression: "sayfa_description",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.sayfa_description },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_description = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Sayfa Keyword")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_keyword,
+                          expression: "sayfa_keyword",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        placeholder: "Aralarına Virgül Koyarak Yazınız",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.sayfa_keyword },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_keyword = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Sayfa Etiketler")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.sayfa_etiketler,
+                          expression: "sayfa_etiketler",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        placeholder: "Aralarına Virgül Koyarak Yazınız",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.sayfa_etiketler },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.sayfa_etiketler = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "example-component m-2" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-danger btn-md",
+                          attrs: { href: _vm.geriye_don },
+                        },
+                        [_vm._v(" Geriye Dön")]
+                      ),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          { staticClass: "page-description d-flex align-items-center" },
+          [
+            _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+              _c("h1", [_vm._v("Sayfa Görüntüle")]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Sayfa Bilgileri")]),
     ])
   },
 ]
