@@ -68,7 +68,7 @@ class indexController extends Controller
             $alert = [
                 "type" => "error",
                 "title" => "Hata",
-                "text" => "Aynı Duyuru Zaten Mevcut",
+                "text" => "Aynı Sayfa Zaten Mevcut",
             ];
 
             return response()->json($alert);
@@ -116,6 +116,72 @@ class indexController extends Controller
     // GUNCELLEME KISMI
     public function edit(SayfaModel $item){
         return response()->json($item);
+    }
+
+    // GUNCELLEME ISLEMI
+    public function update(Request $request,SayfaModel $item){
+        $data = $request->except("_token");
+
+        // SLUG KONTROL
+        if ($data['sayfa_baslik'] != $item->sayfa_baslik){
+            $sorgu = SayfaModel::where(array(
+                "sayfa_slug" => Str::slug($data['sayfa_baslik'])
+            ))->first();
+
+            if ($sorgu) {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Sayfa Zaten Mevcut",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+
+        // DOSYA GELDI MI
+        $data['sayfa_resim'] = $item->sayfa_resim;
+        if ($request->hasFile('sayfa_resim')) {
+            $file = $request->file('sayfa_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                // DOSYA GEREKTEN VAR ISE SILDIRELIM
+                if ($item->sayfa_resim != "" && File::exists("storage/".$item->sayfa_resim)){
+                    File::delete("storage/".$item->sayfa_resim);
+                }
+
+                $file_name = Str::slug($data['sayfa_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['sayfa_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = $item->update($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
     }
 
     // SILME KISMI AYARLANMASI
