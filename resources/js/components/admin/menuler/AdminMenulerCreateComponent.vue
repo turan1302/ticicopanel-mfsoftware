@@ -33,19 +33,24 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Menü Başlık</label>
-                                            <input type="text" v-model="service_baslik" class="form-control"
+                                            <input type="text" v-model="menu_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Menü Link</label>
-                                            <textarea type="text" id="service_aciklama" class="editor" v-model="service_aciklama"></textarea>
+                                            <input type="text" v-model="menu_link" class="form-control"
+                                                   aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Üst Menü</label>
-                                            <input v-model="service_title" class="form-control"
-                                                   aria-describedby="emailHelp">
+                                            <select id="menu_ust_id" class="form-control menu_ust_id" multiple="multiple">
+                                                <option :value="item.menu_ust_id" v-for="(item,index) in menuler">{{
+                                                        item.menu_baslik
+                                                    }}
+                                                </option>
+                                            </select>
                                         </div>
 
 
@@ -70,19 +75,18 @@
 <script>
 export default {
     name: "AdminMenuCreateComponent",
-    props: ["geriye_don"],
+    props: ["geriye_don","menuler"],
     data() {
         return {
-            service_ikon: '',
-            service_baslik: '',
-            service_aciklama: '',
-            service_title: '',
-            service_description: '',
-            service_keyword: '',
-            service_etiketler: '',
+            menu_baslik: '',
+            menu_link: '',
+            menu_ust_id : '',
             errors: [],
         }
     },
+    mounted() {
+    this.$props.menuler = JSON.parse(this.$props.menuler);
+        },
     methods: {
         yeniMenuEkle() {
             this.errors = [];

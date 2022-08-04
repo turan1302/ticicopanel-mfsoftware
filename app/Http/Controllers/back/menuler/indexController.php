@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\menuler;
 
 use App\Http\Controllers\Controller;
+use App\Models\MenuModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -13,7 +14,9 @@ class indexController extends Controller
 
     // EKLEME SAYFASI
     public function create(){
-        echo "Yes";
-        die;
+        $menuler = MenuModel::where(array(
+            "menu_durum" => 1
+        ))->orderBy("menu_sira","asc")->get();
+        return view('back.menuler.create',compact('menuler'));
     }
 }

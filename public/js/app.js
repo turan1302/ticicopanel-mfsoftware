@@ -8413,20 +8413,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminMenuCreateComponent",
-  props: ["geriye_don"],
+  props: ["geriye_don", "menuler"],
   data: function data() {
     return {
-      service_ikon: '',
-      service_baslik: '',
-      service_aciklama: '',
-      service_title: '',
-      service_description: '',
-      service_keyword: '',
-      service_etiketler: '',
+      menu_baslik: '',
+      menu_link: '',
+      menu_ust_id: '',
       errors: []
     };
+  },
+  mounted: function mounted() {
+    this.$props.menuler = JSON.parse(this.$props.menuler);
   },
   methods: {
     yeniMenuEkle: function yeniMenuEkle() {
@@ -43069,8 +43073,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_baslik,
-                              expression: "service_baslik",
+                              value: _vm.menu_baslik,
+                              expression: "menu_baslik",
                             },
                           ],
                           staticClass: "form-control",
@@ -43078,13 +43082,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_baslik },
+                          domProps: { value: _vm.menu_baslik },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_baslik = $event.target.value
+                              _vm.menu_baslik = $event.target.value
                             },
                           },
                         }),
@@ -43100,24 +43104,27 @@ var render = function () {
                           [_vm._v("Menü Link")]
                         ),
                         _vm._v(" "),
-                        _c("textarea", {
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_aciklama,
-                              expression: "service_aciklama",
+                              value: _vm.menu_link,
+                              expression: "menu_link",
                             },
                           ],
-                          staticClass: "editor",
-                          attrs: { type: "text", id: "service_aciklama" },
-                          domProps: { value: _vm.service_aciklama },
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.menu_link },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_aciklama = $event.target.value
+                              _vm.menu_link = $event.target.value
                             },
                           },
                         }),
@@ -43133,27 +43140,26 @@ var render = function () {
                           [_vm._v("Üst Menü")]
                         ),
                         _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.service_title = $event.target.value
-                            },
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-control menu_ust_id",
+                            attrs: { id: "menu_ust_id", multiple: "multiple" },
                           },
-                        }),
+                          _vm._l(_vm.menuler, function (item, index) {
+                            return _c(
+                              "option",
+                              { domProps: { value: item.menu_ust_id } },
+                              [
+                                _vm._v(
+                                  _vm._s(item.menu_baslik) +
+                                    "\n                                            "
+                                ),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
