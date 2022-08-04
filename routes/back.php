@@ -150,6 +150,9 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     /** ILETISIM MESAJLARI KISMI AYARLANMASI **/
     Route::group(['prefix' => 'iletisim-mesajlari', 'namespace' => 'iletisim_mesajlari', 'as' => 'iletisim_mesajlari.'], function () {
         Route::get('', [\App\Http\Controllers\back\iletisim_mesajlari\indexController::class, 'index'])->name('index');
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('show', [\App\Http\Controllers\back\iletisim_mesajlari\indexController::class, 'show'])->name('show');
+        });
     });
 
     /** ABONE KISMI AYARLANMASI **/

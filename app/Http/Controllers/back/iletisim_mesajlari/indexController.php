@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\iletisim_mesajlari;
 
 use App\Http\Controllers\Controller;
+use App\Models\IletisimMesajModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -11,9 +12,11 @@ class indexController extends Controller
         return view('back.iletisim_mesajlari.index');
     }
 
-    // EKLEME KISMI AYARLAMASI
-    public function create(){
-        echo "Yes";
-        die;
+    // GOREUNTULEME VE MESAJ GONDERME KISMI AYARLAMASI ()
+    public function show(IletisimMesajModel $item){
+        $item->update(array(
+            "im_okundu_bilgisi" => 1
+        ));
+        return view('back.iletisim_mesajlari.show',compact('item'));
     }
 }

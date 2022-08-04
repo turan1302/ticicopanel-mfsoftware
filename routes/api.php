@@ -197,6 +197,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     Route::group(['prefix' => 'iletisim-mesajlari', 'namespace' => 'iletisim_mesajlari'], function () {
         Route::get('', [\App\Http\Controllers\api\back\iletisim_mesajlari\indexController::class, 'index']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('show', [\App\Http\Controllers\api\back\iletisim_mesajlari\indexController::class, 'show']);
+            Route::post('reply', [\App\Http\Controllers\api\back\iletisim_mesajlari\indexController::class, 'reply']);
             Route::get('delete', [\App\Http\Controllers\api\back\iletisim_mesajlari\indexController::class, 'delete']);
         });
     });

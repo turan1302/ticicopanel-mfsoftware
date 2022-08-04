@@ -8174,6 +8174,182 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminServiceShowComponent",
+  props: ["geriye_don", "im_id"],
+  data: function data() {
+    return {
+      im_adsoyad: '',
+      im_email: '',
+      im_tel: '',
+      im_konu: '',
+      im_mesaj: '',
+      im_ip_adres: '',
+      im_cevap: '',
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    var im_id = this.$props.im_id;
+    this.iletisimMesajGetir(im_id);
+  },
+  methods: {
+    mesajCevapla: function mesajCevapla() {
+      this.errors = [];
+      var im_cevap = tinyMCE.get('im_cevap').getContent(); // SERVİS KISMI ACIKLAMASI
+
+      if (im_cevap == "") {
+        this.errors.push("Mesaj Cevap Kısmı Boş Olamaz");
+      }
+      /** EĞER HERHANGI BIR HATA YOKSA **/
+
+
+      if (this.errors.length == 0) {
+        var id = this.$props.im_id;
+        var url = "http://127.0.0.1:8000/api/back/iletisim-mesajlari/" + id + "/reply";
+        axios.post(url, {
+          im_cevap: im_cevap
+        }).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        })["catch"](function (error) {
+          if (error.response) {
+            console.log(error.response.data);
+          }
+        });
+      }
+    },
+    iletisimMesajGetir: function iletisimMesajGetir(im_id) {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/iletisim-mesajlari/" + im_id + "/show";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.im_adsoyad = data.im_adsoyad;
+        _this.im_email = data.im_email;
+        _this.im_tel = data.im_tel;
+        _this.im_konu = data.im_konu;
+        _this.im_mesaj = data.im_mesaj;
+        _this.im_ip_adres = data.im_ip_adres;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -14450,7 +14626,8 @@ Vue.component('admin-musteri-yorumlar-create-component', (__webpack_require__(/*
 Vue.component('admin-musteri-yorumlar-edit-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarEditComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarEditComponent.vue")["default"]));
 Vue.component('admin-musteri-yorumlar-show-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent.vue")["default"])); // ILETISIM MESAJLARI KISMI AYARLANAMSI
 
-Vue.component('admin-iletisim-mesajlari-list-component', (__webpack_require__(/*! ./components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue")["default"])); // ABONELER KISMI AYARLANAMSI
+Vue.component('admin-iletisim-mesajlari-list-component', (__webpack_require__(/*! ./components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue")["default"]));
+Vue.component('admin-iletisim-mesajlari-show-component', (__webpack_require__(/*! ./components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue")["default"])); // ABONELER KISMI AYARLANAMSI
 
 Vue.component('admin-aboneler-list-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerListComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerListComponent.vue")["default"]));
 Vue.component('admin-aboneler-create-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerCreateComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerCreateComponent.vue")["default"]));
@@ -37894,6 +38071,45 @@ component.options.__file = "resources/js/components/admin/iletisim_mesajlari/Adm
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true& */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true&");
+/* harmony import */ var _AdminIletisimMesajlariShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminIletisimMesajlariShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "68996268",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/language/AdminLanguageCreateComponent.vue":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/admin/language/AdminLanguageCreateComponent.vue ***!
@@ -39446,6 +39662,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************!*\
   !*** ./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -40277,6 +40509,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true&":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true& ***!
+  \*********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true&");
 
 
 /***/ }),
@@ -45522,6 +45771,378 @@ var staticRenderFns = [
             ]),
           ]),
         ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _vm.errors.length > 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "col-md-12 alert alert-danger text-center",
+                      },
+                      _vm._l(_vm.errors, function (item) {
+                        return _c("ul", [_c("li", [_vm._v(_vm._s(item))])])
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "example-container" }, [
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Ad Soyad")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.im_adsoyad,
+                          expression: "im_adsoyad",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.im_adsoyad },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.im_adsoyad = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("E-Mail")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.im_email,
+                          expression: "im_email",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.im_email },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.im_email = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Telefon")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.im_tel,
+                          expression: "im_tel",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.im_tel },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.im_tel = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Konu")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.im_konu,
+                          expression: "im_konu",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.im_konu },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.im_konu = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("IP Adresi")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.im_ip_adres,
+                          expression: "im_ip_adres",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
+                      domProps: { value: _vm.im_ip_adres },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.im_ip_adres = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "example-content" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "form-label",
+                        attrs: { for: "exampleInputEmail1" },
+                      },
+                      [_vm._v("Mesaj")]
+                    ),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.im_mesaj,
+                          expression: "im_mesaj",
+                        },
+                      ],
+                      staticClass: "editor",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.im_mesaj },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.im_mesaj = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      attrs: { method: "POST" },
+                      on: {
+                        submit: function ($event) {
+                          $event.preventDefault()
+                          return _vm.mesajCevapla()
+                        },
+                      },
+                    },
+                    [
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Cevabınız")]
+                        ),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.im_cevap,
+                              expression: "im_cevap",
+                            },
+                          ],
+                          staticClass: "editor",
+                          attrs: { type: "text", id: "im_cevap" },
+                          domProps: { value: _vm.im_cevap },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.im_cevap = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "example-component m-2" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success btn-md",
+                              attrs: { type: "submit" },
+                            },
+                            [_vm._v(" Cevapla")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-md",
+                              attrs: { href: _vm.geriye_don },
+                            },
+                            [_vm._v(" Geriye Dön")]
+                          ),
+                        ]),
+                      ]),
+                    ]
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          { staticClass: "page-description d-flex align-items-center" },
+          [
+            _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+              _c("h1", [_vm._v("İletişim Mesajı Görüntüle")]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [
+        _vm._v("İletişim Mesajı Bilgileri"),
       ]),
     ])
   },

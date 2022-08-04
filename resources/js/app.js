@@ -98,6 +98,7 @@ Vue.component('admin-musteri-yorumlar-show-component', require('./components/adm
 
 // ILETISIM MESAJLARI KISMI AYARLANAMSI
 Vue.component('admin-iletisim-mesajlari-list-component', require('./components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent').default);
+Vue.component('admin-iletisim-mesajlari-show-component', require('./components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent').default);
 
 // ABONELER KISMI AYARLANAMSI
 Vue.component('admin-aboneler-list-component', require('./components/admin/aboneler/AdminAbonelerListComponent').default);
