@@ -86,7 +86,7 @@ Vue.component('admin-menuler-show-component', require('./components/admin/menule
 
 // SAYFALAR KISMI AYARLANMASI
 Vue.component('admin-sayfalar-list-component', require('./components/admin/sayfalar/AdminSayfalarListComponent').default);
-Vue.component('admin-sayfalar-list-component', require('./components/admin/sayfalar/AdminSayfalarCreateComponent').default);
+Vue.component('admin-sayfalar-create-component', require('./components/admin/sayfalar/AdminSayfalarCreateComponent').default);
 
 
 /**

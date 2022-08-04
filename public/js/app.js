@@ -9729,11 +9729,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/sayfa/store";
+        var url = "http://127.0.0.1:8000/api/back/sayfalar/store";
         var formData = new FormData();
         var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent(); // KISA ACIKLAMA
 
-        var aciklama = tinyMCE.get('aciklama').getContent(); // ACIKLAMA
+        var aciklama = tinyMCE.get('sayfa_aciklama').getContent(); // ACIKLAMA
 
         formData.append('sayfa_resim', this.sayfa_resim);
         formData.append('sayfa_baslik', this.sayfa_baslik);
@@ -13088,7 +13088,7 @@ Vue.component('admin-menuler-edit-component', (__webpack_require__(/*! ./compone
 Vue.component('admin-menuler-show-component', (__webpack_require__(/*! ./components/admin/menuler/AdminMenulerShowComponent */ "./resources/js/components/admin/menuler/AdminMenulerShowComponent.vue")["default"])); // SAYFALAR KISMI AYARLANMASI
 
 Vue.component('admin-sayfalar-list-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarListComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarListComponent.vue")["default"]));
-Vue.component('admin-sayfalar-list-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarCreateComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarCreateComponent.vue")["default"]));
+Vue.component('admin-sayfalar-create-component', (__webpack_require__(/*! ./components/admin/sayfalar/AdminSayfalarCreateComponent */ "./resources/js/components/admin/sayfalar/AdminSayfalarCreateComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -46100,19 +46100,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_aciklama,
-                              expression: "service_aciklama",
+                              value: _vm.sayfa_aciklama,
+                              expression: "sayfa_aciklama",
                             },
                           ],
                           staticClass: "editor",
-                          attrs: { type: "text", id: "service_aciklama" },
-                          domProps: { value: _vm.service_aciklama },
+                          attrs: { type: "text", id: "sayfa_aciklama" },
+                          domProps: { value: _vm.sayfa_aciklama },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_aciklama = $event.target.value
+                              _vm.sayfa_aciklama = $event.target.value
                             },
                           },
                         }),

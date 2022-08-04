@@ -53,8 +53,8 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
-                                            <textarea type="text" id="service_aciklama" class="editor"
-                                                      v-model="service_aciklama"></textarea>
+                                            <textarea type="text" id="sayfa_aciklama" class="editor"
+                                                      v-model="sayfa_aciklama"></textarea>
                                         </div>
 
                                         <div class="example-content">
@@ -141,13 +141,13 @@ export default {
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
-                var url = "http://127.0.0.1:8000/api/back/sayfa/store";
+                var url = "http://127.0.0.1:8000/api/back/sayfalar/store";
 
 
                 let formData = new FormData();
 
                 var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent();  // KISA ACIKLAMA
-                var aciklama = tinyMCE.get('aciklama').getContent();  // ACIKLAMA
+                var aciklama = tinyMCE.get('sayfa_aciklama').getContent();  // ACIKLAMA
 
 
                 formData.append('sayfa_resim', this.sayfa_resim);

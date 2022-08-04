@@ -6,10 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\SayfaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public $uploadFolder = "";
+    public function __construct()
+    {
+        $this->uploadFolder = "sayfa";
+    }
+
     public function index(){
         $query = SayfaModel::query();
         $data = DataTables::of($query)
@@ -47,6 +54,63 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // SAYFA EKLEME KISMI AYARLANAMSI
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        $sorgu = SayfaModel::where(array(
+            "sayfa_slug" => Str::slug($data['sayfa_baslik'])
+        ))->first();
+
+        if ($sorgu) {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Duyuru Zaten Mevcut",
+            ];
+
+            return response()->json($alert);
+        }
+
+        // DOSYA GELDI MI
+        $data['sayfa_resim'] = "";
+        if ($request->hasFile('sayfa_resim')) {
+            $file = $request->file('sayfa_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['sayfa_baslik']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['sayfa_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = SayfaModel::create($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
     }
 
     // SILME KISMI AYARLANMASI
