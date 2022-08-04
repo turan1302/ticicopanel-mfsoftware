@@ -45,7 +45,7 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Üst Menü</label>
-                                            <select id="menu_ust_id" class="form-control menu_ust_id" multiple="multiple">
+                                            <select id="menu_ust_id" class="form-control menu_ust_id">
                                                 <option :value="item.menu_ust_id" v-for="(item,index) in menuler">{{
                                                         item.menu_baslik
                                                     }}
@@ -92,29 +92,24 @@ export default {
             this.errors = [];
 
             if (this.service_baslik == "") {
-                this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+                this.errors.push("Menü Başlık Kısmı Boş Olamaz");
             }
 
-            var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
-
-            if (aciklama == "") {
-                this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
+            if (this.menu_link == "") {
+                this.errors.push("Menü Link Kısmı Boş Olamaz");
             }
-
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
                 var url = "http://127.0.0.1:8000/api/back/service/store";
 
+                var menu_ust_id = $("#menu_ust_id").val(); // UST KATEGORI ID NUMRASINI ALDIRDIK
+
                 axios.post(url, {
-                    service_ikon: this.service_ikon,
-                    service_baslik: this.service_baslik,
-                    service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
-                    service_title: this.service_title,
-                    service_description: this.service_description,
-                    service_keyword: this.service_keyword,
-                    service_etiketler: this.service_etiketler,
+                    menu_baslik: this.menu_baslik,
+                    menu_link: this.menu_link,
+                    menu_ust_id: menu_ust_id,  // MENU UST ID NUMARASI
                 }).then((res) => {
                     var data = res.data;
                     Swal.fire({
