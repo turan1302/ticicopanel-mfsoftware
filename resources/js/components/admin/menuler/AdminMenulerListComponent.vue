@@ -50,7 +50,7 @@
 
 <script>
 export default {
-    name: "AdminServiceListComponent",
+    name: "AdminMenulerListComponent",
     props: ["yeni_ekle"],
     data() {
         return {}
