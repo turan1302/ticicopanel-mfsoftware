@@ -84,6 +84,10 @@ Vue.component('admin-menuler-create-component', require('./components/admin/menu
 Vue.component('admin-menuler-edit-component', require('./components/admin/menuler/AdminMenulerEditComponent').default);
 Vue.component('admin-menuler-show-component', require('./components/admin/menuler/AdminMenulerShowComponent').default);
 
+// SAYFALAR KISMI AYARLANMASI
+Vue.component('admin-sayfalar-list-component', require('./components/admin/sayfalar/AdminSayfalarListComponent').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

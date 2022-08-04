@@ -31,7 +31,8 @@
 
             {{-- SERVISLER KISMI --}}
             <li>
-                <a href=""><i class="material-icons-two-tone">design_services</i>Servisler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <a href=""><i class="material-icons-two-tone">design_services</i>Servisler<i
+                        class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('back.service.index') }}">Servis Listesi</a>
@@ -44,7 +45,8 @@
 
             {{-- DUYURU KATEGORİLERİ --}}
             <li>
-                <a href=""><i class="material-icons-two-tone">view_list</i>Duyuru Kategorileri<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <a href=""><i class="material-icons-two-tone">view_list</i>Duyuru Kategorileri<i
+                        class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('back.duyuru_kategoriler.index') }}">Duyuru Kategori Listesi</a>
@@ -70,7 +72,8 @@
 
             {{-- DUYURU YORUMLARI ISLEMI --}}
             <li>
-                <a href=""><i class="material-icons-two-tone">comment</i>Duyuru Yorumları<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <a href=""><i class="material-icons-two-tone">comment</i>Duyuru Yorumları<i
+                        class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('back.duyuru_yorumlar.index') }}">Duyuru Yorumları Listesi</a>
@@ -96,7 +99,8 @@
 
             {{-- SLIDERLAR KISMI AYARLANMASI --}}
             <li>
-                <a href=""><i class="material-icons-two-tone">slideshow</i>Sliderlar<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <a href=""><i class="material-icons-two-tone">slideshow</i>Sliderlar<i
+                        class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('back.sliderlar.index') }}">Slider Listesi</a>
@@ -110,7 +114,8 @@
 
             {{-- PARTNERLAER KISMI AYARLANSMI --}}
             <li>
-                <a href=""><i class="material-icons-two-tone">handshake</i>Partnerlar<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <a href=""><i class="material-icons-two-tone">handshake</i>Partnerlar<i
+                        class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('back.partnerlar.index') }}">Partner Listesi</a>
@@ -137,7 +142,7 @@
                 </ul>
             </li>
 
-                {{-- MENU KISMI AYARLANSMI --}}
+            {{-- MENU KISMI AYARLANSMI --}}
             <li>
                 <a href=""><i class="material-icons-two-tone">menu</i>Menüler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                 <ul class="sub-menu">
@@ -147,6 +152,20 @@
 
                     <li>
                         <a href="{{ route('back.menuler.create') }}">Yeni Menü Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
+            {{-- SAYUFA KISMI AYARLANAMSI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">auto_stories</i>Sayfalar<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.sayfalar.index') }}">Sayfa Listesi</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('back.sayfalar.create') }}">Yeni Sayfa Ekle</a>
                     </li>
                 </ul>
             </li>

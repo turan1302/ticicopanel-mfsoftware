@@ -126,4 +126,11 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('show', [\App\Http\Controllers\back\menuler\indexController::class, 'show'])->name('show');
         });
     });
+
+    /** SAYFALAR KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'sayfalar', 'namespace' => 'sayfalar', 'as' => 'sayfalar.'], function () {
+        Route::get('', [\App\Http\Controllers\back\sayfalar\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\sayfalar\indexController::class, 'create'])->name('create');
+    });
+
 });

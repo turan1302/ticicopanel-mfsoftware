@@ -14,7 +14,7 @@ class CreateSayfaModelsTable extends Migration
     public function up()
     {
         Schema::create('sayfalar', function (Blueprint $table) {
-            $table->id();
+            $table->id('sayfa_id');
             $table->string('sayfa_resim')->nullable();
             $table->string('sayfa_baslik')->nullable();
             $table->string('sayfa_slug')->nullable();
