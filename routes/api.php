@@ -196,6 +196,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // ILETISIM MESAJLARI KISMI AYARLANMAASI
     Route::group(['prefix' => 'iletisim-mesajlari', 'namespace' => 'iletisim_mesajlari'], function () {
         Route::get('', [\App\Http\Controllers\api\back\iletisim_mesajlari\indexController::class, 'index']);
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\iletisim_mesajlari\indexController::class, 'delete']);
+        });
     });
 
     // ABONELER KISMI AYARLANMASI
