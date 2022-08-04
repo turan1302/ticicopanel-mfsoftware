@@ -60,6 +60,30 @@ class indexController extends Controller
         return $data;
     }
 
+    // SILME KISMI AYARLANMASI
+    public function delete(MusteriYorumModel $item){
+        if ($item->my_resim != "" && File::exists("storage/".$item->my_resim)){
+            File::delete("storage/".$item->my_resim);
+        }
+
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // AKTIF PASIF KISMI AYARLANMASI
     public function isActiveSetter(Request $request,MusteriYorumModel $item){
         $data = ($request->data=="true") ? 1 : 0;
