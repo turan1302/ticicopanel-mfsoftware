@@ -59,4 +59,12 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // AKTIF PASIF KISMI AYARLANMASI
+    public function isActiveSetter(Request $request,MusteriYorumModel $item){
+        $data = ($request->data=="true") ? 1 : 0;
+        $item->update(array(
+            "my_durum" => $data
+        ));
+    }
 }

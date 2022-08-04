@@ -182,6 +182,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // MUSTERI YORUMLARI KISMI AYARLANMASI
     Route::group(['prefix' => 'musteri-yorumlar', 'namespace' => 'musteri_yorumlar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\musteri_yorumlar\indexController::class, 'index']);
+        Route::group(['prefix' => '{item}'], function () {
+            Route::post('is-active', [\App\Http\Controllers\api\back\musteri_yorumlar\indexController::class, 'isActiveSetter']);
+        });
     });
 
     // ABONELER KISMI AYARLANMASI
