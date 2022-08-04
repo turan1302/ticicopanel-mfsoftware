@@ -42,10 +42,10 @@ class indexController extends Controller
             })
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.menuler.show', $query->menu_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
-//                $edit = "<a href='" . route('back.menuler.edit', $query->menu_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $edit = "<a href='" . route('back.sayfalar.edit', $query->sayfa_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->sayfa_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $delete;
+                return $edit." ".$delete;
             })
             ->editColumn('sayfa_dil_kod', function ($query) {
                 return strtoupper($query->sayfa_dil_kod);
@@ -111,6 +111,11 @@ class indexController extends Controller
 
         return response()->json($alert);
 
+    }
+
+    // GUNCELLEME KISMI
+    public function edit(SayfaModel $item){
+        return response()->json($item);
     }
 
     // SILME KISMI AYARLANMASI
