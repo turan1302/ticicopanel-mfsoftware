@@ -17,8 +17,8 @@ class indexController extends Controller
                 $query->orderBy("im_id", "desc");
             })
             ->addColumn("im_okundu_bilgisi", function ($query) {
-                $color = ($query->im_durum == 1) ? 'green' : 'red';
-                return "<i style='color: ".$color.";' class='fa fa-eye'></i>";
+                $color = ($query->im_okundu_bilgisi == 1) ? 'green' : 'red';
+                return "<span class='material-icons' style='color: ".$color.";'>visibility</span>";
             })
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
