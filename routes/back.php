@@ -137,4 +137,10 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         });
     });
 
+    /** ABONE KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'aboneler', 'namespace' => 'aboneler', 'as' => 'aboneler.'], function () {
+        Route::get('', [\App\Http\Controllers\back\aboneler\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\aboneler\indexController::class, 'create'])->name('create');
+    });
+
 });

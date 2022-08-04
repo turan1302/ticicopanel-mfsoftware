@@ -90,6 +90,8 @@ Vue.component('admin-sayfalar-create-component', require('./components/admin/say
 Vue.component('admin-sayfalar-edit-component', require('./components/admin/sayfalar/AdminSayfalarEditComponent').default);
 Vue.component('admin-sayfalar-show-component', require('./components/admin/sayfalar/AdminSayfalarShowComponent').default);
 
+// ABONELER KISMI AYARLANAMSI
+Vue.component('admin-aboneler-list-component', require('./components/admin/aboneler/AdminAbonelerListComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -178,4 +178,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
             Route::post('is-active', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'isActiveSetter']);
         });
     });
+
+    // ABONELER KISMI AYARLANMASI
+    Route::group(['prefix' => 'aboneler', 'namespace' => 'aboneler'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\aboneler\indexController::class, 'index']);
+    });
 });
