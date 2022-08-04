@@ -9680,18 +9680,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminSayfalarCreateComponent",
   props: ["geriye_don"],
   data: function data() {
     return {
-      service_ikon: '',
-      service_baslik: '',
-      service_aciklama: '',
-      service_title: '',
-      service_description: '',
-      service_keyword: '',
-      service_etiketler: '',
+      sayfa_resim: '',
+      sayfa_baslik: '',
+      sayfa_kisa_aciklama: '',
+      sayfa_aciklama: '',
+      sayfa_title: '',
+      sayfa_description: '',
+      sayfa_keyword: '',
+      sayfa_etiketler: '',
       errors: []
     };
   },
@@ -9699,30 +9710,40 @@ __webpack_require__.r(__webpack_exports__);
     yeniSayfaEkle: function yeniSayfaEkle() {
       this.errors = [];
 
-      if (this.service_baslik == "") {
-        this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+      if (this.sayfa_baslik == "") {
+        this.errors.push("Sayfa Başlık Kısmı Boş Olamaz");
       }
 
-      var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
+      var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
+
+      if (kisa_aciklama == "") {
+        this.errors.push("Sayfa Kısa Açıklama Kısmı Boş Olamaz");
+      }
+
+      var aciklama = tinyMCE.get('sayfa_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
 
       if (aciklama == "") {
-        this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
+        this.errors.push("Sayfa Açıklama Kısmı Boş Olamaz");
       }
       /** EĞER HERHANGI BIR HATA YOKSA **/
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/service/store";
-        axios.post(url, {
-          service_ikon: this.service_ikon,
-          service_baslik: this.service_baslik,
-          service_aciklama: aciklama,
-          // SERVIS KISMI ACIKLAMASI
-          service_title: this.service_title,
-          service_description: this.service_description,
-          service_keyword: this.service_keyword,
-          service_etiketler: this.service_etiketler
-        }).then(function (res) {
+        var url = "http://127.0.0.1:8000/api/back/sayfa/store";
+        var formData = new FormData();
+        var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent(); // KISA ACIKLAMA
+
+        var aciklama = tinyMCE.get('aciklama').getContent(); // ACIKLAMA
+
+        formData.append('sayfa_resim', this.sayfa_resim);
+        formData.append('sayfa_baslik', this.sayfa_baslik);
+        formData.append('sayfa_kisa_aciklama', kisa_aciklama);
+        formData.append('sayfa_aciklama', sayfa_aciklama);
+        formData.append('sayfa_title', this.sayfa_title);
+        formData.append('sayfa_description', this.sayfa_description);
+        formData.append('sayfa_keyword', this.sayfa_keyword);
+        formData.append('sayfa_etiketler', this.sayfa_etiketler);
+        axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
             icon: data.type,
@@ -9735,6 +9756,9 @@ __webpack_require__.r(__webpack_exports__);
           });
         });
       }
+    },
+    sayfaResimSec: function sayfaResimSec(e) {
+      this.sayfa_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
     }
   }
 });
@@ -45971,7 +45995,31 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis İkon")]
+                          [
+                            _vm._v(
+                              "Sayfa Resim\n                                            (570x669)"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "file",
+                            "aria-describedby": "emailHelp",
+                          },
+                          on: { change: _vm.sayfaResimSec },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Sayfa Başlık")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -45979,8 +46027,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_ikon,
-                              expression: "service_ikon",
+                              value: _vm.sayfa_baslik,
+                              expression: "sayfa_baslik",
                             },
                           ],
                           staticClass: "form-control",
@@ -45988,13 +46036,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_ikon },
+                          domProps: { value: _vm.sayfa_baslik },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_ikon = $event.target.value
+                              _vm.sayfa_baslik = $event.target.value
                             },
                           },
                         }),
@@ -46007,30 +46055,31 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis Başlık")]
+                          [
+                            _vm._v(
+                              "Sayfa Kısa\n                                            Açıklama"
+                            ),
+                          ]
                         ),
                         _vm._v(" "),
-                        _c("input", {
+                        _c("textarea", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_baslik,
-                              expression: "service_baslik",
+                              value: _vm.sayfa_kisa_aciklama,
+                              expression: "sayfa_kisa_aciklama",
                             },
                           ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.service_baslik },
+                          staticClass: "editor",
+                          attrs: { id: "sayfa_kisa_aciklama" },
+                          domProps: { value: _vm.sayfa_kisa_aciklama },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_baslik = $event.target.value
+                              _vm.sayfa_kisa_aciklama = $event.target.value
                             },
                           },
                         }),
@@ -46076,7 +46125,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis Seo Title")]
+                          [_vm._v("Sayfa Seo Title")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -46084,19 +46133,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
+                              value: _vm.sayfa_title,
+                              expression: "sayfa_title",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
+                          domProps: { value: _vm.sayfa_title },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_title = $event.target.value
+                              _vm.sayfa_title = $event.target.value
                             },
                           },
                         }),
@@ -46111,7 +46160,7 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "Servis Seo\n                                            Description"
+                              "Sayfa Seo\n                                            Description"
                             ),
                           ]
                         ),
@@ -46121,8 +46170,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_description,
-                              expression: "service_description",
+                              value: _vm.sayfa_description,
+                              expression: "sayfa_description",
                             },
                           ],
                           staticClass: "form-control",
@@ -46130,13 +46179,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_description },
+                          domProps: { value: _vm.sayfa_description },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_description = $event.target.value
+                              _vm.sayfa_description = $event.target.value
                             },
                           },
                         }),
@@ -46149,7 +46198,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis Keyword")]
+                          [_vm._v("Sayfa Keyword")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -46157,8 +46206,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_keyword,
-                              expression: "service_keyword",
+                              value: _vm.sayfa_keyword,
+                              expression: "sayfa_keyword",
                             },
                           ],
                           staticClass: "form-control",
@@ -46167,13 +46216,13 @@ var render = function () {
                             placeholder: "Aralarına Virgül Koyarak Yazınız",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_keyword },
+                          domProps: { value: _vm.sayfa_keyword },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_keyword = $event.target.value
+                              _vm.sayfa_keyword = $event.target.value
                             },
                           },
                         }),
@@ -46186,7 +46235,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis Etiketler")]
+                          [_vm._v("Sayfa Etiketler")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -46194,8 +46243,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_etiketler,
-                              expression: "service_etiketler",
+                              value: _vm.sayfa_etiketler,
+                              expression: "sayfa_etiketler",
                             },
                           ],
                           staticClass: "form-control",
@@ -46204,13 +46253,13 @@ var render = function () {
                             placeholder: "Aralarına Virgül Koyarak Yazınız",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_etiketler },
+                          domProps: { value: _vm.sayfa_etiketler },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_etiketler = $event.target.value
+                              _vm.sayfa_etiketler = $event.target.value
                             },
                           },
                         }),

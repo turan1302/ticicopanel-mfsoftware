@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // EKLEME KISMI
     public function create(){
-        echo "Yes";
-        die;
+        return view('back.sayfalar.create');
     }
 }

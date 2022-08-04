@@ -30,46 +30,56 @@
 
                                 <form method="POST" @submit.prevent="yeniSayfaEkle()" enctype="multipart/form-data">
                                     <div class="example-container">
+
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
-                                            <input type="text" v-model="service_ikon" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Resim
+                                                (570x669)</label>
+                                            <input type="file" @change="sayfaResimSec" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Başlık</label>
-                                            <input type="text" v-model="service_baslik" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Başlık</label>
+                                            <input type="text" v-model="sayfa_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Kısa
+                                                Açıklama</label>
+                                            <textarea id="sayfa_kisa_aciklama" class="editor"
+                                                      v-model="sayfa_kisa_aciklama"></textarea>
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
-                                            <textarea type="text" id="service_aciklama" class="editor" v-model="service_aciklama"></textarea>
+                                            <textarea type="text" id="service_aciklama" class="editor"
+                                                      v-model="service_aciklama"></textarea>
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Title</label>
-                                            <input v-model="service_title" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Seo Title</label>
+                                            <input v-model="sayfa_title" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Seo
                                                 Description</label>
-                                            <input type="text" v-model="service_description" class="form-control"
+                                            <input type="text" v-model="sayfa_description" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Keyword</label>
-                                            <input type="text" v-model="service_keyword"
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Keyword</label>
+                                            <input type="text" v-model="sayfa_keyword"
                                                    placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Etiketler</label>
-                                            <input type="text" v-model="service_etiketler"
+                                            <label for="exampleInputEmail1" class="form-label">Sayfa Etiketler</label>
+                                            <input type="text" v-model="sayfa_etiketler"
                                                    placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
@@ -98,13 +108,14 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
-            service_ikon: '',
-            service_baslik: '',
-            service_aciklama: '',
-            service_title: '',
-            service_description: '',
-            service_keyword: '',
-            service_etiketler: '',
+            sayfa_resim: '',
+            sayfa_baslik: '',
+            sayfa_kisa_aciklama: '',
+            sayfa_aciklama: '',
+            sayfa_title: '',
+            sayfa_description: '',
+            sayfa_keyword: '',
+            sayfa_etiketler: '',
             errors: [],
         }
     },
@@ -112,30 +123,43 @@ export default {
         yeniSayfaEkle() {
             this.errors = [];
 
-            if (this.service_baslik == "") {
-                this.errors.push("Servis Başlık Kısmı Boş Olamaz");
+            if (this.sayfa_baslik == "") {
+                this.errors.push("Sayfa Başlık Kısmı Boş Olamaz");
             }
 
-            var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
+            var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
+            if (kisa_aciklama == "") {
+                this.errors.push("Sayfa Kısa Açıklama Kısmı Boş Olamaz");
+            }
+
+            var aciklama = tinyMCE.get('sayfa_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
             if (aciklama == "") {
-                this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
+                this.errors.push("Sayfa Açıklama Kısmı Boş Olamaz");
             }
 
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
-                var url = "http://127.0.0.1:8000/api/back/service/store";
+                var url = "http://127.0.0.1:8000/api/back/sayfa/store";
 
-                axios.post(url, {
-                    service_ikon: this.service_ikon,
-                    service_baslik: this.service_baslik,
-                    service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
-                    service_title: this.service_title,
-                    service_description: this.service_description,
-                    service_keyword: this.service_keyword,
-                    service_etiketler: this.service_etiketler,
-                }).then((res) => {
+
+                let formData = new FormData();
+
+                var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent();  // KISA ACIKLAMA
+                var aciklama = tinyMCE.get('aciklama').getContent();  // ACIKLAMA
+
+
+                formData.append('sayfa_resim', this.sayfa_resim);
+                formData.append('sayfa_baslik', this.sayfa_baslik);
+                formData.append('sayfa_kisa_aciklama', kisa_aciklama);
+                formData.append('sayfa_aciklama', sayfa_aciklama);
+                formData.append('sayfa_title', this.sayfa_title);
+                formData.append('sayfa_description', this.sayfa_description);
+                formData.append('sayfa_keyword', this.sayfa_keyword);
+                formData.append('sayfa_etiketler', this.sayfa_etiketler);
+
+                axios.post(url, formData).then((res) => {
                     var data = res.data;
                     Swal.fire({
                         icon: data.type,
@@ -149,6 +173,9 @@ export default {
                 });
 
             }
+        },
+        sayfaResimSec(e) {
+            this.sayfa_resim = e.target.files[0]; //  RESIM EKLETME ISLEMI
         }
     }
 }

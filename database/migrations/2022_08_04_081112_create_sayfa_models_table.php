@@ -26,7 +26,7 @@ class CreateSayfaModelsTable extends Migration
             $table->string('sayfa_etiketler')->nullable();
             $table->string('sayfa_sef_etiketler')->nullable();
             $table->tinyInteger('sayfa_durum')->default(1)->nullable();
-            $table->string('sayfa_dil_kod')->nullable();
+            $table->string('sayfa_dil_kod')->default('tr')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
