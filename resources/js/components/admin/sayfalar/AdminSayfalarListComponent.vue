@@ -35,7 +35,7 @@
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
-                                    <tbody class="sortable">
+                                    <tbody>
                                     </tbody>
                                 </table>
                             </div>
@@ -82,7 +82,7 @@ export default {
             $(".yajra-datatable").on("change", ".isActive", function () {
                 var id = $(this).data("id");
                 var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
+                var url = "http://127.0.0.1:8000/api/back/sayfalar/" + id + "/is-active";
 
                 axios.post(url, {
                     data: data
@@ -120,17 +120,6 @@ export default {
                     }
                 })
             });
-
-            // SORTABLE JS KISMINI AYARLAYALIM
-            $(".sortable").sortable();
-            $(".sortable").on("sortupdate", function () {
-                var data = $(this).sortable("serialize");
-                var url = "http://127.0.0.1:8000/api/back/service/rank-setter";
-
-                axios.post(url,{
-                    data : data
-                });
-            })
         });
     },
     methods: {}

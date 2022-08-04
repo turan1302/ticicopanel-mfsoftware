@@ -48,4 +48,13 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // AKTIF ĞPASFO KISMI AYARLANSIM
+    public function isActiveSetter(Request $request, SayfaModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "sayfa_durum" => $data
+        ));
+    }
 }

@@ -9681,7 +9681,7 @@ __webpack_require__.r(__webpack_exports__);
       $(".yajra-datatable").on("change", ".isActive", function () {
         var id = $(this).data("id");
         var data = $(this).prop("checked");
-        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
+        var url = "http://127.0.0.1:8000/api/back/sayfalar/" + id + "/is-active";
         axios.post(url, {
           data: data
         });
@@ -9714,15 +9714,6 @@ __webpack_require__.r(__webpack_exports__);
               });
             });
           }
-        });
-      }); // SORTABLE JS KISMINI AYARLAYALIM
-
-      $(".sortable").sortable();
-      $(".sortable").on("sortupdate", function () {
-        var data = $(this).sortable("serialize");
-        var url = "http://127.0.0.1:8000/api/back/service/rank-setter";
-        axios.post(url, {
-          data: data
         });
       });
     });
@@ -45779,7 +45770,7 @@ var staticRenderFns = [
                   ]),
                 ]),
                 _vm._v(" "),
-                _c("tbody", { staticClass: "sortable" }),
+                _c("tbody"),
               ]
             ),
           ]),
