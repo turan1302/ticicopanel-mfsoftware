@@ -67,4 +67,16 @@ class indexController extends Controller
             "my_durum" => $data
         ));
     }
+
+    // SIRALAMA KISMI AYARLANMASI
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            MusteriYorumModel::where("my_id", $v)->update(array(
+                "my_sira" => $k
+            ));
+        }
+    }
 }
