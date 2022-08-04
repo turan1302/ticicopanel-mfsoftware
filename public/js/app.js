@@ -8864,7 +8864,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminMenulerShowComponent",
   props: ["geriye_don", "menu_id", "menuler"],
@@ -44032,7 +44031,11 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", "aria-describedby": "emailHelp" },
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
                       domProps: { value: _vm.menu_baslik },
                       on: {
                         input: function ($event) {
@@ -44065,7 +44068,11 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      attrs: { type: "text", "aria-describedby": "emailHelp" },
+                      attrs: {
+                        readonly: "",
+                        type: "text",
+                        "aria-describedby": "emailHelp",
+                      },
                       domProps: { value: _vm.menu_link },
                       on: {
                         input: function ($event) {
@@ -44092,7 +44099,7 @@ var render = function () {
                       "select",
                       {
                         staticClass: "form-control menu_ust_id",
-                        attrs: { id: "menu_ust_id" },
+                        attrs: { readonly: "", id: "menu_ust_id" },
                       },
                       _vm._l(_vm.menuler, function (item, index) {
                         return _c(
@@ -44112,15 +44119,6 @@ var render = function () {
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "example-component m-2" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success btn-md",
-                          attrs: { type: "submit" },
-                        },
-                        [_vm._v(" Güncelle")]
-                      ),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {

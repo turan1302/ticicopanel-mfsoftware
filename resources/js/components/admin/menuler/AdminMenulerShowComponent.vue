@@ -32,19 +32,19 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Menü Başlık</label>
-                                            <input type="text" v-model="menu_baslik" class="form-control"
+                                            <input readonly type="text" v-model="menu_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Menü Link</label>
-                                            <input type="text" v-model="menu_link" class="form-control"
+                                            <input readonly type="text" v-model="menu_link" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Üst Menü</label>
-                                            <select id="menu_ust_id" class="form-control menu_ust_id">
+                                            <select readonly id="menu_ust_id" class="form-control menu_ust_id">
                                                 <option :value="item.menu_id" v-for="(item,index) in menuler">{{
                                                         item.menu_baslik
                                                     }}
@@ -54,7 +54,6 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Güncelle</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
