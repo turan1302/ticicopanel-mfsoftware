@@ -43,6 +43,16 @@
                                                    aria-describedby="emailHelp">
                                         </div>
 
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Üst Menü</label>
+                                            <select id="menu_ust_id" class="form-control menu_ust_id">
+                                                <option :value="item.menu_id" v-for="(item,index) in menuler">{{
+                                                        item.menu_baslik
+                                                    }}
+                                                </option>
+                                            </select>
+                                        </div>
+
                                         <div class="row">
                                             <div class="example-component m-2">
                                                 <button type="submit" class="btn btn-success btn-md"> Güncelle</button>
@@ -64,7 +74,7 @@
 <script>
 export default {
     name: "AdminServiceCreateComponent",
-    props: ["geriye_don", "menu_id"],
+    props: ["geriye_don", "menu_id","menuler"],
     data() {
         return {
             menu_baslik: '',
@@ -73,6 +83,7 @@ export default {
         }
     },
     mounted() {
+        this.$props.menuler = JSON.parse(this.$props.menuler);
         var menu_id = this.$props.menu_id;
         this.menuGetir(menu_id);
     },
@@ -121,6 +132,8 @@ export default {
                 var data = res.data;
                 this.menu_baslik = data.menu_baslik;
                 this.menu_link = data.menu_link;
+
+                $("#menu_ust_id").val(data.menu_ust_id).trigger('change');  // MENU UST KISMI AYARLANMASI
 
             });
         },

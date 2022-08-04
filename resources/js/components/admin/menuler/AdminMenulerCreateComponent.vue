@@ -46,7 +46,7 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Üst Menü</label>
                                             <select id="menu_ust_id" class="form-control menu_ust_id">
-                                                <option :value="item.menu_ust_id" v-for="(item,index) in menuler">{{
+                                                <option :value="item.menu_id" v-for="(item,index) in menuler">{{
                                                         item.menu_baslik
                                                     }}
                                                 </option>

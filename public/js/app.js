@@ -8548,9 +8548,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminServiceCreateComponent",
-  props: ["geriye_don", "menu_id"],
+  props: ["geriye_don", "menu_id", "menuler"],
   data: function data() {
     return {
       menu_baslik: '',
@@ -8559,6 +8569,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    this.$props.menuler = JSON.parse(this.$props.menuler);
     var menu_id = this.$props.menu_id;
     this.menuGetir(menu_id);
   },
@@ -8610,6 +8621,7 @@ __webpack_require__.r(__webpack_exports__);
         var data = res.data;
         _this.menu_baslik = data.menu_baslik;
         _this.menu_link = data.menu_link;
+        $("#menu_ust_id").val(data.menu_ust_id).trigger('change'); // MENU UST KISMI AYARLANMASI
       });
     }
   }
@@ -43361,7 +43373,7 @@ var render = function () {
                           _vm._l(_vm.menuler, function (item, index) {
                             return _c(
                               "option",
-                              { domProps: { value: item.menu_ust_id } },
+                              { domProps: { value: item.menu_id } },
                               [
                                 _vm._v(
                                   _vm._s(item.menu_baslik) +
@@ -43563,6 +43575,38 @@ var render = function () {
                             },
                           },
                         }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Üst Menü")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-control menu_ust_id",
+                            attrs: { id: "menu_ust_id" },
+                          },
+                          _vm._l(_vm.menuler, function (item, index) {
+                            return _c(
+                              "option",
+                              { domProps: { value: item.menu_id } },
+                              [
+                                _vm._v(
+                                  _vm._s(item.menu_baslik) +
+                                    "\n                                            "
+                                ),
+                              ]
+                            )
+                          }),
+                          0
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
