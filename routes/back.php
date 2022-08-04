@@ -137,6 +137,13 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         });
     });
 
+    /** MUSTERI YORUMLARI KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'musteri-yorumlar', 'namespace' => 'musteri_yorumlar', 'as' => 'musteri_yorumlar.'], function () {
+        Route::get('',[\App\Http\Controllers\back\musteri_yorumlar\indexController::class,'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\musteri_yorumlar\indexController::class, 'create'])->name('create');
+    });
+
+
     /** ABONE KISMI AYARLANMASI **/
     Route::group(['prefix' => 'aboneler', 'namespace' => 'aboneler', 'as' => 'aboneler.'], function () {
         Route::get('', [\App\Http\Controllers\back\aboneler\indexController::class, 'index'])->name('index');

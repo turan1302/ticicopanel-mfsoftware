@@ -179,6 +179,11 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         });
     });
 
+    // MUSTERI YORUMLARI KISMI AYARLANMASI
+    Route::group(['prefix' => 'musteri_yorumlar', 'namespace' => 'musteri_yorumlar'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\musteri_yorumlar\indexController::class, 'index']);
+    });
+
     // ABONELER KISMI AYARLANMASI
     Route::group(['prefix' => 'aboneler', 'namespace' => 'aboneler'], function () {
         Route::get('', [\App\Http\Controllers\api\back\aboneler\indexController::class, 'index']);
