@@ -182,5 +182,10 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // ABONELER KISMI AYARLANMASI
     Route::group(['prefix' => 'aboneler', 'namespace' => 'aboneler'], function () {
         Route::get('', [\App\Http\Controllers\api\back\aboneler\indexController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\api\back\aboneler\indexController::class, 'store']);
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\aboneler\indexController::class, 'delete']);
+            Route::post('is-active', [\App\Http\Controllers\api\back\aboneler\indexController::class, 'isActiveSetter']);
+        });
     });
 });

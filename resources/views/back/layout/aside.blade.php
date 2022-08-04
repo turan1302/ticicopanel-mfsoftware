@@ -170,6 +170,19 @@
                 </ul>
             </li>
 
+            {{-- ABONELER KISMI AYARLANAMSI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">group_add</i>Aboneler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.aboneler.index') }}">Abone Listesi</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('back.aboneler.create') }}">Yeni Abone Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

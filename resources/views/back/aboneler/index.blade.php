@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<admin-aboneler-list-component yeni_ekle="{{ route('back.menuler.create') }}"></admin-aboneler-list-component>
+<admin-aboneler-list-component yeni_ekle="{{ route('back.aboneler.create') }}"></admin-aboneler-list-component>
 @endsection
 
 @section('js')

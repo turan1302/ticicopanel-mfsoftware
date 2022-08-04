@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Menüler</h1>
+                                <h1>Aboneler</h1>
                             </div>
                             <div class="page-description-actions">
                                 <a :href="yeni_ekle" class="btn btn-primary"><i class="material-icons">add</i> Yeni Ekle</a>
@@ -26,16 +26,13 @@
                                        cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Sıra</th>
                                         <th>ID</th>
-                                        <th>Başlık</th>
-                                        <th>Link</th>
+                                        <th>E-Mail</th>
                                         <th>Durum</th>
-                                        <th>Dil Kodu</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
-                                    <tbody class="sortable">
+                                    <tbody>
                                     </tbody>
                                 </table>
                             </div>
@@ -62,19 +59,16 @@ export default {
                 serverSide: true,
                 ajax: {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/back/menuler",
+                    url: "http://127.0.0.1:8000/api/back/aboneler",
                 },
                 columns: [
-                    {data: 'menu_sira', name: 'menu_sira', orderable: true},
-                    {data: 'menu_id', name: 'menu_id'},
-                    {data: 'menu_baslik', name: 'menu_baslik'},
-                    {data: 'menu_link', name: 'menu_link'},
-                    {data: 'menu_durum', name: 'menu_durum'},
-                    {data: 'menu_dil_kod', name: 'menu_dil_kod'},
+                    {data: 'abone_id', name: 'abone_id'},
+                    {data: 'abone_email', name: 'abone_email'},
+                    {data: 'abone_durum', name: 'abone_durum'},
                     {data: 'actions', name: 'actions'},
                 ],
                 "fnCreatedRow": function (nRow, aData, iDataIndex) {
-                    $(nRow).attr("id", "item-" + aData.menu_id);
+                    $(nRow).attr("id", "item-" + aData.abone_id);
                 }
             });
 
@@ -82,7 +76,7 @@ export default {
             $(".yajra-datatable").on("change", ".isActive", function () {
                 var id = $(this).data("id");
                 var data = $(this).prop("checked");
-                var url = "http://127.0.0.1:8000/api/back/menuler/" + id + "/is-active";
+                var url = "http://127.0.0.1:8000/api/back/aboneler/" + id + "/is-active";
 
                 axios.post(url, {
                     data: data
@@ -92,7 +86,7 @@ export default {
             // SERVIS SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
             $(".yajra-datatable").on("click", ".isDelete", function () {
                 var id = $(this).data("id");
-                var url = "http://127.0.0.1:8000/api/back/menuler/" + id + "/delete";
+                var url = "http://127.0.0.1:8000/api/back/aboneler/" + id + "/delete";
 
                 Swal.fire({
                     title: 'Dikkat!',
@@ -121,19 +115,8 @@ export default {
                 })
             });
 
-            // SORTABLE JS KISMINI AYARLAYALIM
-            $(".sortable").sortable();
-            $(".sortable").on("sortupdate", function () {
-                var data = $(this).sortable("serialize");
-                var url = "http://127.0.0.1:8000/api/back/menuler/rank-setter";
-
-                axios.post(url,{
-                    data : data
-                });
-            })
         });
-    },
-    methods: {}
+    }
 }
 </script>
 

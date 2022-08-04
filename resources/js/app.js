@@ -92,6 +92,7 @@ Vue.component('admin-sayfalar-show-component', require('./components/admin/sayfa
 
 // ABONELER KISMI AYARLANAMSI
 Vue.component('admin-aboneler-list-component', require('./components/admin/aboneler/AdminAbonelerListComponent').default);
+Vue.component('admin-aboneler-create-component', require('./components/admin/aboneler/AdminAbonelerCreateComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
