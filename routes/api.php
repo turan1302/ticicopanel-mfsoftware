@@ -170,6 +170,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     Route::group(['prefix' => 'sayfalar', 'namespace' => 'sayfalar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'index']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\sayfalar\indexController::class, 'isActiveSetter']);
         });
     });

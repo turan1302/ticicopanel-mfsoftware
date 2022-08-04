@@ -49,6 +49,30 @@ class indexController extends Controller
         return $data;
     }
 
+    // SILME KISMI AYARLANMASI
+    public function delete(SayfaModel $item){
+        if ($item->sayfa_resim != "" && File::exists("storage/".$item->sayfa_resim)){
+             File::delete("storage/".$item->sayfa_resim);
+        }
+
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // AKTIF ĞPASFO KISMI AYARLANSIM
     public function isActiveSetter(Request $request, SayfaModel $item)
     {
