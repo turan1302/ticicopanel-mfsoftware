@@ -170,6 +170,19 @@
                 </ul>
             </li>
 
+            {{-- MUSTERI YORUMLARI KISMI AYARLANAMSI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">question_answer</i>Müşteri Yorumları<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.musteri_yorumlar.index') }}">Müşteri Yorumları Listesi</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('back.musteri_yorumlar.create') }}">Yeni Müşteri Yorumu Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
             {{-- ABONELER KISMI AYARLANAMSI --}}
             <li>
                 <a href=""><i class="material-icons-two-tone">group_add</i>Aboneler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>

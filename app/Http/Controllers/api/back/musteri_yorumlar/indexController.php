@@ -11,12 +11,14 @@ use Yajra\DataTables\DataTables;
 class indexController extends Controller
 {
     public $uploadFolder = "";
+
     public function __construct()
     {
         $this->uploadFolder = "musteriYorum";
     }
 
-    public function index(){
+    public function index()
+    {
         $query = MusteriYorumModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -47,12 +49,12 @@ class indexController extends Controller
 //                $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return  $delete;
+                return $delete;
             })
             ->editColumn('my_dil_kod', function ($query) {
                 return strtoupper($query->my_dil_kod);
             })
-            ->rawColumns(["my_sira", "my_durum", 'my_dil_ikon', "actions"])
+            ->rawColumns(["my_sira", "my_durum", "my_resim", 'my_dil_ikon', "actions"])
             ->make(true);
 
         return $data;

@@ -28,11 +28,11 @@
                                     <tr>
                                         <th>Sıra</th>
                                         <th>ID</th>
-                                        <th>Başlık</th>
-                                        <th>Kod</th>
+                                        <th>Ad Soyad</th>
+                                        <th>Unvan</th>
+                                        <th>Resim</th>
                                         <th>Durum</th>
-                                        <th>Varsayılan</th>
-                                        <th>İkon</th>
+                                        <th>Dil Kod</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
@@ -62,20 +62,23 @@ export default {
                 serverSide: true,
                 ajax: {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/back/language",
+                    url: "http://127.0.0.1:8000/api/back/musteri-yorumlar",
+                    error : function (error) {
+                        console.log(error);
+                    }
                 },
                 columns: [
-                    {data: 'dil_sira', name: 'dil_sira', orderable: true},
-                    {data: 'dil_id', name: 'dil_id'},
-                    {data: 'dil_ad', name: 'dil_ad'},
-                    {data: 'dil_kod', name: 'dil_kod'},
-                    {data: 'dil_durum', name: 'dil_durum'},
-                    {data: 'dil_varsayilan', name: 'dil_varsayilan'},
-                    {data: 'dil_ikon', name: 'dil_ikon'},
+                    {data: 'my_sira', name: 'my_sira', orderable: true},
+                    {data: 'my_id', name: 'my_id'},
+                    {data: 'my_adsoyad', name: 'my_adsoyad'},
+                    {data: 'my_unvan', name: 'my_unvan'},
+                    {data: 'my_resim', name: 'my_resim'},
+                    {data: 'my_durum', name: 'my_durum'},
+                    {data: 'my_dil_kod', name: 'my_dil_kod'},
                     {data: 'actions', name: 'actions'},
                 ],
                 "fnCreatedRow": function (nRow, aData, iDataIndex) {
-                    $(nRow).attr("id", "item-" + aData.dil_id);
+                    $(nRow).attr("id", "item-" + aData.my_id);
                 }
 
             });
