@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(MusteriYorumModel $item){
         return view('back.musteri_yorumlar.edit',compact('item'));
     }
+
+    // GORUNTULEME KISMI
+    public function show(MusteriYorumModel $item){
+        return view('back.musteri_yorumlar.show',compact('item'));
+    }
 }

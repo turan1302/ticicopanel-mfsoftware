@@ -46,11 +46,11 @@ class indexController extends Controller
                 return $image;
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.language.show', $query->dil_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $show = "<a href='" . route('back.musteri_yorumlar.show', $query->my_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.musteri_yorumlar.edit', $query->my_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->my_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $edit." ".$delete;
+                return $show." ".$edit." ".$delete;
             })
             ->editColumn('my_dil_kod', function ($query) {
                 return strtoupper($query->my_dil_kod);
@@ -106,6 +106,11 @@ class indexController extends Controller
 
     // GUNCELLEME KISMI AYARLANMASI
     public function edit(MusteriYorumModel $item){
+        return response()->json($item);
+    }
+
+    // GORUNTULEME KISMI AYARLANMASI
+    public function show(MusteriYorumModel $item){
         return response()->json($item);
     }
 
