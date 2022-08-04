@@ -70,6 +70,28 @@ class indexController extends Controller
         return response()->json($item);
     }
 
+    // GUNCELLEME ISLEMI
+    public function update(Request $request,MenuModel $item){
+        $data = $request->except("_token");
+
+        $sonuc = $item->update($data);
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // SILME KISMI
     public function delete(MenuModel $item){
         $sonuc = $item->delete();

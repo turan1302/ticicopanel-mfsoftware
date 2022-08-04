@@ -97,7 +97,7 @@ export default {
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
-                var id = this.$props.service_id;
+                var id = this.$props.menu_id;
                 var url = "http://127.0.0.1:8000/api/back/menuler/" + id + "/update";
 
                 var menu_ust_id = $("#menu_ust_id").val(); // UST KATEGORI ID NUMRASINI ALDIRDIK
