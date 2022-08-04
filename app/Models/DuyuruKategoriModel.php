@@ -21,4 +21,13 @@ class DuyuruKategoriModel extends Model
         $this->attributes['dkat_ad'] = $value;
         $this->attributes['dkat_slug'] = Str::slug($value);
     }
+
+    // VARSAYILAN DUYURU KATEGORISINI GETIRELIM
+    public static function varsayilanDuyuruKategori(){
+        $sonuc = DuyuruKategoriModel::where(array(
+            "dkat_varsayilan_kategori" => 1
+        ))->first();
+
+        return $sonuc->dkat_id;
+    }
 }

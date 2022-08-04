@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\back\duyuru_kategoriler;
 
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruKategoriModel;
+use App\Models\PivotDuyuruKategoriModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
@@ -38,7 +39,11 @@ class indexController extends Controller
             ->addColumn("actions", function ($query) {
                 $show = "<a href='" . route('back.duyuru_kategoriler.show', $query->dkat_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.duyuru_kategoriler.edit', $query->dkat_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
-                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dkat_id'><i class='fa fa-times'></i> Sil</button>";
+
+                $delete = "";
+                if ($query->dkat_silinebilir_kategori != "" && $query->dkat_silinebilir_kategori==1){
+                    $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dkat_id'><i class='fa fa-times'></i> Sil</button>";
+                }
 //
                 return $show." ".$edit." ".$delete;
             })
@@ -167,6 +172,15 @@ class indexController extends Controller
     // SILME KISMI AYARLANAMSI
     public function delete(DuyuruKategoriModel $item)
     {
+        // PIVOT KISIMDAN DUYURU VARSAYILAN KATEGORININ CEKILMEISNI GERCEKLESTIREELIM
+        $varsayilan_kategori = DuyuruKategoriModel::varsayilanDuyuruKategori();
+
+        PivotDuyuruKategoriModel::where(array(
+            "pdk_dkat_id" => $item->dkat_id
+        ))->update(array(
+            "pdk_dkat_id" => $varsayilan_kategori
+        ));
+
         $sonuc = $item->delete();
         if ($sonuc) {
             $alert = [
