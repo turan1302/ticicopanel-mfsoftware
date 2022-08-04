@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // EKLEME KSIMI AYARLANMASI
     public function create(){
-        echo "Yes";
-        die;
+        return view('back.musteri_yorumlar.create');
     }
 }

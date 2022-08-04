@@ -92,6 +92,7 @@ Vue.component('admin-sayfalar-show-component', require('./components/admin/sayfa
 
 // MUSTERI YORUMLAR KISMI AYARLANMASI
 Vue.component('admin-musteri-yorumlar-list-component', require('./components/admin/musteri_yorumlar/AdminMusteriYorumlarListComponent').default);
+Vue.component('admin-musteri-yorumlar-create-component', require('./components/admin/musteri_yorumlar/AdminMusteriYorumlarCreateComponent').default);
 
 // ABONELER KISMI AYARLANAMSI
 Vue.component('admin-aboneler-list-component', require('./components/admin/aboneler/AdminAbonelerListComponent').default);

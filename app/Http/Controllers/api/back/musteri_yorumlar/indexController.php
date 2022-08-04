@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\MusteriYorumModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
@@ -47,7 +48,7 @@ class indexController extends Controller
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.language.show', $query->dil_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
 //                $edit = "<a href='" . route('back.language.edit', $query->dil_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
-                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->dil_id'><i class='fa fa-times'></i> Sil</button>";
+                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->my_id'><i class='fa fa-times'></i> Sil</button>";
 
                 return $delete;
             })
@@ -58,6 +59,49 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // EKLEME KISMI
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        // DOSYA GELDI MI
+        $data['my_resim'] = "";
+        if ($request->hasFile('my_resim')) {
+            $file = $request->file('my_resim');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['my_adsoyad']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['my_resim'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = MusteriYorumModel::create($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
     }
 
     // SILME KISMI AYARLANMASI

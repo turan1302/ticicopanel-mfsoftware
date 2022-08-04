@@ -117,7 +117,6 @@ export default {
             }
 
             var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
-
             if (aciklama == "") {
                 this.errors.push("Servis Açıklama Kısmı Boş Olamaz");
             }
