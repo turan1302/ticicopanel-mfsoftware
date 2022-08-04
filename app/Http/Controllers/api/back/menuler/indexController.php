@@ -44,6 +44,27 @@ class indexController extends Controller
         return $data;
     }
 
+    // EKLEME KISMI
+    public function store(Request $request){
+        $data = $request->except("_token");
+        $sonuc = MenuModel::create($data);
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+        return response()->json($alert);
+    }
+
     // SILME KISMI
     public function delete(MenuModel $item){
         $sonuc = $item->delete();

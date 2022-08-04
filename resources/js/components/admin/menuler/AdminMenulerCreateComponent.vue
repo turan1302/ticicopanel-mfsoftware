@@ -102,7 +102,7 @@ export default {
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
-                var url = "http://127.0.0.1:8000/api/back/service/store";
+                var url = "http://127.0.0.1:8000/api/back/menuler/store";
 
                 var menu_ust_id = $("#menu_ust_id").val(); // UST KATEGORI ID NUMRASINI ALDIRDIK
 
