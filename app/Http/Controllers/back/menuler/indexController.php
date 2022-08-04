@@ -19,4 +19,12 @@ class indexController extends Controller
         ))->orderBy("menu_sira","asc")->get();
         return view('back.menuler.create',compact('menuler'));
     }
+
+    // GUNCELLEME SAYAFSI
+    public function edit(MenuModel $item){
+        $menuler = MenuModel::where(array(
+            "menu_durum" => 1
+        ))->orderBy("menu_sira","asc")->get();
+        return view('back.menuler.edit',compact('menuler','item'));
+    }
 }

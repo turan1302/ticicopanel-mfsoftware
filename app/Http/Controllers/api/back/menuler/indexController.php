@@ -30,10 +30,10 @@ class indexController extends Controller
             })
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.ekip.show', $query->ekp_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
-//                $edit = "<a href='" . route('back.ekip.edit', $query->ekp_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
+                $edit = "<a href='" . route('back.menuler.edit', $query->menu_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->menu_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return $delete;
+                return $edit." ".$delete;
             })
             ->editColumn('menu_dil_kod', function ($query) {
                 return strtoupper($query->menu_dil_kod);
@@ -63,6 +63,11 @@ class indexController extends Controller
             ];
         }
         return response()->json($alert);
+    }
+
+    // GUNCELLEME KISMI
+    public function edit(MenuModel $item){
+        return response()->json($item);
     }
 
     // SILME KISMI

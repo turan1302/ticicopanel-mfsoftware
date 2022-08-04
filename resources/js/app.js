@@ -81,6 +81,7 @@ Vue.component('admin-ekip-show-component', require('./components/admin/ekip/Admi
 // MENULER KISMI AYARLANMASI
 Vue.component('admin-menuler-list-component', require('./components/admin/menuler/AdminMenulerListComponent').default);
 Vue.component('admin-menuler-create-component', require('./components/admin/menuler/AdminMenulerCreateComponent').default);
+Vue.component('admin-menuler-edit-component', require('./components/admin/menuler/AdminMenulerEditComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
