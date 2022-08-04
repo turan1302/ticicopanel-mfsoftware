@@ -9930,7 +9930,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/sayfalar/store";
+        var id = this.$props.sayfa_id;
+        var url = "http://127.0.0.1:8000/api/back/sayfalar/" + id + "/update";
         var formData = new FormData();
         var kisa_aciklama = tinyMCE.get('sayfa_kisa_aciklama').getContent(); // KISA ACIKLAMA
 

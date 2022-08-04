@@ -152,7 +152,8 @@ export default {
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
 
-                var url = "http://127.0.0.1:8000/api/back/sayfalar/store";
+                var id = this.$props.sayfa_id;
+                var url = "http://127.0.0.1:8000/api/back/sayfalar/"+id+"/update";
 
 
                 let formData = new FormData();
