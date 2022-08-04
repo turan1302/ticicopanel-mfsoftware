@@ -8041,6 +8041,157 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminServiceListComponent",
+  props: ["yeni_ekle"],
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    $(document).ready(function () {
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/back/iletisim-mesajlari"
+        },
+        columns: [{
+          data: 'im_id',
+          name: 'im_id'
+        }, {
+          data: 'im_adsoyad',
+          name: 'im_adsoyad'
+        }, {
+          data: 'im_email',
+          name: 'im_email'
+        }, {
+          data: 'im_tel',
+          name: 'im_tel'
+        }, {
+          data: 'im_konu',
+          name: 'im_konu'
+        }, {
+          data: 'im_okundu_bilgisi',
+          name: 'im_okundu_bilgisi'
+        }, {
+          data: 'actions',
+          name: 'actions'
+        }]
+      }); // SERVIS AKTIF PASIF KISMI AYARLANMASI
+
+      $(".yajra-datatable").on("change", ".isActive", function () {
+        var id = $(this).data("id");
+        var data = $(this).prop("checked");
+        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
+        axios.post(url, {
+          data: data
+        });
+      }); // SERVIS SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+
+      $(".yajra-datatable").on("click", ".isDelete", function () {
+        var id = $(this).data("id");
+        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/delete";
+        Swal.fire({
+          title: 'Dikkat!',
+          text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Evet, Kaydı Sil',
+          cancelButtonText: 'Vazgeç'
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            axios.get(url).then(function (res) {
+              var data = res.data;
+              Swal.fire({
+                icon: data.type,
+                title: data.title,
+                text: data.text,
+                showConfirmButton: false,
+                timer: 1500
+              }).then(function () {
+                location.reload();
+              });
+            });
+          }
+        });
+      }); // SORTABLE JS KISMINI AYARLAYALIM
+
+      $(".sortable").sortable();
+      $(".sortable").on("sortupdate", function () {
+        var data = $(this).sortable("serialize");
+        var url = "http://127.0.0.1:8000/api/back/service/rank-setter";
+        axios.post(url, {
+          data: data
+        });
+      });
+    });
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -14315,7 +14466,9 @@ Vue.component('admin-sayfalar-show-component', (__webpack_require__(/*! ./compon
 Vue.component('admin-musteri-yorumlar-list-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarListComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarListComponent.vue")["default"]));
 Vue.component('admin-musteri-yorumlar-create-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarCreateComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarCreateComponent.vue")["default"]));
 Vue.component('admin-musteri-yorumlar-edit-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarEditComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarEditComponent.vue")["default"]));
-Vue.component('admin-musteri-yorumlar-show-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent.vue")["default"])); // ABONELER KISMI AYARLANAMSI
+Vue.component('admin-musteri-yorumlar-show-component', (__webpack_require__(/*! ./components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent */ "./resources/js/components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent.vue")["default"])); // ILETISIM MESAJLARI KISMI AYARLANAMSI
+
+Vue.component('admin-iletisim-mesajlari-list-component', (__webpack_require__(/*! ./components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue")["default"])); // ABONELER KISMI AYARLANAMSI
 
 Vue.component('admin-aboneler-list-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerListComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerListComponent.vue")["default"]));
 Vue.component('admin-aboneler-create-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerCreateComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerCreateComponent.vue")["default"]));
@@ -37720,6 +37873,45 @@ component.options.__file = "resources/js/components/admin/home/AdminHomeComponen
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true& */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true&");
+/* harmony import */ var _AdminIletisimMesajlariListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminIletisimMesajlariListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "3a7466cb",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/language/AdminLanguageCreateComponent.vue":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/admin/language/AdminLanguageCreateComponent.vue ***!
@@ -39256,6 +39448,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************!*\
   !*** ./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -40070,6 +40278,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHomeComponent_vue_vue_type_template_id_02742aa4_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminHomeComponent_vue_vue_type_template_id_02742aa4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminHomeComponent.vue?vue&type=template&id=02742aa4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/home/AdminHomeComponent.vue?vue&type=template&id=02742aa4&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true&":
+/*!*********************************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true& ***!
+  \*********************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariListComponent_vue_vue_type_template_id_3a7466cb_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true&");
 
 
 /***/ }),
@@ -45212,6 +45437,105 @@ var staticRenderFns = [
             _c("div", { staticClass: "col" }, [
               _c("div", { staticClass: "page-description" }, [
                 _c("h1", [_vm._v("Anasayfam")]),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent.vue?vue&type=template&id=3a7466cb&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "app-content" }, [
+      _c("div", { staticClass: "content-wrapper" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }, [
+              _c(
+                "div",
+                { staticClass: "page-description d-flex align-items-center" },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "page-description-content flex-grow-1" },
+                    [_c("h1", [_vm._v("İletişim Mesajları")])]
+                  ),
+                ]
+              ),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col" }, [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("İletişim Mesajları"),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered yajra-datatable",
+                      attrs: {
+                        id: "datatable1",
+                        width: "100%",
+                        cellspacing: "0",
+                      },
+                    },
+                    [
+                      _c("thead", [
+                        _c("tr", [
+                          _c("th", [_vm._v("ID")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Ad Soyad")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("E-Mail")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Telefon")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Konu")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Okundu Bilgisi")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("İşlemler")]),
+                        ]),
+                      ]),
+                      _vm._v(" "),
+                      _c("tbody"),
+                    ]
+                  ),
+                ]),
               ]),
             ]),
           ]),

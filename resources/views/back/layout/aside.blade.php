@@ -183,6 +183,16 @@
                 </ul>
             </li>
 
+            {{-- ILETISIM MESAJLARI KISMI AYARLANAMSI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">email</i>İletişim Mesajları<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.iletisim_mesajlari.index') }}">İletişim Mesajları Listesi</a>
+                    </li>
+                </ul>
+            </li>
+
             {{-- ABONELER KISMI AYARLANAMSI --}}
             <li>
                 <a href=""><i class="material-icons-two-tone">group_add</i>Aboneler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>

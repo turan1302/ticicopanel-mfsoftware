@@ -96,6 +96,9 @@ Vue.component('admin-musteri-yorumlar-create-component', require('./components/a
 Vue.component('admin-musteri-yorumlar-edit-component', require('./components/admin/musteri_yorumlar/AdminMusteriYorumlarEditComponent').default);
 Vue.component('admin-musteri-yorumlar-show-component', require('./components/admin/musteri_yorumlar/AdminMusteriYorumlarShowComponent').default);
 
+// ILETISIM MESAJLARI KISMI AYARLANAMSI
+Vue.component('admin-iletisim-mesajlari-list-component', require('./components/admin/iletisim_mesajlari/AdminIletisimMesajlariListComponent').default);
+
 // ABONELER KISMI AYARLANAMSI
 Vue.component('admin-aboneler-list-component', require('./components/admin/aboneler/AdminAbonelerListComponent').default);
 Vue.component('admin-aboneler-create-component', require('./components/admin/aboneler/AdminAbonelerCreateComponent').default);
