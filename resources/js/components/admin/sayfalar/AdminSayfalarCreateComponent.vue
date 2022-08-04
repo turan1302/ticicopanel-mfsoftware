@@ -153,7 +153,7 @@ export default {
                 formData.append('sayfa_resim', this.sayfa_resim);
                 formData.append('sayfa_baslik', this.sayfa_baslik);
                 formData.append('sayfa_kisa_aciklama', kisa_aciklama);
-                formData.append('sayfa_aciklama', sayfa_aciklama);
+                formData.append('sayfa_aciklama', aciklama);
                 formData.append('sayfa_title', this.sayfa_title);
                 formData.append('sayfa_description', this.sayfa_description);
                 formData.append('sayfa_keyword', this.sayfa_keyword);
