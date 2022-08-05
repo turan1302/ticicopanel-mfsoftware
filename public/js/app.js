@@ -13979,18 +13979,13 @@ __webpack_require__.r(__webpack_exports__);
     this.yetkiGetir(yt_id);
   },
   methods: {
-    yetkiGuncelle: function yetkiGuncelle() {
+    yetkiAyarGuncelle: function yetkiAyarGuncelle() {
       this.errors = [];
-
-      if (this.yt_baslik == "") {
-        this.errors.push("Yetki Başlık Kısmı Boş Olamaz");
-      }
       /** EĞER HERHANGI BIR HATA YOKSA **/
-
 
       if (this.errors.length == 0) {
         var id = this.$props.yt_id;
-        var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/update";
+        var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/verilen-yetki-guncelle";
         axios.post(url, {
           yt_baslik: this.yt_baslik
         }).then(function (res) {
@@ -56797,7 +56792,7 @@ var render = function () {
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
-                        return _vm.yetkiGuncelle()
+                        return _vm.yetkiAyarGuncelle()
                       },
                     },
                   },

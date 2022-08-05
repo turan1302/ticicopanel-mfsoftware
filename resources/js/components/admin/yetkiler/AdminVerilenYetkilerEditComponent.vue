@@ -28,7 +28,7 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yetkiGuncelle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="yetkiAyarGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
 
                                         <table class="table">
@@ -123,17 +123,13 @@ export default {
 
     },
     methods: {
-        yetkiGuncelle() {
+        yetkiAyarGuncelle() {
             this.errors = [];
-
-            if (this.yt_baslik == "") {
-                this.errors.push("Yetki Başlık Kısmı Boş Olamaz");
-            }
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
                 var id = this.$props.yt_id;
-                var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/update";
+                var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/verilen-yetki-guncelle";
 
                 axios.post(url, {
                     yt_baslik: this.yt_baslik,

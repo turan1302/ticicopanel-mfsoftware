@@ -115,7 +115,7 @@ class indexController extends Controller
         ));
     }
 
-    /*************************** VERILEN YETKILERIN GORUNTULENME KISMI ********************************/
+    /*************************** VERILEN YETKILERIN GUNCELLENME KISMI ********************************/
     public function verilen_yetkiler(YetkiModel $item){
 
     }

@@ -239,6 +239,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
 
             // YETKI AYAR KISMININ GERCEKLESTIRILMESINI AYARLAYALIM
             Route::get('verilen-yetkiler',[\App\Http\Controllers\api\back\yetkiler\indexController::class,'verilen_yetkiler'])->name('verilen_yetkiler');
+            Route::post('verilen-yetki-guncelle',[\App\Http\Controllers\api\back\yetkiler\indexController::class,'verilen_yetki_guncelleme'])->name('verilen_yetki_guncelleme');
+
         });
     });
 });
