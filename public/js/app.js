@@ -13931,15 +13931,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminServiceCreateComponent",
-  props: ["geriye_don", "yt_id"],
+  props: ["geriye_don", "yt_id", "yetkiler"],
   data: function data() {
     return {
       yt_baslik: '',
+      yetkiler: '',
       errors: []
     };
   },
   mounted: function mounted() {
-    var yt_id = this.$props.yt_id;
+    this.yetkiler = JSON.parse(this.$props.yetkiler);
     this.yetkiGetir(yt_id);
   },
   methods: {
@@ -56753,7 +56754,27 @@ var render = function () {
                   },
                   [
                     _c("div", { staticClass: "example-container" }, [
-                      _vm._m(2),
+                      _c("table", { staticClass: "table" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(_vm.yetkiler, function (item) {
+                            return _c("tr", [
+                              _c("th", { attrs: { scope: "row" } }, [
+                                _vm._v(_vm._s(item)),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("Mark")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("Otto")]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v("@mdo")]),
+                            ])
+                          }),
+                          0
+                        ),
+                      ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
                         _c("div", { staticClass: "example-component m-2" }, [
@@ -56820,35 +56841,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Yetki Adı")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Aktiflik")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Listeleme")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Ekleme")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Güncelleme")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Görüntüleme")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Silme")]),
-        ]),
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Mark")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Otto")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("@mdo")]),
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Yetki Adı")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Aktiflik")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Listeleme")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ekleme")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Güncelleme")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Görüntüleme")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Silme")]),
       ]),
     ])
   },

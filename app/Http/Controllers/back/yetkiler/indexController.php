@@ -25,7 +25,7 @@ class indexController extends Controller
 
     // VERILEN YETKILER KISMI AYRLANAMSI
     public function verilen_yetkiler(YetkiModel $item){
-        $yetkiler = myHelper::get_yetkiler();
+        $yetkiler = json_encode(myHelper::get_yetkiler());
         return view('back.yetkiler.verilen_yetkiler',compact('item','yetkiler'));
     }
 }

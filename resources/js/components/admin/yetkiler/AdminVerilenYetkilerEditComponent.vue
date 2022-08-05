@@ -44,8 +44,8 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
+                                            <tr v-for="item in yetkiler">
+                                                <th scope="row">{{ item }}</th>
                                                 <td>Mark</td>
                                                 <td>Otto</td>
                                                 <td>@mdo</td>
@@ -74,15 +74,16 @@
 <script>
 export default {
     name: "AdminServiceCreateComponent",
-    props: ["geriye_don", "yt_id"],
+    props: ["geriye_don", "yt_id","yetkiler"],
     data() {
         return {
             yt_baslik: '',
+            yetkiler : '',
             errors: [],
         }
     },
     mounted() {
-        var yt_id = this.$props.yt_id;
+        this.yetkiler =  JSON.parse(this.$props.yetkiler);
         this.yetkiGetir(yt_id);
     },
     methods: {
