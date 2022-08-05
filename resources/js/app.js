@@ -108,6 +108,7 @@ Vue.component('admin-aboneler-create-component', require('./components/admin/abo
 Vue.component('admin-sertifikalar-list-component', require('./components/admin/sertifikalar/AdminSertifikalarListComponent').default);
 Vue.component('admin-sertifikalar-create-component', require('./components/admin/sertifikalar/AdminSertifikalarCreateComponent').default);
 Vue.component('admin-sertifikalar-edit-component', require('./components/admin/sertifikalar/AdminSertifikalarEditComponent').default);
+Vue.component('admin-sertifikalar-show-component', require('./components/admin/sertifikalar/AdminSertifikalarShowComponent').default);
 
 
 /**

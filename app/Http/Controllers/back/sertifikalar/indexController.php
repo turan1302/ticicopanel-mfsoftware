@@ -21,4 +21,9 @@ class indexController extends Controller
     public function edit(SertifikaModel $item){
         return view('back.sertifikalar.edit',compact('item'));
     }
+
+    // GORUNTULEME KISMI
+    public function show(SertifikaModel $item){
+        return view('back.sertifikalar.show',compact('item'));
+    }
 }
