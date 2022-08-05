@@ -52,6 +52,36 @@
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -90,6 +120,7 @@ export default {
         this.yetkiler = JSON.parse(this.$props.yetkiler);
         var yt_id = this.$props.yt_id;
         this.yetkiGetir(yt_id);
+
     },
     methods: {
         yetkiGuncelle() {
@@ -127,7 +158,14 @@ export default {
                 var data = res.data;
                 this.yt_baslik = data.yt_baslik;
                 this.yt_yetkiler = data.yt_yetkiler;
+
+                this.yetkiKontrol();
             });
+        },
+        yetkiKontrol() {
+            var sonuc = this.yt_yetkiler;
+            console.log(sonuc);
+
         }
     }
 }

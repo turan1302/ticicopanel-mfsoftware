@@ -13932,6 +13932,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminServiceCreateComponent",
   props: ["geriye_don", "yt_id", "yetkiler"],
@@ -13985,7 +14015,13 @@ __webpack_require__.r(__webpack_exports__);
         var data = res.data;
         _this.yt_baslik = data.yt_baslik;
         _this.yt_yetkiler = data.yt_yetkiler;
+
+        _this.yetkiKontrol();
       });
+    },
+    yetkiKontrol: function yetkiKontrol() {
+      var sonuc = this.yt_yetkiler;
+      console.log(sonuc);
     }
   }
 });
@@ -56769,6 +56805,236 @@ var render = function () {
                             return _c("tr", [
                               _c("th", { attrs: { scope: "row" } }, [
                                 _vm._v(_vm._s(item.toUpperCase())),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item,
+                                        expression: "item",
+                                      },
+                                    ],
+                                    key: index,
+                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    domProps: {
+                                      checked: Array.isArray(item)
+                                        ? _vm._i(item, null) > -1
+                                        : item,
+                                    },
+                                    on: {
+                                      change: function ($event) {
+                                        var $$a = item,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (item = $$a.concat([$$v]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (item = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          item = $$c
+                                        }
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item,
+                                        expression: "item",
+                                      },
+                                    ],
+                                    key: index,
+                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    domProps: {
+                                      checked: Array.isArray(item)
+                                        ? _vm._i(item, null) > -1
+                                        : item,
+                                    },
+                                    on: {
+                                      change: function ($event) {
+                                        var $$a = item,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (item = $$a.concat([$$v]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (item = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          item = $$c
+                                        }
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item,
+                                        expression: "item",
+                                      },
+                                    ],
+                                    key: index,
+                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    domProps: {
+                                      checked: Array.isArray(item)
+                                        ? _vm._i(item, null) > -1
+                                        : item,
+                                    },
+                                    on: {
+                                      change: function ($event) {
+                                        var $$a = item,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (item = $$a.concat([$$v]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (item = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          item = $$c
+                                        }
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item,
+                                        expression: "item",
+                                      },
+                                    ],
+                                    key: index,
+                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    domProps: {
+                                      checked: Array.isArray(item)
+                                        ? _vm._i(item, null) > -1
+                                        : item,
+                                    },
+                                    on: {
+                                      change: function ($event) {
+                                        var $$a = item,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (item = $$a.concat([$$v]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (item = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          item = $$c
+                                        }
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item,
+                                        expression: "item",
+                                      },
+                                    ],
+                                    key: index,
+                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    domProps: {
+                                      checked: Array.isArray(item)
+                                        ? _vm._i(item, null) > -1
+                                        : item,
+                                    },
+                                    on: {
+                                      change: function ($event) {
+                                        var $$a = item,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (item = $$a.concat([$$v]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (item = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          item = $$c
+                                        }
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" }),
+                                ]),
                               ]),
                               _vm._v(" "),
                               _c("td", [
