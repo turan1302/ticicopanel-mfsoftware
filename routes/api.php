@@ -248,6 +248,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     Route::group(['prefix' => 'kullanicilar', 'namespace' => 'kullanicilar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'index']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::post('is-active', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'isActiveSetter']);
             Route::get('delete', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'delete']);
         });
     });

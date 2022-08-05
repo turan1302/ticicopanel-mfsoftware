@@ -62,4 +62,13 @@ class indexController extends Controller
 
         return response()->json($alert);
     }
+
+    // AKTIFLIK KISMI AYARLANMASI
+    public function isActiveSetter(Request $request, User $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "durum" => $data
+        ));
+    }
 }
