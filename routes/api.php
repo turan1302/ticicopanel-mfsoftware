@@ -243,4 +243,10 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
 
         });
     });
+
+    // KULLANICILAR KISMI AYARLANMASI
+    Route::group(['prefix' => 'kullanicilar', 'namespace' => 'kullanicilar'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'index']);
+    });
+
 });

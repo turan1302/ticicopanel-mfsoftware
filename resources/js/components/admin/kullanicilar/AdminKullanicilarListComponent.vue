@@ -26,17 +26,14 @@
                                        cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Sıra</th>
                                         <th>ID</th>
-                                        <th>Başlık</th>
-                                        <th>Kod</th>
+                                        <th>Ad Soyad</th>
+                                        <th>E-Mail</th>
                                         <th>Durum</th>
-                                        <th>Varsayılan</th>
-                                        <th>İkon</th>
                                         <th>İşlemler</th>
                                     </tr>
                                     </thead>
-                                    <tbody class="sortable">
+                                    <tbody>
                                     </tbody>
                                 </table>
                             </div>
@@ -62,22 +59,15 @@ export default {
                 serverSide: true,
                 ajax: {
                     type: "GET",
-                    url: "http://127.0.0.1:8000/api/back/language",
+                    url: "http://127.0.0.1:8000/api/back/kullanicilar",
                 },
                 columns: [
-                    {data: 'dil_sira', name: 'dil_sira', orderable: true},
-                    {data: 'dil_id', name: 'dil_id'},
-                    {data: 'dil_ad', name: 'dil_ad'},
-                    {data: 'dil_kod', name: 'dil_kod'},
-                    {data: 'dil_durum', name: 'dil_durum'},
-                    {data: 'dil_varsayilan', name: 'dil_varsayilan'},
-                    {data: 'dil_ikon', name: 'dil_ikon'},
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'email', name: 'email'},
+                    {data: 'durum', name: 'durum'},
                     {data: 'actions', name: 'actions'},
-                ],
-                "fnCreatedRow": function (nRow, aData, iDataIndex) {
-                    $(nRow).attr("id", "item-" + aData.dil_id);
-                }
-
+                ]
             });
 
             // DIL AKTIF PASIF KISMI AYARLANMASI
@@ -136,17 +126,6 @@ export default {
                     }
                 })
             });
-
-            // SORTABLE JS KISMINI AYARLAYALIM
-            $(".sortable").sortable();
-            $(".sortable").on("sortupdate", function () {
-                var data = $(this).sortable("serialize");
-                var url = "http://127.0.0.1:8000/api/back/language/rank-setter";
-
-                axios.post(url,{
-                    data : data
-                });
-            })
         });
     }
 }

@@ -114,8 +114,10 @@ Vue.component('admin-sertifikalar-show-component', require('./components/admin/s
 Vue.component('admin-yetkiler-list-component', require('./components/admin/yetkiler/AdminYetkilerListComponent').default);
 Vue.component('admin-yetkiler-create-component', require('./components/admin/yetkiler/AdminYetkilerCreateComponent').default);
 Vue.component('admin-yetkiler-edit-component', require('./components/admin/yetkiler/AdminYetkilerEditComponent').default);
-
 Vue.component('admin-verilen-yetkiler-edit-component', require('./components/admin/yetkiler/AdminVerilenYetkilerEditComponent').default);
+
+// KULLANICILAR KISMI AYARLANMASI
+Vue.component('admin-kullanicilar-list-component', require('./components/admin/kullanicilar/AdminKullanicilarListComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

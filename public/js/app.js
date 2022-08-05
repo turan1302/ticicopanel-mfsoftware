@@ -8350,6 +8350,152 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminKullanicilarListComponent",
+  props: ["yeni_ekle"],
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    $(document).ready(function () {
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/back/kullanicilar"
+        },
+        columns: [{
+          data: 'id',
+          name: 'id'
+        }, {
+          data: 'name',
+          name: 'name'
+        }, {
+          data: 'email',
+          name: 'email'
+        }, {
+          data: 'durum',
+          name: 'durum'
+        }, {
+          data: 'actions',
+          name: 'actions'
+        }]
+      }); // DIL AKTIF PASIF KISMI AYARLANMASI
+
+      $(".yajra-datatable").on("change", ".isActive", function () {
+        var id = $(this).data("id");
+        var data = $(this).prop("checked");
+        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/is-active";
+        axios.post(url, {
+          data: data
+        });
+      }); // DIL VARSATILAN KISMI AYARLAMASINI GERCEKLESTIRELIM
+
+      $(".yajra-datatable").on("change", ".isDefault", function () {
+        var id = $(this).data("id");
+        var data = $(this).prop("checked");
+        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/is-default";
+        axios.post(url, {
+          data: data
+        }).then(function (res) {
+          location.reload();
+        });
+      }); // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+
+      $(".yajra-datatable").on("click", ".isDelete", function () {
+        var id = $(this).data("id");
+        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/delete";
+        Swal.fire({
+          title: 'Dikkat!',
+          text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Evet, Kaydı Sil',
+          cancelButtonText: 'Vazgeç'
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            axios.get(url).then(function (res) {
+              var data = res.data;
+              Swal.fire({
+                icon: data.type,
+                title: data.title,
+                text: data.text,
+                showConfirmButton: false,
+                timer: 1500
+              }).then(function () {
+                location.reload();
+              });
+            });
+          }
+        });
+      });
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -15786,7 +15932,9 @@ Vue.component('admin-sertifikalar-show-component', (__webpack_require__(/*! ./co
 Vue.component('admin-yetkiler-list-component', (__webpack_require__(/*! ./components/admin/yetkiler/AdminYetkilerListComponent */ "./resources/js/components/admin/yetkiler/AdminYetkilerListComponent.vue")["default"]));
 Vue.component('admin-yetkiler-create-component', (__webpack_require__(/*! ./components/admin/yetkiler/AdminYetkilerCreateComponent */ "./resources/js/components/admin/yetkiler/AdminYetkilerCreateComponent.vue")["default"]));
 Vue.component('admin-yetkiler-edit-component', (__webpack_require__(/*! ./components/admin/yetkiler/AdminYetkilerEditComponent */ "./resources/js/components/admin/yetkiler/AdminYetkilerEditComponent.vue")["default"]));
-Vue.component('admin-verilen-yetkiler-edit-component', (__webpack_require__(/*! ./components/admin/yetkiler/AdminVerilenYetkilerEditComponent */ "./resources/js/components/admin/yetkiler/AdminVerilenYetkilerEditComponent.vue")["default"]));
+Vue.component('admin-verilen-yetkiler-edit-component', (__webpack_require__(/*! ./components/admin/yetkiler/AdminVerilenYetkilerEditComponent */ "./resources/js/components/admin/yetkiler/AdminVerilenYetkilerEditComponent.vue")["default"])); // KULLANICILAR KISMI AYARLANMASI
+
+Vue.component('admin-kullanicilar-list-component', (__webpack_require__(/*! ./components/admin/kullanicilar/AdminKullanicilarListComponent */ "./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -39266,6 +39414,45 @@ component.options.__file = "resources/js/components/admin/iletisim_mesajlari/Adm
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminKullanicilarListComponent_vue_vue_type_template_id_e01b744c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true& */ "./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true&");
+/* harmony import */ var _AdminKullanicilarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminKullanicilarListComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminKullanicilarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminKullanicilarListComponent_vue_vue_type_template_id_e01b744c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminKullanicilarListComponent_vue_vue_type_template_id_e01b744c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "e01b744c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/language/AdminLanguageCreateComponent.vue":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/admin/language/AdminLanguageCreateComponent.vue ***!
@@ -41146,6 +41333,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminKullanicilarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminKullanicilarListComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminKullanicilarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************!*\
   !*** ./resources/js/components/admin/language/AdminLanguageCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -42122,6 +42325,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminIletisimMesajlariShowComponent_vue_vue_type_template_id_68996268_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue?vue&type=template&id=68996268&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true&":
+/*!**********************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true& ***!
+  \**********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminKullanicilarListComponent_vue_vue_type_template_id_e01b744c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminKullanicilarListComponent_vue_vue_type_template_id_e01b744c_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminKullanicilarListComponent_vue_vue_type_template_id_e01b744c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true&");
 
 
 /***/ }),
@@ -47875,6 +48095,115 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [
         _vm._v("İletişim Mesajı Bilgileri"),
+      ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/kullanicilar/AdminKullanicilarListComponent.vue?vue&type=template&id=e01b744c&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c(
+              "div",
+              { staticClass: "page-description d-flex align-items-center" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "page-description-actions" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { href: _vm.yeni_ekle },
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("add"),
+                      ]),
+                      _vm._v(" Yeni Ekle"),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+      _c("h1", [_vm._v("Kullanıcılar")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Diller")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered yajra-datatable",
+                attrs: { id: "datatable1", width: "100%", cellspacing: "0" },
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("ID")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Ad Soyad")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("E-Mail")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Durum")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("İşlemler")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tbody"),
+              ]
+            ),
+          ]),
+        ]),
       ]),
     ])
   },
