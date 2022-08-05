@@ -11442,6 +11442,164 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminSertifikalarListComponent",
+  props: ["yeni_ekle"],
+  data: function data() {
+    return {};
+  },
+  mounted: function mounted() {
+    $(document).ready(function () {
+      var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+          type: "GET",
+          url: "http://127.0.0.1:8000/api/back/sertifikalar"
+        },
+        columns: [{
+          data: 'sr_sira',
+          name: 'sr_sira',
+          orderable: true
+        }, {
+          data: 'sr_id',
+          name: 'sr_id'
+        }, {
+          data: 'sr_baslik',
+          name: 'sr_baslik'
+        }, {
+          data: 'sr_yil',
+          name: 'sr_yil'
+        }, {
+          data: 'sr_durum',
+          name: 'sr_durum'
+        }, {
+          data: 'sr_dil_kod',
+          name: 'sr_dil_kod'
+        }, {
+          data: 'actions',
+          name: 'actions'
+        }],
+        "fnCreatedRow": function fnCreatedRow(nRow, aData, iDataIndex) {
+          $(nRow).attr("id", "item-" + aData.sr_id);
+        }
+      }); // SERVIS AKTIF PASIF KISMI AYARLANMASI
+
+      $(".yajra-datatable").on("change", ".isActive", function () {
+        var id = $(this).data("id");
+        var data = $(this).prop("checked");
+        var url = "http://127.0.0.1:8000/api/back/sertifikalar/" + id + "/is-active";
+        axios.post(url, {
+          data: data
+        });
+      }); // SERVIS SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
+
+      $(".yajra-datatable").on("click", ".isDelete", function () {
+        var id = $(this).data("id");
+        var url = "http://127.0.0.1:8000/api/back/sertifikalar/" + id + "/delete";
+        Swal.fire({
+          title: 'Dikkat!',
+          text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Evet, Kaydı Sil',
+          cancelButtonText: 'Vazgeç'
+        }).then(function (result) {
+          if (result.isConfirmed) {
+            axios.get(url).then(function (res) {
+              var data = res.data;
+              Swal.fire({
+                icon: data.type,
+                title: data.title,
+                text: data.text,
+                showConfirmButton: false,
+                timer: 1500
+              }).then(function () {
+                location.reload();
+              });
+            });
+          }
+        });
+      }); // SORTABLE JS KISMINI AYARLAYALIM
+
+      $(".sortable").sortable();
+      $(".sortable").on("sortupdate", function () {
+        var data = $(this).sortable("serialize");
+        var url = "http://127.0.0.1:8000/api/back/sertifikalar/rank-setter";
+        axios.post(url, {
+          data: data
+        });
+      });
+    });
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -14630,7 +14788,9 @@ Vue.component('admin-iletisim-mesajlari-list-component', (__webpack_require__(/*
 Vue.component('admin-iletisim-mesajlari-show-component', (__webpack_require__(/*! ./components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent */ "./resources/js/components/admin/iletisim_mesajlari/AdminIletisimMesajlariShowComponent.vue")["default"])); // ABONELER KISMI AYARLANAMSI
 
 Vue.component('admin-aboneler-list-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerListComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerListComponent.vue")["default"]));
-Vue.component('admin-aboneler-create-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerCreateComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerCreateComponent.vue")["default"]));
+Vue.component('admin-aboneler-create-component', (__webpack_require__(/*! ./components/admin/aboneler/AdminAbonelerCreateComponent */ "./resources/js/components/admin/aboneler/AdminAbonelerCreateComponent.vue")["default"])); // SERTIFIKALAR KISMI AYARLANMASI
+
+Vue.component('admin-sertifikalar-list-component', (__webpack_require__(/*! ./components/admin/sertifikalar/AdminSertifikalarListComponent */ "./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -38890,6 +39050,45 @@ component.options.__file = "resources/js/components/admin/sayfalar/AdminSayfalar
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminSertifikalarListComponent_vue_vue_type_template_id_7037d786_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true& */ "./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true&");
+/* harmony import */ var _AdminSertifikalarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminSertifikalarListComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminSertifikalarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminSertifikalarListComponent_vue_vue_type_template_id_7037d786_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminSertifikalarListComponent_vue_vue_type_template_id_7037d786_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "7037d786",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/service/AdminServiceCreateComponent.vue":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/admin/service/AdminServiceCreateComponent.vue ***!
@@ -39998,6 +40197,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSertifikalarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminSertifikalarListComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSertifikalarListComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************!*\
   !*** ./resources/js/components/admin/service/AdminServiceCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -40866,6 +41081,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSayfalarShowComponent_vue_vue_type_template_id_05e86912_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sayfalar/AdminSayfalarShowComponent.vue?vue&type=template&id=05e86912&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true&":
+/*!**********************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true& ***!
+  \**********************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSertifikalarListComponent_vue_vue_type_template_id_7037d786_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSertifikalarListComponent_vue_vue_type_template_id_7037d786_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminSertifikalarListComponent_vue_vue_type_template_id_7037d786_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true&");
 
 
 /***/ }),
@@ -51079,6 +51311,119 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Sayfa Bilgileri")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/sertifikalar/AdminSertifikalarListComponent.vue?vue&type=template&id=7037d786&scoped=true& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col" }, [
+            _c(
+              "div",
+              { staticClass: "page-description d-flex align-items-center" },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "page-description-actions" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { href: _vm.yeni_ekle },
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("add"),
+                      ]),
+                      _vm._v(" Yeni Ekle"),
+                    ]
+                  ),
+                ]),
+              ]
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+      _c("h1", [_vm._v("Sertifikalar")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Sertifikalar")]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered yajra-datatable",
+                attrs: { id: "datatable1", width: "100%", cellspacing: "0" },
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Sıra")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("ID")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Sertifika Adı")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Yıl")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Durum")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Dil Kodu")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("İşlemler")]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c("tbody", { staticClass: "sortable" }),
+              ]
+            ),
+          ]),
+        ]),
+      ]),
     ])
   },
 ]

@@ -161,4 +161,10 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         Route::get('create', [\App\Http\Controllers\back\aboneler\indexController::class, 'create'])->name('create');
     });
 
+    /** SERTIFIKALAR KISMI AYARLANMASI **/
+    Route::group(['prefix' => 'sertifikalar', 'namespace' => 'sertifikalar', 'as' => 'sertifikalar.'], function () {
+        Route::get('', [\App\Http\Controllers\back\sertifikalar\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\sertifikalar\indexController::class, 'create'])->name('create');
+    });
+
 });

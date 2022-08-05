@@ -104,6 +104,10 @@ Vue.component('admin-iletisim-mesajlari-show-component', require('./components/a
 Vue.component('admin-aboneler-list-component', require('./components/admin/aboneler/AdminAbonelerListComponent').default);
 Vue.component('admin-aboneler-create-component', require('./components/admin/aboneler/AdminAbonelerCreateComponent').default);
 
+// SERTIFIKALAR KISMI AYARLANMASI
+Vue.component('admin-sertifikalar-list-component', require('./components/admin/sertifikalar/AdminSertifikalarListComponent').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
