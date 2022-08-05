@@ -232,6 +232,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::get('', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'index']);
         Route::post('store', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'store']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'edit']);
+            Route::post('update', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'update']);
             Route::get('delete', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'isActiveSetter']);
         });

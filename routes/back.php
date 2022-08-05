@@ -175,6 +175,8 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     Route::group(['prefix' => 'yetkiler', 'namespace' => 'yetkiler', 'as' => 'yetkiler.'], function () {
         Route::get('', [\App\Http\Controllers\back\yetkiler\indexController::class, 'index'])->name('index');
         Route::get('create', [\App\Http\Controllers\back\yetkiler\indexController::class, 'create'])->name('create');
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\back\yetkiler\indexController::class, 'edit'])->name('edit');
+        });
     });
-
 });
