@@ -116,7 +116,28 @@ class indexController extends Controller
     }
 
     /*************************** VERILEN YETKILERIN GUNCELLENME KISMI ********************************/
-    public function verilen_yetkiler(YetkiModel $item){
+    public function verilen_yetki_guncelleme(Request $request,YetkiModel $item){
+//        print_r($request->yetki_ayar);
 
+        $data = $request->except("_token");
+        $sonuc = $item->update(array(
+            "yt_yetkiler" => json_encode($data['yetki_ayar'])
+        ));
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
     }
 }

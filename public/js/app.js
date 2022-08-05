@@ -13970,6 +13970,8 @@ __webpack_require__.r(__webpack_exports__);
       yt_baslik: '',
       yt_yetkiler: '',
       yetkiler: '',
+      // YETKILER KISMI ALINMASI GERCEKLESTRILECEK
+      yetkiayar_data: [],
       errors: []
     };
   },
@@ -13980,15 +13982,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     yetkiAyarGuncelle: function yetkiAyarGuncelle() {
-      this.errors = [];
       /** EĞER HERHANGI BIR HATA YOKSA **/
-
       if (this.errors.length == 0) {
         var id = this.$props.yt_id;
         var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/verilen-yetki-guncelle";
-        axios.post(url, {
-          yt_baslik: this.yt_baslik
-        }).then(function (res) {
+        var formData = new FormData(formEl);
+        axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
             icon: data.type,
@@ -56788,7 +56787,11 @@ var render = function () {
                 _c(
                   "form",
                   {
-                    attrs: { method: "POST", enctype: "multipart/form-data" },
+                    attrs: {
+                      id: "formEl",
+                      method: "POST",
+                      enctype: "multipart/form-data",
+                    },
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
@@ -56813,7 +56816,8 @@ var render = function () {
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
                                     attrs: {
-                                      name: "yetkiler[" + item + "][aktiflik]",
+                                      name:
+                                        "yetki_ayar[" + item + "][aktiflik]",
                                       type: "checkbox",
                                     },
                                     domProps: {
@@ -56832,7 +56836,8 @@ var render = function () {
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
                                     attrs: {
-                                      name: "yetkiler[" + item + "][listeleme]",
+                                      name:
+                                        "yetki_ayar[" + item + "][listeleme]",
                                       type: "checkbox",
                                     },
                                     domProps: {
@@ -56851,7 +56856,7 @@ var render = function () {
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
                                     attrs: {
-                                      name: "yetkiler[" + item + "][ekleme]",
+                                      name: "yetki_ayar[" + item + "][ekleme]",
                                       type: "checkbox",
                                     },
                                     domProps: {
@@ -56868,7 +56873,7 @@ var render = function () {
                                   _c("input", {
                                     attrs: {
                                       name:
-                                        "yetkiler[" + item + "][guncelleme]",
+                                        "yetki_ayar[" + item + "][guncelleme]",
                                       type: "checkbox",
                                     },
                                     domProps: {
@@ -56888,7 +56893,7 @@ var render = function () {
                                   _c("input", {
                                     attrs: {
                                       name:
-                                        "yetkiler[" + item + "][goruntuleme]",
+                                        "yetki_ayar[" + item + "][goruntuleme]",
                                       type: "checkbox",
                                     },
                                     domProps: {
@@ -56907,7 +56912,7 @@ var render = function () {
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
                                     attrs: {
-                                      name: "yetkiler[" + item + "][silme]",
+                                      name: "yetki_ayar[" + item + "][silme]",
                                       type: "checkbox",
                                     },
                                     domProps: {

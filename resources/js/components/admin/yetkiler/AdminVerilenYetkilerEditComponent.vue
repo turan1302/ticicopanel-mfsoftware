@@ -28,7 +28,7 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="yetkiAyarGuncelle()" enctype="multipart/form-data">
+                                <form id="formEl" method="POST" @submit.prevent="yetkiAyarGuncelle()"  enctype="multipart/form-data">
                                     <div class="example-container">
 
                                         <table class="table">
@@ -48,37 +48,37 @@
                                                 <th scope="row">{{ index }}</th>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :name="'yetkiler[' + item + '][aktiflik]'" :checked="yetkiKontrol(item,'aktiflik')" type="checkbox">
+                                                        <input :name="'yetki_ayar[' + item + '][aktiflik]'" :checked="yetkiKontrol(item,'aktiflik')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :name="'yetkiler[' + item + '][listeleme]'" :checked="yetkiKontrol(item,'listeleme')" type="checkbox">
+                                                        <input :name="'yetki_ayar[' + item + '][listeleme]'" :checked="yetkiKontrol(item,'listeleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :name="'yetkiler[' + item + '][ekleme]'" :checked="yetkiKontrol(item,'ekleme')" type="checkbox">
+                                                        <input :name="'yetki_ayar[' + item + '][ekleme]'" :checked="yetkiKontrol(item,'ekleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :name="'yetkiler[' + item + '][guncelleme]'" :checked="yetkiKontrol(item,'guncelleme')" type="checkbox">
+                                                        <input :name="'yetki_ayar[' + item + '][guncelleme]'" :checked="yetkiKontrol(item,'guncelleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :name="'yetkiler[' + item + '][goruntuleme]'" :checked="yetkiKontrol(item,'goruntuleme')" type="checkbox">
+                                                        <input :name="'yetki_ayar[' + item + '][goruntuleme]'" :checked="yetkiKontrol(item,'goruntuleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :name="'yetkiler[' + item + '][silme]'" :checked="yetkiKontrol(item,'silme')" type="checkbox">
+                                                        <input  :name="'yetki_ayar[' + item + '][silme]'" :checked="yetkiKontrol(item,'silme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
@@ -112,7 +112,8 @@ export default {
         return {
             yt_baslik: '',
             yt_yetkiler : '',
-            yetkiler: '',
+            yetkiler: '',  // YETKILER KISMI ALINMASI GERCEKLESTRILECEK
+            yetkiayar_data : [],
             errors: [],
         }
     },
@@ -124,16 +125,17 @@ export default {
     },
     methods: {
         yetkiAyarGuncelle() {
-            this.errors = [];
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
                 var id = this.$props.yt_id;
                 var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/verilen-yetki-guncelle";
 
-                axios.post(url, {
-                    yt_baslik: this.yt_baslik,
-                }).then((res) => {
+
+                let formData = new FormData(formEl);
+
+
+                axios.post(url, formData).then((res) => {
                     var data = res.data;
                     Swal.fire({
                         icon: data.type,
