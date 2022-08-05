@@ -238,8 +238,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
             Route::post('is-active', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'isActiveSetter']);
 
             // YETKI AYAR KISMININ GERCEKLESTIRILMESINI AYARLAYALIM
-            Route::get('verilen-yetkiler',[\App\Http\Controllers\api\back\yetkiler\indexController::class,'verilen_yetkiler'])->name('verilen_yetkiler');
-            Route::post('verilen-yetki-guncelle',[\App\Http\Controllers\api\back\yetkiler\indexController::class,'verilen_yetki_guncelleme'])->name('verilen_yetki_guncelleme');
+            Route::get('verilen-yetkiler', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'verilen_yetkiler'])->name('verilen_yetkiler');
+            Route::post('verilen-yetki-guncelle', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'verilen_yetki_guncelleme'])->name('verilen_yetki_guncelleme');
 
         });
     });
@@ -247,6 +247,8 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // KULLANICILAR KISMI AYARLANMASI
     Route::group(['prefix' => 'kullanicilar', 'namespace' => 'kullanicilar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'index']);
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('delete', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'delete']);
+        });
     });
-
 });

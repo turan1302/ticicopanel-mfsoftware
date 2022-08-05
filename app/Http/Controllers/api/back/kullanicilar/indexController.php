@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\back\kullanicilar;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
@@ -34,5 +35,31 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // SILME KISMI AYARLANMASI
+    public function delete(User $item){
+        // AVATAR VARSA SILDIRELIM
+        if ($item->avatar != "" && File::exists("storage/".$item->avatar)){
+            File::delete("storage/".$item->avatar);
+        }
+
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
     }
 }

@@ -233,7 +233,17 @@
             </li>
 
             {{-- KULLANICILAR KISMI --}}
-
+            <li>
+                <a href=""><i class="material-icons-two-tone">people</i>Kullanıcılar<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.kullanicilar.index') }}">Kullanıcı Listesi</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('back.kullanicilar.create') }}">Yeni Kullanıcı Ekle</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </div>

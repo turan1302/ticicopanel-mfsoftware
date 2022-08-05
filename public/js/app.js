@@ -8448,22 +8448,11 @@ __webpack_require__.r(__webpack_exports__);
         axios.post(url, {
           data: data
         });
-      }); // DIL VARSATILAN KISMI AYARLAMASINI GERCEKLESTIRELIM
-
-      $(".yajra-datatable").on("change", ".isDefault", function () {
-        var id = $(this).data("id");
-        var data = $(this).prop("checked");
-        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/is-default";
-        axios.post(url, {
-          data: data
-        }).then(function (res) {
-          location.reload();
-        });
       }); // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
 
       $(".yajra-datatable").on("click", ".isDelete", function () {
         var id = $(this).data("id");
-        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/delete";
+        var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + id + "/delete";
         Swal.fire({
           title: 'Dikkat!',
           text: "Kayıt Silinecektir. Onaylıyor Musunuz ?",
@@ -48174,7 +48163,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "col" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _c("h5", { staticClass: "card-title" }, [_vm._v("Diller")]),
+            _c("h5", { staticClass: "card-title" }, [_vm._v("Kullanıcılar")]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
