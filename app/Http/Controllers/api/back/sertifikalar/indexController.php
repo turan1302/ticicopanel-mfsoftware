@@ -41,4 +41,13 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // AKTIF PASIF KISMI AYARLAMASI
+    public function isActiveSetter(Request $request, SertifikaModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "sr_durum" => $data
+        ));
+    }
 }
