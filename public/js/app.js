@@ -14015,13 +14015,20 @@ __webpack_require__.r(__webpack_exports__);
         var data = res.data;
         _this.yt_baslik = data.yt_baslik;
         _this.yt_yetkiler = data.yt_yetkiler;
-
-        _this.yetkiKontrol();
       });
     },
-    yetkiKontrol: function yetkiKontrol() {
-      var sonuc = this.yt_yetkiler;
-      console.log(sonuc);
+    yetkiKontrol: function yetkiKontrol(modul, yetki) {
+      var yetki_data = JSON.parse(this.yt_yetkiler);
+
+      if (yetki_data[modul]) {
+        if (yetki_data[modul][yetki]) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
     }
   }
 });
@@ -56804,48 +56811,18 @@ var render = function () {
                           _vm._l(_vm.yetkiler, function (index, item) {
                             return _c("tr", [
                               _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v(_vm._s(item.toUpperCase())),
+                                _vm._v(_vm._s(index)),
                               ]),
                               _vm._v(" "),
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: item,
-                                        expression: "item",
-                                      },
-                                    ],
-                                    key: index,
-                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    attrs: { type: "checkbox" },
                                     domProps: {
-                                      checked: Array.isArray(item)
-                                        ? _vm._i(item, null) > -1
-                                        : item,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$a = item,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (item = $$a.concat([$$v]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (item = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          item = $$c
-                                        }
-                                      },
+                                      checked: _vm.yetkiKontrol(
+                                        item,
+                                        "aktiflik"
+                                      ),
                                     },
                                   }),
                                   _vm._v(" "),
@@ -56856,42 +56833,12 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: item,
-                                        expression: "item",
-                                      },
-                                    ],
-                                    key: index,
-                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    attrs: { type: "checkbox" },
                                     domProps: {
-                                      checked: Array.isArray(item)
-                                        ? _vm._i(item, null) > -1
-                                        : item,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$a = item,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (item = $$a.concat([$$v]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (item = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          item = $$c
-                                        }
-                                      },
+                                      checked: _vm.yetkiKontrol(
+                                        item,
+                                        "listeleme"
+                                      ),
                                     },
                                   }),
                                   _vm._v(" "),
@@ -56902,42 +56849,9 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: item,
-                                        expression: "item",
-                                      },
-                                    ],
-                                    key: index,
-                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    attrs: { type: "checkbox" },
                                     domProps: {
-                                      checked: Array.isArray(item)
-                                        ? _vm._i(item, null) > -1
-                                        : item,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$a = item,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (item = $$a.concat([$$v]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (item = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          item = $$c
-                                        }
-                                      },
+                                      checked: _vm.yetkiKontrol(item, "ekleme"),
                                     },
                                   }),
                                   _vm._v(" "),
@@ -56948,42 +56862,12 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: item,
-                                        expression: "item",
-                                      },
-                                    ],
-                                    key: index,
-                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    attrs: { type: "checkbox" },
                                     domProps: {
-                                      checked: Array.isArray(item)
-                                        ? _vm._i(item, null) > -1
-                                        : item,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$a = item,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (item = $$a.concat([$$v]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (item = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          item = $$c
-                                        }
-                                      },
+                                      checked: _vm.yetkiKontrol(
+                                        item,
+                                        "guncelleme"
+                                      ),
                                     },
                                   }),
                                   _vm._v(" "),
@@ -56994,42 +56878,12 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: item,
-                                        expression: "item",
-                                      },
-                                    ],
-                                    key: index,
-                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    attrs: { type: "checkbox" },
                                     domProps: {
-                                      checked: Array.isArray(item)
-                                        ? _vm._i(item, null) > -1
-                                        : item,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$a = item,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (item = $$a.concat([$$v]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (item = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          item = $$c
-                                        }
-                                      },
+                                      checked: _vm.yetkiKontrol(
+                                        item,
+                                        "goruntuleme"
+                                      ),
                                     },
                                   }),
                                   _vm._v(" "),
@@ -57040,42 +56894,9 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: item,
-                                        expression: "item",
-                                      },
-                                    ],
-                                    key: index,
-                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    attrs: { type: "checkbox" },
                                     domProps: {
-                                      checked: Array.isArray(item)
-                                        ? _vm._i(item, null) > -1
-                                        : item,
-                                    },
-                                    on: {
-                                      change: function ($event) {
-                                        var $$a = item,
-                                          $$el = $event.target,
-                                          $$c = $$el.checked ? true : false
-                                        if (Array.isArray($$a)) {
-                                          var $$v = null,
-                                            $$i = _vm._i($$a, $$v)
-                                          if ($$el.checked) {
-                                            $$i < 0 &&
-                                              (item = $$a.concat([$$v]))
-                                          } else {
-                                            $$i > -1 &&
-                                              (item = $$a
-                                                .slice(0, $$i)
-                                                .concat($$a.slice($$i + 1)))
-                                          }
-                                        } else {
-                                          item = $$c
-                                        }
-                                      },
+                                      checked: _vm.yetkiKontrol(item, "silme"),
                                     },
                                   }),
                                   _vm._v(" "),

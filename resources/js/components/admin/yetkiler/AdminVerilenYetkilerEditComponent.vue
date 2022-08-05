@@ -45,40 +45,40 @@
                                             </thead>
                                             <tbody>
                                             <tr v-for="(index,item) in yetkiler">
-                                                <th scope="row">{{ item.toUpperCase() }}</th>
+                                                <th scope="row">{{ index }}</th>
                                                 <td>
                                                     <label class="switch">
-                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <input :checked="yetkiKontrol(item,'aktiflik')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <input :checked="yetkiKontrol(item,'listeleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <input :checked="yetkiKontrol(item,'ekleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <input :checked="yetkiKontrol(item,'guncelleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <input :checked="yetkiKontrol(item,'goruntuleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <input :checked="yetkiKontrol(item,'silme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
@@ -158,14 +158,19 @@ export default {
                 var data = res.data;
                 this.yt_baslik = data.yt_baslik;
                 this.yt_yetkiler = data.yt_yetkiler;
-
-                this.yetkiKontrol();
             });
         },
-        yetkiKontrol() {
-            var sonuc = this.yt_yetkiler;
-            console.log(sonuc);
-
+        yetkiKontrol(modul,yetki) {
+            var yetki_data = JSON.parse(this.yt_yetkiler);
+            if (yetki_data[modul]){
+                if (yetki_data[modul][yetki]){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return true;
+            }
         }
     }
 }
