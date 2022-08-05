@@ -56817,7 +56817,10 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    attrs: { type: "checkbox" },
+                                    attrs: {
+                                      name: "yetkiler[" + item + "][aktiflik]",
+                                      type: "checkbox",
+                                    },
                                     domProps: {
                                       checked: _vm.yetkiKontrol(
                                         item,
@@ -56833,7 +56836,10 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    attrs: { type: "checkbox" },
+                                    attrs: {
+                                      name: "yetkiler[" + item + "][listeleme]",
+                                      type: "checkbox",
+                                    },
                                     domProps: {
                                       checked: _vm.yetkiKontrol(
                                         item,
@@ -56849,7 +56855,10 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    attrs: { type: "checkbox" },
+                                    attrs: {
+                                      name: "yetkiler[" + item + "][ekleme]",
+                                      type: "checkbox",
+                                    },
                                     domProps: {
                                       checked: _vm.yetkiKontrol(item, "ekleme"),
                                     },
@@ -56862,7 +56871,11 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    attrs: { type: "checkbox" },
+                                    attrs: {
+                                      name:
+                                        "yetkiler[" + item + "][guncelleme]",
+                                      type: "checkbox",
+                                    },
                                     domProps: {
                                       checked: _vm.yetkiKontrol(
                                         item,
@@ -56878,7 +56891,11 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    attrs: { type: "checkbox" },
+                                    attrs: {
+                                      name:
+                                        "yetkiler[" + item + "][goruntuleme]",
+                                      type: "checkbox",
+                                    },
                                     domProps: {
                                       checked: _vm.yetkiKontrol(
                                         item,
@@ -56894,7 +56911,10 @@ var render = function () {
                               _c("td", [
                                 _c("label", { staticClass: "switch" }, [
                                   _c("input", {
-                                    attrs: { type: "checkbox" },
+                                    attrs: {
+                                      name: "yetkiler[" + item + "][silme]",
+                                      type: "checkbox",
+                                    },
                                     domProps: {
                                       checked: _vm.yetkiKontrol(item, "silme"),
                                     },

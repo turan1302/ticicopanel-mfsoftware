@@ -48,37 +48,37 @@
                                                 <th scope="row">{{ index }}</th>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :checked="yetkiKontrol(item,'aktiflik')" type="checkbox">
+                                                        <input :name="'yetkiler[' + item + '][aktiflik]'" :checked="yetkiKontrol(item,'aktiflik')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :checked="yetkiKontrol(item,'listeleme')" type="checkbox">
+                                                        <input :name="'yetkiler[' + item + '][listeleme]'" :checked="yetkiKontrol(item,'listeleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :checked="yetkiKontrol(item,'ekleme')" type="checkbox">
+                                                        <input :name="'yetkiler[' + item + '][ekleme]'" :checked="yetkiKontrol(item,'ekleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :checked="yetkiKontrol(item,'guncelleme')" type="checkbox">
+                                                        <input :name="'yetkiler[' + item + '][guncelleme]'" :checked="yetkiKontrol(item,'guncelleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :checked="yetkiKontrol(item,'goruntuleme')" type="checkbox">
+                                                        <input :name="'yetkiler[' + item + '][goruntuleme]'" :checked="yetkiKontrol(item,'goruntuleme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="switch">
-                                                        <input :checked="yetkiKontrol(item,'silme')" type="checkbox">
+                                                        <input :name="'yetkiler[' + item + '][silme]'" :checked="yetkiKontrol(item,'silme')" type="checkbox">
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </td>
