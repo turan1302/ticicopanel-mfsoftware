@@ -110,6 +110,8 @@ Vue.component('admin-sertifikalar-create-component', require('./components/admin
 Vue.component('admin-sertifikalar-edit-component', require('./components/admin/sertifikalar/AdminSertifikalarEditComponent').default);
 Vue.component('admin-sertifikalar-show-component', require('./components/admin/sertifikalar/AdminSertifikalarShowComponent').default);
 
+// YETKILER KISMI AYARLANAMSI
+Vue.component('admin-yetkiler-list-component', require('./components/admin/yetkiler/AdminYetkilerListComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

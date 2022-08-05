@@ -227,4 +227,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         });
     });
 
+    // YETKILER KISMI AYARLANMASI
+    Route::group(['prefix' => 'yetkiler', 'namespace' => 'yetkiler'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'index']);
+    });
+
 });
