@@ -90,8 +90,6 @@ export default {
         this.yetkiler = JSON.parse(this.$props.yetkiler);
         var yt_id = this.$props.yt_id;
         this.yetkiGetir(yt_id);
-
-        this.yetkiKontrol();
     },
     methods: {
         yetkiGuncelle() {
@@ -130,9 +128,6 @@ export default {
                 this.yt_baslik = data.yt_baslik;
                 this.yt_yetkiler = data.yt_yetkiler;
             });
-        },
-        yetkiKontrol() {
-            alert(this.yt_yetkiler);
         }
     }
 }

@@ -13947,7 +13947,6 @@ __webpack_require__.r(__webpack_exports__);
     this.yetkiler = JSON.parse(this.$props.yetkiler);
     var yt_id = this.$props.yt_id;
     this.yetkiGetir(yt_id);
-    this.yetkiKontrol();
   },
   methods: {
     yetkiGuncelle: function yetkiGuncelle() {
@@ -13987,9 +13986,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.yt_baslik = data.yt_baslik;
         _this.yt_yetkiler = data.yt_yetkiler;
       });
-    },
-    yetkiKontrol: function yetkiKontrol() {
-      alert(this.yt_yetkiler);
     }
   }
 });
