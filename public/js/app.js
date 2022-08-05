@@ -13929,19 +13929,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminServiceCreateComponent",
   props: ["geriye_don", "yt_id", "yetkiler"],
   data: function data() {
     return {
       yt_baslik: '',
+      yt_yetkiler: '',
       yetkiler: '',
       errors: []
     };
   },
   mounted: function mounted() {
     this.yetkiler = JSON.parse(this.$props.yetkiler);
+    var yt_id = this.$props.yt_id;
     this.yetkiGetir(yt_id);
+    this.yetkiKontrol();
   },
   methods: {
     yetkiGuncelle: function yetkiGuncelle() {
@@ -13979,7 +13985,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(url).then(function (res) {
         var data = res.data;
         _this.yt_baslik = data.yt_baslik;
+        _this.yt_yetkiler = data.yt_yetkiler;
       });
+    },
+    yetkiKontrol: function yetkiKontrol() {
+      alert(this.yt_yetkiler);
     }
   }
 });
@@ -56759,17 +56769,57 @@ var render = function () {
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(_vm.yetkiler, function (item) {
+                          _vm._l(_vm.yetkiler, function (index, item) {
                             return _c("tr", [
                               _c("th", { attrs: { scope: "row" } }, [
-                                _vm._v(_vm._s(item)),
+                                _vm._v(_vm._s(item.toUpperCase())),
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v("Mark")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("Otto")]),
-                              _vm._v(" "),
-                              _c("td", [_vm._v("@mdo")]),
+                              _c("td", [
+                                _c("label", { staticClass: "switch" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item,
+                                        expression: "item",
+                                      },
+                                    ],
+                                    key: index,
+                                    attrs: { type: "checkbox", "data-id": "1" },
+                                    domProps: {
+                                      checked: Array.isArray(item)
+                                        ? _vm._i(item, null) > -1
+                                        : item,
+                                    },
+                                    on: {
+                                      change: function ($event) {
+                                        var $$a = item,
+                                          $$el = $event.target,
+                                          $$c = $$el.checked ? true : false
+                                        if (Array.isArray($$a)) {
+                                          var $$v = null,
+                                            $$i = _vm._i($$a, $$v)
+                                          if ($$el.checked) {
+                                            $$i < 0 &&
+                                              (item = $$a.concat([$$v]))
+                                          } else {
+                                            $$i > -1 &&
+                                              (item = $$a
+                                                .slice(0, $$i)
+                                                .concat($$a.slice($$i + 1)))
+                                          }
+                                        } else {
+                                          item = $$c
+                                        }
+                                      },
+                                    },
+                                  }),
+                                  _vm._v(" "),
+                                  _c("span", { staticClass: "slider round" }),
+                                ]),
+                              ]),
                             ])
                           }),
                           0

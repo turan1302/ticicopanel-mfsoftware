@@ -44,11 +44,14 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr v-for="item in yetkiler">
-                                                <th scope="row">{{ item }}</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
+                                            <tr v-for="(index,item) in yetkiler">
+                                                <th scope="row">{{ item.toUpperCase() }}</th>
+                                                <td>
+                                                    <label class="switch">
+                                                        <input v-model="item" :key="index" type="checkbox" data-id="1">
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -74,17 +77,21 @@
 <script>
 export default {
     name: "AdminServiceCreateComponent",
-    props: ["geriye_don", "yt_id","yetkiler"],
+    props: ["geriye_don", "yt_id", "yetkiler"],
     data() {
         return {
             yt_baslik: '',
-            yetkiler : '',
+            yt_yetkiler : '',
+            yetkiler: '',
             errors: [],
         }
     },
     mounted() {
-        this.yetkiler =  JSON.parse(this.$props.yetkiler);
+        this.yetkiler = JSON.parse(this.$props.yetkiler);
+        var yt_id = this.$props.yt_id;
         this.yetkiGetir(yt_id);
+
+        this.yetkiKontrol();
     },
     methods: {
         yetkiGuncelle() {
@@ -121,8 +128,12 @@ export default {
 
                 var data = res.data;
                 this.yt_baslik = data.yt_baslik;
+                this.yt_yetkiler = data.yt_yetkiler;
             });
         },
+        yetkiKontrol() {
+            alert(this.yt_yetkiler);
+        }
     }
 }
 </script>
