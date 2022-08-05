@@ -219,6 +219,19 @@
                 </ul>
             </li>
 
+            {{-- YETKILER KISMI AYARLANMASI --}}
+            <li>
+                <a href=""><i class="material-icons-two-tone">vpn_key</i>Yetkiler<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{{ route('back.yetkiler.index') }}">Yetki Listesi</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('back.yetkiler.create') }}">Yeni Yetki Ekle</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
