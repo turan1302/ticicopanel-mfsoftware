@@ -32,4 +32,13 @@ class indexController extends Controller
 
         return $data;
     }
+
+    // AKTIFLIK KISMI AYARLANMASI
+    public function isActiveSetter(Request $request, YetkiModel $item)
+    {
+        $data = ($request->data == "true") ? 1 : 0;
+        $item->update(array(
+            "yt_durum" => $data
+        ));
+    }
 }
