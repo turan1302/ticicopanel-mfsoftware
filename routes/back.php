@@ -180,4 +180,11 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('verilen_yetkiler', [\App\Http\Controllers\back\yetkiler\indexController::class, 'verilen_yetkiler'])->name('verilen_yetkiler');
         });
     });
+
+    /** KULLANICILAR KISMI AYARLANAMSI **/
+    Route::group(['prefix' => 'kullanicilar', 'namespace' => 'kullanicilar', 'as' => 'kullanicilar.'], function () {
+        Route::get('', [\App\Http\Controllers\back\kullanicilar\indexController::class, 'index'])->name('index');
+        Route::get('create', [\App\Http\Controllers\back\kullanicilar\indexController::class, 'create'])->name('create');
+    });
+
 });
