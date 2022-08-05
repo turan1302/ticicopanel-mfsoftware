@@ -23,7 +23,7 @@ class indexController extends Controller
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
 //                $edit = "<a href='" . route('back.service.edit', $query->service_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
-                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->service_id'><i class='fa fa-times'></i> Sil</button>";
+                $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->yt_id'><i class='fa fa-times'></i> Sil</button>";
 //
                 return  $delete;
             })
@@ -31,6 +31,27 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // SILME KISMI AYARLANMASI
+    public function delete(YetkiModel $item){
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
     }
 
     // AKTIFLIK KISMI AYARLANMASI
