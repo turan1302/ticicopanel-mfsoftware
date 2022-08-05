@@ -22,10 +22,11 @@ class indexController extends Controller
             })
             ->addColumn("actions", function ($query) {
 //                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $verilen_yetkiler = "<a href='" . route('back.yetkiler.verilen_yetkiler', $query->yt_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Verilen Yetkiler</a>";
                 $edit = "<a href='" . route('back.yetkiler.edit', $query->yt_id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->yt_id'><i class='fa fa-times'></i> Sil</button>";
 
-                return  $edit." ".$delete;
+                return  $verilen_yetkiler." ".$edit." ".$delete;
             })
             ->rawColumns(["yt_durum", "actions"])
             ->make(true);
@@ -112,5 +113,10 @@ class indexController extends Controller
         $item->update(array(
             "yt_durum" => $data
         ));
+    }
+
+    /*************************** VERILEN YETKILERIN GORUNTULENME KISMI ********************************/
+    public function verilen_yetkiler(YetkiModel $item){
+
     }
 }

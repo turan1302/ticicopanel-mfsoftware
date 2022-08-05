@@ -177,6 +177,7 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         Route::get('create', [\App\Http\Controllers\back\yetkiler\indexController::class, 'create'])->name('create');
         Route::group(['prefix' => '{item}'], function () {
             Route::get('edit', [\App\Http\Controllers\back\yetkiler\indexController::class, 'edit'])->name('edit');
+            Route::get('verilen_yetkiler', [\App\Http\Controllers\back\yetkiler\indexController::class, 'verilen_yetkiler'])->name('verilen_yetkiler');
         });
     });
 });

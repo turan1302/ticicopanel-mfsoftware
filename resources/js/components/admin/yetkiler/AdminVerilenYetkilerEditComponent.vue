@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Yetki Güncelle</h1>
+                                <h1>Verilen Yetkileri Güncelle</h1>
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Yetki Bilgileri</h5>
+                                <h5 class="card-title">Verilen Yetki Bilgileri</h5>
                             </div>
                             <div class="card-body">
 
@@ -31,11 +31,27 @@
                                 <form method="POST" @submit.prevent="yetkiGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
 
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Yetki Başlık</label>
-                                            <input type="text" v-model="yt_baslik" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Yetki Adı</th>
+                                                <th scope="col">Aktiflik</th>
+                                                <th scope="col">Listeleme</th>
+                                                <th scope="col">Ekleme</th>
+                                                <th scope="col">Güncelleme</th>
+                                                <th scope="col">Görüntüleme</th>
+                                                <th scope="col">Silme</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
 
                                         <div class="row">
                                             <div class="example-component m-2">
@@ -57,17 +73,17 @@
 
 <script>
 export default {
-    name: "AdminYetkilerEditComponent",
+    name: "AdminServiceCreateComponent",
     props: ["geriye_don", "yt_id"],
     data() {
         return {
-            yt_baslik : '',
+            yt_baslik: '',
             errors: [],
         }
     },
     mounted() {
         var yt_id = this.$props.yt_id;
-      this.yetkiGetir(yt_id);
+        this.yetkiGetir(yt_id);
     },
     methods: {
         yetkiGuncelle() {
@@ -80,10 +96,10 @@ export default {
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
                 var id = this.$props.yt_id;
-                var url = "http://127.0.0.1:8000/api/back/yetkiler/"+id+"/update";
+                var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/update";
 
                 axios.post(url, {
-                   yt_baslik : this.yt_baslik,
+                    yt_baslik: this.yt_baslik,
                 }).then((res) => {
                     var data = res.data;
                     Swal.fire({

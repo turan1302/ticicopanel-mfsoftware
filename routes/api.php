@@ -236,6 +236,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
             Route::post('update', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'update']);
             Route::get('delete', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'isActiveSetter']);
+
+            // YETKI AYAR KISMININ GERCEKLESTIRILMESINI AYARLAYALIM
+            Route::get('verilen-yetkiler',[\App\Http\Controllers\api\back\yetkiler\indexController::class,'verilen_yetkiler'])->name('verilen_yetkiler');
         });
     });
 });

@@ -115,6 +115,8 @@ Vue.component('admin-yetkiler-list-component', require('./components/admin/yetki
 Vue.component('admin-yetkiler-create-component', require('./components/admin/yetkiler/AdminYetkilerCreateComponent').default);
 Vue.component('admin-yetkiler-edit-component', require('./components/admin/yetkiler/AdminYetkilerEditComponent').default);
 
+Vue.component('admin-verilen-yetkiler-edit-component', require('./components/admin/yetkiler/AdminVerilenYetkilerEditComponent').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
