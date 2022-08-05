@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\sertifikalar;
 
 use App\Http\Controllers\Controller;
+use App\Models\SertifikaModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -14,5 +15,10 @@ class indexController extends Controller
     // EKLEME KISMI
     public function create(){
         return view('back.sertifikalar.create');
+    }
+
+    // GUNCLELEME KISMI
+    public function edit(SertifikaModel $item){
+        return view('back.sertifikalar.edit',compact('item'));
     }
 }

@@ -165,6 +165,9 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     Route::group(['prefix' => 'sertifikalar', 'namespace' => 'sertifikalar', 'as' => 'sertifikalar.'], function () {
         Route::get('', [\App\Http\Controllers\back\sertifikalar\indexController::class, 'index'])->name('index');
         Route::get('create', [\App\Http\Controllers\back\sertifikalar\indexController::class, 'create'])->name('create');
+        Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\back\sertifikalar\indexController::class, 'edit'])->name('edit');
+        });
     });
 
 });
