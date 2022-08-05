@@ -28,7 +28,7 @@
                                 </div>
 
 
-                                <form id="formEl" method="POST" @submit.prevent="yetkiAyarGuncelle()"  enctype="multipart/form-data">
+                                <form id="yetkiForm" method="POST" @submit.prevent="yetkiAyarGuncelle()"  enctype="multipart/form-data">
                                     <div class="example-container">
 
                                         <table class="table">
@@ -132,10 +132,10 @@ export default {
                 var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/verilen-yetki-guncelle";
 
 
-                let formData = new FormData(formEl);
+                let yetkiFormData = new FormData(yetkiForm); // YETKI FDORM DATALARININ ALINMASI GERCEKLESTIRILDI
 
 
-                axios.post(url, formData).then((res) => {
+                axios.post(url, yetkiFormData).then((res) => {
                     var data = res.data;
                     Swal.fire({
                         icon: data.type,

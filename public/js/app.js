@@ -13986,8 +13986,9 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errors.length == 0) {
         var id = this.$props.yt_id;
         var url = "http://127.0.0.1:8000/api/back/yetkiler/" + id + "/verilen-yetki-guncelle";
-        var formData = new FormData(formEl);
-        axios.post(url, formData).then(function (res) {
+        var yetkiFormData = new FormData(yetkiForm); // YETKI FDORM DATALARININ ALINMASI GERCEKLESTIRILDI
+
+        axios.post(url, yetkiFormData).then(function (res) {
           var data = res.data;
           Swal.fire({
             icon: data.type,
@@ -56788,7 +56789,7 @@ var render = function () {
                   "form",
                   {
                     attrs: {
-                      id: "formEl",
+                      id: "yetkiForm",
                       method: "POST",
                       enctype: "multipart/form-data",
                     },
