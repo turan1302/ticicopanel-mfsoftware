@@ -42,6 +42,49 @@ class indexController extends Controller
         return $data;
     }
 
+    // EKLEME KISMI AYARLANMASI
+    public function store(Request $request){
+        $data = $request->except("_token");
+        $result = SertifikaModel::create($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+    }
+
+    // SILME KISMI AYARLANMASI
+    public function delete(SertifikaModel $item){
+        $sonuc = $item->delete();
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+    }
+
     // AKTIF PASIF KISMI AYARLAMASI
     public function isActiveSetter(Request $request, SertifikaModel $item)
     {
