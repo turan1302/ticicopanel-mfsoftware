@@ -50,4 +50,16 @@ class indexController extends Controller
             "sr_durum" => $data
         ));
     }
+
+    // SIRALAMA KISMI AYARLANMASI
+    public function rankSetter(Request $request){
+        parse_str($request->post('data'), $sirala);
+        $sirala = $sirala['item'];
+
+        foreach ($sirala as $k => $v) {
+            SertifikaModel::where("sr_id", $v)->update(array(
+                "sr_sira" => $k
+            ));
+        }
+    }
 }

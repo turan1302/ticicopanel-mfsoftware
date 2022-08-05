@@ -216,6 +216,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // SERTIFIKALAR KISMI AYARLANMASI
     Route::group(['prefix' => 'sertifikalar', 'namespace' => 'sertifikalar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'index']);
+        Route::post('rank-setter', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
             Route::post('is-active', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'isActiveSetter']);
         });
