@@ -11673,30 +11673,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminSertifikalarEditComponent",
-  props: ["geriye_don", "service_id"],
+  props: ["geriye_don", "sr_id"],
   data: function data() {
     return {
       sr_baslik: '',
@@ -11707,8 +11686,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var service_id = this.$props.service_id;
-    this.servisGetir(service_id);
+    var sr_id = this.$props.sr_id;
+    this.sertifikaGetir(sr_id);
   },
   methods: {
     sertifikaGuncelle: function sertifikaGuncelle() {
@@ -11733,19 +11712,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var id = this.$props.service_id;
-        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/update";
-        var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
-
+        var id = this.$props.sr_id;
+        var url = "http://127.0.0.1:8000/api/back/sertifikalar/" + id + "/update";
         axios.post(url, {
-          service_ikon: this.service_ikon,
-          service_baslik: this.service_baslik,
-          service_aciklama: aciklama,
-          // SERVIS KISMI ACIKLAMASI
-          service_title: this.service_title,
-          service_description: this.service_description,
-          service_keyword: this.service_keyword,
-          service_etiketler: this.service_etiketler
+          sr_baslik: this.sr_baslik,
+          sr_aciklama: this.sr_aciklama,
+          sr_yil: this.sr_yil,
+          sr_derece: this.sr_derece
         }).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -11762,19 +11735,16 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    servisGetir: function servisGetir(service_id) {
+    sertifikaGetir: function sertifikaGetir(sr_id) {
       var _this = this;
 
-      var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+      var url = "http://127.0.0.1:8000/api/back/sertifikalar/" + sr_id + "/edit";
       axios.get(url).then(function (res) {
         var data = res.data;
-        _this.service_ikon = data.service_ikon;
-        _this.service_baslik = data.service_baslik;
-        _this.service_aciklama = data.service_aciklama;
-        _this.service_title = data.service_title;
-        _this.service_description = data.service_description;
-        _this.service_keyword = data.service_keyword;
-        _this.service_etiketler = data.service_etiketler;
+        _this.sr_baslik = data.sr_baslik;
+        _this.sr_aciklama = data.sr_aciklama;
+        _this.sr_yil = data.sr_yil;
+        _this.sr_derece = data.sr_derece;
       });
     }
   }
@@ -52128,7 +52098,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis İkon")]
+                          [_vm._v("Sertifika Başlık")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -52136,8 +52106,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_ikon,
-                              expression: "service_ikon",
+                              value: _vm.sr_baslik,
+                              expression: "sr_baslik",
                             },
                           ],
                           staticClass: "form-control",
@@ -52145,13 +52115,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_ikon },
+                          domProps: { value: _vm.sr_baslik },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_ikon = $event.target.value
+                              _vm.sr_baslik = $event.target.value
                             },
                           },
                         }),
@@ -52164,43 +52134,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis Başlık")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.service_baslik,
-                              expression: "service_baslik",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.service_baslik },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.service_baslik = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Servis Açıklama")]
+                          [_vm._v("Sertifika Açıklama")]
                         ),
                         _vm._v(" "),
                         _c("textarea", {
@@ -52208,52 +52142,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_aciklama,
-                              expression: "service_aciklama",
-                            },
-                          ],
-                          staticClass: "editor",
-                          attrs: { type: "text", id: "service_aciklama" },
-                          domProps: { value: _vm.service_aciklama },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.service_aciklama = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Servis Seo Title")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
+                              value: _vm.sr_aciklama,
+                              expression: "sr_aciklama",
                             },
                           ],
                           staticClass: "form-control",
-                          attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
+                          attrs: { rows: "5" },
+                          domProps: { value: _vm.sr_aciklama },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_title = $event.target.value
+                              _vm.sr_aciklama = $event.target.value
                             },
                           },
                         }),
@@ -52266,11 +52167,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [
-                            _vm._v(
-                              "Servis Seo\n                                            Description"
-                            ),
-                          ]
+                          [_vm._v("Sertifika Yıl")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -52278,22 +52175,22 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_description,
-                              expression: "service_description",
+                              value: _vm.sr_yil,
+                              expression: "sr_yil",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
+                            type: "date",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_description },
+                          domProps: { value: _vm.sr_yil },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_description = $event.target.value
+                              _vm.sr_yil = $event.target.value
                             },
                           },
                         }),
@@ -52306,7 +52203,7 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
-                          [_vm._v("Servis Keyword")]
+                          [_vm._v("Sertifika Derece")]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -52314,60 +52211,24 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_keyword,
-                              expression: "service_keyword",
+                              value: _vm.sr_derece,
+                              expression: "sr_derece",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "text",
-                            placeholder: "Aralarına Virgül Koyarak Yazınız",
+                            type: "number",
+                            min: "0",
+                            max: "100",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_keyword },
+                          domProps: { value: _vm.sr_derece },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_keyword = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Servis Etiketler")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.service_etiketler,
-                              expression: "service_etiketler",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            placeholder: "Aralarına Virgül Koyarak Yazınız",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.service_etiketler },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.service_etiketler = $event.target.value
+                              _vm.sr_derece = $event.target.value
                             },
                           },
                         }),

@@ -30,48 +30,27 @@
 
                                 <form method="POST" @submit.prevent="sertifikaGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
+
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis İkon</label>
-                                            <input type="text" v-model="service_ikon" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sertifika Başlık</label>
+                                            <input type="text" v-model="sr_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Başlık</label>
-                                            <input type="text" v-model="service_baslik" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sertifika Açıklama</label>
+                                            <textarea class="form-control" v-model="sr_aciklama" rows="5"></textarea>
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Sertifika Yıl</label>
+                                            <input type="date" v-model="sr_yil" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Açıklama</label>
-                                            <textarea type="text" id="service_aciklama" class="editor"
-                                                      v-model="service_aciklama"></textarea>
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo Title</label>
-                                            <input v-model="service_title" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Seo
-                                                Description</label>
-                                            <input type="text" v-model="service_description" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Keyword</label>
-                                            <input type="text" v-model="service_keyword"
-                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Servis Etiketler</label>
-                                            <input type="text" v-model="service_etiketler"
-                                                   placeholder="Aralarına Virgül Koyarak Yazınız" class="form-control"
+                                            <label for="exampleInputEmail1" class="form-label">Sertifika Derece</label>
+                                            <input type="number" min="0" max="100" v-model="sr_derece" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -96,7 +75,7 @@
 <script>
 export default {
     name: "AdminSertifikalarEditComponent",
-    props: ["geriye_don", "service_id"],
+    props: ["geriye_don", "sr_id"],
     data() {
         return {
             sr_baslik: '',
@@ -107,8 +86,8 @@ export default {
         }
     },
     mounted() {
-        var service_id = this.$props.service_id;
-      this.servisGetir(service_id);
+        var sr_id = this.$props.sr_id;
+      this.sertifikaGetir(sr_id);
     },
     methods: {
         sertifikaGuncelle() {
@@ -132,19 +111,15 @@ export default {
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
-                var id = this.$props.service_id;
-                var url = "http://127.0.0.1:8000/api/back/service/"+id+"/update";
+                var id = this.$props.sr_id;
+                var url = "http://127.0.0.1:8000/api/back/sertifikalar/"+id+"/update";
 
-                var aciklama = tinyMCE.get('service_aciklama').getContent();  // SERVİS KISMI ACIKLAMASI
 
                 axios.post(url, {
-                    service_ikon: this.service_ikon,
-                    service_baslik: this.service_baslik,
-                    service_aciklama: aciklama,  // SERVIS KISMI ACIKLAMASI
-                    service_title: this.service_title,
-                    service_description: this.service_description,
-                    service_keyword: this.service_keyword,
-                    service_etiketler: this.service_etiketler,
+                    sr_baslik: this.sr_baslik,
+                    sr_aciklama: this.sr_aciklama,
+                    sr_yil: this.sr_yil,
+                    sr_derece: this.sr_derece,
                 }).then((res) => {
                     var data = res.data;
                     Swal.fire({
@@ -161,18 +136,15 @@ export default {
                 });
             }
         },
-        servisGetir(service_id) {
-            var url = "http://127.0.0.1:8000/api/back/service/" + service_id + "/edit";
+        sertifikaGetir(sr_id) {
+            var url = "http://127.0.0.1:8000/api/back/sertifikalar/" + sr_id + "/edit";
             axios.get(url).then((res) => {
 
                 var data = res.data;
-                this.service_ikon = data.service_ikon;
-                this.service_baslik = data.service_baslik;
-                this.service_aciklama = data.service_aciklama;
-                this.service_title = data.service_title;
-                this.service_description = data.service_description;
-                this.service_keyword = data.service_keyword;
-                this.service_etiketler = data.service_etiketler;
+                this.sr_baslik = data.sr_baslik;
+                this.sr_aciklama = data.sr_aciklama;
+                this.sr_yil = data.sr_yil;
+                this.sr_derece = data.sr_derece;
             });
         },
     }

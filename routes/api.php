@@ -220,6 +220,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
         Route::post('rank-setter', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'rankSetter']);
         Route::group(['prefix' => '{item}'], function () {
             Route::get('edit', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'edit']);
+            Route::post('update', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'update']);
             Route::get('delete', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\sertifikalar\indexController::class, 'isActiveSetter']);
         });

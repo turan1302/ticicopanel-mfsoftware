@@ -69,6 +69,28 @@ class indexController extends Controller
         return response()->json($item);
     }
 
+    // GUNCELLEME KISMI
+    public function update(Request $request,SertifikaModel $item){
+        $data = $request->except("_token");
+        $result = $item->update($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+    }
+
     // SILME KISMI AYARLANMASI
     public function delete(SertifikaModel $item){
         $sonuc = $item->delete();
