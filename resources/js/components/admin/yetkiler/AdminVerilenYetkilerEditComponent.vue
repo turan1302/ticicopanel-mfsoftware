@@ -106,7 +106,7 @@
 
 <script>
 export default {
-    name: "AdminServiceCreateComponent",
+    name: "AdminVerilenYetkilerEditComponent",
     props: ["geriye_don", "yt_id", "yetkiler"],
     data() {
         return {
