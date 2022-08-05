@@ -112,6 +112,7 @@ Vue.component('admin-sertifikalar-show-component', require('./components/admin/s
 
 // YETKILER KISMI AYARLANAMSI
 Vue.component('admin-yetkiler-list-component', require('./components/admin/yetkiler/AdminYetkilerListComponent').default);
+Vue.component('admin-yetkiler-create-component', require('./components/admin/yetkiler/AdminYetkilerCreateComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

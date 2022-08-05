@@ -33,6 +33,29 @@ class indexController extends Controller
         return $data;
     }
 
+    // YATKI KISMI AYARLANMASI
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        $result = YetkiModel::create($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+    }
+
     // SILME KISMI AYARLANMASI
     public function delete(YetkiModel $item){
         $sonuc = $item->delete();

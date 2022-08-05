@@ -230,6 +230,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
     // YETKILER KISMI AYARLANMASI
     Route::group(['prefix' => 'yetkiler', 'namespace' => 'yetkiler'], function () {
         Route::get('', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'store']);
         Route::group(['prefix' => '{item}'], function () {
             Route::get('delete', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'delete']);
             Route::post('is-active', [\App\Http\Controllers\api\back\yetkiler\indexController::class, 'isActiveSetter']);

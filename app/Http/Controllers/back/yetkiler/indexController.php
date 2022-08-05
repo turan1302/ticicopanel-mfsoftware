@@ -13,7 +13,6 @@ class indexController extends Controller
 
     // EKLEME KSMI
     public function create(){
-        echo "Yes";
-        die;
+        return view('back.yetkiler.create');
     }
 }
