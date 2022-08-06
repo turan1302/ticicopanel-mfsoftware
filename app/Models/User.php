@@ -27,10 +27,6 @@ class User extends Authenticatable
         "durum"
     ];
 
-
-//    protected $guard = "yonetim";  // YOETIM OLARKA GUARD TANIMALAM ISLEMINI GERCEKLESTIRLIM
-
-
     /**
      * The attributes that should be hidden for serialization.
      *
