@@ -6178,6 +6178,7 @@ __webpack_require__.r(__webpack_exports__);
       mail_konu: '',
       mail_baslik: '',
       mail_icerik: '',
+      showSendButton: true,
       errors: []
     };
   },
@@ -6202,6 +6203,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
+        this.showSendButton = false;
         var url = "http://127.0.0.1:8000/api/back/ayarlar/toplu-mesaj-gonder";
         axios.post(url, {
           mail_konu: this.mail_konu,
@@ -46422,6 +46424,14 @@ var render = function () {
                           _c(
                             "button",
                             {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: _vm.showSendButton,
+                                  expression: "showSendButton",
+                                },
+                              ],
                               staticClass: "btn btn-success btn-md",
                               attrs: { type: "submit" },
                             },

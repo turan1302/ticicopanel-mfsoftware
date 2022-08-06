@@ -48,7 +48,7 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Gönder</button>
+                                                <button v-show="showSendButton" type="submit" class="btn btn-success btn-md"> Gönder</button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
@@ -73,6 +73,7 @@ export default {
            mail_konu : '',
             mail_baslik : '',
             mail_icerik : '',
+            showSendButton : true,
             errors: [],
         }
     },
@@ -95,6 +96,9 @@ export default {
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
+
+                this.showSendButton = false;
+
                 var url = "http://127.0.0.1:8000/api/back/ayarlar/toplu-mesaj-gonder";
 
                 axios.post(url, {
