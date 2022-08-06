@@ -33,7 +33,7 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Aktif Resim</label>
                                             <br>
-                                            <img width="100" height="100" :src="site_url+''+avatar" :alt="dil_ad">
+                                            <img width="100" height="100" :src="site_url+''+avatar" :alt="name">
                                         </div>
 
 
@@ -145,8 +145,8 @@ export default {
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
-                var id = this.$props.dil_id;
-                var url = "http://127.0.0.1:8000/api/back/language/" + id + "/update";
+                var id = this.$props.user_id;
+                var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + id + "/update";
 
 
                 let formData = new FormData();
@@ -180,8 +180,18 @@ export default {
                 this.avatar = (data.avatar != "") ? data.avatar : "resim-yok.webp";
             });
         },
+
         kullaniciIkonSec(e) {
             this.avatar = e.target.files[0]; //  RESIM EKLETME ISLEMI
+        },
+
+        ValidateEmail(inputText) {
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (inputText.match(mailformat)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

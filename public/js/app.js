@@ -8695,8 +8695,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       if (this.errors.length == 0) {
-        var id = this.$props.dil_id;
-        var url = "http://127.0.0.1:8000/api/back/language/" + id + "/update";
+        var id = this.$props.user_id;
+        var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + id + "/update";
         var formData = new FormData();
         formData.append('avatar', this.avatar);
         formData.append('name', this.name);
@@ -8729,6 +8729,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     kullaniciIkonSec: function kullaniciIkonSec(e) {
       this.avatar = e.target.files[0]; //  RESIM EKLETME ISLEMI
+    },
+    ValidateEmail: function ValidateEmail(inputText) {
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+      if (inputText.match(mailformat)) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 });
@@ -48989,7 +48998,7 @@ var render = function () {
                             width: "100",
                             height: "100",
                             src: _vm.site_url + "" + _vm.avatar,
-                            alt: _vm.dil_ad,
+                            alt: _vm.name,
                           },
                         }),
                       ]),
