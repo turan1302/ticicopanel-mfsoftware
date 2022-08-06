@@ -127,6 +127,7 @@ Vue.component('admin-genel-ayarlar-component', require('./components/admin/ayarl
 Vue.component('admin-webmaster-ayarlar-component', require('./components/admin/ayarlar/AdminWebmasterAyarlarComponent').default);
 Vue.component('admin-iletisim-ayarlar-component', require('./components/admin/ayarlar/AdminIletisimAyarlarComponent').default);
 Vue.component('admin-logo-ayarlar-component', require('./components/admin/ayarlar/AdminLogoAyarlarComponent').default);
+Vue.component('admin-favicon-ayarlar-component', require('./components/admin/ayarlar/AdminFaviconAyarlarComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

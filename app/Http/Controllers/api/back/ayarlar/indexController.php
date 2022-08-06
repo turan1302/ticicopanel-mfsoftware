@@ -95,4 +95,55 @@ class indexController extends Controller
         return response()->json($alert);
 
     }
+
+
+    // FAVICON KISMI GUNCELLEME ISLEMINI GERCEKLESTIRELIM
+    public function favicon_update(Request $request){
+        $data = $request->except("_token");
+        $ayar_cek = AyarModel::first();
+
+        // DOSYA GELDI MI
+        $data['site_favicon'] = $ayar_cek->site_favicon;
+        if ($request->hasFile('site_favicon')) {
+            $file = $request->file('site_favicon');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                // RESIM SILME KISMI AYARLANMASI GERCEKLESTIRELIM
+                if ($ayar_cek->site_favicon != "" && File::exists("storage/".$ayar_cek->site_favicon)){
+                    File::delete("storage/".$ayar_cek->site_favicon);
+                }
+
+                $file_name = Str::slug($ayar_cek->site_baslik) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['site_favicon'] = $file->storeAs($this->faviconFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $result = AyarModel::where(array())->update($data);
+
+        if ($result) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
+    }
 }

@@ -21,6 +21,11 @@ class indexController extends Controller
         return view('back.ayarlar.logo');
     }
 
+    // FAVICON AYALARI
+    public function favicon(){
+        return view('back.ayarlar.favicon');
+    }
+
     // ILETISIM KISMI AYARLARI
     public function iletisim(){
         return view('back.ayarlar.iletisim');

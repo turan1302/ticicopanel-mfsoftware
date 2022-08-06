@@ -199,6 +199,7 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('', [\App\Http\Controllers\back\ayarlar\indexController::class, 'index'])->name('index');
             Route::get('webmaster', [\App\Http\Controllers\back\ayarlar\indexController::class, 'webmaster'])->name('webmaster');
             Route::get('logo', [\App\Http\Controllers\back\ayarlar\indexController::class, 'logo'])->name('logo');
+            Route::get('favicon', [\App\Http\Controllers\back\ayarlar\indexController::class, 'favicon'])->name('favicon');
             Route::get('iletisim', [\App\Http\Controllers\back\ayarlar\indexController::class, 'iletisim'])->name('iletisim');
         });
 

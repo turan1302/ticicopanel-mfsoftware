@@ -5549,6 +5549,129 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminFaviconAyarlarComponent",
+  props: ["geriye_don"],
+  data: function data() {
+    return {
+      site_url: 'http://127.0.0.1:8000/storage/',
+      site_baslik: '',
+      site_favicon: '',
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    this.faviconAyarGetir();
+  },
+  methods: {
+    faviconAyarGuncelle: function faviconAyarGuncelle() {
+      this.errors = [];
+      /** EĞER HERHANGI BIR HATA YOKSA **/
+
+      if (this.errors.length == 0) {
+        var url = "http://127.0.0.1:8000/api/back/ayarlar/favicon-update";
+        var formData = new FormData();
+        formData.append('site_favicon', this.site_favicon);
+        axios.post(url, formData).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
+    },
+    faviconAyarGetir: function faviconAyarGetir() {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/ayarlar";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.site_baslik = data.site_baslik;
+        _this.site_favicon = data.site_favicon != null && data.site_favicon != "" ? data.site_favicon : "resim-yok.webp";
+      });
+    },
+    siteFaviconSec: function siteFaviconSec(e) {
+      this.site_favicon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue?vue&type=script&lang=js& ***!
@@ -17076,6 +17199,7 @@ Vue.component('admin-genel-ayarlar-component', (__webpack_require__(/*! ./compon
 Vue.component('admin-webmaster-ayarlar-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminWebmasterAyarlarComponent */ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue")["default"]));
 Vue.component('admin-iletisim-ayarlar-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminIletisimAyarlarComponent */ "./resources/js/components/admin/ayarlar/AdminIletisimAyarlarComponent.vue")["default"]));
 Vue.component('admin-logo-ayarlar-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminLogoAyarlarComponent */ "./resources/js/components/admin/ayarlar/AdminLogoAyarlarComponent.vue")["default"]));
+Vue.component('admin-favicon-ayarlar-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminFaviconAyarlarComponent */ "./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -39892,6 +40016,45 @@ component.options.__file = "resources/js/components/admin/aboneler/AdminAboneler
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminFaviconAyarlarComponent_vue_vue_type_template_id_7df78734_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true& */ "./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true&");
+/* harmony import */ var _AdminFaviconAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminFaviconAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminFaviconAyarlarComponent_vue_vue_type_template_id_7df78734_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminFaviconAyarlarComponent_vue_vue_type_template_id_7df78734_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "7df78734",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue":
 /*!******************************************************************************!*\
   !*** ./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue ***!
@@ -42475,6 +42638,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFaviconAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFaviconAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************!*\
   !*** ./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue?vue&type=script&lang=js& ***!
@@ -43562,6 +43741,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminAbonelerListComponent_vue_vue_type_template_id_f9ba3288_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminAbonelerListComponent_vue_vue_type_template_id_f9ba3288_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminAbonelerListComponent.vue?vue&type=template&id=f9ba3288&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/aboneler/AdminAbonelerListComponent.vue?vue&type=template&id=f9ba3288&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true& ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFaviconAyarlarComponent_vue_vue_type_template_id_7df78734_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFaviconAyarlarComponent_vue_vue_type_template_id_7df78734_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminFaviconAyarlarComponent_vue_vue_type_template_id_7df78734_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true&");
 
 
 /***/ }),
@@ -44972,6 +45168,154 @@ var staticRenderFns = [
           ]),
         ]),
       ]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminFaviconAyarlarComponent.vue?vue&type=template&id=7df78734&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { method: "POST", enctype: "multipart/form-data" },
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.faviconAyarGuncelle()
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "example-container" }, [
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Aktif Faavicon Resim")]
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("img", {
+                          attrs: {
+                            width: "100",
+                            height: "100",
+                            src: _vm.site_url + "" + _vm.site_favicon,
+                            alt: _vm.site_baslik,
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Site Favicon (100x100)")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "file",
+                            "aria-describedby": "emailHelp",
+                          },
+                          on: { change: _vm.siteFaviconSec },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "example-component m-2" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success btn-md",
+                              attrs: { type: "submit" },
+                            },
+                            [_vm._v(" Güncelle")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-md",
+                              attrs: { href: _vm.geriye_don },
+                            },
+                            [_vm._v(" Geriye Dön")]
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          { staticClass: "page-description d-flex align-items-center" },
+          [
+            _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+              _c("h1", [_vm._v("Favicon Ayarlar")]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Favicon Ayarlar")]),
     ])
   },
 ]
