@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public $uploadFolder = "";
+    public function __construct()
+    {
+        $this->uploadFolder = "avatar";
+    }
+
     public function index(){
         $query = User::where("id","!=",auth()->guard('yonetim')->id());
         $data = DataTables::of($query)
@@ -35,6 +43,64 @@ class indexController extends Controller
             ->make(true);
 
         return $data;
+    }
+
+    // EKLEME KISMI AYARLANMASINI GERCEKLESTIRELIM
+    public function store(Request $request){
+        $data = $request->except("_token");
+
+        // EMAIL SORGUSU YAPALIM
+        $sorgula = User::where(array(
+            "email" => $data['email']
+        ))->first();
+
+        if ($sorgula) {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Aynı Mail Adresi Zaten Mevcut",
+            ];
+
+            return response()->json($alert);
+        }
+
+        // DOSYA GELDI MI
+        $data['avatar'] = "";
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+                $file_name = Str::slug($data['name']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['avatar'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $data['password'] = Hash::make($data['password']);
+        $sonuc = User::create($data);
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
     }
 
     // SILME KISMI AYARLANMASI

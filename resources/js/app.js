@@ -118,6 +118,7 @@ Vue.component('admin-verilen-yetkiler-edit-component', require('./components/adm
 
 // KULLANICILAR KISMI AYARLANMASI
 Vue.component('admin-kullanicilar-list-component', require('./components/admin/kullanicilar/AdminKullanicilarListComponent').default);
+Vue.component('admin-kullanicilar-create-component', require('./components/admin/kullanicilar/AdminKullanicilarCreateComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

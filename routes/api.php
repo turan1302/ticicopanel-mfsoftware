@@ -247,6 +247,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
     // KULLANICILAR KISMI AYARLANMASI
     Route::group(['prefix' => 'kullanicilar', 'namespace' => 'kullanicilar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'index']);
+        Route::post('store', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'store']);
         Route::group(['prefix' => '{item}'], function () {
             Route::post('is-active', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'isActiveSetter']);
             Route::get('delete', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'delete']);
