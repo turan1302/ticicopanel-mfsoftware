@@ -15,7 +15,11 @@ class indexController extends Controller
 
     // EKLEME KISMI
     public function create(){
-        return view('back.kullanicilar.create');
+        $yetkiler = YetkiModel::where(array(
+            "yt_durum" => 1
+        ))->orderBy('yt_baslik',"asc")->get();
+
+        return view('back.kullanicilar.create',compact('yetkiler'));
     }
 
     // GUNCELLEME KISMI
