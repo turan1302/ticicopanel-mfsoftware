@@ -55,18 +55,6 @@
             <div class="d-flex">
                 <ul class="navbar-nav">
                     <li class="nav-item hidden-on-mobile">
-                        <a class="nav-link active" href="#">Applications</a>
-                    </li>
-                    <li class="nav-item hidden-on-mobile">
-                        <a class="nav-link" href="#">Reports</a>
-                    </li>
-                    <li class="nav-item hidden-on-mobile">
-                        <a class="nav-link" href="#">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link toggle-search" href="#"><i class="material-icons">search</i></a>
-                    </li>
-                    <li class="nav-item hidden-on-mobile">
                         <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown" data-bs-toggle="dropdown"><img src="{{ asset('back') }}/images/flags/us.png" alt=""></a>
                         <ul class="dropdown-menu dropdown-menu-end language-dropdown" aria-labelledby="languageDropDown">
                             <li><a class="dropdown-item" href="#"><img src="{{ asset('back') }}/images/flags/germany.png" alt="">German</a></li>
