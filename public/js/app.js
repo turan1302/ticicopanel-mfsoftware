@@ -8421,7 +8421,10 @@ __webpack_require__.r(__webpack_exports__);
         serverSide: true,
         ajax: {
           type: "GET",
-          url: "http://127.0.0.1:8000/api/back/kullanicilar"
+          url: "http://127.0.0.1:8000/api/back/kullanicilar",
+          error: function error(_error) {
+            console.log(_error);
+          }
         },
         columns: [{
           data: 'id',

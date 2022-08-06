@@ -19,11 +19,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        "id",
         'name',
         'email',
         'password',
         "durum"
     ];
+
+
+//    protected $guard = "yonetim";  // YOETIM OLARKA GUARD TANIMALAM ISLEMINI GERCEKLESTIRLIM
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,4 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }

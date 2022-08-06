@@ -17,16 +17,25 @@ class RedirectIfAuthenticated
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+//    public function handle(Request $request, Closure $next, ...$guards)
+//    {
+//        $guards = empty($guards) ? [null] : $guards;
+//
+//        foreach ($guards as $guard) {
+//            if (Auth::guard($guard)->check()) {
+////                return redirect(RouteServiceProvider::HOME);
+//                return redirect()->route('back.home.index');
+//            }
+//        }
+//
+//        return $next($request);
+//    }
+
     public function handle(Request $request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? [null] : $guards;
-
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+        if (Auth::guard('yonetim')->check()) {
+            return redirect()->route('back.home.index');
         }
-
         return $next($request);
     }
 }
