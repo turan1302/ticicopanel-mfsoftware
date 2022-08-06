@@ -122,6 +122,9 @@ Vue.component('admin-kullanicilar-create-component', require('./components/admin
 Vue.component('admin-kullanicilar-edit-component', require('./components/admin/kullanicilar/AdminKullanicilarEditComponent').default);
 Vue.component('admin-kullanicilar-show-component', require('./components/admin/kullanicilar/AdminKullanicilarShowComponent').default);
 
+// AYARLAR KISMI AYARLANMASI
+Vue.component('admin-genel-ayarlar-component', require('./components/admin/ayarlar/AdminGenelAyarlarComponent').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

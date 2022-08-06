@@ -256,4 +256,10 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
             Route::get('delete', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'delete']);
         });
     });
+
+    // AYARLAR KISMI AYARLANMASI
+    Route::group(['prefix' => 'ayarlar', 'namespace' => 'ayarlar'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'index']);
+    });
+
 });
