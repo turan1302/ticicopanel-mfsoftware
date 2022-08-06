@@ -10,18 +10,28 @@
         Panele giriş yapmak için bilgilerinizi giriniz
     </p>
 
-    <div class="auth-credentials m-b-xxl">
-        <label for="signInEmail" class="form-label">E-Mail Adresiniz</label>
-        <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
+    <form action="{{ route('back.do_login') }}" method="POST">
+        @csrf
+        <div class="auth-credentials m-b-xxl">
+            <label for="signInEmail" class="form-label">E-Mail Adresiniz</label>
+            <input type="text" name="email" value="{{ old('email') ?? '' }}" class="form-control" placeholder="E-Mail Adresiniz">
+            @error('email')
+                <small style="color: red;">{{ $message }}</small>
+            @enderror
 
-        <label for="signInPassword" class="form-label">Şifreniz</label>
-        <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-    </div>
+            <br>
 
-    <div class="auth-submit">
-        <a href="#" class="btn btn-primary">Sign In</a>
-        <a href="#" class="auth-forgot-password float-end">Forgot password?</a>
-    </div>
+            <label for="signInPassword" class="form-label">Şifreniz</label>
+            <input type="password" name="password" class="form-control"  placeholder="Şifreniz">
+            @error('password')
+            <small style="color: red;">{{ $message }}</small>
+            @enderror
+        </div>
+
+        <div class="auth-submit">
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </div>
+    </form>
     <div class="divider"></div>
 </div>
 @endsection

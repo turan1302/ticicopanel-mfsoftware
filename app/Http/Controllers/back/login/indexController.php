@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\back\login;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\back\LoginRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class indexController extends Controller
 {
@@ -18,8 +20,21 @@ class indexController extends Controller
     }
 
     // LOGIN OLMA KISMI
-    public function do_login(){
+    public function do_login(LoginRequest $request){
+        $data = $request->except("_token");
 
+        $credentials = [
+            "email" => $data['email'],
+            "durum" => 1,
+            "password" => $data['password']
+        ];
+
+        if (Auth::guard('yonetim')->attempt($credentials)){
+            $request->session()->regenerate();
+            return redirect()->route('back.home.index');
+        }else{
+            return redirect()->back();
+        }
     }
 
     // LOGOUT OLMA KISMI
