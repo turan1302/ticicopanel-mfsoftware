@@ -30,4 +30,13 @@ class indexController extends Controller
 
         return view('back.kullanicilar.edit',compact('item','yetkiler'));
     }
+
+    // GORUNTULEME ISLEMI
+    public function show(User $item){
+        $yetkiler = YetkiModel::where(array(
+            "yt_durum" => 1
+        ))->orderBy('yt_baslik',"asc")->get();
+
+        return view('back.kullanicilar.show',compact('item','yetkiler'));
+    }
 }

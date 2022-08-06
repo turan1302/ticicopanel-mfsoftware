@@ -35,11 +35,11 @@ class indexController extends Controller
                         </label>";
             })
             ->addColumn("actions", function ($query) {
-//                $show = "<a href='" . route('back.service.show', $query->service_id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
+                $show = "<a href='" . route('back.kullanicilar.show', $query->id) . "' class='btn btn-warning btn-md'><i class='fa fa-edit'></i> Görüntüle</a>";
                 $edit = "<a href='" . route('back.kullanicilar.edit', $query->id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $edit . " " . $delete;
+                return $show." ".$edit . " " . $delete;
             })
             ->rawColumns(["durum", "actions"])
             ->make(true);
@@ -109,6 +109,11 @@ class indexController extends Controller
     // GUNCELLEME KISMI AYARLANMASI
     public function edit(User $item)
     {
+        return response()->json($item);
+    }
+
+    // GORUNTULEME KISMI AYARLANMASI
+    public function show(User $item){
         return response()->json($item);
     }
 
