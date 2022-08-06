@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 /** ADMIN KISMI **/
-Route::group(['prefix' => 'back', 'namespace' => 'back'], function () {
+Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], function () {
 
     // DILLER KISMI
     Route::group(['prefix' => 'language', 'namespace' => 'language'], function () {
