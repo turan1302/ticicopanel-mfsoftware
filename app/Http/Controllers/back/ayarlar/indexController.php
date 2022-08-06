@@ -30,4 +30,9 @@ class indexController extends Controller
     public function iletisim(){
         return view('back.ayarlar.iletisim');
     }
+
+    // TOPLU MESAJ KISMI
+    public function toplu_mesaj(){
+        return view('back.ayarlar.toplu_mesaj');
+    }
 }

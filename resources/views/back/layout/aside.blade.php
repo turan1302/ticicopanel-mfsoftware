@@ -264,6 +264,9 @@
                     <li>
                         <a href="{{ route('back.ayarlar.iletisim') }}">İletişim Ayarları</a>
                     </li>
+                    <li>
+                        <a href="{{ route('back.ayarlar.toplu_mesaj') }}">Toplu Mesaj</a>
+                    </li>
                 </ul>
             </li>
 
