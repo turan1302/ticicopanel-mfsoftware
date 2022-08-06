@@ -193,5 +193,11 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
                 Route::get('show', [\App\Http\Controllers\back\kullanicilar\indexController::class, 'show'])->name('show');
             });
         });
+
+        /** AYARLAR KISMI AYARLANMASI **/
+        Route::group(['prefix' => 'ayarlar', 'namespace' => 'ayarlar', 'as' => 'ayarlar.'], function () {
+            Route::get('', [\App\Http\Controllers\back\ayarlar\indexController::class, 'index'])->name('index');
+        });
+
     });
 });
