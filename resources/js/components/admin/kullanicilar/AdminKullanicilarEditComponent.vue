@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="page-description d-flex align-items-center">
                             <div class="page-description-content flex-grow-1">
-                                <h1>Dil Güncelle</h1>
+                                <h1>Kullanıcı Güncelle</h1>
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Dil Bilgileri</h5>
+                                <h5 class="card-title">Kullanıcı Bilgileri</h5>
                             </div>
                             <div class="card-body">
 
@@ -28,32 +28,52 @@
                                 </div>
 
 
-                                <form method="POST" @submit.prevent="dilGuncelle()" enctype="multipart/form-data">
+                                <form method="POST" @submit.prevent="kullaniciGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil Adı</label>
-                                            <input type="text" v-model="dil_ad" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-                                        <div class="example-content">
-                                            <label for="exampleInputEmail1" class="form-label">Dil Kodu</label>
-                                            <input type="text" v-model="dil_kod" class="form-control"
-                                                   aria-describedby="emailHelp">
-                                        </div>
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Aktif Resim</label>
                                             <br>
-                                            <img width="100" height="100" :src="site_url+''+dil_ikon" :alt="dil_ad">
+                                            <img width="100" height="100" :src="site_url+''+avatar" :alt="dil_ad">
                                         </div>
+
+
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Dil İkon (50x50)</label>
-                                            <input type="file" @change="dilIkonSec" class="form-control"
+                                            <input type="file" @change="kullaniciIkonSec" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Ad
+                                                Soyad</label>
+                                            <input type="text" v-model="name" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı E-Mail</label>
+                                            <input type="text" v-model="email" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Şifre</label>
+                                            <input type="password" placeholder="Boş Bırakırsanız Şifreniz Değişmez" v-model="password" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Şifre
+                                                (Tekrar)</label>
+                                            <input type="password" placeholder="Boş Bırakırsanız Şifreniz Değişmez" v-model="password_confirmation" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Dil Güncelle</button>
+                                                <button type="submit" class="btn btn-success btn-md"> Dil Güncelle
+                                                </button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
                                         </div>
@@ -72,41 +92,68 @@
 <script>
 export default {
     name: "AdminLanguageCreateComponent",
-    props: ["geriye_don", 'dil_id'],
+    props: ["geriye_don", 'user_id'],
     data() {
         return {
             site_url: 'http://127.0.0.1:8000/storage/',
-            dil_ad: '',
-            dil_kod: '',
-            dil_ikon: '',
+            avatar: '',
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+            yetki: '',
             errors: [],
         }
     },
     mounted() {
-        var dil_id = this.$props.dil_id;
-        this.dilGetir(dil_id);
+        var user_id = this.$props.user_id;
+        this.kullaniciGetir(user_id);
     },
     methods: {
-        dilGuncelle() {
+        kullaniciGuncelle() {
             this.errors = [];
 
-            if (this.dil_ad == "") {
-                this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+            if (this.name == "") {
+                this.errors.push("Kullanıcı Ad Soyad Kısmı Boş Olamaz");
             }
 
-            if (this.dil_kod == "") {
-                this.errors.push("Dil Kodu Alanı Boş Bırakılamaz")
+            if (this.email == "") {
+                this.errors.push("Kullanıcı E-Mail Kısmı Boş Olamaz");
+            }
+
+            if (this.email != "") {
+                if (this.ValidateEmail(this.email)==false){
+                    this.errors.push("Lütfen Geçerli Bir E-Mail Adresi Giriniz");
+                }
+            }
+
+            if (this.password != ""){
+                if (this.password.length < 8){
+                    this.errors.push("Şifre Kısmı 8 Karakterden Küçük Olamaz");
+                }
+
+                if (this.password_confirmation == ""){
+                    this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
+                }
+
+                if (this.password_confirmation != ""){
+                    if (this.password_confirmation != this.password){
+                        this.errors.push("Şifreler Eşleşmiyor");
+                    }
+                }
             }
 
             /** EĞER HATA YOK ISE **/
             if (this.errors.length == 0) {
                 var id = this.$props.dil_id;
-                var url = "http://127.0.0.1:8000/api/back/language/"+id+"/update";
+                var url = "http://127.0.0.1:8000/api/back/language/" + id + "/update";
+
 
                 let formData = new FormData();
-                formData.append('dil_ad', this.dil_ad);
-                formData.append('dil_kod', this.dil_kod);
-                formData.append('dil_ikon', this.dil_ikon);
+                formData.append('avatar', this.avatar);
+                formData.append('name', this.name);
+                formData.append('email', this.email);
+                formData.append('password', this.password);
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
@@ -122,17 +169,19 @@ export default {
                 });
             }
         },
-        dilGetir(dil_id) {
-            var url = "http://127.0.0.1:8000/api/back/language/" + dil_id + "/edit";
+        kullaniciGetir(user_id) {
+            var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + user_id + "/edit";
             axios.get(url).then((res) => {
                 var data = res.data;
-                this.dil_ad = data.dil_ad;
-                this.dil_kod = data.dil_kod;
-                this.dil_ikon = (data.dil_ikon != null) ? data.dil_ikon : "resim-yok.webp";
+
+                this.name = data.name;
+                this.email = data.email;
+
+                this.avatar = (data.avatar != "") ? data.avatar : "resim-yok.webp";
             });
         },
-        dilIkonSec(e) {
-            this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+        kullaniciIkonSec(e) {
+            this.avatar = e.target.files[0]; //  RESIM EKLETME ISLEMI
         }
     }
 }

@@ -13,13 +13,15 @@ use Yajra\DataTables\DataTables;
 class indexController extends Controller
 {
     public $uploadFolder = "";
+
     public function __construct()
     {
         $this->uploadFolder = "avatar";
     }
 
-    public function index(){
-        $query = User::where("id","!=",auth()->guard('yonetim')->id());
+    public function index()
+    {
+        $query = User::where("id", "!=", auth()->guard('yonetim')->id());
         $data = DataTables::of($query)
             ->addIndexColumn()
             ->orderColumn("id", function ($query) {
@@ -37,7 +39,7 @@ class indexController extends Controller
                 $edit = "<a href='" . route('back.kullanicilar.edit', $query->id) . "' class='btn btn-primary btn-md'><i class='fa fa-edit'></i> Güncelle</a>";
                 $delete = "<button type='button' class='btn btn-danger btn-md isDelete' data-id='$query->id'><i class='fa fa-times'></i> Sil</button>";
 //
-                return $edit." ".$delete;
+                return $edit . " " . $delete;
             })
             ->rawColumns(["durum", "actions"])
             ->make(true);
@@ -46,7 +48,8 @@ class indexController extends Controller
     }
 
     // EKLEME KISMI AYARLANMASINI GERCEKLESTIRELIM
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->except("_token");
 
         // EMAIL SORGUSU YAPALIM
@@ -104,15 +107,85 @@ class indexController extends Controller
     }
 
     // GUNCELLEME KISMI AYARLANMASI
-    public function edit(User $item){
+    public function edit(User $item)
+    {
         return response()->json($item);
     }
 
+    // GUNCELLEME ISLEMI
+    public function update(Request $request,User $item)
+    {
+        $data = $request->except("_token");
+
+        // SORGULAMA KSIMI AYARLANAMASI
+        if ($data['email'] != $item->email){
+            $sorgula = User::where(array(
+                "email" => $data['email']
+            ))->first();
+
+            if ($sorgula){
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Aynı Mail Adresi Zaten Mevcut",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        // DOSYA GELDI MI
+        $data['avatar'] = $item->avatar;
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $desteklenen_uzantilar = ["jpeg", "jpg", "png"];
+            if (in_array($file->getClientOriginalExtension(), $desteklenen_uzantilar)) {
+
+                /** VAROLAN DOSYANIN SILINMEISNI AYARLAYUALIM **/
+                if ($item->avatar != "" && File::exists("storage/".$item->avatar)){
+                    File::delete("storage/".$item->avatar);
+                }
+
+                $file_name = Str::slug($data['name']) . "-" . time() . "." . $file->getClientOriginalExtension();
+                $data['avatar'] = $file->storeAs($this->uploadFolder, $file_name);
+            } else {
+                $alert = [
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "2 MB Altında  ve JPEG,JPG ve PNG Dosyası Yükleyiniz",
+                ];
+
+                return response()->json($alert);
+            }
+        }
+
+        $data['password'] = ($data['password'] != "") ? Hash::make($data['password']) : $item->password;
+        $sonuc = $item->update($data);
+
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
+
+        return response()->json($alert);
+
+    }
+
     // SILME KISMI AYARLANMASI
-    public function delete(User $item){
+    public function delete(User $item)
+    {
         // AVATAR VARSA SILDIRELIM
-        if ($item->avatar != "" && File::exists("storage/".$item->avatar)){
-            File::delete("storage/".$item->avatar);
+        if ($item->avatar != "" && File::exists("storage/" . $item->avatar)) {
+            File::delete("storage/" . $item->avatar);
         }
 
         $sonuc = $item->delete();

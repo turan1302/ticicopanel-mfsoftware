@@ -19,6 +19,6 @@ class indexController extends Controller
 
     // GUNCELLEME KISMI
     public function edit(User $item){
-        return view('back.kullanicilar.edit');
+        return view('back.kullanicilar.edit',compact('item'));
     }
 }

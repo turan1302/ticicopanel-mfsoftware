@@ -8619,32 +8619,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageCreateComponent",
-  props: ["geriye_don", 'dil_id'],
+  props: ["geriye_don", 'user_id'],
   data: function data() {
     return {
       site_url: 'http://127.0.0.1:8000/storage/',
-      dil_ad: '',
-      dil_kod: '',
-      dil_ikon: '',
+      avatar: '',
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      yetki: '',
       errors: []
     };
   },
   mounted: function mounted() {
-    var dil_id = this.$props.dil_id;
-    this.dilGetir(dil_id);
+    var user_id = this.$props.user_id;
+    this.kullaniciGetir(user_id);
   },
   methods: {
-    dilGuncelle: function dilGuncelle() {
+    kullaniciGuncelle: function kullaniciGuncelle() {
       this.errors = [];
 
-      if (this.dil_ad == "") {
-        this.errors.push("Dil Adı Alanı Boş Bırakılamaz");
+      if (this.name == "") {
+        this.errors.push("Kullanıcı Ad Soyad Kısmı Boş Olamaz");
       }
 
-      if (this.dil_kod == "") {
-        this.errors.push("Dil Kodu Alanı Boş Bırakılamaz");
+      if (this.email == "") {
+        this.errors.push("Kullanıcı E-Mail Kısmı Boş Olamaz");
+      }
+
+      if (this.email != "") {
+        if (this.ValidateEmail(this.email) == false) {
+          this.errors.push("Lütfen Geçerli Bir E-Mail Adresi Giriniz");
+        }
+      }
+
+      if (this.password != "") {
+        if (this.password.length < 8) {
+          this.errors.push("Şifre Kısmı 8 Karakterden Küçük Olamaz");
+        }
+
+        if (this.password_confirmation == "") {
+          this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
+        }
+
+        if (this.password_confirmation != "") {
+          if (this.password_confirmation != this.password) {
+            this.errors.push("Şifreler Eşleşmiyor");
+          }
+        }
       }
       /** EĞER HATA YOK ISE **/
 
@@ -8653,9 +8698,10 @@ __webpack_require__.r(__webpack_exports__);
         var id = this.$props.dil_id;
         var url = "http://127.0.0.1:8000/api/back/language/" + id + "/update";
         var formData = new FormData();
-        formData.append('dil_ad', this.dil_ad);
-        formData.append('dil_kod', this.dil_kod);
-        formData.append('dil_ikon', this.dil_ikon);
+        formData.append('avatar', this.avatar);
+        formData.append('name', this.name);
+        formData.append('email', this.email);
+        formData.append('password', this.password);
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -8670,19 +8716,19 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    dilGetir: function dilGetir(dil_id) {
+    kullaniciGetir: function kullaniciGetir(user_id) {
       var _this = this;
 
-      var url = "http://127.0.0.1:8000/api/back/language/" + dil_id + "/edit";
+      var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + user_id + "/edit";
       axios.get(url).then(function (res) {
         var data = res.data;
-        _this.dil_ad = data.dil_ad;
-        _this.dil_kod = data.dil_kod;
-        _this.dil_ikon = data.dil_ikon != null ? data.dil_ikon : "resim-yok.webp";
+        _this.name = data.name;
+        _this.email = data.email;
+        _this.avatar = data.avatar != "" ? data.avatar : "resim-yok.webp";
       });
     },
-    dilIkonSec: function dilIkonSec(e) {
-      this.dil_ikon = e.target.files[0]; //  RESIM EKLETME ISLEMI
+    kullaniciIkonSec: function kullaniciIkonSec(e) {
+      this.avatar = e.target.files[0]; //  RESIM EKLETME ISLEMI
     }
   }
 });
@@ -48920,84 +48966,12 @@ var render = function () {
                     on: {
                       submit: function ($event) {
                         $event.preventDefault()
-                        return _vm.dilGuncelle()
+                        return _vm.kullaniciGuncelle()
                       },
                     },
                   },
                   [
                     _c("div", { staticClass: "example-container" }, [
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Dil Adı")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.dil_ad,
-                              expression: "dil_ad",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.dil_ad },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.dil_ad = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "example-content" }, [
-                        _c(
-                          "label",
-                          {
-                            staticClass: "form-label",
-                            attrs: { for: "exampleInputEmail1" },
-                          },
-                          [_vm._v("Dil Kodu")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.dil_kod,
-                              expression: "dil_kod",
-                            },
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            "aria-describedby": "emailHelp",
-                          },
-                          domProps: { value: _vm.dil_kod },
-                          on: {
-                            input: function ($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.dil_kod = $event.target.value
-                            },
-                          },
-                        }),
-                      ]),
-                      _vm._v(" "),
                       _c("div", { staticClass: "example-content" }, [
                         _c(
                           "label",
@@ -49014,7 +48988,7 @@ var render = function () {
                           attrs: {
                             width: "100",
                             height: "100",
-                            src: _vm.site_url + "" + _vm.dil_ikon,
+                            src: _vm.site_url + "" + _vm.avatar,
                             alt: _vm.dil_ad,
                           },
                         }),
@@ -49036,7 +49010,161 @@ var render = function () {
                             type: "file",
                             "aria-describedby": "emailHelp",
                           },
-                          on: { change: _vm.dilIkonSec },
+                          on: { change: _vm.kullaniciIkonSec },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Kullanıcı Ad\n                                            Soyad"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.name,
+                              expression: "name",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.name },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.name = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Kullanıcı E-Mail")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.email,
+                              expression: "email",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.email },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.email = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Kullanıcı Şifre")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.password,
+                              expression: "password",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Boş Bırakırsanız Şifreniz Değişmez",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.password },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.password = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Kullanıcı Şifre\n                                            (Tekrar)"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.password_confirmation,
+                              expression: "password_confirmation",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Boş Bırakırsanız Şifreniz Değişmez",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.password_confirmation },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.password_confirmation = $event.target.value
+                            },
+                          },
                         }),
                       ]),
                       _vm._v(" "),
@@ -49048,7 +49176,11 @@ var render = function () {
                               staticClass: "btn btn-success btn-md",
                               attrs: { type: "submit" },
                             },
-                            [_vm._v(" Dil Güncelle")]
+                            [
+                              _vm._v(
+                                " Dil Güncelle\n                                            "
+                              ),
+                            ]
                           ),
                           _vm._v(" "),
                           _c(
@@ -49084,7 +49216,7 @@ var staticRenderFns = [
           { staticClass: "page-description d-flex align-items-center" },
           [
             _c("div", { staticClass: "page-description-content flex-grow-1" }, [
-              _c("h1", [_vm._v("Dil Güncelle")]),
+              _c("h1", [_vm._v("Kullanıcı Güncelle")]),
             ]),
           ]
         ),
@@ -49096,7 +49228,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h5", { staticClass: "card-title" }, [_vm._v("Dil Bilgileri")]),
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Kullanıcı Bilgileri")]),
     ])
   },
 ]
