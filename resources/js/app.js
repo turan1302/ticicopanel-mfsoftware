@@ -126,6 +126,7 @@ Vue.component('admin-kullanicilar-show-component', require('./components/admin/k
 Vue.component('admin-genel-ayarlar-component', require('./components/admin/ayarlar/AdminGenelAyarlarComponent').default);
 Vue.component('admin-webmaster-ayarlar-component', require('./components/admin/ayarlar/AdminWebmasterAyarlarComponent').default);
 Vue.component('admin-iletisim-ayarlar-component', require('./components/admin/ayarlar/AdminIletisimAyarlarComponent').default);
+Vue.component('admin-logo-ayarlar-component', require('./components/admin/ayarlar/AdminLogoAyarlarComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

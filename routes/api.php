@@ -261,6 +261,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
     Route::group(['prefix' => 'ayarlar', 'namespace' => 'ayarlar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'index']);
         Route::post('update', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'update']);
+        Route::post('logo-update', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'logo_update']);
     });
 
 });

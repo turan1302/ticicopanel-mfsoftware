@@ -16,6 +16,11 @@ class indexController extends Controller
         return view('back.ayarlar.webmaster');
     }
 
+    // LOGO AYARLARI
+    public function logo(){
+        return view('back.ayarlar.logo');
+    }
+
     // ILETISIM KISMI AYARLARI
     public function iletisim(){
         return view('back.ayarlar.iletisim');
