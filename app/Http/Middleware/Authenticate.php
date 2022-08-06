@@ -19,7 +19,7 @@ class Authenticate extends Middleware
 //        }
 
         if (!auth()->guard('yonetim')->check()){
-            return route('login');
+            return route('back.login');
         }
     }
 }
