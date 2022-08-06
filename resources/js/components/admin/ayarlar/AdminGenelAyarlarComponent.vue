@@ -32,31 +32,31 @@
                                     <div class="example-container">
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Site Başlık</label>
-                                            <input type="text" v-model="service_baslik" class="form-control"
+                                            <input type="text" v-model="site_baslik" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Site Anahtar Kelimeler</label>
-                                            <input v-model="service_title" class="form-control"
+                                            <input v-model="site_keyw" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Site Açıklama</label>
-                                            <input v-model="service_title" class="form-control"
+                                            <input v-model="site_desc" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Site Slogan</label>
-                                            <input v-model="service_title" class="form-control"
+                                            <input v-model="site_slogan" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Site Aktiflik</label>
-                                            <select class="form-control">
+                                            <select v-model="site_durum" class="form-control">
                                                 <option :value="1">Aktif</option>
                                                 <option :value="0">Pasif</option>
                                             </select>
@@ -86,13 +86,11 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
-            service_ikon: '',
-            service_baslik: '',
-            service_aciklama: '',
-            service_title: '',
-            service_description: '',
-            service_keyword: '',
-            service_etiketler: '',
+            site_baslik: '',
+            site_desc : '',
+            site_keyw: '',
+            site_slogan : '',
+            site_durum : '',
             errors: [],
         }
     },
@@ -141,12 +139,15 @@ export default {
         genelAyarGetir(service_id) {
             var url = "http://127.0.0.1:8000/api/back/ayarlar";
             axios.get(url).then((res) => {
-
                 var data = res.data;
 
-                console.log(data);
+                this.site_baslik = data.site_baslik;
+                this.site_desc = data.site_desc;
+                this.site_keyw = data.site_keyw;
+                this.site_slogan = data.site_slogan;
+                this.site_durum = data.site_durum;
             });
-        },
+        }
     }
 }
 </script>

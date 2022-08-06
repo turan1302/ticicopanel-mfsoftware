@@ -5647,13 +5647,11 @@ __webpack_require__.r(__webpack_exports__);
   props: ["geriye_don"],
   data: function data() {
     return {
-      service_ikon: '',
-      service_baslik: '',
-      service_aciklama: '',
-      service_title: '',
-      service_description: '',
-      service_keyword: '',
-      service_etiketler: '',
+      site_baslik: '',
+      site_desc: '',
+      site_keyw: '',
+      site_slogan: '',
+      site_durum: '',
       errors: []
     };
   },
@@ -5701,10 +5699,16 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     genelAyarGetir: function genelAyarGetir(service_id) {
+      var _this = this;
+
       var url = "http://127.0.0.1:8000/api/back/ayarlar";
       axios.get(url).then(function (res) {
         var data = res.data;
-        console.log(data);
+        _this.site_baslik = data.site_baslik;
+        _this.site_desc = data.site_desc;
+        _this.site_keyw = data.site_keyw;
+        _this.site_slogan = data.site_slogan;
+        _this.site_durum = data.site_durum;
       });
     }
   }
@@ -44433,8 +44437,8 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_baslik,
-                              expression: "service_baslik",
+                              value: _vm.site_baslik,
+                              expression: "site_baslik",
                             },
                           ],
                           staticClass: "form-control",
@@ -44442,13 +44446,13 @@ var render = function () {
                             type: "text",
                             "aria-describedby": "emailHelp",
                           },
-                          domProps: { value: _vm.service_baslik },
+                          domProps: { value: _vm.site_baslik },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_baslik = $event.target.value
+                              _vm.site_baslik = $event.target.value
                             },
                           },
                         }),
@@ -44469,19 +44473,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
+                              value: _vm.site_keyw,
+                              expression: "site_keyw",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
+                          domProps: { value: _vm.site_keyw },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_title = $event.target.value
+                              _vm.site_keyw = $event.target.value
                             },
                           },
                         }),
@@ -44502,19 +44506,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
+                              value: _vm.site_desc,
+                              expression: "site_desc",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
+                          domProps: { value: _vm.site_desc },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_title = $event.target.value
+                              _vm.site_desc = $event.target.value
                             },
                           },
                         }),
@@ -44535,19 +44539,19 @@ var render = function () {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.service_title,
-                              expression: "service_title",
+                              value: _vm.site_slogan,
+                              expression: "site_slogan",
                             },
                           ],
                           staticClass: "form-control",
                           attrs: { "aria-describedby": "emailHelp" },
-                          domProps: { value: _vm.service_title },
+                          domProps: { value: _vm.site_slogan },
                           on: {
                             input: function ($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.service_title = $event.target.value
+                              _vm.site_slogan = $event.target.value
                             },
                           },
                         }),
@@ -44563,15 +44567,44 @@ var render = function () {
                           [_vm._v("Site Aktiflik")]
                         ),
                         _vm._v(" "),
-                        _c("select", { staticClass: "form-control" }, [
-                          _c("option", { domProps: { value: 1 } }, [
-                            _vm._v("Aktif"),
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { domProps: { value: 0 } }, [
-                            _vm._v("Pasif"),
-                          ]),
-                        ]),
+                        _c(
+                          "select",
+                          {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.site_durum,
+                                expression: "site_durum",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function ($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function (o) {
+                                    return o.selected
+                                  })
+                                  .map(function (o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.site_durum = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                            },
+                          },
+                          [
+                            _c("option", { domProps: { value: 1 } }, [
+                              _vm._v("Aktif"),
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { domProps: { value: 0 } }, [
+                              _vm._v("Pasif"),
+                            ]),
+                          ]
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "row" }, [
