@@ -15,4 +15,9 @@ class indexController extends Controller
     public function webmaster(){
         return view('back.ayarlar.webmaster');
     }
+
+    // ILETISIM KISMI AYARLARI
+    public function iletisim(){
+        return view('back.ayarlar.iletisim');
+    }
 }

@@ -255,6 +255,9 @@
                     <li>
                         <a href="{{ route('back.ayarlar.webmaster') }}">Webmaster Ayarları</a>
                     </li>
+                    <li>
+                        <a href="{{ route('back.ayarlar.iletisim') }}">İletişim Ayarları</a>
+                    </li>
                 </ul>
             </li>
 
