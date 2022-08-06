@@ -11,10 +11,7 @@ use Yajra\DataTables\DataTables;
 class indexController extends Controller
 {
     public function index(){
-
-       dd(auth()->guard('yonetim')->user());
-
-        $query = User::where("id","!=",auth()->guard('yonetim')->id());
+        $query = User::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
             ->orderColumn("id", function ($query) {

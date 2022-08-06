@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 class indexController extends Controller
 {
     public function index(){
-
-        dd(auth()->guard('yonetim')->user());
-
         return view('back.home.index');
     }
 }
