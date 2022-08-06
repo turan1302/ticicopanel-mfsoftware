@@ -17,8 +17,22 @@ class indexController extends Controller
     // GUNCELLEME KISMI
     public function update(Request $request){
         $data = $request->except("_token");
-        $sonuc = AyarModel::update($data);
+        $sonuc = AyarModel::where(array())->update($data);
 
+        if ($sonuc) {
+            $alert = [
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "İşlem Başarılı",
+            ];
+        } else {
+            $alert = [
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "İşlem Başarısız",
+            ];
+        }
 
+        return response()->json($alert);
     }
 }

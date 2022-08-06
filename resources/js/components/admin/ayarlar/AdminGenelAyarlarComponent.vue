@@ -103,7 +103,6 @@ export default {
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
-                var id = this.$props.service_id;
                 var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
 
                 axios.post(url, {
@@ -128,7 +127,7 @@ export default {
                 });
             }
         },
-        genelAyarGetir(service_id) {
+        genelAyarGetir() {
             var url = "http://127.0.0.1:8000/api/back/ayarlar";
             axios.get(url).then((res) => {
                 var data = res.data;

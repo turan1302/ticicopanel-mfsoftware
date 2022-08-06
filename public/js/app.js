@@ -5664,7 +5664,6 @@ __webpack_require__.r(__webpack_exports__);
       /** EĞER HERHANGI BIR HATA YOKSA **/
 
       if (this.errors.length == 0) {
-        var id = this.$props.service_id;
         var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
         axios.post(url, {
           site_baslik: this.site_baslik,
@@ -5688,7 +5687,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    genelAyarGetir: function genelAyarGetir(service_id) {
+    genelAyarGetir: function genelAyarGetir() {
       var _this = this;
 
       var url = "http://127.0.0.1:8000/api/back/ayarlar";
