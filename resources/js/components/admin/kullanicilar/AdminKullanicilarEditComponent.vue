@@ -58,8 +58,8 @@
 
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Kullanıcı Yetkisi</label>
-                                            <select id="yetkiler"
-                                                    class="form-control yetkiler">
+                                            <select id="yetki"
+                                                    class="form-control yetki">
                                                 <option :value="0">- Seçiniz -</option>
                                                 <option :selected="(yetki==item.yt_id) ? true : null"
                                                         :value="item.yt_id" v-for="item in yetki_data">{{
@@ -85,7 +85,7 @@
 
                                         <div class="row">
                                             <div class="example-component m-2">
-                                                <button type="submit" class="btn btn-success btn-md"> Dil Güncelle
+                                                <button type="submit" class="btn btn-success btn-md"> Güncelle
                                                 </button>
                                                 <a :href="geriye_don" class="btn btn-danger btn-md"> Geriye Dön</a>
                                             </div>
@@ -164,11 +164,14 @@ export default {
                 var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + id + "/update";
 
 
+                var yetki = $("#yetki").val(); // KULLANICI YETKI SECTIRILMESINI GERCEKLESTIREIÇ
+
                 let formData = new FormData();
                 formData.append('avatar', this.avatar);
                 formData.append('name', this.name);
                 formData.append('email', this.email);
                 formData.append('password', this.password);
+                formData.append('yetki', yetki);
 
                 axios.post(url, formData).then((res) => {
                     var data = res.data;
@@ -191,6 +194,8 @@ export default {
 
                 this.name = data.name;
                 this.email = data.email;
+
+                $("#yetki").val(data.yetki).trigger('change');  // varsayılan kısmı ayarlanması
 
                 this.avatar = (data.avatar != "") ? data.avatar : "resim-yok.webp";
             });

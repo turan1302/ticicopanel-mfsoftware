@@ -8713,11 +8713,14 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errors.length == 0) {
         var id = this.$props.user_id;
         var url = "http://127.0.0.1:8000/api/back/kullanicilar/" + id + "/update";
+        var yetki = $("#yetki").val(); // KULLANICI YETKI SECTIRILMESINI GERCEKLESTIREIÇ
+
         var formData = new FormData();
         formData.append('avatar', this.avatar);
         formData.append('name', this.name);
         formData.append('email', this.email);
         formData.append('password', this.password);
+        formData.append('yetki', yetki);
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -8740,6 +8743,8 @@ __webpack_require__.r(__webpack_exports__);
         var data = res.data;
         _this.name = data.name;
         _this.email = data.email;
+        $("#yetki").val(data.yetki).trigger('change'); // varsayılan kısmı ayarlanması
+
         _this.avatar = data.avatar != "" ? data.avatar : "resim-yok.webp";
       });
     },
@@ -49128,8 +49133,8 @@ var render = function () {
                         _c(
                           "select",
                           {
-                            staticClass: "form-control yetkiler",
-                            attrs: { id: "yetkiler" },
+                            staticClass: "form-control yetki",
+                            attrs: { id: "yetki" },
                           },
                           [
                             _c("option", { domProps: { value: 0 } }, [
@@ -49247,7 +49252,7 @@ var render = function () {
                             },
                             [
                               _vm._v(
-                                " Dil Güncelle\n                                            "
+                                " Güncelle\n                                            "
                               ),
                             ]
                           ),

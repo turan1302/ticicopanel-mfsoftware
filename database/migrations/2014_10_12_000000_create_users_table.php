@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('durum')->default(1)->nullable();
-            $table->tinyInteger('yetki')->nullable();
+            $table->tinyInteger('yetki')->default(0)->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

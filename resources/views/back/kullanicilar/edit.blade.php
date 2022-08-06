@@ -17,7 +17,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.yetkiler').select2();
+            $('.yetki').select2();
         });
     </script>
 @endsection
