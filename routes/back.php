@@ -19,13 +19,13 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
 
     /** LOGIN KISMI AYARLAMASI **/
     Route::group(['prefix' => 'login'], function () {
-        Route::get('',[\App\Http\Controllers\back\login\indexController::class,'login'])->name('login');
-        Route::post('',[\App\Http\Controllers\back\login\indexController::class,'do_login'])->name('do_login');
-        Route::get('logout',[\App\Http\Controllers\back\login\indexController::class,'logout'])->name('logout');
+        Route::get('', [\App\Http\Controllers\back\login\indexController::class, 'login'])->name('login');
+        Route::post('', [\App\Http\Controllers\back\login\indexController::class, 'do_login'])->name('do_login');
+        Route::get('logout', [\App\Http\Controllers\back\login\indexController::class, 'logout'])->name('logout');
     });
 
 
-    Route::group(['middleware'=>'auth'],function (){
+    Route::group(['middleware' => 'auth'], function () {
         /** ADMIN ANASAYFA KISMI AYARLANMASI **/
         Route::group(['prefix' => '', 'namespace' => 'home', 'as' => 'home.'], function () {
             Route::get('', [\App\Http\Controllers\back\home\indexController::class, 'index'])->name('index');
@@ -188,6 +188,9 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
         Route::group(['prefix' => 'kullanicilar', 'namespace' => 'kullanicilar', 'as' => 'kullanicilar.'], function () {
             Route::get('', [\App\Http\Controllers\back\kullanicilar\indexController::class, 'index'])->name('index');
             Route::get('create', [\App\Http\Controllers\back\kullanicilar\indexController::class, 'create'])->name('create');
+            Route::group(['prefix' => '{item}'], function () {
+                Route::get('edit', [\App\Http\Controllers\back\kullanicilar\indexController::class, 'edit'])->name('edit');
+            });
         });
     });
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back\kullanicilar;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -14,5 +15,10 @@ class indexController extends Controller
     // EKLEME KISMI
     public function create(){
         return view('back.kullanicilar.create');
+    }
+
+    // GUNCELLEME KISMI
+    public function edit(User $item){
+        return view('back.kullanicilar.edit');
     }
 }
