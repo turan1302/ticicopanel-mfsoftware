@@ -103,6 +103,11 @@ class indexController extends Controller
         return response()->json($alert);
     }
 
+    // GUNCELLEME KISMI AYARLANMASI
+    public function edit(User $item){
+        return response()->json($item);
+    }
+
     // SILME KISMI AYARLANMASI
     public function delete(User $item){
         // AVATAR VARSA SILDIRELIM

@@ -249,6 +249,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
         Route::get('', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'index']);
         Route::post('store', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'store']);
         Route::group(['prefix' => '{item}'], function () {
+            Route::get('edit', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'edit']);
             Route::post('is-active', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'isActiveSetter']);
             Route::get('delete', [\App\Http\Controllers\api\back\kullanicilar\indexController::class, 'delete']);
         });
