@@ -4,15 +4,17 @@
 <div class="app-auth-background"></div>
 <div class="app-auth-container">
     <div class="logo">
-        <a href="index.html">Neptune</a>
+        <a href="{{ route('back.home.index') }}">Neptune</a>
     </div>
-    <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="sign-up.html">Sign Up</a></p>
+    <p class="auth-description">
+        Panele giriş yapmak için bilgilerinizi giriniz
+    </p>
 
     <div class="auth-credentials m-b-xxl">
-        <label for="signInEmail" class="form-label">Email address</label>
+        <label for="signInEmail" class="form-label">E-Mail Adresiniz</label>
         <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
 
-        <label for="signInPassword" class="form-label">Password</label>
+        <label for="signInPassword" class="form-label">Şifreniz</label>
         <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
     </div>
 
