@@ -18,6 +18,11 @@ return [
         'passwords' => 'users',
     ],
 
+    'yonetim' => [   // YONETIM GIRISI
+        'driver' => 'eloquent',
+        'model' => \App\Models\User::class,
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -39,6 +44,11 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'yonetim' => [   // YONETIM KISMI
+            'driver' => 'session',
+            'provider' => 'yonetim',
         ],
     ],
 
@@ -69,6 +79,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'yonetim' => [  // YONETIM KISMI
+            'driver' => 'eloquent',
+            'model' => \App\Models\User::class,
+        ],
     ],
 
     /*

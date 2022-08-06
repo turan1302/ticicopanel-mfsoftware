@@ -14,7 +14,11 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+//        if (! $request->expectsJson()) {
+//            return route('login');
+//        }
+
+        if (!auth()->guard('yonetim')->check()){
             return route('login');
         }
     }
