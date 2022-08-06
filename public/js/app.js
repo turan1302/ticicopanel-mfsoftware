@@ -5634,14 +5634,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminGenelAyarlarComponent",
   props: ["geriye_don"],
@@ -5698,6 +5690,145 @@ __webpack_require__.r(__webpack_exports__);
         _this.site_keyw = data.site_keyw;
         _this.site_slogan = data.site_slogan;
         _this.site_durum = data.site_durum;
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "AdminGenelAyarlarComponent",
+  props: ["geriye_don"],
+  data: function data() {
+    return {
+      google_dogrulama_kodu: '',
+      bing_dogrulama_kodu: '',
+      yandex_dogrulama_kodu: '',
+      analiytcs_kodu: '',
+      errors: []
+    };
+  },
+  mounted: function mounted() {
+    this.webmasterAyarGetir();
+  },
+  methods: {
+    webmasterAyarGuncelle: function webmasterAyarGuncelle() {
+      this.errors = [];
+      /** EĞER HERHANGI BIR HATA YOKSA **/
+
+      if (this.errors.length == 0) {
+        var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
+        axios.post(url, {
+          google_dogrulama_kodu: this.google_dogrulama_kodu,
+          bing_dogrulama_kodu: this.bing_dogrulama_kodu,
+          yandex_dogrulama_kodu: this.yandex_dogrulama_kodu,
+          analiytcs_kodu: this.analiytcs_kodu
+        }).then(function (res) {
+          var data = res.data;
+          Swal.fire({
+            icon: data.type,
+            title: data.title,
+            text: data.text,
+            showConfirmButton: false,
+            timer: 1500
+          }).then(function () {
+            location.reload();
+          });
+        })["catch"](function (error) {
+          console.log(error.response);
+        });
+      }
+    },
+    webmasterAyarGetir: function webmasterAyarGetir() {
+      var _this = this;
+
+      var url = "http://127.0.0.1:8000/api/back/ayarlar";
+      axios.get(url).then(function (res) {
+        var data = res.data;
+        _this.google_dogrulama_kodu = data.google_dogrulama_kodu;
+        _this.bing_dogrulama_kodu = data.bing_dogrulama_kodu;
+        _this.yandex_dogrulama_kodu = data.yandex_dogrulama_kodu;
+        _this.analiytcs_kodu = data.analiytcs_kodu;
       });
     }
   }
@@ -16669,6 +16800,7 @@ Vue.component('admin-kullanicilar-edit-component', (__webpack_require__(/*! ./co
 Vue.component('admin-kullanicilar-show-component', (__webpack_require__(/*! ./components/admin/kullanicilar/AdminKullanicilarShowComponent */ "./resources/js/components/admin/kullanicilar/AdminKullanicilarShowComponent.vue")["default"])); // AYARLAR KISMI AYARLANMASI
 
 Vue.component('admin-genel-ayarlar-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminGenelAyarlarComponent */ "./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue")["default"]));
+Vue.component('admin-webmaster-ayarlar-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminWebmasterAyarlarComponent */ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -39524,6 +39656,45 @@ component.options.__file = "resources/js/components/admin/ayarlar/AdminGenelAyar
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AdminWebmasterAyarlarComponent_vue_vue_type_template_id_505abb16_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true& */ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true&");
+/* harmony import */ var _AdminWebmasterAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _AdminWebmasterAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AdminWebmasterAyarlarComponent_vue_vue_type_template_id_505abb16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _AdminWebmasterAyarlarComponent_vue_vue_type_template_id_505abb16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "505abb16",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent.vue":
 /*!*************************************************************************************************!*\
   !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent.vue ***!
@@ -41967,6 +42138,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminWebmasterAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminWebmasterAyarlarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************!*\
   !*** ./resources/js/components/admin/duyuru_kategoriler/AdminDuyuruKategoriCreateComponent.vue?vue&type=script&lang=js& ***!
@@ -43007,6 +43194,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminGenelAyarlarComponent_vue_vue_type_template_id_c4df0d52_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminGenelAyarlarComponent_vue_vue_type_template_id_c4df0d52_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminGenelAyarlarComponent.vue?vue&type=template&id=c4df0d52&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminGenelAyarlarComponent.vue?vue&type=template&id=c4df0d52&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true& ***!
+  \*****************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminWebmasterAyarlarComponent_vue_vue_type_template_id_505abb16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminWebmasterAyarlarComponent_vue_vue_type_template_id_505abb16_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AdminWebmasterAyarlarComponent_vue_vue_type_template_id_505abb16_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true&");
 
 
 /***/ }),
@@ -44385,19 +44589,6 @@ var render = function () {
               _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
-                _vm.errors.length > 0
-                  ? _c(
-                      "div",
-                      {
-                        staticClass: "col-md-12 alert alert-danger text-center",
-                      },
-                      _vm._l(_vm.errors, function (item) {
-                        return _c("ul", [_c("li", [_vm._v(_vm._s(item))])])
-                      }),
-                      0
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
                 _c(
                   "form",
                   {
@@ -44653,6 +44844,244 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v("Genel Ayarlar")]),
+    ])
+  },
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/admin/ayarlar/AdminWebmasterAyarlarComponent.vue?vue&type=template&id=505abb16&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c(
+                  "form",
+                  {
+                    attrs: { method: "POST", enctype: "multipart/form-data" },
+                    on: {
+                      submit: function ($event) {
+                        $event.preventDefault()
+                        return _vm.webmasterAyarGuncelle()
+                      },
+                    },
+                  },
+                  [
+                    _c("div", { staticClass: "example-container" }, [
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Google Doğrulama Kodu")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.google_dogrulama_kodu,
+                              expression: "google_dogrulama_kodu",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "aria-describedby": "emailHelp" },
+                          domProps: { value: _vm.google_dogrulama_kodu },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.google_dogrulama_kodu = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Bing Doğrulama Kodu")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.bing_dogrulama_kodu,
+                              expression: "bing_dogrulama_kodu",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "aria-describedby": "emailHelp" },
+                          domProps: { value: _vm.bing_dogrulama_kodu },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.bing_dogrulama_kodu = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Yandex Doğrulama Kodu")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.yandex_dogrulama_kodu,
+                              expression: "yandex_dogrulama_kodu",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "aria-describedby": "emailHelp" },
+                          domProps: { value: _vm.yandex_dogrulama_kodu },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.yandex_dogrulama_kodu = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Analiytcs Doğrulama Kodu")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.analiytcs_kodu,
+                              expression: "analiytcs_kodu",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { "aria-describedby": "emailHelp" },
+                          domProps: { value: _vm.analiytcs_kodu },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.analiytcs_kodu = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "example-component m-2" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success btn-md",
+                              attrs: { type: "submit" },
+                            },
+                            [_vm._v(" Güncelle")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-danger btn-md",
+                              attrs: { href: _vm.geriye_don },
+                            },
+                            [_vm._v(" Geriye Dön")]
+                          ),
+                        ]),
+                      ]),
+                    ]),
+                  ]
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "div",
+          { staticClass: "page-description d-flex align-items-center" },
+          [
+            _c("div", { staticClass: "page-description-content flex-grow-1" }, [
+              _c("h1", [_vm._v("Webmaster Ayarlar")]),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h5", { staticClass: "card-title" }, [_vm._v("Webmaster Ayarlar")]),
     ])
   },
 ]

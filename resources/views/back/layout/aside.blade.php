@@ -252,6 +252,9 @@
                     <li>
                         <a href="{{ route('back.ayarlar.index') }}">Genel Ayarlar</a>
                     </li>
+                    <li>
+                        <a href="{{ route('back.ayarlar.webmaster') }}">Webmaster Ayarları</a>
+                    </li>
                 </ul>
             </li>
 
