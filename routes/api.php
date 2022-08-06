@@ -263,6 +263,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
         Route::post('update', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'update']);
         Route::post('logo-update', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'logo_update']);
         Route::post('favicon-update', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'favicon_update']);
+
+        // TOPLU MESAJ GONDEWR
+        Route::post('toplu-mesaj-gonder', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'toplu_mesaj_gonder']);
     });
 
 });

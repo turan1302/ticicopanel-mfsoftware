@@ -201,7 +201,7 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             Route::get('logo', [\App\Http\Controllers\back\ayarlar\indexController::class, 'logo'])->name('logo');
             Route::get('favicon', [\App\Http\Controllers\back\ayarlar\indexController::class, 'favicon'])->name('favicon');
             Route::get('iletisim', [\App\Http\Controllers\back\ayarlar\indexController::class, 'iletisim'])->name('iletisim');
-            Route::get('toplu-mesaj', [\App\Http\Controllers\back\ayarlar\indexController::class, 'iletisim'])->name('iletisim');
+            Route::get('toplu-mesaj', [\App\Http\Controllers\back\ayarlar\indexController::class, 'toplu_mesaj'])->name('toplu_mesaj');
         });
 
     });

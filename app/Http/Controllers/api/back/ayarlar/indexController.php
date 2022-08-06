@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\api\back\ayarlar;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TopluMail;
+use App\Models\AboneModel;
 use App\Models\AyarModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class indexController extends Controller
@@ -144,6 +147,23 @@ class indexController extends Controller
         }
 
         return response()->json($alert);
+    }
 
+    // TOPLU MESAJ GONDERME KISMI AYARLANMASI
+    public function toplu_mesaj_gonder(Request $request){
+        $data = $request->except("_token");
+
+        $aboneler = AboneModel::where("abone_durum", 1)->get();
+        foreach ($aboneler as $abone) {
+            Mail::to($abone->abone_email)->send(new TopluMail($data));
+        }
+
+        $alert = [
+            "type" => "success",
+            "title" => "Başarılı",
+            "text" => "İşlem Başarılı",
+        ];
+
+        return response()->json($alert);
     }
 }

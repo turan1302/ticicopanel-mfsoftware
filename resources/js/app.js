@@ -129,6 +129,10 @@ Vue.component('admin-iletisim-ayarlar-component', require('./components/admin/ay
 Vue.component('admin-logo-ayarlar-component', require('./components/admin/ayarlar/AdminLogoAyarlarComponent').default);
 Vue.component('admin-favicon-ayarlar-component', require('./components/admin/ayarlar/AdminFaviconAyarlarComponent').default);
 
+/* TOPLU MESJA KISMI AYARLANMASI */
+Vue.component('admin-toplu-mesaj-component', require('./components/admin/ayarlar/AdminTopluMesajComponent').default);
+
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
