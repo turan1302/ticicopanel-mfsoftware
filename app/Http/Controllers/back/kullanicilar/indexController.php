@@ -4,6 +4,7 @@ namespace App\Http\Controllers\back\kullanicilar;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\YetkiModel;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
@@ -19,6 +20,9 @@ class indexController extends Controller
 
     // GUNCELLEME KISMI
     public function edit(User $item){
-        return view('back.kullanicilar.edit',compact('item'));
+        $yetkiler = YetkiModel::where(array(
+            "yt_durum" => 1
+        ))->orderBy('yt_baslik',"asc")->get();
+        return view('back.kullanicilar.edit',compact('item','yetkiler'));
     }
 }
