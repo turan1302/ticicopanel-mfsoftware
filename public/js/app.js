@@ -8445,9 +8445,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminKullanicilarCreateComponent",
-  props: ["geriye_don"],
+  props: ["geriye_don", "yetkiler"],
   data: function data() {
     return {
       avatar: '',
@@ -8456,8 +8469,13 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       password_confirmation: '',
       yetki: '',
+      yetki_data: '',
+      // TUM YETKILERIN GETIRILMESINI AYARLICAZ
       errors: []
     };
+  },
+  mounted: function mounted() {
+    this.yetki_data = JSON.parse(this.$props.yetkiler);
   },
   methods: {
     yeniKullaniciEkle: function yeniKullaniciEkle() {
@@ -8501,11 +8519,14 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.errors.length == 0) {
         var url = "http://127.0.0.1:8000/api/back/kullanicilar/store";
+        var yetki = $("#yetki").val(); // KULLANICI YETKI SECTIRILMESINI GERCEKLESTIREIÇ
+
         var formData = new FormData();
         formData.append('avatar', this.avatar);
         formData.append('name', this.name);
         formData.append('email', this.email);
         formData.append('password', this.password);
+        formData.append('yetki', yetki);
         axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
@@ -48805,6 +48826,50 @@ var render = function () {
                             },
                           },
                         }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Kullanıcı Yetkisi")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-control yetki",
+                            attrs: { id: "yetki" },
+                          },
+                          [
+                            _c("option", { domProps: { value: 0 } }, [
+                              _vm._v("- Seçiniz -"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.yetki_data, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    selected:
+                                      _vm.yetki == item.yt_id ? true : null,
+                                    value: item.yt_id,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(item.yt_baslik) +
+                                      "\n                                            "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "example-content" }, [

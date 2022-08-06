@@ -51,6 +51,19 @@
                                         </div>
 
                                         <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Yetkisi</label>
+                                            <select id="yetki"
+                                                    class="form-control yetki">
+                                                <option :value="0">- Seçiniz -</option>
+                                                <option :selected="(yetki==item.yt_id) ? true : null"
+                                                        :value="item.yt_id" v-for="item in yetki_data">{{
+                                                        item.yt_baslik
+                                                    }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Kullanıcı Şifre</label>
                                             <input type="password" v-model="password" class="form-control"
                                                    aria-describedby="emailHelp">
@@ -85,7 +98,7 @@
 <script>
 export default {
     name: "AdminKullanicilarCreateComponent",
-    props: ["geriye_don"],
+    props: ["geriye_don","yetkiler"],
     data() {
         return {
             avatar: '',
@@ -94,8 +107,12 @@ export default {
             password: '',
             password_confirmation: '',
             yetki: '',
+            yetki_data : '', // TUM YETKILERIN GETIRILMESINI AYARLICAZ
             errors: [],
         }
+    },
+    mounted() {
+        this.yetki_data = JSON.parse(this.$props.yetkiler);
     },
     methods: {
         yeniKullaniciEkle() {
@@ -140,12 +157,15 @@ export default {
 
                 var url = "http://127.0.0.1:8000/api/back/kullanicilar/store";
 
+                var yetki = $("#yetki").val(); // KULLANICI YETKI SECTIRILMESINI GERCEKLESTIREIÇ
 
                 let formData = new FormData();
                 formData.append('avatar', this.avatar);
                 formData.append('name', this.name);
                 formData.append('email', this.email);
                 formData.append('password', this.password);
+                formData.append('yetki', yetki);
+
 
 
                 axios.post(url, formData).then((res) => {
