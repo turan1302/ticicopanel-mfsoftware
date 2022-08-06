@@ -8639,9 +8639,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminLanguageCreateComponent",
-  props: ["geriye_don", 'user_id'],
+  props: ["geriye_don", 'user_id', "yetkiler"],
   data: function data() {
     return {
       site_url: 'http://127.0.0.1:8000/storage/',
@@ -8651,11 +8664,14 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       password_confirmation: '',
       yetki: '',
+      yetki_data: '',
+      // TUM YETKILERIN GETIRILMESINI AYARLICAZ
       errors: []
     };
   },
   mounted: function mounted() {
     var user_id = this.$props.user_id;
+    this.yetki_data = JSON.parse(this.$props.yetkiler);
     this.kullaniciGetir(user_id);
   },
   methods: {
@@ -49097,6 +49113,50 @@ var render = function () {
                             },
                           },
                         }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Kullanıcı Yetkisi")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "select",
+                          {
+                            staticClass: "form-control yetkiler",
+                            attrs: { id: "yetkiler" },
+                          },
+                          [
+                            _c("option", { domProps: { value: 0 } }, [
+                              _vm._v("- Seçiniz -"),
+                            ]),
+                            _vm._v(" "),
+                            _vm._l(_vm.yetki_data, function (item) {
+                              return _c(
+                                "option",
+                                {
+                                  domProps: {
+                                    selected:
+                                      _vm.yetki == item.yt_id ? true : null,
+                                    value: item.yt_id,
+                                  },
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(item.yt_baslik) +
+                                      "\n                                            "
+                                  ),
+                                ]
+                              )
+                            }),
+                          ],
+                          2
+                        ),
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "example-content" }, [

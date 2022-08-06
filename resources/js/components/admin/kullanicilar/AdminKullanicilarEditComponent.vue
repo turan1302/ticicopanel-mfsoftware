@@ -57,6 +57,19 @@
                                         </div>
 
                                         <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Yetkisi</label>
+                                            <select id="yetkiler"
+                                                    class="form-control yetkiler">
+                                                <option :value="0">- Seçiniz -</option>
+                                                <option :selected="(yetki==item.yt_id) ? true : null"
+                                                        :value="item.yt_id" v-for="item in yetki_data">{{
+                                                        item.yt_baslik
+                                                    }}
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Kullanıcı Şifre</label>
                                             <input type="password" placeholder="Boş Bırakırsanız Şifreniz Değişmez" v-model="password" class="form-control"
                                                    aria-describedby="emailHelp">
@@ -92,7 +105,7 @@
 <script>
 export default {
     name: "AdminLanguageCreateComponent",
-    props: ["geriye_don", 'user_id'],
+    props: ["geriye_don", 'user_id',"yetkiler"],
     data() {
         return {
             site_url: 'http://127.0.0.1:8000/storage/',
@@ -102,11 +115,13 @@ export default {
             password: '',
             password_confirmation: '',
             yetki: '',
+            yetki_data : '', // TUM YETKILERIN GETIRILMESINI AYARLICAZ
             errors: [],
         }
     },
     mounted() {
         var user_id = this.$props.user_id;
+        this.yetki_data = JSON.parse(this.$props.yetkiler);
         this.kullaniciGetir(user_id);
     },
     methods: {

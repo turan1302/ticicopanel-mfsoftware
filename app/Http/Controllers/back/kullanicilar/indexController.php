@@ -23,6 +23,7 @@ class indexController extends Controller
         $yetkiler = YetkiModel::where(array(
             "yt_durum" => 1
         ))->orderBy('yt_baslik',"asc")->get();
+
         return view('back.kullanicilar.edit',compact('item','yetkiler'));
     }
 }
