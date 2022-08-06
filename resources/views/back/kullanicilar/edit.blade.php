@@ -2,6 +2,7 @@
 
 @section('content')
     <admin-kullanicilar-edit-component
+        yetkiler="{{ $yetkiler }}"
         user_id="{{ $item->id }}"
         geriye_don="{{ route('back.kullanicilar.index') }}"></admin-kullanicilar-edit-component>
 @endsection
