@@ -5,7 +5,7 @@
             <a href="#">
                 <img src="{{ asset('back') }}/images/avatars/avatar.png">
                 <span class="activity-indicator"></span>
-                <span class="user-info-text">Chloe<br><span class="user-state-info">On a call</span></span>
+                <span class="user-info-text">{{ auth()->guard('yonetim')->user()->name }}<br><span class="user-state-info">{{ env("APP_NAME") }}</span></span>
             </a>
         </div>
     </div>
