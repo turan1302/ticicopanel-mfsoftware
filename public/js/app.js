@@ -5661,27 +5661,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     genelAyarGuncelle: function genelAyarGuncelle() {
       this.errors = [];
-
-      if (this.service_baslik == "") {
-        this.errors.push("Servis Başlık Kısmı Boş Olamaz");
-      }
       /** EĞER HERHANGI BIR HATA YOKSA **/
-
 
       if (this.errors.length == 0) {
         var id = this.$props.service_id;
-        var url = "http://127.0.0.1:8000/api/back/service/" + id + "/update";
-        var aciklama = tinyMCE.get('service_aciklama').getContent(); // SERVİS KISMI ACIKLAMASI
-
+        var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
         axios.post(url, {
-          service_ikon: this.service_ikon,
-          service_baslik: this.service_baslik,
-          service_aciklama: aciklama,
-          // SERVIS KISMI ACIKLAMASI
-          service_title: this.service_title,
-          service_description: this.service_description,
-          service_keyword: this.service_keyword,
-          service_etiketler: this.service_etiketler
+          site_baslik: this.site_baslik,
+          site_desc: this.site_desc,
+          site_keyw: this.site_keyw,
+          site_slogan: this.site_slogan,
+          site_durum: this.site_durum
         }).then(function (res) {
           var data = res.data;
           Swal.fire({

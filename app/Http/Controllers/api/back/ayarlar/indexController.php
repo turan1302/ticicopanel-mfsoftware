@@ -13,4 +13,12 @@ class indexController extends Controller
          $ayarlar = AyarModel::first();
         return response()->json($ayarlar);
     }
+
+    // GUNCELLEME KISMI
+    public function update(Request $request){
+        $data = $request->except("_token");
+        $sonuc = AyarModel::update($data);
+
+
+    }
 }
