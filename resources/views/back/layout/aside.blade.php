@@ -2,8 +2,12 @@
     <div class="logo">
         <a href="{{ route('back.home.index') }}" class="logo-icon"><span class="logo-text">Neptune</span></a>
         <div class="sidebar-user-switcher user-activity-online">
-            <a href="#">
-                <img src="{{ asset('back') }}/images/avatars/avatar.png">
+            <a href="javascript:void(0)">
+                @if(auth()->guard('yonetim')->user()->avatar != "" && \Illuminate\Support\Facades\File::exists("storage/".auth()->guard('yonetim')->user()->avatar))
+                    <img src="{{ asset('storage/'.auth()->guard('yonetim')->user()->avatar) }}" alt="{{ auth()->guard('yonetim')->user()->name }}">
+                @else
+                    <img src="{{ asset('storage/resim-yok.webp') }}" alt="{{ auth()->guard('yonetim')->user()->name }}">
+                @endif
                 <span class="activity-indicator"></span>
                 <span class="user-info-text">{{ auth()->guard('yonetim')->user()->name }}<br><span
                         class="user-state-info">{{ env("APP_NAME") }}</span></span>
