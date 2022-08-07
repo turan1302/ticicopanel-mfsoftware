@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\YetkiModel;
+
 class myHelper
 {
     public static function get_yetkiler(){
@@ -25,5 +27,20 @@ class myHelper
             "kullanicilar" => "Kullanıcılar",
             "ayarlar" => "Ayarlar",
         ];
+    }
+
+    // GENİŞLETİLMİŞ YETKİ KONTROLUNU YAPALIM
+    public static function yetkiKontrol($modul, $islem)
+    {
+        $yetki = YetkiModel::where("yt_id", auth()->guard('yonetim')->user()->yetki)->first()->yt_yetkiler;
+        $yetki = json_decode($yetki, true);
+
+
+        if (array_key_exists($modul, $yetki) && array_key_exists($islem, $yetki[$modul])) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }
