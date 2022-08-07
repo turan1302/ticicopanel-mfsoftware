@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\iletisim_mesajlari;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\MesajCevapMail;
 use App\Models\IletisimMesajModel;
@@ -11,8 +12,30 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('iletisim_mesajlari',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
+        if (myHelper::yetkiKontrol('iletisim_mesajlari',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = IletisimMesajModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -38,12 +61,28 @@ class indexController extends Controller
     // GORUNTULEME KISMI
     public function show(IletisimMesajModel $item)
     {
+        if (myHelper::yetkiKontrol('iletisim_mesajlari',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // MESAJ CEVAP KISMI AYARLAMASI
     public function reply(Request $request, IletisimMesajModel $item)
     {
+        if (myHelper::yetkiKontrol('iletisim_mesajlari',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
         Mail::to($item->im_email)->send(new MesajCevapMail($item,$data['im_cevap']));
 
@@ -60,6 +99,14 @@ class indexController extends Controller
     // SILME KISMI AYARLANMASI
     public function delete(IletisimMesajModel $item)
     {
+        if (myHelper::yetkiKontrol('iletisim_mesajlari',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $sonuc = $item->delete();
 
         if ($sonuc) {
