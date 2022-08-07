@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\duyuru_kategoriler;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruKategoriModel;
 use App\Models\PivotDuyuruKategoriModel;
@@ -11,8 +12,32 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('duyuru_kategorileri', "aktiflik") === false) {
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
+
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "listeleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = DuyuruKategoriModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -59,6 +84,15 @@ class indexController extends Controller
     // KAYIT ETME KISMI
     public function store(Request $request)
     {
+
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "ekleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // SLUG KONTROL YAPALIM
@@ -98,6 +132,14 @@ class indexController extends Controller
     // AKTIF PASIF KISMI AYARLANMASI
     public function isActiveSetter(Request $request, DuyuruKategoriModel $item)
     {
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "dkat_durum" => $data
@@ -107,6 +149,14 @@ class indexController extends Controller
     // VARSAYILAN KISMI AYARLANMASI
     public function isDefaultSetter(Request $request, DuyuruKategoriModel $item)
     {
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
 
         DuyuruKategoriModel::where(array())->update(array(
@@ -120,16 +170,43 @@ class indexController extends Controller
 
     // GUNCELLEME SAYFASI ICIN VERILERIN CEKILESI
     public function edit(DuyuruKategoriModel $item){
+
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GORUNTULEME SAYFASI ICIN VERILERIN CEKILMESI
     public function show(DuyuruKategoriModel $item){
+
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "goruntuleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GUNCELLEME ISLEMI GERCEKLESTIRILMESI
     public function update(Request $request,DuyuruKategoriModel $item){
+
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // KONTROL YAPALIM
@@ -172,6 +249,14 @@ class indexController extends Controller
     // SILME KISMI AYARLANAMSI
     public function delete(DuyuruKategoriModel $item)
     {
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "silme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         // PIVOT KISIMDAN DUYURU VARSAYILAN KATEGORININ CEKILMEISNI GERCEKLESTIREELIM
         $varsayilan_kategori = DuyuruKategoriModel::varsayilanDuyuruKategori();
 
@@ -201,6 +286,14 @@ class indexController extends Controller
     // SIRALAMA AYARLAMASINI GERCEKLESTIRELIM
     public function rankSetter(Request $request)
     {
+        if (myHelper::yetkiKontrol('duyuru_kategorileri', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
