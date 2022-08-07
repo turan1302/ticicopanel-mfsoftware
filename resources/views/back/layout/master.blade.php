@@ -16,8 +16,9 @@
         </div>
     </div>
 </div>
-
 @include('back.layout.include_script')
 @yield('js')
+
+@include('back.layout.alert')
 </body>
 </html>
