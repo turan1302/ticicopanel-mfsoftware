@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\service;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\LanguageModel;
 use App\Models\ServiceModel;
@@ -12,9 +13,31 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('servisler',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+    }
+
     // SERVISLERI CAGIRALIM
     public function index()
     {
+        if (myHelper::yetkiKontrol('servisler',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = ServiceModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -50,6 +73,15 @@ class indexController extends Controller
     // SERVIS EKLEME ISLEMI
     public function store(Request $request)
     {
+
+        if (myHelper::yetkiKontrol('servisler',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // SLUG KONTROLU YAPALIM
@@ -90,18 +122,44 @@ class indexController extends Controller
     // SERVIS GUNCELLEME SAYFASI KISMI
     public function edit(ServiceModel $item)
     {
+        if (myHelper::yetkiKontrol('servisler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return \response()->json($item);
     }
 
     // SERVIS GORUNTULEME SAYFASI
     public function show(ServiceModel $item)
     {
+
+        if (myHelper::yetkiKontrol('servisler',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return \response()->json($item);
     }
 
     // SERVIS GUNCELLEME KISMI
     public function update(Request $request, ServiceModel $item)
     {
+
+        if (myHelper::yetkiKontrol('servisler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         if ($data['service_baslik'] != $item->service_baslik) {
@@ -142,6 +200,15 @@ class indexController extends Controller
     // SERVIS SILME KISMINI AYARLAYALIM
     public function delete(ServiceModel $item)
     {
+
+        if (myHelper::yetkiKontrol('servisler',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $sonuc = $item->delete();
         if ($sonuc) {
             $alert = [
@@ -162,6 +229,14 @@ class indexController extends Controller
     // SERVIS GUNCELLEME KSIMININ AYARLANMASINI GERCEKLESTIRELIM
     public function isActiveSetter(Request $request, ServiceModel $item)
     {
+        if (myHelper::yetkiKontrol('servisler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "service_durum" => $data
@@ -171,6 +246,15 @@ class indexController extends Controller
     // SERVIS SIRALAMA GUNCELLEME
     public function rankSetter(Request $request)
     {
+
+        if (myHelper::yetkiKontrol('servisler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
