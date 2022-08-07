@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\partnerlar;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\PartnerModel;
 use Illuminate\Http\Request;
@@ -16,10 +17,30 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "partner";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('partnerler',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     public function index()
     {
+
+        if (myHelper::yetkiKontrol('partnerler',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = PartnerModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -64,6 +85,14 @@ class indexController extends Controller
     // EKLEME ISLEMI
     public function store(Request $request)
     {
+        if (myHelper::yetkiKontrol('partnerler',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         $sorgu = PartnerModel::where(array(
@@ -122,11 +151,28 @@ class indexController extends Controller
     // GUNCELLEME SAYFASI AYARLANAMSI
     public function edit(PartnerModel $item)
     {
+        if (myHelper::yetkiKontrol('partnerler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GORUNTULEME KISMI AYARLANAMSINI GERCEKLESRTIRELIM
     public function show(PartnerModel $item){
+
+        if (myHelper::yetkiKontrol('partnerler',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
@@ -134,6 +180,14 @@ class indexController extends Controller
     // GUNCELLEME ISLEMI
     public function update(Request $request, PartnerModel $item)
     {
+        if (myHelper::yetkiKontrol('partnerler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         if ($data['part_baslik'] != $item->part_baslik) {
@@ -200,6 +254,14 @@ class indexController extends Controller
     // SILME KISMI AYARLANAMSI
     public function delete(PartnerModel $item)
     {
+        if (myHelper::yetkiKontrol('partnerler',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->part_resim != "" && File::exists("storage/" . $item->part_resim)) {
             File::delete("storage/" . $item->part_resim);
         }
@@ -225,6 +287,14 @@ class indexController extends Controller
     // AKTIF PASIFLIK AYARLAMASI YAPALIM
     public function isActiveSetter(Request $request, PartnerModel $item)
     {
+        if (myHelper::yetkiKontrol('partnerler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "part_durum" => $data
@@ -234,6 +304,14 @@ class indexController extends Controller
     // SIRALAMA KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function rankSetter(Request $request)
     {
+        if (myHelper::yetkiKontrol('partnerler',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
