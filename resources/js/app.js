@@ -132,6 +132,12 @@ Vue.component('admin-favicon-ayarlar-component', require('./components/admin/aya
 /* TOPLU MESJA KISMI AYARLANMASI */
 Vue.component('admin-toplu-mesaj-component', require('./components/admin/ayarlar/AdminTopluMesajComponent').default);
 
+/*********************************************************** */
+
+// KULLANICI PROFIL KISMI AYARLANMASI
+
+
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

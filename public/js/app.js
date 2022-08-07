@@ -17438,6 +17438,9 @@ Vue.component('admin-favicon-ayarlar-component', (__webpack_require__(/*! ./comp
 /* TOPLU MESJA KISMI AYARLANMASI */
 
 Vue.component('admin-toplu-mesaj-component', (__webpack_require__(/*! ./components/admin/ayarlar/AdminTopluMesajComponent */ "./resources/js/components/admin/ayarlar/AdminTopluMesajComponent.vue")["default"]));
+/*********************************************************** */
+// KULLANICI PROFIL KISMI AYARLANMASI
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
