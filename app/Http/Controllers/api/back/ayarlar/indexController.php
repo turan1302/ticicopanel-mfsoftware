@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\ayarlar;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Mail\TopluMail;
 use App\Models\AboneModel;
@@ -19,16 +20,45 @@ class indexController extends Controller
     {
         $this->logoFolder = "ayar/logo";
         $this->faviconFolder = "ayar/favicon";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('ayarlar', "aktiflik") === false) {
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     // AYAR CEKME ISLEMI
     public function index(){
+
+        if (myHelper::yetkiKontrol('ayarlar', "listeleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
          $ayarlar = AyarModel::first();
         return response()->json($ayarlar);
     }
 
     // GUNCELLEME KISMI
     public function update(Request $request){
+
+        if (myHelper::yetkiKontrol('ayarlar', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
         $sonuc = AyarModel::where(array())->update($data);
 
@@ -51,6 +81,15 @@ class indexController extends Controller
 
     // LOGO GUNCELLEME KISMI AYARLAMASI
     public function logo_update(Request $request){
+
+        if (myHelper::yetkiKontrol('ayarlar', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
         $ayar_cek = AyarModel::first();
 
@@ -102,6 +141,15 @@ class indexController extends Controller
 
     // FAVICON KISMI GUNCELLEME ISLEMINI GERCEKLESTIRELIM
     public function favicon_update(Request $request){
+
+        if (myHelper::yetkiKontrol('ayarlar', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
         $ayar_cek = AyarModel::first();
 
@@ -151,6 +199,15 @@ class indexController extends Controller
 
     // TOPLU MESAJ GONDERME KISMI AYARLANMASI
     public function toplu_mesaj_gonder(Request $request){
+
+        if (myHelper::yetkiKontrol('ayarlar', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         $aboneler = AboneModel::where("abone_durum", 1)->get();
