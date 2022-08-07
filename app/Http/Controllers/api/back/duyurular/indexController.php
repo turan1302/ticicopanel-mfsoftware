@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\duyurular;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruModel;
 use App\Models\PivotDuyuruKategoriModel;
@@ -17,10 +18,30 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "duyuru";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('duyurular', "aktiflik") === false) {
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     public function index()
     {
+
+        if (myHelper::yetkiKontrol('duyurular', "listeleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = DuyuruModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -65,6 +86,14 @@ class indexController extends Controller
     // DUYURU KAYDETME KISMI AYARLANMASI
     public function store(Request $request)
     {
+        if (myHelper::yetkiKontrol('duyurular', "ekleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $duyuru_kategoriler = $request->d_kategoriler;  // DUYURU KATEGORILERINI ALDIK
         $data = $request->except("_token", "d_kategoriler");
 
@@ -128,6 +157,14 @@ class indexController extends Controller
     // GUNCELLEME SAYFASIN ALINMASINI GERCKELESTIRELIM
     public function edit(DuyuruModel $item)
     {
+        if (myHelper::yetkiKontrol('duyurular', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $duyuru = DuyuruModel::select("pivot_duyuru_kategori.pdk_dkat_id")->leftJoin("pivot_duyuru_kategori", "pivot_duyuru_kategori.pdk_duyuru_id", "=", "duyurular.d_id")->get();
         return response()->json([$item, $duyuru]);
     }
@@ -135,6 +172,14 @@ class indexController extends Controller
     // GORUNTULEME SAYFASI
     public function show(DuyuruModel $item)
     {
+        if (myHelper::yetkiKontrol('duyurular', "goruntuleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $duyuru = DuyuruModel::select("pivot_duyuru_kategori.pdk_dkat_id")->leftJoin("pivot_duyuru_kategori", "pivot_duyuru_kategori.pdk_duyuru_id", "=", "duyurular.d_id")->get();
         return response()->json([$item, $duyuru]);
     }
@@ -142,6 +187,14 @@ class indexController extends Controller
     // GUNCELLEME KISMINI AYARLAUYALIM
     public function update(Request $request, DuyuruModel $item)
     {
+        if (myHelper::yetkiKontrol('duyurular', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $duyuru_kategoriler = $request->d_kategoriler;  // DUYURU KATEGORILERINI ALDIK
         $data = $request->except("_token", "d_kategoriler");
 
@@ -219,6 +272,15 @@ class indexController extends Controller
     // SILME KISMI AYARLANMASI
     public function delete(DuyuruModel $item)
     {
+
+        if (myHelper::yetkiKontrol('duyurular', "silme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->d_resim != "" && File::exists("storage/" . $item->d_resim)) {
             File::delete("storage/" . $item->d_resim);
         }
@@ -249,6 +311,14 @@ class indexController extends Controller
     // AKTIF PASIF KISMI AYARLANAMSI
     public function isActiveSetter(Request $request, DuyuruModel $item)
     {
+        if (myHelper::yetkiKontrol('duyurular', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "d_durum" => $data
@@ -258,6 +328,14 @@ class indexController extends Controller
     // SIRALAMA KISMI AYARLANMASI
     public function rankSetter(Request $request)
     {
+        if (myHelper::yetkiKontrol('duyurular', "guncelleme") === false) {
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
