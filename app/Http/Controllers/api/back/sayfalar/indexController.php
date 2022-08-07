@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\sayfalar;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SayfaModel;
 use Illuminate\Http\Request;
@@ -15,9 +16,30 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "sayfa";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('sayfalar',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+
     }
 
     public function index(){
+
+        if (myHelper::yetkiKontrol('sayfalar',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = SayfaModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -58,6 +80,15 @@ class indexController extends Controller
 
     // SAYFA EKLEME KISMI AYARLANAMSI
     public function store(Request $request){
+
+        if (myHelper::yetkiKontrol('sayfalar',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         $sorgu = SayfaModel::where(array(
@@ -115,16 +146,43 @@ class indexController extends Controller
 
     // GUNCELLEME KISMI
     public function edit(SayfaModel $item){
+
+        if (myHelper::yetkiKontrol('sayfalar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GORUNTULEME KISMI
     public function show(SayfaModel $item){
+
+        if (myHelper::yetkiKontrol('sayfalar',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GUNCELLEME ISLEMI
     public function update(Request $request,SayfaModel $item){
+
+        if (myHelper::yetkiKontrol('sayfalar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // SLUG KONTROL
@@ -191,6 +249,15 @@ class indexController extends Controller
 
     // SILME KISMI AYARLANMASI
     public function delete(SayfaModel $item){
+
+        if (myHelper::yetkiKontrol('sayfalar',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->sayfa_resim != "" && File::exists("storage/".$item->sayfa_resim)){
              File::delete("storage/".$item->sayfa_resim);
         }
@@ -216,6 +283,15 @@ class indexController extends Controller
     // AKTIF ĞPASFO KISMI AYARLANSIM
     public function isActiveSetter(Request $request, SayfaModel $item)
     {
+
+        if (myHelper::yetkiKontrol('sayfalar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "sayfa_durum" => $data
