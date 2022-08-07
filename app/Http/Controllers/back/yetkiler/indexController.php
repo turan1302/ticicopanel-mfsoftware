@@ -9,6 +9,20 @@ use Illuminate\Http\Request;
 
 class indexController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (auth()->user()->isSuperAdmin==0){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+    }
+
     public function index(){
         return view('back.yetkiler.index');
     }
