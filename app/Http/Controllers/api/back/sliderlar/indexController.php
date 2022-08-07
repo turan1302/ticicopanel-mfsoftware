@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\sliderlar;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SliderModel;
 use Illuminate\Http\Request;
@@ -15,9 +16,29 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "slider";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('sliderlar',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     public function index(){
+
+        if (myHelper::yetkiKontrol('sliderlar',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = SliderModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -61,6 +82,15 @@ class indexController extends Controller
 
     // SLIDER EKLEME ISLEMI
     public function store(Request $request){
+
+        if (myHelper::yetkiKontrol('sliderlar',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // DOSYA GELDI MI
@@ -104,16 +134,43 @@ class indexController extends Controller
 
     // SLIDER GUNCELLEME SAYFASI
     public function edit(SliderModel $item){
+
+        if (myHelper::yetkiKontrol('sliderlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // SLIDER GORUNTULEME SAYFASI
     public function show(SliderModel $item){
+
+        if (myHelper::yetkiKontrol('sliderlar',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // SLIDER GUNCELLEME ISLEMI
     public function update(Request $request,SliderModel $item){
+
+        if (myHelper::yetkiKontrol('sliderlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // DOSYA GELDI MI
@@ -165,6 +222,15 @@ class indexController extends Controller
 
     // SIRALAMA KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function rankSetter(Request $request){
+
+        if (myHelper::yetkiKontrol('sliderlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
@@ -177,6 +243,15 @@ class indexController extends Controller
 
     // SLIDER AKRTIF PASIF KISMI AYARLAMA
     public function isActiveSetter(Request $request,SliderModel $item){
+
+        if (myHelper::yetkiKontrol('sliderlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "sld_durum" => $data
@@ -185,6 +260,15 @@ class indexController extends Controller
 
     // SLIDER SILME ISLEMI
     public function delete(SliderModel $item){
+
+        if (myHelper::yetkiKontrol('sliderlar',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->sld_resim !="" && File::exists("storage/".$item->sld_resim)){
             File::delete("storage/".$item->sld_resim);
         }
