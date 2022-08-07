@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\kullanicilar;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,10 +18,29 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "avatar";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('kullanicilar',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     public function index()
     {
+        if (myHelper::yetkiKontrol('kullanicilar',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = User::where("id", "!=", auth()->guard('yonetim')->id());
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -50,6 +70,15 @@ class indexController extends Controller
     // EKLEME KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function store(Request $request)
     {
+
+        if (myHelper::yetkiKontrol('kullanicilar',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // EMAIL SORGUSU YAPALIM
@@ -109,17 +138,42 @@ class indexController extends Controller
     // GUNCELLEME KISMI AYARLANMASI
     public function edit(User $item)
     {
+        if (myHelper::yetkiKontrol('kullanicilar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GORUNTULEME KISMI AYARLANMASI
     public function show(User $item){
+
+        if (myHelper::yetkiKontrol('kullanicilar',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GUNCELLEME ISLEMI
     public function update(Request $request,User $item)
     {
+        if (myHelper::yetkiKontrol('kullanicilar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // SORGULAMA KSIMI AYARLANAMASI
@@ -188,6 +242,14 @@ class indexController extends Controller
     // SILME KISMI AYARLANMASI
     public function delete(User $item)
     {
+        if (myHelper::yetkiKontrol('kullanicilar',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         // AVATAR VARSA SILDIRELIM
         if ($item->avatar != "" && File::exists("storage/" . $item->avatar)) {
             File::delete("storage/" . $item->avatar);
@@ -215,6 +277,14 @@ class indexController extends Controller
     // AKTIFLIK KISMI AYARLANMASI
     public function isActiveSetter(Request $request, User $item)
     {
+        if (myHelper::yetkiKontrol('kullanicilar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "durum" => $data
