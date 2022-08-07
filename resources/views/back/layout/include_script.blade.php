@@ -8,6 +8,9 @@
 <script src="{{ asset('back') }}/js/custom.js"></script>
 <script src="{{ asset('back') }}/js/pages/dashboard.js"></script>
 
+{{-- IZAITOAST JS --}}
+<script src="{{ asset('back') }}/js/izitoast.min.js"></script>
+
 {{-- UI JS --}}
 <script src="{{ asset('back') }}/js/jquery-ui.min.js"></script>
 

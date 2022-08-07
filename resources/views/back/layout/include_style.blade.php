@@ -22,5 +22,8 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+{{-- IZITOAST CSS --}}
+<link rel="stylesheet" href="{{ asset('back') }}/css/izitoast.css">
+
 {{-- VUE CSS --}}
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
