@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\language;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\LanguageModel;
 use Illuminate\Http\Request;
@@ -16,11 +17,31 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "language";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('diller',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+
     }
 
     // TUM DILLERI CEKME KISMI AYARLAMASI
     public function index()
     {
+        if (myHelper::yetkiKontrol('diller',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = LanguageModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -72,6 +93,15 @@ class indexController extends Controller
     // DIL EKLEME KISMI APISINI YAZALIM
     public function store(Request $request)
     {
+
+        if (myHelper::yetkiKontrol('diller',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // AYNI KODDAN VAR MI ANALIZ EDELIM
@@ -132,18 +162,42 @@ class indexController extends Controller
     // DIL GETIRME ISLEMININ GERCEKLESTIRELIM
     public function edit(LanguageModel $item)
     {
+        if (myHelper::yetkiKontrol('diller',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // DIL GORUNTULEME KISMI
     public function show(LanguageModel $item)
     {
+        if (myHelper::yetkiKontrol('diller',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // DIL GUNCELLEME ISLEMINI GERCEKLESTIRELIM
     public function update(Request $request, LanguageModel $item)
     {
+        if (myHelper::yetkiKontrol('diller',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         if ($request->dil_kod != $item->dil_kod) {
@@ -216,6 +270,14 @@ class indexController extends Controller
     // DIL SILME KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function delete(LanguageModel $item)
     {
+        if (myHelper::yetkiKontrol('diller',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->dil_ikon != "" && File::exists("storage/" . $item->dil_ikon)) {
             File::delete("storage/" . $item->dil_ikon);
         }
@@ -240,6 +302,14 @@ class indexController extends Controller
     // AKTRIF PASIF OLAYINI DEGISTIRELIM
     public function isActiveSetter(Request $request, LanguageModel $item)
     {
+        if (myHelper::yetkiKontrol('diller',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "dil_durum" => $data
@@ -249,6 +319,14 @@ class indexController extends Controller
     // DEFAULT OLARAK SECILME ISLEMINI GERCEKLESTIRELIM
     public function isDefaultSetter(Request $request, LanguageModel $item)
     {
+        if (myHelper::yetkiKontrol('diller',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
 
         LanguageModel::where(array())->update(array(
@@ -263,6 +341,14 @@ class indexController extends Controller
     // DIL SIRALAMA GUNCELLEME KISMINI GERCEKLESTIRELIM
     public function rankSetter(Request $request)
     {
+        if (myHelper::yetkiKontrol('diller',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
