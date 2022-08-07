@@ -13,5 +13,6 @@
 
 @include('back.layout.login_layout.include_script')
 @yield('js')
+@include('back.layout.login_layout.alert')
 </body>
 </html>

@@ -5,3 +5,7 @@
 <script src="{{ asset('back') }}/plugins/pace/pace.min.js"></script>
 <script src="{{ asset('back') }}/js/main.min.js"></script>
 <script src="{{ asset('back') }}/js/custom.js"></script>
+
+{{-- IZAITOAST JS --}}
+<script src="{{ asset('back') }}/js/izitoast.min.js"></script>
+

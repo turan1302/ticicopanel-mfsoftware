@@ -316,8 +316,12 @@
                         </li>
                     </ul>
                 </li>
-                @endif
+            @endif
 
+
+            <li>
+                <a href="{{ route('back.logout') }}"><i class="material-icons-two-tone">logout</i>Çıkış Yap</a>
+            </li>
         </ul>
     </div>
 </div>

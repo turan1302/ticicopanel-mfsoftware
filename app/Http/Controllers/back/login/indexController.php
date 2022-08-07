@@ -39,7 +39,14 @@ class indexController extends Controller
 
     // LOGOUT OLMA KISMI
     public function logout(){
-
+        \auth()->guard('yonetim')->logout();
+        \request()->session()->flush();
+        \request()->session()->regenerate();
+        return redirect()->route('back.login')->with(array(
+            "type" => "success",
+            "title" => "Başarılı",
+            "text" => "Çıkış İşlemi Başarılı"
+        ));
     }
 }
 
