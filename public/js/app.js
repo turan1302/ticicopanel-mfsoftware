@@ -8855,6 +8855,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminHomeComponent"
 });
@@ -51014,7 +51065,126 @@ var staticRenderFns = [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col" }, [
               _c("div", { staticClass: "page-description" }, [
-                _c("h1", [_vm._v("Anasayfam")]),
+                _c("h1", [_vm._v("Anasayfa")]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-xl-4" }, [
+              _c("div", { staticClass: "card widget widget-stats" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "widget-stats-container d-flex" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "widget-stats-icon widget-stats-icon-primary",
+                      },
+                      [
+                        _c("i", { staticClass: "material-icons-outlined" }, [
+                          _vm._v("approval"),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "widget-stats-content flex-fill" },
+                      [
+                        _c("span", { staticClass: "widget-stats-title" }, [
+                          _vm._v("Sertifikalar"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "widget-stats-amount" }, [
+                          _vm._v("211"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "widget-stats-info" }, [
+                          _vm._v("Güncel Sayım"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-4" }, [
+              _c("div", { staticClass: "card widget widget-stats" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "widget-stats-container d-flex" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "widget-stats-icon widget-stats-icon-warning",
+                      },
+                      [
+                        _c("i", { staticClass: "material-icons-outlined" }, [
+                          _vm._v("design_services"),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "widget-stats-content flex-fill" },
+                      [
+                        _c("span", { staticClass: "widget-stats-title" }, [
+                          _vm._v("Servisler"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "widget-stats-amount" }, [
+                          _vm._v("23,491"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "widget-stats-info" }, [
+                          _vm._v("Güncel Sayım"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-xl-4" }, [
+              _c("div", { staticClass: "card widget widget-stats" }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c("div", { staticClass: "widget-stats-container d-flex" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "widget-stats-icon widget-stats-icon-danger",
+                      },
+                      [
+                        _c("i", { staticClass: "material-icons-outlined" }, [
+                          _vm._v("email"),
+                        ]),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "widget-stats-content flex-fill" },
+                      [
+                        _c("span", { staticClass: "widget-stats-title" }, [
+                          _vm._v("Mesajlar"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "widget-stats-amount" }, [
+                          _vm._v("140,390"),
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "widget-stats-info" }, [
+                          _vm._v("Güncel Sayım"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                ]),
               ]),
             ]),
           ]),
