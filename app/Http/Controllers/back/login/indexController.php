@@ -31,9 +31,17 @@ class indexController extends Controller
 
         if (Auth::guard('yonetim')->attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->route('back.home.index');
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "success",
+                "title" => "Başarılı",
+                "text" => "Hoşgeldiniz: ".\auth()->guard('yonetim')->user()->name
+            ));
         }else{
-            return redirect()->back();
+            return redirect()->back()->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Hatalı Giriş"
+            ));
         }
     }
 
