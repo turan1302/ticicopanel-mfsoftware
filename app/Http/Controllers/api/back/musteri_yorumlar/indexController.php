@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\musteri_yorumlar;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\MusteriYorumModel;
 use Illuminate\Http\Request;
@@ -16,10 +17,29 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "musteriYorum";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('musteri_yorumlari',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     public function index()
     {
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = MusteriYorumModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -63,6 +83,15 @@ class indexController extends Controller
 
     // EKLEME KISMI
     public function store(Request $request){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // DOSYA GELDI MI
@@ -106,16 +135,43 @@ class indexController extends Controller
 
     // GUNCELLEME KISMI AYARLANMASI
     public function edit(MusteriYorumModel $item){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GORUNTULEME KISMI AYARLANMASI
     public function show(MusteriYorumModel $item){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GUNCELLEME ISLEMI AYARLANMASI
     public function update(Request $request,MusteriYorumModel $item){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // DOSYA GELDI MI
@@ -165,6 +221,15 @@ class indexController extends Controller
 
     // SILME KISMI AYARLANMASI
     public function delete(MusteriYorumModel $item){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->my_resim != "" && File::exists("storage/".$item->my_resim)){
             File::delete("storage/".$item->my_resim);
         }
@@ -189,6 +254,15 @@ class indexController extends Controller
 
     // AKTIF PASIF KISMI AYARLANMASI
     public function isActiveSetter(Request $request,MusteriYorumModel $item){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data=="true") ? 1 : 0;
         $item->update(array(
             "my_durum" => $data
@@ -197,6 +271,15 @@ class indexController extends Controller
 
     // SIRALAMA KISMI AYARLANMASI
     public function rankSetter(Request $request){
+
+        if (myHelper::yetkiKontrol('musteri_yorumlari',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
