@@ -12458,6 +12458,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminProfilAyarlarComponent",
   props: ["geriye_don"],
@@ -12473,18 +12480,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.genelAyarGetir();
+    this.genelProfilGetir();
   },
   methods: {
     profilAyarGuncelle: function profilAyarGuncelle() {
       this.errors = [];
 
       if (this.name == "") {
-        this.errors.push("Kullanıcı Ad Soyad Kısmı Boş Olamaz");
+        this.errors.push("Ad Soyad Kısmı Boş Olamaz");
       }
 
       if (this.email == "") {
-        this.errors.push("Kullanıcı E-Mail Kısmı Boş Olamaz");
+        this.errors.push("E-Mail Kısmı Boş Olamaz");
       }
 
       if (this.email != "") {
@@ -12493,30 +12500,26 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      if (this.password == "") {
-        this.errors.push("Şifre Kısmını Boş Bırakmayınız");
-      }
-
       if (this.password != "") {
         if (this.password.length < 8) {
           this.errors.push("Şifre Kısmı 8 Karakterden Küçük Olamaz");
         }
-      }
 
-      if (this.password_confirmation == "") {
-        this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
-      }
+        if (this.password_confirmation == "") {
+          this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
+        }
 
-      if (this.password_confirmation != "") {
-        if (this.password_confirmation != this.password) {
-          this.errors.push("Şifreler Eşleşmiyor");
+        if (this.password_confirmation != "") {
+          if (this.password_confirmation != this.password) {
+            this.errors.push("Şifreler Eşleşmiyor");
+          }
         }
       }
       /** EĞER HERHANGI BIR HATA YOKSA **/
 
 
       if (this.errors.length == 0) {
-        var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
+        var url = "http://127.0.0.1:8000/api/back/profil/update";
         var formData = new FormData();
         formData.append('avatar', this.avatar);
         formData.append('name', this.name);
@@ -12538,7 +12541,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    genelAyarGetir: function genelAyarGetir() {
+    genelProfilGetir: function genelProfilGetir() {
       var _this = this;
 
       var url = "http://127.0.0.1:8000/api/back/profil";
@@ -56844,6 +56847,19 @@ var render = function () {
               _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
+                _vm.errors.length > 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "col-md-12 alert alert-danger text-center",
+                      },
+                      _vm._l(_vm.errors, function (item) {
+                        return _c("ul", [_c("li", [_vm._v(_vm._s(item))])])
+                      }),
+                      0
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 _c(
                   "form",
                   {
@@ -56895,11 +56911,7 @@ var render = function () {
                             type: "file",
                             "aria-describedby": "emailHelp",
                           },
-                          on: {
-                            change: function ($event) {
-                              return _vm.kullaniciAvatarSec()
-                            },
-                          },
+                          on: { change: _vm.kullaniciAvatarSec },
                         }),
                       ]),
                       _vm._v(" "),

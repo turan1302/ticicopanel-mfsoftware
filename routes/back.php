@@ -20,7 +20,7 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
     /** LOGIN KISMI AYARLAMASI **/
     Route::group(['prefix' => 'login'], function () {
         Route::get('', [\App\Http\Controllers\back\login\indexController::class, 'login'])->name('login');
-        Route::post('', [\App\Http\Controllers\back\login\indexController::class, 'do_log,in'])->name('do_login');
+        Route::post('', [\App\Http\Controllers\back\login\indexController::class, 'do_login'])->name('do_login');
         Route::get('logout', [\App\Http\Controllers\back\login\indexController::class, 'logout'])->name('logout');
     });
 

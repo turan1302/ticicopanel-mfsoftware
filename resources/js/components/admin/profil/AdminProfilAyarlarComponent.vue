@@ -20,6 +20,13 @@
                             </div>
                             <div class="card-body">
 
+                                <!-- HATA KISMI AYARLANMASI -->
+                                <div v-if="errors.length > 0" class="col-md-12 alert alert-danger text-center">
+                                    <ul v-for="item in errors">
+                                        <li>{{ item }}</li>
+                                    </ul>
+                                </div>
+
                                 <form method="POST" @submit.prevent="profilAyarGuncelle()" enctype="multipart/form-data">
                                     <div class="example-container">
 
@@ -30,7 +37,7 @@
                                         </div>
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Kullanıcı Avatar (80x80)</label>
-                                            <input type="file" @change="kullaniciAvatarSec()" class="form-control"
+                                            <input type="file" @change="kullaniciAvatarSec" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -94,18 +101,18 @@ export default {
         }
     },
     mounted() {
-      this.genelAyarGetir();
+      this.genelProfilGetir();
     },
     methods: {
         profilAyarGuncelle() {
             this.errors = [];
 
             if (this.name == "") {
-                this.errors.push("Kullanıcı Ad Soyad Kısmı Boş Olamaz");
+                this.errors.push("Ad Soyad Kısmı Boş Olamaz");
             }
 
             if (this.email == "") {
-                this.errors.push("Kullanıcı E-Mail Kısmı Boş Olamaz");
+                this.errors.push("E-Mail Kısmı Boş Olamaz");
             }
 
             if (this.email != "") {
@@ -114,29 +121,25 @@ export default {
                 }
             }
 
-            if (this.password == ""){
-                this.errors.push("Şifre Kısmını Boş Bırakmayınız");
-            }
-
             if (this.password != ""){
                 if (this.password.length < 8){
                     this.errors.push("Şifre Kısmı 8 Karakterden Küçük Olamaz");
                 }
-            }
 
-            if (this.password_confirmation == ""){
-                this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
-            }
+                if (this.password_confirmation == ""){
+                    this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
+                }
 
-            if (this.password_confirmation != ""){
-                if (this.password_confirmation != this.password){
-                    this.errors.push("Şifreler Eşleşmiyor");
+                if (this.password_confirmation != ""){
+                    if (this.password_confirmation != this.password){
+                        this.errors.push("Şifreler Eşleşmiyor");
+                    }
                 }
             }
 
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
-                var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
+                var url = "http://127.0.0.1:8000/api/back/profil/update";
 
                 let formData = new FormData();
                 formData.append('avatar', this.avatar);
@@ -160,7 +163,7 @@ export default {
                 });
             }
         },
-        genelAyarGetir() {
+        genelProfilGetir() {
             var url = "http://127.0.0.1:8000/api/back/profil";
             axios.get(url).then((res) => {
                 var data = res.data;
