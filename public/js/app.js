@@ -8906,8 +8906,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AdminHomeComponent"
+  props: ["sertifika_sayi", "servis_sayi", "mesaj_sayi", "son_10_mesaj"],
+  name: "AdminHomeComponent",
+  data: function data() {
+    return {
+      son_10_mesaj: '',
+      okundu: 'material-icons text-success',
+      okunmadi: 'material-icons text-danger'
+    };
+  },
+  mounted: function mounted() {
+    var son_10_mesaj = JSON.parse(this.$props.son_10_mesaj);
+    this.son_10_mesaj = son_10_mesaj;
+  }
 });
 
 /***/ }),
@@ -51052,143 +51099,209 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "app-content" }, [
-      _c("div", { staticClass: "content-wrapper" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "page-description" }, [
-                _c("h1", [_vm._v("Anasayfa")]),
+  return _c("div", { staticClass: "app-content" }, [
+    _c("div", { staticClass: "content-wrapper" }, [
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-xl-4" }, [
+            _c("div", { staticClass: "card widget widget-stats" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "widget-stats-container d-flex" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "widget-stats-content flex-fill" }, [
+                    _c("span", { staticClass: "widget-stats-title" }, [
+                      _vm._v("Sertifikalar"),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "widget-stats-amount" }, [
+                      _vm._v(_vm._s(_vm.sertifika_sayi) + " Adet"),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "widget-stats-info" }, [
+                      _vm._v("Güncel Sayım"),
+                    ]),
+                  ]),
+                ]),
               ]),
             ]),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-xl-4" }, [
-              _c("div", { staticClass: "card widget widget-stats" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "widget-stats-container d-flex" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "widget-stats-icon widget-stats-icon-primary",
-                      },
-                      [
-                        _c("i", { staticClass: "material-icons-outlined" }, [
-                          _vm._v("approval"),
-                        ]),
-                      ]
-                    ),
+          _c("div", { staticClass: "col-xl-4" }, [
+            _c("div", { staticClass: "card widget widget-stats" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "widget-stats-container d-flex" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "widget-stats-content flex-fill" }, [
+                    _c("span", { staticClass: "widget-stats-title" }, [
+                      _vm._v("Servisler"),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "widget-stats-content flex-fill" },
-                      [
-                        _c("span", { staticClass: "widget-stats-title" }, [
-                          _vm._v("Sertifikalar"),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "widget-stats-amount" }, [
-                          _vm._v("211"),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "widget-stats-info" }, [
-                          _vm._v("Güncel Sayım"),
-                        ]),
-                      ]
-                    ),
+                    _c("span", { staticClass: "widget-stats-amount" }, [
+                      _vm._v(_vm._s(_vm.servis_sayi) + " Adet"),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "widget-stats-info" }, [
+                      _vm._v("Güncel Sayım"),
+                    ]),
                   ]),
                 ]),
               ]),
             ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4" }, [
-              _c("div", { staticClass: "card widget widget-stats" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "widget-stats-container d-flex" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "widget-stats-icon widget-stats-icon-warning",
-                      },
-                      [
-                        _c("i", { staticClass: "material-icons-outlined" }, [
-                          _vm._v("design_services"),
-                        ]),
-                      ]
-                    ),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-xl-4" }, [
+            _c("div", { staticClass: "card widget widget-stats" }, [
+              _c("div", { staticClass: "card-body" }, [
+                _c("div", { staticClass: "widget-stats-container d-flex" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "widget-stats-content flex-fill" }, [
+                    _c("span", { staticClass: "widget-stats-title" }, [
+                      _vm._v("Mesajlar"),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "widget-stats-content flex-fill" },
-                      [
-                        _c("span", { staticClass: "widget-stats-title" }, [
-                          _vm._v("Servisler"),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "widget-stats-amount" }, [
-                          _vm._v("23,491"),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "widget-stats-info" }, [
-                          _vm._v("Güncel Sayım"),
-                        ]),
-                      ]
-                    ),
-                  ]),
-                ]),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-xl-4" }, [
-              _c("div", { staticClass: "card widget widget-stats" }, [
-                _c("div", { staticClass: "card-body" }, [
-                  _c("div", { staticClass: "widget-stats-container d-flex" }, [
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "widget-stats-icon widget-stats-icon-danger",
-                      },
-                      [
-                        _c("i", { staticClass: "material-icons-outlined" }, [
-                          _vm._v("email"),
-                        ]),
-                      ]
-                    ),
+                    _c("span", { staticClass: "widget-stats-amount" }, [
+                      _vm._v(_vm._s(_vm.mesaj_sayi) + " Adet"),
+                    ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "widget-stats-content flex-fill" },
-                      [
-                        _c("span", { staticClass: "widget-stats-title" }, [
-                          _vm._v("Mesajlar"),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "widget-stats-amount" }, [
-                          _vm._v("140,390"),
-                        ]),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "widget-stats-info" }, [
-                          _vm._v("Güncel Sayım"),
-                        ]),
-                      ]
-                    ),
+                    _c("span", { staticClass: "widget-stats-info" }, [
+                      _vm._v("Güncel Sayım"),
+                    ]),
                   ]),
                 ]),
               ]),
             ]),
           ]),
         ]),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("table", { staticClass: "table" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.son_10_mesaj, function (item) {
+                    return _c("tr", [
+                      _c("th", { attrs: { scope: "row" } }, [
+                        _vm._v(_vm._s(item.im_id)),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.im_adsoyad))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.im_email))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.im_tel))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.im_konu))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "span",
+                          {
+                            class:
+                              item.im_okundu_bilgisi == 1
+                                ? _vm.okundu
+                                : _vm.okunmadi,
+                          },
+                          [_vm._v("visibility")]
+                        ),
+                      ]),
+                    ])
+                  }),
+                  0
+                ),
+              ]),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
+}
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "page-description" }, [
+          _c("h1", [_vm._v("Raporlar")]),
+        ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "widget-stats-icon widget-stats-icon-primary" },
+      [
+        _c("i", { staticClass: "material-icons-outlined" }, [
+          _vm._v("approval"),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "widget-stats-icon widget-stats-icon-warning" },
+      [
+        _c("i", { staticClass: "material-icons-outlined" }, [
+          _vm._v("design_services"),
+        ]),
+      ]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "widget-stats-icon widget-stats-icon-danger" },
+      [_c("i", { staticClass: "material-icons-outlined" }, [_vm._v("email")])]
+    )
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "page-description" }, [
+      _c("h1", [_vm._v("Son 10 Mesaj")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Ad Soyad")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("E-Mail")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Telefon")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Konu")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Okundu Bilgisi")]),
       ]),
     ])
   },
