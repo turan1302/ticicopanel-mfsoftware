@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\sosyal_medya;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\SosyalMedyaModel;
 use Illuminate\Http\Request;
@@ -9,7 +10,30 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('sosyal_medya',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+    }
+
     public function index(){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = SosyalMedyaModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -41,6 +65,15 @@ class indexController extends Controller
 
     // STORE KISMI AYARLANMASI
     public function store(Request $request){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
         $sonuc = SosyalMedyaModel::create($data);
 
@@ -62,16 +95,43 @@ class indexController extends Controller
 
     // SOSYAL MEDYA GUNCELLEME KISMI AYARLANMASINI GERCEKLESTIRELEIM
     public function edit(SosyalMedyaModel $item){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // SOSYAL MEDYA GORUNTULEME KISMI AYARLANMASINI GERCEKLESTIRELIM
     public function show(SosyalMedyaModel $item){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // SOSYAL MEDYA GUNCELLEME KISMI
     public function update(Request $request,SosyalMedyaModel $item){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
         $sonuc = $item->update($data);
 
@@ -93,6 +153,15 @@ class indexController extends Controller
 
     // DELETE KISMI AYARLANMASI GERCEKLESTIRELIM
     public function delete(SosyalMedyaModel $item){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $sonuc = $item->delete();
 
         if ($sonuc) {
@@ -113,6 +182,15 @@ class indexController extends Controller
 
     // AKTIOF PASIF KISMI AYARLANAMSI
     public function isActiveSetter(Request $request,SosyalMedyaModel $item){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "sm_durum" => $data
@@ -121,6 +199,15 @@ class indexController extends Controller
 
     // SIRALAMA ISLEMI GERCEKLESTIRELIM
     public function rankSetter(Request $request){
+
+        if (myHelper::yetkiKontrol('sosyal_medya',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
