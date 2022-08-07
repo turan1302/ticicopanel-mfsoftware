@@ -12,7 +12,7 @@ class indexController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (auth()->user()->isSuperAdmin==0){
+            if (auth()->guard('yonetim')->user()->isSuperAdmin==0){
                 return redirect()->route('back.home.index')->with(array(
                     "type" => "error",
                     "title" => "Hata",
