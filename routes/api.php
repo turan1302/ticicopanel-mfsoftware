@@ -260,6 +260,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
     // PROFIL KISMI AYARLANMASI
     Route::group(['prefix' => 'profil', 'namespace' => 'profil'], function () {
         Route::get('', [\App\Http\Controllers\api\back\profil\indexController::class, 'index']);
+        Route::post('update', [\App\Http\Controllers\api\back\profil\indexController::class, 'index']);
 
     });
 

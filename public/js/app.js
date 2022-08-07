@@ -12433,15 +12433,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AdminProfilAyarlarComponent",
   props: ["geriye_don"],
   data: function data() {
     return {
+      site_url: 'http://127.0.0.1:8000/storage/',
+      avatar: '',
       name: '',
       email: '',
       password: '',
-      password_tekrar: '',
+      password_confirmation: '',
       errors: []
     };
   },
@@ -12451,17 +12478,51 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     profilAyarGuncelle: function profilAyarGuncelle() {
       this.errors = [];
+
+      if (this.name == "") {
+        this.errors.push("Kullanıcı Ad Soyad Kısmı Boş Olamaz");
+      }
+
+      if (this.email == "") {
+        this.errors.push("Kullanıcı E-Mail Kısmı Boş Olamaz");
+      }
+
+      if (this.email != "") {
+        if (this.ValidateEmail(this.email) == false) {
+          this.errors.push("Lütfen Geçerli Bir E-Mail Adresi Giriniz");
+        }
+      }
+
+      if (this.password == "") {
+        this.errors.push("Şifre Kısmını Boş Bırakmayınız");
+      }
+
+      if (this.password != "") {
+        if (this.password.length < 8) {
+          this.errors.push("Şifre Kısmı 8 Karakterden Küçük Olamaz");
+        }
+      }
+
+      if (this.password_confirmation == "") {
+        this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
+      }
+
+      if (this.password_confirmation != "") {
+        if (this.password_confirmation != this.password) {
+          this.errors.push("Şifreler Eşleşmiyor");
+        }
+      }
       /** EĞER HERHANGI BIR HATA YOKSA **/
+
 
       if (this.errors.length == 0) {
         var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
-        axios.post(url, {
-          site_baslik: this.site_baslik,
-          site_desc: this.site_desc,
-          site_keyw: this.site_keyw,
-          site_slogan: this.site_slogan,
-          site_durum: this.site_durum
-        }).then(function (res) {
+        var formData = new FormData();
+        formData.append('avatar', this.avatar);
+        formData.append('name', this.name);
+        formData.append('email', this.email);
+        formData.append('password', this.password);
+        axios.post(url, formData).then(function (res) {
           var data = res.data;
           Swal.fire({
             icon: data.type,
@@ -12485,7 +12546,20 @@ __webpack_require__.r(__webpack_exports__);
         var data = res.data;
         _this.name = data.name;
         _this.email = data.email;
+        _this.avatar = data.avatar != "" ? data.avatar : "resim-yok.webp";
       });
+    },
+    kullaniciAvatarSec: function kullaniciAvatarSec(e) {
+      this.avatar = e.target.files[0]; //  RESIM EKLETME ISLEMI
+    },
+    ValidateEmail: function ValidateEmail(inputText) {
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+      if (inputText.match(mailformat)) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 });
@@ -56790,6 +56864,52 @@ var render = function () {
                             staticClass: "form-label",
                             attrs: { for: "exampleInputEmail1" },
                           },
+                          [_vm._v("Aktif Resim")]
+                        ),
+                        _vm._v(" "),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("img", {
+                          attrs: {
+                            width: "100",
+                            height: "100",
+                            src: _vm.site_url + "" + _vm.avatar,
+                            alt: _vm.name,
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Kullanıcı Avatar (80x80)")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "file",
+                            "aria-describedby": "emailHelp",
+                          },
+                          on: {
+                            change: function ($event) {
+                              return _vm.kullaniciAvatarSec()
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
                           [_vm._v("Ad Soyad")]
                         ),
                         _vm._v(" "),
@@ -56850,6 +56970,84 @@ var render = function () {
                                 return
                               }
                               _vm.email = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [_vm._v("Şifreniz")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.password,
+                              expression: "password",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Boş Bırakırsanız Şifreniz Değişmez",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.password },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.password = $event.target.value
+                            },
+                          },
+                        }),
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "example-content" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" },
+                          },
+                          [
+                            _vm._v(
+                              "Kullanıcı Şifre\n                                            (Tekrar)"
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.password_confirmation,
+                              expression: "password_confirmation",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            placeholder: "Boş Bırakırsanız Şifreniz Değişmez",
+                            "aria-describedby": "emailHelp",
+                          },
+                          domProps: { value: _vm.password_confirmation },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.password_confirmation = $event.target.value
                             },
                           },
                         }),

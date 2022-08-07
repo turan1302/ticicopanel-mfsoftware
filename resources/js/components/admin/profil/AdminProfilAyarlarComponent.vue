@@ -24,6 +24,18 @@
                                     <div class="example-container">
 
                                         <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Aktif Resim</label>
+                                            <br>
+                                            <img width="100" height="100" :src="site_url+''+avatar" :alt="name">
+                                        </div>
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Avatar (80x80)</label>
+                                            <input type="file" @change="kullaniciAvatarSec()" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+
+                                        <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">Ad Soyad</label>
                                             <input type="text" v-model="name" class="form-control"
                                                    aria-describedby="emailHelp">
@@ -32,6 +44,19 @@
                                         <div class="example-content">
                                             <label for="exampleInputEmail1" class="form-label">E-Mail</label>
                                             <input type="text" v-model="email" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Şifreniz</label>
+                                            <input type="password" v-model="password" placeholder="Boş Bırakırsanız Şifreniz Değişmez" class="form-control"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="example-content">
+                                            <label for="exampleInputEmail1" class="form-label">Kullanıcı Şifre
+                                                (Tekrar)</label>
+                                            <input type="password" v-model="password_confirmation" placeholder="Boş Bırakırsanız Şifreniz Değişmez" class="form-control"
                                                    aria-describedby="emailHelp">
                                         </div>
 
@@ -59,10 +84,12 @@ export default {
     props: ["geriye_don"],
     data() {
         return {
+            site_url: 'http://127.0.0.1:8000/storage/',
+            avatar  : '',
             name: '',
             email : '',
             password: '',
-            password_tekrar : '',
+            password_confirmation : '',
             errors: [],
         }
     },
@@ -73,17 +100,51 @@ export default {
         profilAyarGuncelle() {
             this.errors = [];
 
+            if (this.name == "") {
+                this.errors.push("Kullanıcı Ad Soyad Kısmı Boş Olamaz");
+            }
+
+            if (this.email == "") {
+                this.errors.push("Kullanıcı E-Mail Kısmı Boş Olamaz");
+            }
+
+            if (this.email != "") {
+                if (this.ValidateEmail(this.email)==false){
+                    this.errors.push("Lütfen Geçerli Bir E-Mail Adresi Giriniz");
+                }
+            }
+
+            if (this.password == ""){
+                this.errors.push("Şifre Kısmını Boş Bırakmayınız");
+            }
+
+            if (this.password != ""){
+                if (this.password.length < 8){
+                    this.errors.push("Şifre Kısmı 8 Karakterden Küçük Olamaz");
+                }
+            }
+
+            if (this.password_confirmation == ""){
+                this.errors.push("Şifre Tekrar Kısmını Boş Bırakmayınız");
+            }
+
+            if (this.password_confirmation != ""){
+                if (this.password_confirmation != this.password){
+                    this.errors.push("Şifreler Eşleşmiyor");
+                }
+            }
+
             /** EĞER HERHANGI BIR HATA YOKSA **/
             if (this.errors.length == 0) {
                 var url = "http://127.0.0.1:8000/api/back/ayarlar/update";
 
-                axios.post(url, {
-                    site_baslik: this.site_baslik,
-                    site_desc: this.site_desc,
-                    site_keyw: this.site_keyw,
-                    site_slogan: this.site_slogan,
-                    site_durum: this.site_durum,
-                }).then((res) => {
+                let formData = new FormData();
+                formData.append('avatar', this.avatar);
+                formData.append('name', this.name);
+                formData.append('email', this.email);
+                formData.append('password', this.password);
+
+                axios.post(url, formData).then((res) => {
                     var data = res.data;
                     Swal.fire({
                         icon: data.type,
@@ -106,7 +167,21 @@ export default {
 
                 this.name = data.name;
                 this.email = data.email;
+
+                this.avatar = (data.avatar != "") ? data.avatar : "resim-yok.webp";
+
             });
+        },
+        kullaniciAvatarSec(e) {
+            this.avatar = e.target.files[0]; //  RESIM EKLETME ISLEMI
+        },
+        ValidateEmail(inputText) {
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (inputText.match(mailformat)) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }
