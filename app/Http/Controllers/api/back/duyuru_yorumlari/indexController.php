@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\duyuru_yorumlari;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\DuyuruYorumlariModel;
 use Illuminate\Http\Request;
@@ -9,8 +10,30 @@ use Yajra\DataTables\DataTables;
 
 class indexController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('duyuru_yorumlar',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
+    }
+
     public function index()
     {
+        if (myHelper::yetkiKontrol('duyuru_yorumlar',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = DuyuruYorumlariModel::select(["duyurular.*", "duyuru_yorumlar.*"])->leftJoin("duyurular", "duyurular.d_id", "=", "duyuru_yorumlar.dy_duyuru_id");
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -41,6 +64,15 @@ class indexController extends Controller
 
     // GORUNTULEME SAYFASI (EDIT KISMI)
     public function edit(DuyuruYorumlariModel $item){
+
+        if (myHelper::yetkiKontrol('duyuru_yorumlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $item->update(array(
             "dy_okunma" => 1
         ));
@@ -52,6 +84,15 @@ class indexController extends Controller
 
     // CEVAPLAMA KISMI AYARLANAMSI
     public function cevapla(Request $request,DuyuruYorumlariModel $item){
+
+        if (myHelper::yetkiKontrol('duyuru_yorumlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $sonuc = DuyuruYorumlariModel::create(array(
             "dy_adsoyad" => env("APP_NAME"),
             "dy_yorum" => $request->yorumunuz,
@@ -81,6 +122,14 @@ class indexController extends Controller
     // SILME KISMI AYARLANAMSI
     public function delete(DuyuruYorumlariModel $item){
 
+        if (myHelper::yetkiKontrol('duyuru_yorumlar',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $sonuc = $item->delete();
 
         if ($sonuc) {
@@ -101,6 +150,15 @@ class indexController extends Controller
 
     // IS ACTIVE KISMI AYARLANMASI GERCEKLESTIRELIM
     public function isActiveSetter(Request $request,DuyuruYorumlariModel $item){
+
+        if (myHelper::yetkiKontrol('duyuru_yorumlar',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "dy_durum" => $data
