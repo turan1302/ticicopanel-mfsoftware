@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api\back\ekip;
 
+use App\Helpers\myHelper;
 use App\Http\Controllers\Controller;
 use App\Models\EkipModel;
 use Illuminate\Http\Request;
@@ -15,10 +16,29 @@ class indexController extends Controller
     public function __construct()
     {
         $this->uploadFolder = "ekip";
+
+        $this->middleware(function ($request, $next) {
+            if (myHelper::yetkiKontrol('ekibimiz',"aktiflik")===false){
+                return redirect()->route('back.home.index')->with(array(
+                    "type" => "error",
+                    "title" => "Hata",
+                    "text" => "Yetkiniz Yok"
+                ));
+            }
+            return $next($request);
+        });
     }
 
     public function index()
     {
+        if (myHelper::yetkiKontrol('ekibimiz',"listeleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $query = EkipModel::query();
         $data = DataTables::of($query)
             ->addIndexColumn()
@@ -62,6 +82,15 @@ class indexController extends Controller
 
     // EKLEME ISLEMI
     public function store(Request $request){
+
+        if (myHelper::yetkiKontrol('ekibimiz',"ekleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         // DOSYTA GELDI MI
@@ -105,16 +134,43 @@ class indexController extends Controller
 
     // GUNCELLEME SAYFASI AYARLANMASI
     public function edit(EkipModel $item){
+
+        if (myHelper::yetkiKontrol('ekibimiz',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GORUNTULEME KISMI
     public function show(EkipModel $item){
+
+        if (myHelper::yetkiKontrol('ekibimiz',"goruntuleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         return response()->json($item);
     }
 
     // GUNCELLEME ISLEMI
     public function update(Request $request,EkipModel $item){
+
+        if (myHelper::yetkiKontrol('ekibimiz',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = $request->except("_token");
 
         $data['ekp_resim'] = $item->ekp_resim;
@@ -164,6 +220,14 @@ class indexController extends Controller
     // SIRALAMA KISMI AYARLANAMSI
     public function rankSetter(Request $request)
     {
+        if (myHelper::yetkiKontrol('ekibimiz',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         parse_str($request->post('data'), $sirala);
         $sirala = $sirala['item'];
 
@@ -177,6 +241,14 @@ class indexController extends Controller
     // AKTIF ĞPASFO KISMI AYARLANSIM
     public function isActiveSetter(Request $request, EkipModel $item)
     {
+        if (myHelper::yetkiKontrol('ekibimiz',"guncelleme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         $data = ($request->data == "true") ? 1 : 0;
         $item->update(array(
             "ekp_durum" => $data
@@ -186,6 +258,14 @@ class indexController extends Controller
     // DELETE KISMI AYARLANMASI
     public function delete(EkipModel $item)
     {
+        if (myHelper::yetkiKontrol('ekibimiz',"silme")===false){
+            return redirect()->route('back.home.index')->with(array(
+                "type" => "error",
+                "title" => "Hata",
+                "text" => "Yetkiniz Yok"
+            ));
+        }
+
         if ($item->ekp_resim != "" && File::exists("storage/".$item->ekp_resim)){
             File::delete("storage/".$item->ekp_resim);
         }
