@@ -257,6 +257,12 @@ Route::group(['prefix' => 'back', 'namespace' => 'back','middleware'=>'auth'], f
         });
     });
 
+    // PROFIL KISMI AYARLANMASI
+    Route::group(['prefix' => 'profil', 'namespace' => 'profil'], function () {
+        Route::get('', [\App\Http\Controllers\api\back\profil\indexController::class, 'index']);
+
+    });
+
     // AYARLAR KISMI AYARLANMASI
     Route::group(['prefix' => 'ayarlar', 'namespace' => 'ayarlar'], function () {
         Route::get('', [\App\Http\Controllers\api\back\ayarlar\indexController::class, 'index']);

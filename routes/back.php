@@ -194,6 +194,11 @@ Route::group(['namespace' => 'back', 'as' => 'back.'], function () {
             });
         });
 
+        /** PROFIL KISMI AYARLANMASI **/
+        Route::group(['prefix' => 'profil', 'namespace' => 'profil', 'as' => 'profil.'], function () {
+            Route::get('', [\App\Http\Controllers\back\profil\indexController::class, 'index'])->name('index');
+        });
+
         /** AYARLAR KISMI AYARLANMASI **/
         Route::group(['prefix' => 'ayarlar', 'namespace' => 'ayarlar', 'as' => 'ayarlar.'], function () {
             Route::get('', [\App\Http\Controllers\back\ayarlar\indexController::class, 'index'])->name('index');

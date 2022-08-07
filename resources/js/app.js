@@ -135,6 +135,7 @@ Vue.component('admin-toplu-mesaj-component', require('./components/admin/ayarlar
 /*********************************************************** */
 
 // KULLANICI PROFIL KISMI AYARLANMASI
+Vue.component('admin-profil-ayarlar-component', require('./components/admin/profil/AdminProfilAyarlarComponent').default);
 
 
 
